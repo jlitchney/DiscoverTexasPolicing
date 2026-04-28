@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Post a Job — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 08 — Post a Job (Standardized Template)
+  <a href="index.html">All Mockups</a> |
+  <a href="07-agency-dashboard.html">Agency Dashboard</a>
+</div>
+
+<div class="utility-bar"><div class="container">
+  <div class="left"><span class="star">★</span> Signed in as <strong style="color:#fff">San Antonio Police Department</strong></div>
+  <div class="right"><a href="#">Help</a><a href="#">Settings</a><a href="#">Sign Out</a></div>
+</div></div>
+
+<nav class="main-nav"><div class="container">
+  <a href="07-agency-dashboard.html" class="brand">
+    <div class="brand-mark" style="background:var(--tx-red);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+    <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2">★ Agency Portal</div></div>
+  </a>
+  <div class="primary-nav">
+    <a href="07-agency-dashboard.html">Dashboard</a>
+    <a href="08-post-a-job.html" class="active">Post a Job</a>
+    <a href="#">Job Postings</a>
+    <a href="#">Applicants</a>
+    <a href="#">Shared Pool</a>
+    <a href="#">Reports</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#" class="btn btn-outline btn-sm">Save draft</a>
+    <a href="#" class="btn btn-primary">Preview & publish</a>
+  </div>
+</div></nav>
+
+<section class="section tight">
+  <div class="container" style="max-width: 1100px;">
+    <div class="small"><a href="07-agency-dashboard.html">Dashboard</a> › Post a Job</div>
+    <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 8px 0 6px; font-size: 28px;">Post a job</h1>
+    <p style="color:var(--text-2); margin: 0 0 16px; max-width: 720px;">Use the standardized template below — applicants can search by these fields. All postings are free for TCOLE-licensed Texas agencies.</p>
+
+    <!-- Stepper -->
+    <div class="stepper" style="margin-bottom: 20px;">
+      <div class="step active"><div class="dot">1</div><div class="lbl">Position basics</div></div>
+      <div class="step"><div class="dot">2</div><div class="lbl">Requirements</div></div>
+      <div class="step"><div class="dot">3</div><div class="lbl">Compensation</div></div>
+      <div class="step"><div class="dot">4</div><div class="lbl">Application</div></div>
+      <div class="step"><div class="dot">5</div><div class="lbl">Pre-screen rules</div></div>
+      <div class="step"><div class="dot">6</div><div class="lbl">Review & publish</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 320px; gap: 24px;">
+      <!-- Form -->
+      <div>
+        <!-- Section: Position basics -->
+        <div class="card" style="padding:24px; margin-bottom:16px;">
+          <span class="eyebrow">Step 1</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Position basics</h2>
+
+          <div class="form-grid">
+            <div>
+              <label class="field-label">Posting type <span class="req">*</span></label>
+              <div class="radio-row">
+                <div class="radio-card checked" data-group="posting"><div class="lbl">Sworn — Peace Officer</div><div class="desc">TCOLE peace officer license required.</div></div>
+                <div class="radio-card" data-group="posting"><div class="lbl">Sworn — Jailer</div><div class="desc">TCOLE jailer license required.</div></div>
+                <div class="radio-card" data-group="posting"><div class="lbl">Telecommunicator</div><div class="desc">TCOLE telecommunicator license required.</div></div>
+                <div class="radio-card" data-group="posting"><div class="lbl">Cadet / No license</div><div class="desc">Paid academy or training provided.</div></div>
+              </div>
+            </div>
+
+            <div class="form-grid cols-2">
+              <div>
+                <label class="field-label">Job title <span class="req">*</span></label>
+                <input class="input" value="Police Officer (Lateral & Entry)" />
+              </div>
+              <div>
+                <label class="field-label">Internal posting ID</label>
+                <input class="input" value="SAPD-2026-0488" />
+              </div>
+              <div>
+                <label class="field-label">Job role <span class="req">*</span></label>
+                <select class="input">
+                  <option>Police Officer / Deputy</option>
+                  <option>Detective / Investigator</option>
+                  <option>Detention Officer / Jailer</option>
+                  <option>Dispatcher / Telecommunicator</option>
+                  <option>K-9 Handler</option>
+                  <option>SWAT / Tactical</option>
+                  <option>School Resource Officer</option>
+                  <option>Supervisor / Sergeant</option>
+                  <option>Lieutenant / Command</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Employment type <span class="req">*</span></label>
+                <select class="input"><option>Full-time</option><option>Part-time</option><option>Reserve / Volunteer</option><option>Contract</option></select>
+              </div>
+            </div>
+
+            <div class="form-grid cols-2">
+              <div>
+                <label class="field-label">Texas region <span class="req">*</span></label>
+                <select class="input">
+                  <option>Alamo (San Antonio)</option>
+                  <option>Capital (Austin)</option>
+                  <option>Metroplex (DFW)</option>
+                  <option>Gulf Coast (Houston)</option>
+                  <option>Central Texas (Waco)</option>
+                  <option>High Plains (Panhandle)</option>
+                  <option>South Texas Border</option>
+                  <option>West Texas</option>
+                  <option>Upper East Texas</option>
+                  <option>Northwest Texas</option>
+                  <option>Coastal Bend</option>
+                  <option>Southeast Texas</option>
+                  <option>Upper Rio Grande (El Paso)</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Primary city / county <span class="req">*</span></label>
+                <input class="input" value="San Antonio · Bexar County" />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label">Position summary <span class="req">*</span></label>
+              <textarea class="input">San Antonio Police Department is hiring sworn officers for assignment across Patrol and Specialty Units. Both Lateral applicants (1+ year sworn experience) and Entry applicants (no prior license required — paid academy provided) are welcome.</textarea>
+              <div class="help">Applicants see this on the search results page. Aim for 1–2 sentences.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section preview: requirements -->
+        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
+          <span class="eyebrow">Step 2 — preview</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Requirements (collapsed)</h2>
+          <div class="form-grid cols-2">
+            <div><label class="field-label">Minimum age</label><input class="input" value="21 at appointment"/></div>
+            <div><label class="field-label">Education minimum</label><select class="input"><option>HS / GED</option><option>Some college</option><option>Associate</option><option>Bachelor</option></select></div>
+            <div><label class="field-label">Experience required</label><select class="input"><option>None / will train</option><option>1+ year sworn</option><option>3+ years sworn</option><option>5+ years sworn</option></select></div>
+            <div><label class="field-label">License required at hire?</label><select class="input"><option>Yes — TCOLE Peace Officer</option><option>No — academy provided</option></select></div>
+          </div>
+        </div>
+
+        <!-- Section: compensation -->
+        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
+          <span class="eyebrow">Step 3 — preview</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Compensation & benefits</h2>
+          <div class="form-grid cols-2">
+            <div><label class="field-label">Salary minimum (annual) <span class="req">*</span></label><input class="input" value="$74,800"/></div>
+            <div><label class="field-label">Salary maximum (annual) <span class="req">*</span></label><input class="input" value="$112,400"/></div>
+            <div><label class="field-label">Sign-on bonus (optional)</label><input class="input" value="$15,000"/></div>
+            <div><label class="field-label">Pension</label><select class="input"><option>TMRS</option><option>JRS</option><option>ERS</option><option>Local pension</option></select></div>
+          </div>
+          <div style="margin-top:14px;">
+            <label class="field-label">Benefits (check all that apply)</label>
+            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;">
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Take-home vehicle</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Tuition reimbursement</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Bilingual stipend</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Education incentive</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox"> Relocation assistance</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Medical / Dental / Vision</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox"> Take-home K-9</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: application -->
+        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
+          <span class="eyebrow">Step 4 — preview</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Application path</h2>
+
+          <div class="radio-row">
+            <div class="radio-card checked" data-group="apply"><div class="lbl">Built-in application</div><div class="desc">Receive applications inside DiscoverTexasPolicing's ATS. Fastest setup.</div></div>
+            <div class="radio-card" data-group="apply"><div class="lbl">External link</div><div class="desc">Send applicants to your existing application URL.</div></div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <label class="field-label">Supplemental documents agencies may request</label>
+            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;">
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Resume</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> DD-214 (if veteran)</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> TCOLE certification</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox"> Personal History Statement</label>
+              <label class="checkbox" style="padding:0;"><input type="checkbox"> Cover letter</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: pre-screen -->
+        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
+          <span class="eyebrow">Step 5 — preview</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Pre-screen disqualifiers</h2>
+          <p class="small" style="margin: 0 0 12px;">By default, all postings inherit TPCA/TCOLE-approved high-profile disqualifiers (felony, dishonorable discharge, drug abuse history). Below you may toggle agency-specific additional rules.</p>
+          <div class="form-grid">
+            <label class="checkbox"><input type="checkbox" checked> Use statewide TPCA/TCOLE pre-screen baseline (recommended)</label>
+            <label class="checkbox"><input type="checkbox"> Disqualify if any DWI/DUI within last 7 years</label>
+            <label class="checkbox"><input type="checkbox"> Disqualify if no Texas residency at time of application</label>
+            <label class="checkbox"><input type="checkbox"> Require valid Texas DL Class C minimum at time of application</label>
+            <label class="checkbox"><input type="checkbox" checked> Auto-notify disqualified applicants with reason and resources</label>
+          </div>
+        </div>
+
+        <!-- Section: timeline -->
+        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
+          <span class="eyebrow">Step 6 — preview</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Schedule & visibility</h2>
+          <div class="form-grid cols-2">
+            <div><label class="field-label">Open date</label><input class="input" value="2026-04-28"/></div>
+            <div><label class="field-label">Close date</label><input class="input" value="2026-05-31"/></div>
+            <div><label class="field-label">Visibility</label><select class="input"><option>Public — searchable statewide</option><option>Region only</option><option>Internal lateral only</option></select></div>
+            <div><label class="field-label">Notification email for new applicants</label><input class="input" value="recruiting@sapd.gov"/></div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:20px;">
+          <a href="07-agency-dashboard.html" class="btn btn-ghost">Cancel</a>
+          <div style="display:flex; gap:10px;">
+            <a href="#" class="btn btn-outline">Save as draft</a>
+            <a href="#" class="btn btn-primary">Preview & publish</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar: live preview -->
+      <aside>
+        <div class="card" style="position:sticky; top: 96px;">
+          <h4 style="margin:0 0 8px; color:var(--navy-900); font-size:14px;">Live preview</h4>
+          <p class="small" style="margin: 0 0 10px;">How applicants will see this posting in search results.</p>
+          <div class="job-row" style="grid-template-columns: 48px 1fr; gap:10px; padding: 12px;">
+            <div class="agency-logo" style="background:var(--tx-red); color:#fff">SAPD</div>
+            <div>
+              <h3 style="font-size:14.5px;">Police Officer (Lateral & Entry)</h3>
+              <div class="agency" style="font-size:12.5px;">San Antonio PD · R4</div>
+              <div class="meta" style="font-size:12px;"><span>📍 San Antonio</span></div>
+              <div class="tags" style="margin-top:6px"><span class="tag" style="font-size:11px">Peace Officer</span><span class="tag gold" style="font-size:11px">$15k bonus</span></div>
+              <div style="margin-top:6px;" class="pay">$74.8k–$112.4k</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h4 style="margin: 0 0 8px; color:var(--navy-900); font-size:14px;">Why standardized?</h4>
+          <p class="small" style="margin:0;">Standardized fields enable applicants to filter by region, license, role, salary and benefits. Improves match quality and reduces unqualified applications.</p>
+
+          <div class="divider"></div>
+
+          <div class="alert info" style="padding: 12px;">
+            <span style="color:var(--navy-900); font-size:18px;">ⓘ</span>
+            <div style="font-size:13px;">
+              <strong>Cost</strong>
+              <div class="small">$0 — Posting on DiscoverTexasPolicing is free for all TCOLE-licensed Texas agencies, regardless of size.</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

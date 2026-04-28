@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agency Dashboard — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 07 — Agency Dashboard & Internal ATS
+  <a href="index.html">All Mockups</a> |
+  <a href="08-post-a-job.html">Post a Job</a> |
+  <a href="09-admin-analytics.html">Admin Analytics</a>
+</div>
+
+<div class="utility-bar"><div class="container">
+  <div class="left"><span class="star">★</span> Signed in as <strong style="color:#fff">San Antonio Police Department</strong> · Recruiting Sgt. K. Walker</div>
+  <div class="right"><a href="#">Help & training</a><a href="#">Settings</a><a href="#">Sign Out</a></div>
+</div></div>
+
+<nav class="main-nav"><div class="container">
+  <a href="07-agency-dashboard.html" class="brand">
+    <div class="brand-mark" style="background:var(--tx-red);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2">★ Agency Portal</div></div>
+  </a>
+  <div class="primary-nav">
+    <a href="07-agency-dashboard.html" class="active">Dashboard</a>
+    <a href="08-post-a-job.html">Post a Job</a>
+    <a href="#">Job Postings</a>
+    <a href="#">Applicants</a>
+    <a href="#">Shared Pool</a>
+    <a href="#">Reports</a>
+  </div>
+  <div class="nav-cta">
+    <a href="08-post-a-job.html" class="btn btn-primary">+ New Job Posting</a>
+  </div>
+</div></nav>
+
+<section class="section tight">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom: 16px;">
+      <div>
+        <span class="eyebrow">Agency Dashboard</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 28px;">San Antonio Police Department</h1>
+        <p style="color:var(--text-2); margin: 0;">Alamo Region · Municipal · 2,400 sworn · TPCA Verified Agency</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <a href="08-post-a-job.html" class="btn btn-secondary">+ Post a job</a>
+        <a href="#" class="btn btn-outline">Search shared pool</a>
+      </div>
+    </div>
+
+    <div class="banner-photo" style="background-image: url('assets/images/agency-banner.jpg'); height: 180px; margin-bottom: 22px;"></div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat"><div class="v">22</div><div class="l">Active job postings</div></div>
+      <div class="stat"><div class="v">418</div><div class="l">Applicants this quarter</div><div class="delta up" style="margin-top:4px">+38% vs Q1</div></div>
+      <div class="stat"><div class="v">62</div><div class="l">Pre-screened, ready to advance</div></div>
+      <div class="stat"><div class="v">47 days</div><div class="l">Avg time-to-fill</div><div class="delta up" style="margin-top:4px">−9 days vs prior</div></div>
+    </div>
+
+    <div class="spacer-32"></div>
+
+    <div style="display:grid; grid-template-columns: 1fr 320px; gap: 28px;">
+      <!-- Main: postings + ATS -->
+      <div>
+        <!-- Active postings -->
+        <div class="card" style="padding: 0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding: 16px 18px; border-bottom: 1px solid var(--border);">
+            <div>
+              <strong style="color:var(--navy-900);">Active job postings</strong>
+              <div class="small">Showing 1–5 of 22</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <select class="input" style="width:auto;"><option>All postings</option><option>Open</option><option>Closing soon</option><option>Drafts</option></select>
+              <a href="08-post-a-job.html" class="btn btn-primary btn-sm">+ New</a>
+            </div>
+          </div>
+          <table class="data" style="border:0; border-radius:0;">
+            <thead>
+              <tr><th>Position</th><th>Applicants</th><th>Pre-screened</th><th>Status</th><th>Closes</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Police Officer (Lateral)</strong><br><span class="small">Posted Apr 14 · ID #00482</span></td>
+                <td>87</td>
+                <td>54</td>
+                <td><span class="tag green">Open</span></td>
+                <td>May 31</td>
+                <td><a href="#" class="small">Manage →</a></td>
+              </tr>
+              <tr>
+                <td><strong>Police Officer Cadet</strong><br><span class="small">Posted Apr 02 · ID #00471</span></td>
+                <td>134</td>
+                <td>96</td>
+                <td><span class="tag green">Open</span></td>
+                <td>Jun 15</td>
+                <td><a href="#" class="small">Manage →</a></td>
+              </tr>
+              <tr>
+                <td><strong>Detention Officer</strong><br><span class="small">Posted Mar 28 · ID #00466</span></td>
+                <td>62</td>
+                <td>41</td>
+                <td><span class="tag red">Closes in 3 days</span></td>
+                <td>May 1</td>
+                <td><a href="#" class="small">Manage →</a></td>
+              </tr>
+              <tr>
+                <td><strong>Telecommunicator</strong><br><span class="small">Posted Apr 22 · ID #00488</span></td>
+                <td>29</td>
+                <td>22</td>
+                <td><span class="tag green">Open</span></td>
+                <td>May 22</td>
+                <td><a href="#" class="small">Manage →</a></td>
+              </tr>
+              <tr>
+                <td><strong>Detective — Robbery</strong><br><span class="small">Internal · Posted Apr 18 · ID #00485</span></td>
+                <td>14</td>
+                <td>14</td>
+                <td><span class="tag gold">Internal only</span></td>
+                <td>May 5</td>
+                <td><a href="#" class="small">Manage →</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="spacer-24"></div>
+
+        <!-- Applicant pipeline (ATS) -->
+        <div class="section-head" style="margin-bottom: 12px;">
+          <div>
+            <span class="eyebrow">Internal ATS (optional)</span>
+            <h2 style="font-size: 22px;">Applicant pipeline — Police Officer (Lateral)</h2>
+            <p>Drag candidates between stages. Notes, scoring and messaging are stored within DiscoverTexasPolicing.</p>
+          </div>
+          <a href="#" class="more">Switch posting →</a>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap: 12px; overflow-x:auto;">
+          <!-- Stage 1 -->
+          <div style="background:#fff; border:1px solid var(--border); border-radius: 8px; padding: 12px; min-width: 180px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+              <strong style="font-size:13px; color:var(--navy-900);">New</strong>
+              <span class="tag gray">22</span>
+            </div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Daniela Reyes</strong><div class="small">Lateral · 3 yrs · Alamo</div><div class="small" style="margin-top:4px;">Score: <strong>9.1</strong></div></div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Marcus Webb</strong><div class="small">Lateral · 7 yrs · Metroplex</div><div class="small" style="margin-top:4px;">Score: <strong>8.7</strong></div></div>
+            <div class="card" style="padding: 10px;"><strong style="font-size:13.5px">+ 20 more</strong><div class="small">Pre-screened ✓</div></div>
+          </div>
+          <!-- Stage 2 -->
+          <div style="background:#fff; border:1px solid var(--border); border-radius: 8px; padding: 12px; min-width: 180px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+              <strong style="font-size:13px; color:var(--navy-900);">Reviewed</strong>
+              <span class="tag gray">18</span>
+            </div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Carlos Ibarra</strong><div class="small">Lateral · 5 yrs · S. Texas Border</div><div class="tags" style="margin-top:6px"><span class="tag green">Veteran</span></div></div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Hannah Quinn</strong><div class="small">Lateral · 4 yrs · Alamo</div><div class="tags" style="margin-top:6px"><span class="tag">Bilingual</span></div></div>
+            <div class="card" style="padding: 10px;"><strong style="font-size:13.5px">+ 16 more</strong></div>
+          </div>
+          <!-- Stage 3 -->
+          <div style="background:#fff; border:1px solid var(--border); border-radius: 8px; padding: 12px; min-width: 180px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+              <strong style="font-size:13px; color:var(--navy-900);">Written / POPAT</strong>
+              <span class="tag gray">11</span>
+            </div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Travis Yu</strong><div class="small">Scheduled May 4</div></div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Sandra Loomis</strong><div class="small">Passed · 91/100</div></div>
+            <div class="card" style="padding: 10px;"><strong style="font-size:13.5px">+ 9 more</strong></div>
+          </div>
+          <!-- Stage 4 -->
+          <div style="background:#fff; border:1px solid var(--border); border-radius: 8px; padding: 12px; min-width: 180px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+              <strong style="font-size:13px; color:var(--navy-900);">Background</strong>
+              <span class="tag gray">7</span>
+            </div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Daniela Reyes</strong><div class="small">Day 4 · pending docs</div><div class="tags" style="margin-top:6px"><span class="tag red">Action needed</span></div></div>
+            <div class="card" style="padding: 10px;"><strong style="font-size:13.5px">+ 6 more</strong></div>
+          </div>
+          <!-- Stage 5 -->
+          <div style="background:#fff; border:1px solid var(--border); border-radius: 8px; padding: 12px; min-width: 180px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+              <strong style="font-size:13px; color:var(--navy-900);">Conditional offer</strong>
+              <span class="tag gray">3</span>
+            </div>
+            <div class="card" style="padding: 10px; margin-bottom:8px;"><strong style="font-size:13.5px">Sandra Loomis</strong><div class="small">Offer sent · awaiting accept</div><div class="tags" style="margin-top:6px"><span class="tag green">Accepted</span></div></div>
+            <div class="card" style="padding: 10px;"><strong style="font-size:13.5px">+ 2 more</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <div class="card">
+          <h4 style="margin:0 0 8px; color:var(--navy-900); font-size:14px;">Search the shared pool</h4>
+          <p class="small" style="margin: 0 0 10px;">14,238 pre-screened candidates statewide. Filter by certification, region preference and qualifications.</p>
+          <div class="form-grid" style="gap:10px;">
+            <div><label class="field-label">Certification</label><select class="input"><option>Peace Officer</option><option>Jailer</option><option>Telecommunicator</option></select></div>
+            <div><label class="field-label">Geographic preference</label><select class="input"><option>Alamo (San Antonio)</option><option>Statewide</option></select></div>
+            <div><label class="field-label">Experience</label><select class="input"><option>Any</option><option>Lateral 1+ years</option><option>Lateral 5+ years</option><option>Cadet / Entry</option></select></div>
+            <button class="btn btn-secondary">Search candidates</button>
+          </div>
+        </div>
+
+        <div class="spacer-16"></div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px; color:var(--navy-900); font-size:14px;">Agency analytics — last 90 days</h4>
+          <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13.5px;"><span>Job views</span><strong>34,118</strong></div>
+          <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13.5px;"><span>Applications received</span><strong>418</strong></div>
+          <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13.5px;"><span>Disqualified pre-screen</span><strong>89</strong></div>
+          <div style="display:flex; justify-content:space-between; padding:6px 0; font-size:13.5px;"><span>Hires</span><strong>14</strong></div>
+          <a href="09-admin-analytics.html" class="btn btn-outline btn-block btn-sm" style="margin-top:10px;">View full reports</a>
+        </div>
+
+        <div class="spacer-16"></div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px; color:var(--navy-900); font-size:14px;">Team & access</h4>
+          <div style="display:flex; gap:10px; align-items:center; padding: 8px 0; border-bottom:1px solid var(--border);">
+            <div class="agency-logo" style="width:32px; height:32px; font-size:11px;">KW</div>
+            <div style="flex:1; font-size:13.5px;"><strong>Sgt. K. Walker</strong><br><span class="small">Recruiting · Admin</span></div>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center; padding: 8px 0; border-bottom:1px solid var(--border);">
+            <div class="agency-logo" style="width:32px; height:32px; font-size:11px; background:#FBE9EA; color:var(--tx-red-dk)">JM</div>
+            <div style="flex:1; font-size:13.5px;"><strong>Lt. J. Morales</strong><br><span class="small">Reviewer · Read/score</span></div>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center; padding: 8px 0;">
+            <div class="agency-logo" style="width:32px; height:32px; font-size:11px;">+</div>
+            <div style="flex:1; font-size:13.5px;"><a href="#">Invite team member</a></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

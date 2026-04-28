@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TPCA Admin — Statewide Analytics — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  /* Mini chart styles */
+  .bar-row { display:grid; grid-template-columns: 160px 1fr 60px; gap: 10px; align-items:center; padding: 6px 0; }
+  .bar-row .lbl { font-size: 13px; color: var(--text-2); }
+  .bar-row .val { font-weight:700; color: var(--navy-900); text-align:right; font-variant-numeric: tabular-nums; }
+  .bar-bg { height: 10px; background: var(--bg); border-radius:6px; overflow:hidden; }
+  .bar-fg { height:100%; background: linear-gradient(90deg, var(--navy-700), var(--navy-900)); }
+  .bar-fg.red { background: linear-gradient(90deg, #d8595b, var(--tx-red)); }
+
+  .area-chart {
+    width: 100%; height: 220px; background:#fff; border:1px solid var(--border);
+    border-radius: var(--radius); padding: 16px;
+  }
+  .ring {
+    width: 110px; height: 110px;
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 09 — TPCA Admin Analytics & Reporting
+  <a href="index.html">All Mockups</a> |
+  <a href="07-agency-dashboard.html">Agency View</a>
+</div>
+
+<div class="utility-bar"><div class="container">
+  <div class="left"><span class="star">★</span> TPCA Admin · <strong style="color:#fff">Statewide reporting</strong></div>
+  <div class="right"><a href="#">Export</a><a href="#">Schedule report</a><a href="#">Settings</a><a href="#">Sign Out</a></div>
+</div></div>
+
+<nav class="main-nav"><div class="container">
+  <a href="01-homepage.html" class="brand">
+    <div class="brand-mark" style="background:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2">★ TPCA Admin</div></div>
+  </a>
+  <div class="primary-nav">
+    <a href="09-admin-analytics.html" class="active">Analytics</a>
+    <a href="#">Agencies</a>
+    <a href="#">Job Listings</a>
+    <a href="#">Applicants</a>
+    <a href="#">Ambassadors</a>
+    <a href="#">Marketing</a>
+  </div>
+  <div class="nav-cta">
+    <select class="input" style="width:auto;"><option>This Quarter (Q2 2026)</option><option>Year-to-date</option><option>Last 12 months</option><option>Custom range…</option></select>
+    <a href="#" class="btn btn-secondary btn-sm">Export PDF</a>
+  </div>
+</div></nav>
+
+<section class="section tight">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom: 18px;">
+      <div>
+        <span class="eyebrow">Statewide Reporting</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 28px;">DiscoverTexasPolicing — Q2 2026 Performance</h1>
+        <p style="color:var(--text-2); margin: 0;">Live data through 28 April 2026 · Quarterly report compiled automatically per RFP §7.</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <a href="#" class="btn btn-outline">Compare to Q1</a>
+        <a href="#" class="btn btn-secondary">Generate quarterly report</a>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="stats">
+      <div class="stat"><div class="v">472</div><div class="l">Active agency accounts</div><div class="delta up">+24 vs Q1</div></div>
+      <div class="stat"><div class="v">1,593</div><div class="l">Active job listings</div><div class="delta up">+182 vs Q1</div></div>
+      <div class="stat"><div class="v">28,418</div><div class="l">Applicant submissions YTD</div><div class="delta up">+44% vs Q1</div></div>
+      <div class="stat"><div class="v">14,238</div><div class="l">Shared applicant pool</div><div class="delta up">+1,866 vs Q1</div></div>
+      <div class="stat"><div class="v">52 days</div><div class="l">Avg time-to-fill</div><div class="delta up">−9 days vs Q1</div></div>
+      <div class="stat"><div class="v">1.21M</div><div class="l">Site visits</div><div class="delta up">+18% MoM</div></div>
+      <div class="stat"><div class="v">4.7 / 5</div><div class="l">Agency satisfaction</div><div class="delta up">+0.2 vs Q1</div></div>
+      <div class="stat"><div class="v">4.5 / 5</div><div class="l">Applicant satisfaction</div><div class="delta up">+0.3 vs Q1</div></div>
+    </div>
+
+    <div class="spacer-32"></div>
+
+    <!-- Two-column: traffic chart + region breakdown -->
+    <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap: 24px;">
+      <div class="card" style="padding:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <strong style="color:var(--navy-900)">Site visits & application submissions</strong>
+            <div class="small">Daily totals — trailing 90 days</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <span class="tag" style="background:#0B2545; color:#fff">Visits</span>
+            <span class="tag red">Applications</span>
+          </div>
+        </div>
+
+        <!-- Inline mini chart -->
+        <svg class="area-chart" viewBox="0 0 700 220" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0B2545" stop-opacity=".35"/><stop offset="1" stop-color="#0B2545" stop-opacity="0"/></linearGradient>
+            <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#BF2C2F" stop-opacity=".35"/><stop offset="1" stop-color="#BF2C2F" stop-opacity="0"/></linearGradient>
+          </defs>
+          <!-- Visits area -->
+          <path d="M0 170 C40 150 80 120 130 130 C180 140 230 100 290 90 C350 80 400 60 460 70 C520 80 570 50 620 40 L700 30 L700 220 L0 220 Z" fill="url(#g1)" stroke="#0B2545" stroke-width="2"/>
+          <!-- Applications -->
+          <path d="M0 200 C40 195 80 185 130 188 C180 192 230 175 290 168 C350 162 400 150 460 152 C520 154 570 140 620 130 L700 120 L700 220 L0 220 Z" fill="url(#g2)" stroke="#BF2C2F" stroke-width="2"/>
+          <!-- Axis lines -->
+          <line x1="0" y1="220" x2="700" y2="220" stroke="#E2E8F0"/>
+          <g font-family="-apple-system, sans-serif" font-size="10" fill="#718096">
+            <text x="0" y="216">Feb 1</text>
+            <text x="180" y="216">Mar 1</text>
+            <text x="360" y="216">Apr 1</text>
+            <text x="660" y="216" text-anchor="end">Apr 28</text>
+          </g>
+        </svg>
+
+        <div style="display:flex; gap:24px; margin-top:14px;">
+          <div><div class="small">Total visits (90d)</div><strong style="font-size: 20px; color:var(--navy-900)">3.42M</strong></div>
+          <div><div class="small">Total applications (90d)</div><strong style="font-size: 20px; color:var(--navy-900)">28,418</strong></div>
+          <div><div class="small">Conversion (visit → app)</div><strong style="font-size: 20px; color:var(--navy-900)">8.3%</strong></div>
+        </div>
+      </div>
+
+      <!-- Region table -->
+      <div class="card" style="padding:18px;">
+        <strong style="color:var(--navy-900)">Job listings by region</strong>
+        <div class="small" style="margin-bottom: 12px;">Active openings, this quarter (13 regions)</div>
+        <div class="bar-row"><span class="lbl">Metroplex (DFW)</span><span class="bar-bg"><span class="bar-fg" style="width:100%"></span></span><span class="val">425</span></div>
+        <div class="bar-row"><span class="lbl">Capital (Austin)</span><span class="bar-bg"><span class="bar-fg red" style="width:75%"></span></span><span class="val">318</span></div>
+        <div class="bar-row"><span class="lbl">Gulf Coast (Houston)</span><span class="bar-bg"><span class="bar-fg" style="width:67%"></span></span><span class="val">287</span></div>
+        <div class="bar-row"><span class="lbl">Alamo (San Antonio)</span><span class="bar-bg"><span class="bar-fg" style="width:52%"></span></span><span class="val">221</span></div>
+        <div class="bar-row"><span class="lbl">South Texas Border</span><span class="bar-bg"><span class="bar-fg" style="width:40%"></span></span><span class="val">172</span></div>
+        <div class="bar-row"><span class="lbl">Central Texas (Waco)</span><span class="bar-bg"><span class="bar-fg" style="width:37%"></span></span><span class="val">156</span></div>
+        <div class="bar-row"><span class="lbl">High Plains</span><span class="bar-bg"><span class="bar-fg" style="width:33%"></span></span><span class="val">142</span></div>
+        <div class="bar-row"><span class="lbl">West Texas</span><span class="bar-bg"><span class="bar-fg" style="width:30%"></span></span><span class="val">129</span></div>
+        <div class="bar-row"><span class="lbl">Upper East Texas</span><span class="bar-bg"><span class="bar-fg" style="width:23%"></span></span><span class="val">98</span></div>
+        <div class="bar-row"><span class="lbl">Northwest Texas</span><span class="bar-bg"><span class="bar-fg" style="width:20%"></span></span><span class="val">86</span></div>
+        <div class="bar-row"><span class="lbl">Coastal Bend</span><span class="bar-bg"><span class="bar-fg" style="width:17%"></span></span><span class="val">74</span></div>
+        <div class="bar-row"><span class="lbl">Southeast Texas</span><span class="bar-bg"><span class="bar-fg" style="width:16%"></span></span><span class="val">68</span></div>
+        <div class="bar-row"><span class="lbl">Upper Rio Grande</span><span class="bar-bg"><span class="bar-fg" style="width:12%"></span></span><span class="val">52</span></div>
+      </div>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <!-- Three-up: time-to-fill, applicant funnel, satisfaction -->
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      <div class="card" style="padding:18px;">
+        <strong style="color:var(--navy-900)">Avg time-to-fill</strong>
+        <div class="small" style="margin-bottom: 12px;">By agency size, days</div>
+        <div class="bar-row"><span class="lbl">Small (≤25 sworn)</span><span class="bar-bg"><span class="bar-fg" style="width:90%"></span></span><span class="val">68</span></div>
+        <div class="bar-row"><span class="lbl">Medium (26–100)</span><span class="bar-bg"><span class="bar-fg" style="width:70%"></span></span><span class="val">52</span></div>
+        <div class="bar-row"><span class="lbl">Large (101–500)</span><span class="bar-bg"><span class="bar-fg" style="width:55%"></span></span><span class="val">42</span></div>
+        <div class="bar-row"><span class="lbl">Very large (500+)</span><span class="bar-bg"><span class="bar-fg" style="width:48%"></span></span><span class="val">37</span></div>
+        <div class="divider"></div>
+        <div class="small">Statewide improvement vs pre-launch baseline of 79 days: <strong style="color:var(--success)">−27 days (-34%)</strong></div>
+      </div>
+
+      <div class="card" style="padding:18px;">
+        <strong style="color:var(--navy-900)">Applicant funnel — Q2</strong>
+        <div class="small" style="margin-bottom: 12px;">Applications → Hire</div>
+        <div class="bar-row"><span class="lbl">Applications</span><span class="bar-bg"><span class="bar-fg" style="width:100%"></span></span><span class="val">12,418</span></div>
+        <div class="bar-row"><span class="lbl">Pre-screen pass</span><span class="bar-bg"><span class="bar-fg" style="width:78%"></span></span><span class="val">9,686</span></div>
+        <div class="bar-row"><span class="lbl">Reviewed by agency</span><span class="bar-bg"><span class="bar-fg" style="width:62%"></span></span><span class="val">7,699</span></div>
+        <div class="bar-row"><span class="lbl">Written / POPAT</span><span class="bar-bg"><span class="bar-fg" style="width:32%"></span></span><span class="val">3,973</span></div>
+        <div class="bar-row"><span class="lbl">Background</span><span class="bar-bg"><span class="bar-fg" style="width:18%"></span></span><span class="val">2,235</span></div>
+        <div class="bar-row"><span class="lbl">Conditional offer</span><span class="bar-bg"><span class="bar-fg red" style="width:9%"></span></span><span class="val">1,118</span></div>
+        <div class="bar-row"><span class="lbl">Hired</span><span class="bar-bg"><span class="bar-fg red" style="width:6%"></span></span><span class="val">745</span></div>
+      </div>
+
+      <div class="card" style="padding:18px;">
+        <strong style="color:var(--navy-900)">Satisfaction — surveys</strong>
+        <div class="small" style="margin-bottom: 12px;">Out of 5, n=4,212 responses</div>
+
+        <div style="display:flex; gap:18px; align-items:center; margin-bottom: 12px;">
+          <svg class="ring" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#E2E8F0" stroke-width="3.6"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0B2545" stroke-width="3.6" stroke-dasharray="94 100" transform="rotate(-90 18 18)"/>
+            <text x="18" y="20" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#0B2545" font-weight="700">4.7</text>
+          </svg>
+          <div>
+            <strong style="color:var(--navy-900)">Agency satisfaction</strong>
+            <div class="small">"Reduced administrative burden" cited by 86% of respondents.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:18px; align-items:center;">
+          <svg class="ring" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#E2E8F0" stroke-width="3.6"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#BF2C2F" stroke-width="3.6" stroke-dasharray="90 100" transform="rotate(-90 18 18)"/>
+            <text x="18" y="20" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#BF2C2F" font-weight="700">4.5</text>
+          </svg>
+          <div>
+            <strong style="color:var(--navy-900)">Applicant satisfaction</strong>
+            <div class="small">"Confidence in hiring process" cited by 81% of respondents.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <!-- Bottom row -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div class="card" style="padding:18px;">
+        <strong style="color:var(--navy-900)">Top hiring agencies — this quarter</strong>
+        <table class="data" style="margin-top:10px; border:0;">
+          <thead><tr><th>Agency</th><th>Region</th><th>Postings</th><th>Hires</th></tr></thead>
+          <tbody>
+            <tr><td>Texas DPS</td><td>Statewide</td><td>14</td><td>148</td></tr>
+            <tr><td>Houston Police Department</td><td>Gulf Coast</td><td>22</td><td>96</td></tr>
+            <tr><td>San Antonio Police Department</td><td>Alamo</td><td>22</td><td>74</td></tr>
+            <tr><td>Dallas Police Department</td><td>Metroplex</td><td>18</td><td>62</td></tr>
+            <tr><td>Austin Police Department</td><td>Alamo</td><td>14</td><td>48</td></tr>
+            <tr><td>Fort Worth Police Department</td><td>Metroplex</td><td>16</td><td>41</td></tr>
+            <tr><td>Harris County Sheriff's Office</td><td>Gulf Coast</td><td>11</td><td>35</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="padding:18px;">
+        <strong style="color:var(--navy-900)">Marketing channel performance</strong>
+        <div class="small" style="margin-bottom:12px;">Source of new applicant signups, Q2</div>
+        <div class="bar-row"><span class="lbl">Organic search</span><span class="bar-bg"><span class="bar-fg" style="width:88%"></span></span><span class="val">38%</span></div>
+        <div class="bar-row"><span class="lbl">TCOLE academy partnerships</span><span class="bar-bg"><span class="bar-fg" style="width:55%"></span></span><span class="val">22%</span></div>
+        <div class="bar-row"><span class="lbl">Paid social (Meta, X)</span><span class="bar-bg"><span class="bar-fg" style="width:42%"></span></span><span class="val">17%</span></div>
+        <div class="bar-row"><span class="lbl">Email campaigns</span><span class="bar-bg"><span class="bar-fg" style="width:30%"></span></span><span class="val">11%</span></div>
+        <div class="bar-row"><span class="lbl">Direct / Ambassador outreach</span><span class="bar-bg"><span class="bar-fg red" style="width:25%"></span></span><span class="val">9%</span></div>
+        <div class="bar-row"><span class="lbl">Other / Referral</span><span class="bar-bg"><span class="bar-fg" style="width:8%"></span></span><span class="val">3%</span></div>
+        <div class="divider"></div>
+        <a href="#" class="small">View full marketing dashboard →</a>
+      </div>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <!-- Compliance / health -->
+    <div class="card" style="padding:18px;">
+      <strong style="color:var(--navy-900)">Compliance & system health</strong>
+      <div class="grid cols-4" style="margin-top:12px; gap:12px;">
+        <div><div class="small">Uptime (90d)</div><strong style="color:var(--success)">99.99%</strong></div>
+        <div><div class="small">WCAG 2.1 AA audits</div><strong>Passed · Mar 2026</strong></div>
+        <div><div class="small">Texas DIR-CTF status</div><strong style="color:var(--success)">Compliant</strong></div>
+        <div><div class="small">Last penetration test</div><strong>Apr 12, 2026</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ TPCA Admin</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

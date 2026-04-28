@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regional Job Map — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  #region-tooltip {
+    position: absolute; display:none; background: var(--navy-900); color:#fff;
+    padding:10px 12px; border-radius:8px; font-size:13px; pointer-events:none;
+    box-shadow: var(--shadow-lg); z-index:50; max-width:240px; line-height:1.4;
+  }
+  .region-shape { cursor:pointer; stroke: #FFFFFF; stroke-width: 1; stroke-linejoin: round; transition: filter .15s ease, fill .15s ease, stroke-width .15s ease; }
+  .region-shape:hover { filter: brightness(1.12); stroke-width: 2; stroke: #C9A227; }
+  .region-shape.active { stroke:#C9A227; stroke-width:3; }
+  .region-pin { cursor:pointer; transition: transform .15s ease; transform-origin: center; transform-box: fill-box; }
+  .region-pin:hover { transform: scale(1.12); }
+  .region-pin.active circle { stroke: #C9A227; stroke-width: 3; }
+  .legend-row { display:flex; align-items:center; gap:10px; padding: 7px 6px; border-radius:6px; cursor:pointer; }
+  .legend-row:hover { background: var(--navy-50); }
+  .legend-row.active { background: var(--navy-50); }
+  .swatch { width:14px; height:14px; border-radius:3px; flex:none; }
+  .map-toggle button {
+    border:1px solid var(--border-2); background:#fff;
+    padding: 6px 12px; font-size: 12.5px; font-weight:600; color: var(--text-2);
+    cursor:pointer;
+  }
+  .map-toggle button:first-child { border-radius: 6px 0 0 6px; border-right:0; }
+  .map-toggle button:last-child  { border-radius: 0 6px 6px 0; }
+  .map-toggle button.active { background: var(--navy-900); color:#fff; border-color: var(--navy-900); }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 03 — Interactive Texas Regional Map
+  <a href="index.html">All Mockups</a> |
+  <a href="01-homepage.html">Home</a> |
+  <a href="02-jobs.html">Jobs</a> |
+  <a href="04-job-detail.html">Job Detail</a>
+</div>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="left"><span class="star">★</span> A program of TPCA in partnership with TCOLE</div>
+    <div class="right">
+      <a href="07-agency-dashboard.html">For Agencies</a>
+      <a href="10-ambassadors.html">Ambassadors</a>
+      <a href="#">Help</a>
+      <a href="#">Sign In</a>
+    </div>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container">
+    <a href="01-homepage.html" class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2">★ Careers in Texas Law Enforcement</div></div>
+    </a>
+    <div class="primary-nav">
+      <a href="01-homepage.html">Home</a>
+      <a href="02-jobs.html">Find Jobs</a>
+      <a href="03-regional-map.html" class="active">Regions</a>
+      <a href="10-ambassadors.html">Ambassadors</a>
+      <a href="#">Resources</a>
+      <a href="07-agency-dashboard.html">For Agencies</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="05-applicant-signup.html" class="btn btn-primary">Create Profile</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+    <div class="small"><a href="01-homepage.html">Home</a> › Regions</div>
+    <div style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap; margin: 8px 0 24px;">
+      <div>
+        <span class="eyebrow">★ Texas Uniform State Service Regions</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 6px 0 4px; font-size: 30px;">Hire local. Serve where you call home.</h1>
+        <p style="color:var(--text-2); margin:0; max-width: 760px;">Texas is divided into 13 Uniform State Service Regions adopted by the Texas Comptroller. Click any region to see open positions and connect with the local Recruitment Ambassador.</p>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <a href="02-jobs.html" class="btn btn-outline">Browse all jobs (1,593)</a>
+        <a href="10-ambassadors.html" class="btn btn-secondary">View Ambassadors</a>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap: 28px; align-items:flex-start;">
+      <!-- Map -->
+      <div style="background:#fff; border:1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); position:relative;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+          <div>
+            <strong style="color:var(--navy-900);">13 regions across Texas</strong>
+            <div class="small" style="color:var(--text-2)">1,593 active openings · 472 hiring agencies</div>
+          </div>
+          <div class="map-toggle">
+            <button class="active">Map</button>
+            <button>List</button>
+          </div>
+        </div>
+
+        <svg id="texas-map" viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;" aria-label="Map of Texas with thirteen Uniform State Service Regions">
+
+          <!-- ============================ TEXAS SILHOUETTE BASE FILL ============================ -->
+          <!-- Geographically-projected outline. Has the El Paso jut, Brownsville tip, and proper panhandle proportions. -->
+          <path id="tx-outline"
+                d="M 203 30 L 347 30 L 347 151 L 410 162 L 480 158 L 540 168 L 590 192 L 625 220 L 638 250 L 632 290 L 628 340 L 632 395 L 638 458 L 605 470 L 560 488 L 520 510 L 480 540 L 470 595 L 482 665 L 472 695 L 432 678 L 388 632 L 350 580 L 312 525 L 268 478 L 220 458 L 178 442 L 142 422 L 110 398 L 78 372 L 52 348 L 35 325 L 60 295 L 102 268 L 152 240 L 195 218 L 203 195 Z"
+                fill="#A8B8D2" stroke="none"/>
+
+          <!-- ============================ 13 REGION POLYGONS ============================
+               Polygons share boundary coordinates exactly so adjacent regions tile cleanly. -->
+
+          <!-- Region 1 — High Plains (panhandle rectangle) -->
+          <path class="region-shape" data-region="High Plains" data-jobs="142" data-agencies="34"
+                d="M 203 30 L 347 30 L 347 151 L 203 151 Z"
+                fill="#A7C4E2"/>
+
+          <!-- Region 12 — West Texas (central-west belt: Midland, Odessa, Abilene, San Angelo) -->
+          <path class="region-shape" data-region="West Texas" data-jobs="129" data-agencies="38"
+                d="M 203 151 L 305 151 L 320 240 L 308 340 L 268 478 L 220 458 L 178 442 L 142 422 L 110 398 L 78 372 L 52 348 L 130 320 L 175 280 L 200 245 L 203 195 Z"
+                fill="#B7C9DD"/>
+
+          <!-- Region 13 — Upper Rio Grande (El Paso tip) -->
+          <path class="region-shape" data-region="Upper Rio Grande" data-jobs="52" data-agencies="14"
+                d="M 35 325 L 52 348 L 130 320 L 175 280 L 200 245 L 195 218 L 152 240 L 102 268 L 60 295 Z"
+                fill="#94A8C0"/>
+
+          <!-- Region 2 — Northwest Texas (Wichita Falls / Abilene-North area) -->
+          <path class="region-shape" data-region="Northwest Texas" data-jobs="86" data-agencies="22"
+                d="M 305 151 L 410 162 L 440 215 L 320 240 Z"
+                fill="#9FB8D6"/>
+
+          <!-- Region 3 — Metroplex (DFW) -->
+          <path class="region-shape active" data-region="Metroplex" data-jobs="425" data-agencies="96"
+                d="M 410 162 L 480 158 L 540 168 L 540 240 L 440 215 Z"
+                fill="#0B2545"/>
+
+          <!-- Region 4 — Upper East Texas (Tyler / Longview / Texarkana) -->
+          <path class="region-shape" data-region="Upper East Texas" data-jobs="98" data-agencies="28"
+                d="M 540 168 L 590 192 L 625 220 L 638 250 L 632 290 L 605 305 L 540 240 Z"
+                fill="#88A4C7"/>
+
+          <!-- Region 5 — Southeast Texas (Beaumont / Lufkin) -->
+          <path class="region-shape" data-region="Southeast Texas" data-jobs="68" data-agencies="18"
+                d="M 605 305 L 632 290 L 628 340 L 632 395 L 638 458 L 605 470 L 575 425 L 575 360 Z"
+                fill="#7593B8"/>
+
+          <!-- Region 8 — Central Texas (Waco / Killeen / Temple) -->
+          <path class="region-shape" data-region="Central Texas" data-jobs="156" data-agencies="40"
+                d="M 320 240 L 440 215 L 540 240 L 605 305 L 575 360 L 520 360 L 440 360 L 380 330 L 308 340 Z"
+                fill="#A8B8D2"/>
+
+          <!-- Region 9 — Capital (Austin / Travis / Hays / Williamson) -->
+          <path class="region-shape" data-region="Capital" data-jobs="318" data-agencies="71"
+                d="M 380 330 L 440 360 L 460 425 L 440 490 L 388 478 L 360 405 Z"
+                fill="#BF2C2F"/>
+
+          <!-- Region 6 — Gulf Coast (Houston / Galveston) -->
+          <path class="region-shape" data-region="Gulf Coast" data-jobs="287" data-agencies="62"
+                d="M 440 360 L 520 360 L 575 360 L 575 425 L 605 470 L 560 488 L 520 510 L 480 540 L 470 510 L 460 425 Z"
+                fill="#445E83"/>
+
+          <!-- Region 10 — Alamo (San Antonio / Bexar) -->
+          <path class="region-shape" data-region="Alamo" data-jobs="221" data-agencies="48"
+                d="M 308 340 L 380 330 L 360 405 L 388 478 L 410 525 L 360 530 L 308 478 Z"
+                fill="#5B7AA0"/>
+
+          <!-- Region 7 — Coastal Bend (Corpus Christi) -->
+          <path class="region-shape" data-region="Coastal Bend" data-jobs="74" data-agencies="20"
+                d="M 440 490 L 480 540 L 470 595 L 410 580 L 410 525 L 388 478 Z"
+                fill="#7B95B7"/>
+
+          <!-- Region 11 — South Texas Border (Laredo / RGV / Brownsville) -->
+          <path class="region-shape" data-region="South Texas Border" data-jobs="172" data-agencies="44"
+                d="M 268 478 L 308 478 L 308 340 L 360 530 L 410 525 L 410 580 L 470 595 L 482 665 L 472 695 L 432 678 L 388 632 L 350 580 L 312 525 Z"
+                fill="#92AAC8"/>
+
+          <!-- ============================ STATE BORDER (overlay) ============================ -->
+          <path d="M 203 30 L 347 30 L 347 151 L 410 162 L 480 158 L 540 168 L 590 192 L 625 220 L 638 250 L 632 290 L 628 340 L 632 395 L 638 458 L 605 470 L 560 488 L 520 510 L 480 540 L 470 595 L 482 665 L 472 695 L 432 678 L 388 632 L 350 580 L 312 525 L 268 478 L 220 458 L 178 442 L 142 422 L 110 398 L 78 372 L 52 348 L 35 325 L 60 295 L 102 268 L 152 240 L 195 218 L 203 195 Z"
+                fill="none" stroke="#0B2545" stroke-width="2.5" stroke-linejoin="round" pointer-events="none"/>
+
+          <!-- ============================ REGION LABELS ============================ -->
+          <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" pointer-events="none">
+            <g font-size="13" font-weight="700" fill="#0B2545">
+              <text x="275" y="90" text-anchor="middle">High Plains</text>
+              <text x="375" y="195" text-anchor="middle" font-size="11">Northwest TX</text>
+              <text x="490" y="200" text-anchor="middle" fill="#fff">Metroplex</text>
+              <text x="595" y="270" text-anchor="middle" font-size="11">Upper East TX</text>
+              <text x="610" y="395" text-anchor="middle" font-size="11">Southeast TX</text>
+              <text x="525" y="430" text-anchor="middle" fill="#fff">Gulf Coast</text>
+              <text x="445" y="565" text-anchor="middle" font-size="11">Coastal Bend</text>
+              <text x="380" y="640" text-anchor="middle">South Texas Border</text>
+              <text x="345" y="430" text-anchor="middle" fill="#fff">Alamo</text>
+              <text x="410" y="425" text-anchor="middle" fill="#fff">Capital</text>
+              <text x="460" y="305" text-anchor="middle">Central Texas</text>
+              <text x="240" y="335" text-anchor="middle">West Texas</text>
+              <text x="115" y="305" text-anchor="middle" font-size="10">Upper Rio Grande</text>
+            </g>
+            <g font-size="10.5" font-weight="600">
+              <text x="275" y="106" text-anchor="middle" fill="#1A202C" opacity=".75">142 · 34</text>
+              <text x="490" y="216" text-anchor="middle" fill="#cdd8eb">425 · 96</text>
+              <text x="525" y="446" text-anchor="middle" fill="#cdd8eb">287 · 62</text>
+              <text x="410" y="441" text-anchor="middle" fill="#fff">318 · 71</text>
+              <text x="345" y="446" text-anchor="middle" fill="#fff">221 · 48</text>
+              <text x="380" y="656" text-anchor="middle" fill="#1A202C" opacity=".75">172 · 44</text>
+              <text x="240" y="350" text-anchor="middle" fill="#1A202C" opacity=".75">129 · 38</text>
+            </g>
+          </g>
+
+          <!-- ============================ KEY LANDMARKS ============================ -->
+          <!-- Capital star (Austin) -->
+          <g transform="translate(410 410)" fill="#C9A227" pointer-events="none">
+            <polygon points="0,-9 2.7,-2.7 9,-2.7 3.7,1.7 5.6,8.5 0,4.5 -5.6,8.5 -3.7,1.7 -9,-2.7 -2.7,-2.7"/>
+          </g>
+
+          <!-- Compass rose (top-right) -->
+          <g transform="translate(670 60)" font-family="-apple-system, sans-serif" font-size="9" fill="#4A5568" pointer-events="none">
+            <circle r="22" fill="#fff" stroke="#CBD5E1"/>
+            <text y="-12" text-anchor="middle" font-weight="700">N</text>
+            <text y="20" text-anchor="middle">S</text>
+            <text x="-15" y="3" text-anchor="middle">W</text>
+            <text x="15" y="3" text-anchor="middle">E</text>
+            <polygon points="0,-9 -3,5 0,2 3,5" fill="#BF2C2F"/>
+          </g>
+
+          <!-- City labels -->
+          <g font-family="-apple-system, sans-serif" font-size="9" fill="#1A202C" opacity=".55" pointer-events="none">
+            <circle cx="35" cy="325" r="2.5" fill="#0B2545"/><text x="42" y="328">El Paso</text>
+            <circle cx="472" cy="695" r="2.5" fill="#0B2545"/><text x="478" y="698">Brownsville</text>
+            <circle cx="638" cy="250" r="2.5" fill="#0B2545"/><text x="608" y="244">Texarkana</text>
+          </g>
+
+          <!-- Scale -->
+          <g transform="translate(40 700)" font-family="-apple-system, sans-serif" font-size="10" fill="#4A5568" pointer-events="none">
+            <line x1="0" y1="0" x2="80" y2="0" stroke="#4A5568" stroke-width="1.5"/>
+            <line x1="0" y1="-3" x2="0" y2="3" stroke="#4A5568" stroke-width="1.5"/>
+            <line x1="40" y1="-3" x2="40" y2="3" stroke="#4A5568" stroke-width="1.5"/>
+            <line x1="80" y1="-3" x2="80" y2="3" stroke="#4A5568" stroke-width="1.5"/>
+            <text x="40" y="14" text-anchor="middle">~150 miles</text>
+          </g>
+        </svg>
+
+        <div id="region-tooltip"></div>
+
+        <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+          <div class="small" style="color:var(--text-2)">★ Click any region to filter jobs · ⌨ Tab + Enter to navigate (accessible alternative)</div>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <strong style="font-size:12px; color:var(--text-2);">Volume:</strong>
+            <span class="tag" style="font-size:11px;">Low</span>
+            <span class="tag" style="font-size:11px;">Medium</span>
+            <span class="tag red" style="font-size:11px;">High</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side panel: region detail -->
+      <div>
+        <div class="card" style="border-top: 4px solid var(--navy-900);">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <span class="eyebrow">Currently selected</span>
+              <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:6px 0 0; font-size:24px;">Metroplex</h2>
+              <p style="margin:4px 0 0; color:var(--text-2);">Counties: Dallas, Tarrant, Collin, Denton, Ellis, Johnson, Kaufman, Rockwall (and 8 more)</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size: 30px; font-weight:800; color:var(--navy-900); font-family:var(--font-display)">425</div>
+              <div class="small">open positions</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid cols-2" style="gap:8px;">
+            <div><div class="small">Hiring agencies</div><strong>96</strong></div>
+            <div><div class="small">Avg time-to-fill</div><strong>54 days</strong></div>
+            <div><div class="small">Cadet openings</div><strong>87</strong></div>
+            <div><div class="small">Lateral openings</div><strong>312</strong></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h4 style="margin: 0 0 8px; color:var(--navy-900); font-size:14px;">Top hiring agencies</h4>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; font-size:14px;"><span>Dallas Police Department</span><span class="small">42 openings</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:14px;"><span>Fort Worth Police Department</span><span class="small">38 openings</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:14px;"><span>Tarrant County Sheriff's Office</span><span class="small">29 openings</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:14px;"><span>Plano Police Department</span><span class="small">21 openings</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:14px;"><span>Arlington Police Department</span><span class="small">18 openings</span></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <a href="02-jobs.html" class="btn btn-primary btn-block">View all 425 jobs in Metroplex</a>
+
+          <div class="divider"></div>
+
+          <div style="display:flex; gap:12px; align-items:center; background:#fff8f7; border-radius: 8px; padding: 12px;">
+            <div class="photo-avatar" style="width:48px; height:48px; background-image: url('assets/images/ambassador-r7.jpg'); border-color: var(--tx-red);"></div>
+            <div style="flex:1">
+              <div class="kicker">Metroplex Ambassador</div>
+              <strong>Sgt. Sarah Hayes</strong>
+              <div class="small">Plano PD · 14 years sworn</div>
+            </div>
+            <a href="10-ambassadors.html" class="btn btn-outline btn-sm">Connect</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h4 style="margin:0; color:var(--navy-900); font-size:14px;">All 13 Regions</h4>
+            <span class="small">Sorted by openings</span>
+          </div>
+          <div class="legend-row active"><div class="swatch" style="background:#0B2545"></div><div style="flex:1">Metroplex</div><strong>425</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#BF2C2F"></div><div style="flex:1">Capital · Austin</div><strong>318</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#445E83"></div><div style="flex:1">Gulf Coast · Houston</div><strong>287</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#5B7AA0"></div><div style="flex:1">Alamo · San Antonio</div><strong>221</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#92AAC8"></div><div style="flex:1">South Texas Border</div><strong>172</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#A8B8D2"></div><div style="flex:1">Central Texas · Waco</div><strong>156</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#A7C4E2"></div><div style="flex:1">High Plains · Panhandle</div><strong>142</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#B7C9DD"></div><div style="flex:1">West Texas</div><strong>129</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#88A4C7"></div><div style="flex:1">Upper East Texas</div><strong>98</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#9FB8D6"></div><div style="flex:1">Northwest Texas</div><strong>86</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#7B95B7"></div><div style="flex:1">Coastal Bend</div><strong>74</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#7593B8"></div><div style="flex:1">Southeast Texas</div><strong>68</strong></div>
+          <div class="legend-row"><div class="swatch" style="background:#94A8C0"></div><div style="flex:1">Upper Rio Grande · El Paso</div><strong>52</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer-32"></div>
+
+    <!-- Quick callouts -->
+    <div class="grid cols-3">
+      <div class="card">
+        <span class="eyebrow">Why 13 regions?</span>
+        <h3 style="margin:6px 0 6px; color:var(--navy-900); font-size:17px;">Aligned with Texas Comptroller standards</h3>
+        <p style="color:var(--text-2); font-size:14px; margin:0;">DiscoverTexasPolicing uses the 13 Uniform State Service Regions of Texas — the same boundaries adopted across state agencies — for consistency with regional reporting and resource allocation.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Cross-region hiring</span>
+        <h3 style="margin:6px 0 6px; color:var(--navy-900); font-size:17px;">Apply anywhere in Texas with one profile</h3>
+        <p style="color:var(--text-2); font-size:14px; margin:0;">Set your geographic preferences across multiple regions. Your single statewide profile is shared with hiring agencies anywhere in Texas you mark as eligible.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Local partnerships</span>
+        <h3 style="margin:6px 0 6px; color:var(--navy-900); font-size:17px;">Recruitment Ambassadors in every region</h3>
+        <p style="color:var(--text-2); font-size:14px; margin:0;">Each of the 13 regions has at least one volunteer Ambassador — a sworn Texas peace officer who can answer questions about hiring standards, academy life, or careers in your area.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a><a href="05-applicant-signup.html">Create Profile</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

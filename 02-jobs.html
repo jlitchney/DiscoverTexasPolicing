@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Find Jobs — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 02 — Job Search & Listings
+  <a href="index.html">All Mockups</a> |
+  <a href="01-homepage.html">Home</a> |
+  <a href="03-regional-map.html">Regional Map</a> |
+  <a href="04-job-detail.html">Job Detail</a>
+</div>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="left"><span class="star">★</span> A program of TPCA in partnership with TCOLE</div>
+    <div class="right">
+      <a href="07-agency-dashboard.html">For Agencies</a>
+      <a href="10-ambassadors.html">Ambassadors</a>
+      <a href="#">Help</a>
+      <a href="#">Sign In</a>
+    </div>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container">
+    <a href="01-homepage.html" class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2">★ Careers in Texas Law Enforcement</div>
+      </div>
+    </a>
+    <div class="primary-nav">
+      <a href="01-homepage.html">Home</a>
+      <a href="02-jobs.html" class="active">Find Jobs</a>
+      <a href="03-regional-map.html">Regions</a>
+      <a href="10-ambassadors.html">Ambassadors</a>
+      <a href="#">Resources</a>
+      <a href="07-agency-dashboard.html">For Agencies</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="05-applicant-signup.html" class="btn btn-primary">Create Profile</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Search bar (compact, sticky-ish) -->
+<section style="background: var(--navy-900); padding: 22px 0;">
+  <div class="container">
+    <div class="search-card" style="box-shadow: var(--shadow);">
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input value="Police Officer" />
+      </div>
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <input value="Texas (statewide)" />
+      </div>
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+        <select>
+          <option>All Texas regions</option>
+          <option>Metroplex (DFW)</option>
+          <option>Capital (Austin)</option>
+          <option>Gulf Coast (Houston)</option>
+          <option>Alamo (San Antonio)</option>
+          <option>Central Texas (Waco)</option>
+          <option>High Plains (Panhandle)</option>
+          <option>South Texas Border</option>
+          <option>West Texas</option>
+          <option>Upper East Texas</option>
+          <option>Northwest Texas</option>
+          <option>Coastal Bend</option>
+          <option>Southeast Texas</option>
+          <option>Upper Rio Grande (El Paso)</option>
+        </select>
+      </div>
+      <a href="#" class="btn btn-primary">Search</a>
+    </div>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="container">
+    <!-- Breadcrumbs + counts -->
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom: 18px;">
+      <div>
+        <div class="small"><a href="01-homepage.html">Home</a> › Find Jobs › Police Officer</div>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 8px 0 4px; font-size: 30px;">Police Officer jobs in Texas</h1>
+        <div style="color:var(--text-2)">Showing <strong>1–25</strong> of <strong>418</strong> matching openings · Updated 4 minutes ago</div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <label class="small" style="color:var(--text-2)">Sort by:</label>
+        <select class="input" style="width:auto;">
+          <option>Most relevant</option>
+          <option>Newest first</option>
+          <option>Closing soonest</option>
+          <option>Highest pay</option>
+          <option>Distance</option>
+        </select>
+        <a href="#" class="btn btn-outline btn-sm">★ Save search</a>
+      </div>
+    </div>
+
+    <div class="layout-with-sidebar">
+      <!-- Filters sidebar -->
+      <aside class="sidebar">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+          <strong>Filters</strong>
+          <a href="#" class="small">Clear all</a>
+        </div>
+
+        <h4>Texas Region</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" checked /> Metroplex (DFW) <span class="count">425</span></label>
+          <label><input type="checkbox" checked /> Capital (Austin) <span class="count">318</span></label>
+          <label><input type="checkbox" /> Gulf Coast (Houston) <span class="count">287</span></label>
+          <label><input type="checkbox" /> Alamo (San Antonio) <span class="count">221</span></label>
+          <label><input type="checkbox" /> South Texas Border <span class="count">172</span></label>
+          <label><input type="checkbox" /> Central Texas (Waco) <span class="count">156</span></label>
+          <label><input type="checkbox" checked /> High Plains (Panhandle) <span class="count">142</span></label>
+          <label><input type="checkbox" /> West Texas <span class="count">129</span></label>
+          <label><input type="checkbox" /> Upper East Texas <span class="count">98</span></label>
+          <label><input type="checkbox" /> Northwest Texas <span class="count">86</span></label>
+          <label><input type="checkbox" /> Coastal Bend <span class="count">74</span></label>
+          <label><input type="checkbox" /> Southeast Texas <span class="count">68</span></label>
+          <label><input type="checkbox" /> Upper Rio Grande <span class="count">52</span></label>
+        </div>
+
+        <h4>TCOLE License Type</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" checked /> Peace Officer <span class="count">1,124</span></label>
+          <label><input type="checkbox" /> Jailer <span class="count">238</span></label>
+          <label><input type="checkbox" /> Telecommunicator <span class="count">156</span></label>
+          <label><input type="checkbox" /> No license required (cadet) <span class="count">75</span></label>
+        </div>
+
+        <h4>Agency Type</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" /> Municipal PD <span class="count">812</span></label>
+          <label><input type="checkbox" /> County Sheriff's Office <span class="count">344</span></label>
+          <label><input type="checkbox" /> State (DPS, TPWD, ABC) <span class="count">132</span></label>
+          <label><input type="checkbox" /> Constable / Marshal <span class="count">98</span></label>
+          <label><input type="checkbox" /> School District / Hospital <span class="count">42</span></label>
+        </div>
+
+        <h4>Job Role</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" checked /> Police Officer / Deputy</label>
+          <label><input type="checkbox" /> Detective / Investigator</label>
+          <label><input type="checkbox" /> Detention / Jailer</label>
+          <label><input type="checkbox" /> Dispatcher / Telecom</label>
+          <label><input type="checkbox" /> K-9 Handler</label>
+          <label><input type="checkbox" /> SWAT / Tactical</label>
+          <label><input type="checkbox" /> School Resource Officer</label>
+        </div>
+
+        <h4>Experience</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" /> Entry / Cadet</label>
+          <label><input type="checkbox" checked /> Lateral (1+ yrs sworn)</label>
+          <label><input type="checkbox" /> Supervisory / Command</label>
+        </div>
+
+        <h4>Salary range</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" /> Under $55,000</label>
+          <label><input type="checkbox" checked /> $55,000 – $75,000</label>
+          <label><input type="checkbox" checked /> $75,000 – $95,000</label>
+          <label><input type="checkbox" /> $95,000+</label>
+        </div>
+
+        <h4>Benefits</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" /> Sign-on bonus</label>
+          <label><input type="checkbox" /> Take-home vehicle</label>
+          <label><input type="checkbox" /> Tuition reimbursement</label>
+          <label><input type="checkbox" /> Bilingual pay</label>
+          <label><input type="checkbox" /> Pension (TMRS/JRS/ERS)</label>
+        </div>
+
+        <button class="btn btn-secondary btn-block" style="margin-top:14px">Apply filters</button>
+      </aside>
+
+      <!-- Results list -->
+      <div>
+        <!-- Active filter chips -->
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 14px;">
+          <span class="tag">Police Officer ✕</span>
+          <span class="tag">High Plains, Capital, Metroplex ✕</span>
+          <span class="tag">Peace Officer license ✕</span>
+          <span class="tag">Lateral ✕</span>
+          <span class="tag">$55k–$95k ✕</span>
+        </div>
+
+        <div class="grid" style="gap: 12px;">
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo">APD</div>
+            <div>
+              <h3>Police Officer (Lateral & Entry)</h3>
+              <div class="agency">Austin Police Department · Capital</div>
+              <div class="meta">
+                <span>📍 Austin, TX</span>
+                <span>🛡 TCOLE Peace Officer</span>
+                <span>🕒 Posted 2 days ago</span>
+                <span>📅 Closes May 31</span>
+              </div>
+              <div class="tags">
+                <span class="tag gold">Sign-on bonus $15k</span>
+                <span class="tag">Lateral pay step</span>
+                <span class="tag green">Pre-screen passed</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$74.8k–$112.4k</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo" style="background:#FBE9EA; color:var(--tx-red-dk)">DPS</div>
+            <div>
+              <h3>State Trooper Recruit (Class A-2026)</h3>
+              <div class="agency">Texas Department of Public Safety · Statewide</div>
+              <div class="meta">
+                <span>📍 Multiple locations</span>
+                <span>🛡 TCOLE Peace Officer</span>
+                <span>🕒 Posted 5 days ago</span>
+                <span>📅 Closes May 10 — 12 days left</span>
+              </div>
+              <div class="tags">
+                <span class="tag red">Closing soon</span>
+                <span class="tag">Academy provided</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$79.3k start</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo" style="background:#FBF1D1; color:#7A5C00">FWP</div>
+            <div>
+              <h3>Police Officer (Lateral)</h3>
+              <div class="agency">Fort Worth Police Department · Metroplex</div>
+              <div class="meta">
+                <span>📍 Fort Worth, TX</span>
+                <span>🛡 TCOLE Peace Officer</span>
+                <span>🕒 Posted today</span>
+                <span>📅 Open until filled</span>
+              </div>
+              <div class="tags">
+                <span class="tag gold">Sign-on bonus $12k</span>
+                <span class="tag">Take-home vehicle</span>
+                <span class="tag">Tuition reimbursement</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$72.1k–$103.5k</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo" style="background:#E6F4EA; color:var(--success)">DPD</div>
+            <div>
+              <h3>Detective — Property Crimes</h3>
+              <div class="agency">Dallas Police Department · Metroplex</div>
+              <div class="meta">
+                <span>📍 Dallas, TX</span>
+                <span>🛡 TCOLE Peace Officer (3+ yrs)</span>
+                <span>🕒 Posted 8 days ago</span>
+              </div>
+              <div class="tags">
+                <span class="tag">Lateral required</span>
+                <span class="tag">Detective stipend</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$84.4k–$106.7k</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo">LPD</div>
+            <div>
+              <h3>Police Officer Cadet</h3>
+              <div class="agency">Lubbock Police Department · High Plains</div>
+              <div class="meta">
+                <span>📍 Lubbock, TX</span>
+                <span>🛡 No license required</span>
+                <span>🕒 Posted 11 days ago</span>
+              </div>
+              <div class="tags">
+                <span class="tag">Paid academy</span>
+                <span class="tag">Relocation assistance</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$58.8k start</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo" style="background:#FBE9EA; color:var(--tx-red-dk)">SAS</div>
+            <div>
+              <h3>Deputy Sheriff (Lateral)</h3>
+              <div class="agency">Bexar County Sheriff's Office · Alamo</div>
+              <div class="meta">
+                <span>📍 San Antonio, TX</span>
+                <span>🛡 TCOLE Peace Officer</span>
+                <span>🕒 Posted 3 days ago</span>
+              </div>
+              <div class="tags">
+                <span class="tag gold">Bilingual bonus</span>
+                <span class="tag">Pension TMRS</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$65.2k–$88.0k</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Promoted ambassador card inline -->
+          <div class="card" style="border-left: 4px solid var(--tx-red); background: #fff8f7;">
+            <div style="display:flex; gap:14px; align-items:center;">
+              <div class="agency-logo" style="background:var(--tx-red); color:#fff">RA</div>
+              <div style="flex:1">
+                <div class="kicker">Capital Region Recruitment Ambassador</div>
+                <h3 style="margin:4px 0 4px;">Lt. Marcus Delgado is here to help you decide.</h3>
+                <p style="margin:0; color:var(--text-2); font-size:14px;">Ask questions about academy life, hiring standards, or what it's like to serve in South Central Texas. Free, confidential.</p>
+              </div>
+              <a href="10-ambassadors.html" class="btn btn-outline">Connect</a>
+            </div>
+          </div>
+
+          <a href="04-job-detail.html" class="job-row">
+            <div class="agency-logo">EPD</div>
+            <div>
+              <h3>Police Officer Cadet</h3>
+              <div class="agency">El Paso Police Department · Upper Rio Grande</div>
+              <div class="meta">
+                <span>📍 El Paso, TX</span>
+                <span>🛡 No license required</span>
+                <span>🕒 Posted 1 day ago</span>
+              </div>
+              <div class="tags">
+                <span class="tag gold">Bilingual bonus</span>
+                <span class="tag">Relocation assistance</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pay">$61.4k–$78.9k</div>
+              <div class="actions" style="margin-top:8px">
+                <button class="btn btn-outline btn-sm">★ Save</button>
+                <span class="btn btn-primary btn-sm">Apply</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Pagination -->
+        <div style="display:flex; justify-content:center; gap:6px; margin-top: 28px;">
+          <a href="#" class="btn btn-outline btn-sm">‹ Prev</a>
+          <a href="#" class="btn btn-secondary btn-sm">1</a>
+          <a href="#" class="btn btn-outline btn-sm">2</a>
+          <a href="#" class="btn btn-outline btn-sm">3</a>
+          <a href="#" class="btn btn-outline btn-sm">…</a>
+          <a href="#" class="btn btn-outline btn-sm">17</a>
+          <a href="#" class="btn btn-outline btn-sm">Next ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+        <p style="color:#a8b6cf; font-size:13.5px; max-width: 360px;">Operated by TPCA in partnership with TCOLE.</p>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Browse by Region</a><a href="05-applicant-signup.html">Create Profile</a><a href="10-ambassadors.html">Ambassadors</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a><a href="#">Shared Pool</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal">
+      <div>© 2026 TPCA. All rights reserved.</div>
+      <div><a href="#">Privacy</a> · <a href="#">Accessibility (WCAG 2.1 AA)</a> · <a href="#">Texas Cybersecurity Compliance</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

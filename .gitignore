@@ -1,0 +1,35 @@
+# Original uncompressed source photos (kept locally, not pushed)
+assets/images/1 - Patrol is defined....jpg
+assets/images/Chopper.jpg
+assets/images/Digital Forensics-*.jpg
+assets/images/Dive Team*.JPG
+assets/images/Fireworks.jpg
+assets/images/IMG_7*.JPG
+assets/images/K-9-*.jpg
+assets/images/Light Ohio Blue 2022.jpg
+assets/images/Officer poole motorcycle.jpg
+assets/images/Promotions.JPG
+assets/images/RIV02395.jpg
+assets/images/RollCall-41.jpg
+assets/images/SWAT *.jpg
+assets/images/SWAT *.JPG
+assets/images/SWAT-Dive Team*.JPG
+assets/images/Skyline.jpg
+assets/images/TRUNKorTREAT-128*.jpg
+assets/images/TRUNKorTREAT-128*.jpeg
+assets/images/_CPD*.jpg
+assets/images/_CPD*.JPG
+assets/images/untitled--61.jpg
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor/system files
+*.swp
+*~
+Thumbs.db
+
+# Local previews / scratch
+tx-map-preview*.png
+*.tmp.jpg

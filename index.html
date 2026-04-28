@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DiscoverTexasPolicing.org — Mockup Lookbook</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .lookbook-card {
+    background:#fff; border:1px solid var(--border); border-radius: var(--radius-lg);
+    overflow:hidden; box-shadow: var(--shadow-sm);
+    transition: box-shadow .15s ease, transform .15s ease;
+    text-decoration:none; color: inherit; display:block;
+  }
+  .lookbook-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); text-decoration:none; }
+  .lookbook-thumb {
+    aspect-ratio: 16/10; background: linear-gradient(135deg, var(--navy-50), #fff);
+    border-bottom: 1px solid var(--border); position:relative; overflow:hidden;
+  }
+  .lookbook-thumb iframe {
+    position:absolute; inset:0; width: 200%; height: 200%; transform: scale(.5); transform-origin: top left;
+    border: 0; pointer-events: none;
+  }
+  .lookbook-num {
+    position:absolute; top:10px; left:10px;
+    background: var(--navy-900); color:#fff; font-weight:800; font-size: 12px;
+    border-radius: 6px; padding: 4px 8px; letter-spacing:.5px; z-index:2;
+    border:1px solid var(--gold);
+  }
+  .lookbook-body { padding: 14px 16px; }
+  .lookbook-body h3 { margin: 0 0 4px; font-size: 16px; color:var(--navy-900); }
+  .lookbook-body p { margin: 0; color: var(--text-2); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="utility-bar"><div class="container">
+  <div class="left"><span class="star">★</span> DiscoverTexasPolicing.org · Mockup Lookbook</div>
+  <div class="right"><a href="01-homepage.html">Open homepage</a></div>
+</div></div>
+
+<header class="hero" style="padding: 56px 0;">
+  <div class="container">
+    <span class="pill"><span class="star">★</span> RFP-aligned mockups · April 2026</span>
+    <h1 style="font-size: 38px; max-width: 820px;">DiscoverTexasPolicing.org — Design Lookbook</h1>
+    <p class="lede">Ten interactive mockups addressing the Texas Police Chiefs Association RFP. CareersInGovernment-inspired visual language with Texas accents. Click any card to open the full screen.</p>
+    <div style="display:flex; gap:10px; margin-top: 10px;">
+      <a href="01-homepage.html" class="btn btn-primary btn-lg">Open Homepage</a>
+      <a href="03-regional-map.html" class="btn btn-outline btn-lg" style="background:transparent; color:#fff; border-color:rgba(255,255,255,.4);">Open Regional Map</a>
+      <a href="09-admin-analytics.html" class="btn btn-outline btn-lg" style="background:transparent; color:#fff; border-color:rgba(255,255,255,.4);">Open Admin Analytics</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="grid cols-3" style="gap: 18px;">
+      <a href="01-homepage.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">01</span><iframe src="01-homepage.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Homepage</h3><p>Hero search, regional map preview, featured jobs, agency callout, success stories.</p></div>
+      </a>
+      <a href="02-jobs.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">02</span><iframe src="02-jobs.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Job search & listings</h3><p>Filters by region, license, agency type, role, salary, benefits. Pre-screen badge.</p></div>
+      </a>
+      <a href="03-regional-map.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">03</span><iframe src="03-regional-map.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Interactive Texas regional map (13 regions)</h3><p>Real Texas silhouette with 13 Uniform Service Regions, hover counts, region detail panel.</p></div>
+      </a>
+      <a href="04-job-detail.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">04</span><iframe src="04-job-detail.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Job detail</h3><p>Position, agency, requirements, hiring process, ambassador contact, similar jobs.</p></div>
+      </a>
+      <a href="05-applicant-signup.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">05</span><iframe src="05-applicant-signup.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Applicant signup & pre-screening</h3><p>High-profile disqualifier check (felony, discharge, drug abuse) — cleared/disqualified states.</p></div>
+      </a>
+      <a href="06-applicant-dashboard.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">06</span><iframe src="06-applicant-dashboard.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Applicant dashboard</h3><p>Applications, saved jobs, profile completeness, visibility settings, messages.</p></div>
+      </a>
+      <a href="07-agency-dashboard.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">07</span><iframe src="07-agency-dashboard.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Agency dashboard & internal ATS</h3><p>Active postings, kanban applicant pipeline, shared pool search, agency analytics.</p></div>
+      </a>
+      <a href="08-post-a-job.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">08</span><iframe src="08-post-a-job.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Post a job (standardized template)</h3><p>Multi-step form covering basics, requirements, comp, application, pre-screen rules.</p></div>
+      </a>
+      <a href="09-admin-analytics.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">09</span><iframe src="09-admin-analytics.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>TPCA admin analytics</h3><p>Quarterly KPI dashboard: agencies, listings, applicants, time-to-fill, satisfaction, marketing.</p></div>
+      </a>
+      <a href="10-ambassadors.html" class="lookbook-card">
+        <div class="lookbook-thumb"><span class="lookbook-num">10</span><iframe src="10-ambassadors.html" loading="lazy"></iframe></div>
+        <div class="lookbook-body"><h3>Recruitment Ambassadors</h3><p>One per Texas region. Filter by specialty/language. Inquiry form.</p></div>
+      </a>
+    </div>
+
+    <div class="spacer-32"></div>
+
+    <!-- RFP coverage matrix -->
+    <div class="card" style="padding:24px;">
+      <span class="eyebrow">RFP Coverage Map</span>
+      <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 6px 0 14px; font-size: 24px;">How these mockups address the RFP</h2>
+      <table class="data" style="border:0;">
+        <thead><tr><th>RFP requirement</th><th>Addressed in</th></tr></thead>
+        <tbody>
+          <tr><td>Free access for all Texas agencies (§4)</td><td><a href="07-agency-dashboard.html">Agency Dashboard</a>, <a href="08-post-a-job.html">Post a Job</a></td></tr>
+          <tr><td>Agency dashboard & job posting tools (§4)</td><td><a href="07-agency-dashboard.html">Agency Dashboard</a>, <a href="08-post-a-job.html">Post a Job</a></td></tr>
+          <tr><td>Interactive regional job listings map (§4)</td><td><a href="03-regional-map.html">Regional Map</a> — real Texas silhouette with 13 Uniform Service Regions, plus <a href="01-homepage.html">Homepage</a> preview</td></tr>
+          <tr><td>Filters by region, dept type, role, TCOLE license (§4)</td><td><a href="02-jobs.html">Job Search</a></td></tr>
+          <tr><td>Applicant screening — high-profile disqualifiers (§4)</td><td><a href="05-applicant-signup.html">Applicant Signup</a>, <a href="08-post-a-job.html">Post a Job (rules)</a></td></tr>
+          <tr><td>Auto-notification for disqualified applicants (§4)</td><td><a href="05-applicant-signup.html">Applicant Signup — alt states</a></td></tr>
+          <tr><td>Direct application capability + supplemental documents (§4)</td><td><a href="04-job-detail.html">Job Detail</a>, <a href="08-post-a-job.html">Post a Job</a></td></tr>
+          <tr><td>Optional internal ATS — resume storage, scoring, messaging, status (§4)</td><td><a href="07-agency-dashboard.html">Agency Dashboard (kanban)</a></td></tr>
+          <tr><td>Shared applicant pool with search & visibility settings (§4)</td><td><a href="07-agency-dashboard.html">Shared Pool sidebar</a>, <a href="06-applicant-dashboard.html">Applicant Visibility</a></td></tr>
+          <tr><td>Recruitment Ambassadors per Texas region (§4)</td><td><a href="10-ambassadors.html">Ambassadors</a></td></tr>
+          <tr><td>Mobile-responsive, ADA / WCAG 2.1 AA (§5)</td><td>All screens — flexible layouts, sufficient contrast, keyboard nav, focus states</td></tr>
+          <tr><td>Cybersecurity & role-based access (§5)</td><td><a href="07-agency-dashboard.html">Team & access</a>, <a href="09-admin-analytics.html">Compliance & system health</a></td></tr>
+          <tr><td>Brand identity — "A One-Stop Shop for Law Enforcement Careers" (§6)</td><td>Used in <a href="01-homepage.html">Homepage hero</a> and footer across all screens</td></tr>
+          <tr><td>Performance metrics & quarterly reporting (§7)</td><td><a href="09-admin-analytics.html">Admin Analytics</a></td></tr>
+          <tr><td>Data analytics dashboards (§8)</td><td><a href="09-admin-analytics.html">Admin Analytics</a> + <a href="07-agency-dashboard.html">Agency Analytics</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+        <p style="color:#a8b6cf; font-size:13.5px; max-width: 360px;">Mockup lookbook prepared for the Texas Police Chiefs Association RFP response.</p>
+      </div>
+      <div><h5>For Applicants</h5><a href="01-homepage.html">Homepage</a><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a><a href="04-job-detail.html">Job Detail</a></div>
+      <div><h5>Apply Flow</h5><a href="05-applicant-signup.html">Signup</a><a href="06-applicant-dashboard.html">Dashboard</a><a href="10-ambassadors.html">Ambassadors</a></div>
+      <div><h5>Agency / Admin</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a><a href="09-admin-analytics.html">Admin Analytics</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA · Mockup lookbook</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+  </div>
+</footer>
+
+</body>
+</html>
