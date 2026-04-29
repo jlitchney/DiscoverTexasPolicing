@@ -11,12 +11,11 @@
     padding:10px 12px; border-radius:8px; font-size:13px; pointer-events:none;
     box-shadow: var(--shadow-lg); z-index:50; max-width:240px; line-height:1.4;
   }
-  .region-shape { cursor:pointer; stroke: #FFFFFF; stroke-width: 1; stroke-linejoin: round; transition: filter .15s ease, fill .15s ease, stroke-width .15s ease; }
-  .region-shape:hover { filter: brightness(1.12); stroke-width: 2; stroke: #C9A227; }
-  .region-shape.active { stroke:#C9A227; stroke-width:3; }
-  .region-pin { cursor:pointer; transition: transform .15s ease; transform-origin: center; transform-box: fill-box; }
-  .region-pin:hover { transform: scale(1.12); }
-  .region-pin.active circle { stroke: #C9A227; stroke-width: 3; }
+  .region-pin { cursor:pointer; }
+  .region-pin circle { transition: filter .15s ease, stroke .15s ease, stroke-width .15s ease; }
+  .region-pin:hover circle { filter: brightness(1.12); stroke: #C9A227 !important; stroke-width: 3 !important; }
+  .region-pin.active circle { stroke: #C9A227 !important; stroke-width: 3 !important; }
+  .region-pin text { pointer-events:none; }
   .legend-row { display:flex; align-items:center; gap:10px; padding: 7px 6px; border-radius:6px; cursor:pointer; }
   .legend-row:hover { background: var(--navy-50); }
   .legend-row.active { background: var(--navy-50); }
@@ -92,143 +91,133 @@
 
         <svg id="texas-map" viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;" aria-label="Map of Texas with thirteen Uniform State Service Regions">
 
-          <!-- ============================ TEXAS SILHOUETTE BASE FILL ============================ -->
-          <!-- Geographically-projected outline. Has the El Paso jut, Brownsville tip, and proper panhandle proportions. -->
-          <path id="tx-outline"
-                d="M 203 30 L 347 30 L 347 151 L 410 162 L 480 158 L 540 168 L 590 192 L 625 220 L 638 250 L 632 290 L 628 340 L 632 395 L 638 458 L 605 470 L 560 488 L 520 510 L 480 540 L 470 595 L 482 665 L 472 695 L 432 678 L 388 632 L 350 580 L 312 525 L 268 478 L 220 458 L 178 442 L 142 422 L 110 398 L 78 372 L 52 348 L 35 325 L 60 295 L 102 268 L 152 240 L 195 218 L 203 195 Z"
-                fill="#A8B8D2" stroke="none"/>
+          <!-- Real Texas outline from provided PNG -->
+          <image href="assets/images/texas-outline.png" x="0" y="0" width="720" height="720" style="pointer-events:none;"/>
 
-          <!-- ============================ 13 REGION POLYGONS ============================
-               Polygons share boundary coordinates exactly so adjacent regions tile cleanly. -->
+          <!-- ── 13 REGION PINS ──
+               Positions calculated from geographic coordinates:
+               x = 53 + (106.65 − lon) × 47.1
+               y = 43 + (36.5  − lat) × 60.4          -->
 
-          <!-- Region 1 — High Plains (panhandle rectangle) -->
-          <path class="region-shape" data-region="High Plains" data-jobs="142" data-agencies="34"
-                d="M 203 30 L 347 30 L 347 151 L 203 151 Z"
-                fill="#A7C4E2"/>
-
-          <!-- Region 12 — West Texas (central-west belt: Midland, Odessa, Abilene, San Angelo) -->
-          <path class="region-shape" data-region="West Texas" data-jobs="129" data-agencies="38"
-                d="M 203 151 L 305 151 L 320 240 L 308 340 L 268 478 L 220 458 L 178 442 L 142 422 L 110 398 L 78 372 L 52 348 L 130 320 L 175 280 L 200 245 L 203 195 Z"
-                fill="#B7C9DD"/>
-
-          <!-- Region 13 — Upper Rio Grande (El Paso tip) -->
-          <path class="region-shape" data-region="Upper Rio Grande" data-jobs="52" data-agencies="14"
-                d="M 35 325 L 52 348 L 130 320 L 175 280 L 200 245 L 195 218 L 152 240 L 102 268 L 60 295 Z"
-                fill="#94A8C0"/>
-
-          <!-- Region 2 — Northwest Texas (Wichita Falls / Abilene-North area) -->
-          <path class="region-shape" data-region="Northwest Texas" data-jobs="86" data-agencies="22"
-                d="M 305 151 L 410 162 L 440 215 L 320 240 Z"
-                fill="#9FB8D6"/>
-
-          <!-- Region 3 — Metroplex (DFW) -->
-          <path class="region-shape active" data-region="Metroplex" data-jobs="425" data-agencies="96"
-                d="M 410 162 L 480 158 L 540 168 L 540 240 L 440 215 Z"
-                fill="#0B2545"/>
-
-          <!-- Region 4 — Upper East Texas (Tyler / Longview / Texarkana) -->
-          <path class="region-shape" data-region="Upper East Texas" data-jobs="98" data-agencies="28"
-                d="M 540 168 L 590 192 L 625 220 L 638 250 L 632 290 L 605 305 L 540 240 Z"
-                fill="#88A4C7"/>
-
-          <!-- Region 5 — Southeast Texas (Beaumont / Lufkin) -->
-          <path class="region-shape" data-region="Southeast Texas" data-jobs="68" data-agencies="18"
-                d="M 605 305 L 632 290 L 628 340 L 632 395 L 638 458 L 605 470 L 575 425 L 575 360 Z"
-                fill="#7593B8"/>
-
-          <!-- Region 8 — Central Texas (Waco / Killeen / Temple) -->
-          <path class="region-shape" data-region="Central Texas" data-jobs="156" data-agencies="40"
-                d="M 320 240 L 440 215 L 540 240 L 605 305 L 575 360 L 520 360 L 440 360 L 380 330 L 308 340 Z"
-                fill="#A8B8D2"/>
-
-          <!-- Region 9 — Capital (Austin / Travis / Hays / Williamson) -->
-          <path class="region-shape" data-region="Capital" data-jobs="318" data-agencies="71"
-                d="M 380 330 L 440 360 L 460 425 L 440 490 L 388 478 L 360 405 Z"
-                fill="#BF2C2F"/>
-
-          <!-- Region 6 — Gulf Coast (Houston / Galveston) -->
-          <path class="region-shape" data-region="Gulf Coast" data-jobs="287" data-agencies="62"
-                d="M 440 360 L 520 360 L 575 360 L 575 425 L 605 470 L 560 488 L 520 510 L 480 540 L 470 510 L 460 425 Z"
-                fill="#445E83"/>
-
-          <!-- Region 10 — Alamo (San Antonio / Bexar) -->
-          <path class="region-shape" data-region="Alamo" data-jobs="221" data-agencies="48"
-                d="M 308 340 L 380 330 L 360 405 L 388 478 L 410 525 L 360 530 L 308 478 Z"
-                fill="#5B7AA0"/>
-
-          <!-- Region 7 — Coastal Bend (Corpus Christi) -->
-          <path class="region-shape" data-region="Coastal Bend" data-jobs="74" data-agencies="20"
-                d="M 440 490 L 480 540 L 470 595 L 410 580 L 410 525 L 388 478 Z"
-                fill="#7B95B7"/>
-
-          <!-- Region 11 — South Texas Border (Laredo / RGV / Brownsville) -->
-          <path class="region-shape" data-region="South Texas Border" data-jobs="172" data-agencies="44"
-                d="M 268 478 L 308 478 L 308 340 L 360 530 L 410 525 L 410 580 L 470 595 L 482 665 L 472 695 L 432 678 L 388 632 L 350 580 L 312 525 Z"
-                fill="#92AAC8"/>
-
-          <!-- ============================ STATE BORDER (overlay) ============================ -->
-          <path d="M 203 30 L 347 30 L 347 151 L 410 162 L 480 158 L 540 168 L 590 192 L 625 220 L 638 250 L 632 290 L 628 340 L 632 395 L 638 458 L 605 470 L 560 488 L 520 510 L 480 540 L 470 595 L 482 665 L 472 695 L 432 678 L 388 632 L 350 580 L 312 525 L 268 478 L 220 458 L 178 442 L 142 422 L 110 398 L 78 372 L 52 348 L 35 325 L 60 295 L 102 268 L 152 240 L 195 218 L 203 195 Z"
-                fill="none" stroke="#0B2545" stroke-width="2.5" stroke-linejoin="round" pointer-events="none"/>
-
-          <!-- ============================ REGION LABELS ============================ -->
-          <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" pointer-events="none">
-            <g font-size="13" font-weight="700" fill="#0B2545">
-              <text x="275" y="90" text-anchor="middle">High Plains</text>
-              <text x="375" y="195" text-anchor="middle" font-size="11">Northwest TX</text>
-              <text x="490" y="200" text-anchor="middle" fill="#fff">Metroplex</text>
-              <text x="595" y="270" text-anchor="middle" font-size="11">Upper East TX</text>
-              <text x="610" y="395" text-anchor="middle" font-size="11">Southeast TX</text>
-              <text x="525" y="430" text-anchor="middle" fill="#fff">Gulf Coast</text>
-              <text x="445" y="565" text-anchor="middle" font-size="11">Coastal Bend</text>
-              <text x="380" y="640" text-anchor="middle">South Texas Border</text>
-              <text x="345" y="430" text-anchor="middle" fill="#fff">Alamo</text>
-              <text x="410" y="425" text-anchor="middle" fill="#fff">Capital</text>
-              <text x="460" y="305" text-anchor="middle">Central Texas</text>
-              <text x="240" y="335" text-anchor="middle">West Texas</text>
-              <text x="115" y="305" text-anchor="middle" font-size="10">Upper Rio Grande</text>
-            </g>
-            <g font-size="10.5" font-weight="600">
-              <text x="275" y="106" text-anchor="middle" fill="#1A202C" opacity=".75">142 · 34</text>
-              <text x="490" y="216" text-anchor="middle" fill="#cdd8eb">425 · 96</text>
-              <text x="525" y="446" text-anchor="middle" fill="#cdd8eb">287 · 62</text>
-              <text x="410" y="441" text-anchor="middle" fill="#fff">318 · 71</text>
-              <text x="345" y="446" text-anchor="middle" fill="#fff">221 · 48</text>
-              <text x="380" y="656" text-anchor="middle" fill="#1A202C" opacity=".75">172 · 44</text>
-              <text x="240" y="350" text-anchor="middle" fill="#1A202C" opacity=".75">129 · 38</text>
-            </g>
+          <!-- R1 High Plains · Amarillo ~35.2°N 101.8°W → (281,121) -->
+          <g class="region-pin" data-region="High Plains" data-jobs="142" data-agencies="34" tabindex="0" role="button" aria-label="High Plains, 142 jobs">
+            <circle cx="281" cy="121" r="23" fill="#A7C4E2" stroke="#fff" stroke-width="2"/>
+            <text x="281" y="116" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">142</text>
+            <text x="281" y="128" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="281" y="153" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">High Plains</text>
           </g>
 
-          <!-- ============================ KEY LANDMARKS ============================ -->
-          <!-- Capital star (Austin) -->
-          <g transform="translate(410 410)" fill="#C9A227" pointer-events="none">
-            <polygon points="0,-9 2.7,-2.7 9,-2.7 3.7,1.7 5.6,8.5 0,4.5 -5.6,8.5 -3.7,1.7 -9,-2.7 -2.7,-2.7"/>
+          <!-- R2 Northwest Texas · Wichita Falls ~33.9°N 98.5°W → (437,200) -->
+          <g class="region-pin" data-region="Northwest Texas" data-jobs="86" data-agencies="22" tabindex="0" role="button" aria-label="Northwest Texas, 86 jobs">
+            <circle cx="430" cy="205" r="21" fill="#9FB8D6" stroke="#fff" stroke-width="2"/>
+            <text x="430" y="201" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">86</text>
+            <text x="430" y="212" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="430" y="235" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">NW Texas</text>
           </g>
 
-          <!-- Compass rose (top-right) -->
-          <g transform="translate(670 60)" font-family="-apple-system, sans-serif" font-size="9" fill="#4A5568" pointer-events="none">
-            <circle r="22" fill="#fff" stroke="#CBD5E1"/>
-            <text y="-12" text-anchor="middle" font-weight="700">N</text>
-            <text y="20" text-anchor="middle">S</text>
-            <text x="-15" y="3" text-anchor="middle">W</text>
-            <text x="15" y="3" text-anchor="middle">E</text>
-            <polygon points="0,-9 -3,5 0,2 3,5" fill="#BF2C2F"/>
+          <!-- R3 Metroplex · DFW ~32.75°N 97.0°W → (508,270) — active default -->
+          <g class="region-pin active" data-region="Metroplex" data-jobs="425" data-agencies="96" tabindex="0" role="button" aria-label="Metroplex, 425 jobs">
+            <circle cx="510" cy="268" r="26" fill="#0B2545" stroke="#C9A227" stroke-width="3"/>
+            <text x="510" y="263" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="-apple-system,sans-serif">425</text>
+            <text x="510" y="275" text-anchor="middle" font-size="8" fill="#cdd8eb" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="510" y="304" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Metroplex</text>
           </g>
 
-          <!-- City labels -->
-          <g font-family="-apple-system, sans-serif" font-size="9" fill="#1A202C" opacity=".55" pointer-events="none">
-            <circle cx="35" cy="325" r="2.5" fill="#0B2545"/><text x="42" y="328">El Paso</text>
-            <circle cx="472" cy="695" r="2.5" fill="#0B2545"/><text x="478" y="698">Brownsville</text>
-            <circle cx="638" cy="250" r="2.5" fill="#0B2545"/><text x="608" y="244">Texarkana</text>
+          <!-- R4 Upper East Texas · Tyler ~32.5°N 94.8°W → (611,285) -->
+          <g class="region-pin" data-region="Upper East Texas" data-jobs="98" data-agencies="28" tabindex="0" role="button" aria-label="Upper East Texas, 98 jobs">
+            <circle cx="608" cy="285" r="21" fill="#88A4C7" stroke="#fff" stroke-width="2"/>
+            <text x="608" y="281" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">98</text>
+            <text x="608" y="292" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="608" y="315" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Upper East TX</text>
           </g>
 
-          <!-- Scale -->
-          <g transform="translate(40 700)" font-family="-apple-system, sans-serif" font-size="10" fill="#4A5568" pointer-events="none">
-            <line x1="0" y1="0" x2="80" y2="0" stroke="#4A5568" stroke-width="1.5"/>
-            <line x1="0" y1="-3" x2="0" y2="3" stroke="#4A5568" stroke-width="1.5"/>
-            <line x1="40" y1="-3" x2="40" y2="3" stroke="#4A5568" stroke-width="1.5"/>
-            <line x1="80" y1="-3" x2="80" y2="3" stroke="#4A5568" stroke-width="1.5"/>
-            <text x="40" y="14" text-anchor="middle">~150 miles</text>
+          <!-- R5 Southeast Texas · Beaumont ~30.1°N 94.1°W → (644,430) -->
+          <g class="region-pin" data-region="Southeast Texas" data-jobs="68" data-agencies="18" tabindex="0" role="button" aria-label="Southeast Texas, 68 jobs">
+            <circle cx="638" cy="425" r="21" fill="#7593B8" stroke="#fff" stroke-width="2"/>
+            <text x="638" y="421" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="-apple-system,sans-serif">68</text>
+            <text x="638" y="432" text-anchor="middle" font-size="8" fill="#e8eef6" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="638" y="455" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Southeast TX</text>
           </g>
+
+          <!-- R6 Gulf Coast · Houston ~29.76°N 95.37°W → (584,450) -->
+          <g class="region-pin" data-region="Gulf Coast" data-jobs="287" data-agencies="62" tabindex="0" role="button" aria-label="Gulf Coast, 287 jobs">
+            <circle cx="578" cy="455" r="24" fill="#445E83" stroke="#fff" stroke-width="2"/>
+            <text x="578" y="450" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="-apple-system,sans-serif">287</text>
+            <text x="578" y="462" text-anchor="middle" font-size="8" fill="#cdd8eb" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="578" y="489" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Gulf Coast</text>
+          </g>
+
+          <!-- R7 Capital · Austin ~30.27°N 97.74°W → (473,419) -->
+          <g class="region-pin" data-region="Capital" data-jobs="318" data-agencies="71" tabindex="0" role="button" aria-label="Capital, 318 jobs">
+            <circle cx="470" cy="415" r="24" fill="#BF2C2F" stroke="#fff" stroke-width="2"/>
+            <text x="470" y="410" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="-apple-system,sans-serif">318</text>
+            <text x="470" y="422" text-anchor="middle" font-size="8" fill="#fdd" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="470" y="449" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Capital · Austin</text>
+          </g>
+
+          <!-- R8 Central Texas · Waco ~31.55°N 97.15°W → (501,342) -->
+          <g class="region-pin" data-region="Central Texas" data-jobs="156" data-agencies="40" tabindex="0" role="button" aria-label="Central Texas, 156 jobs">
+            <circle cx="500" cy="340" r="22" fill="#A8B8D2" stroke="#fff" stroke-width="2"/>
+            <text x="500" y="335" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">156</text>
+            <text x="500" y="347" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="500" y="372" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Central Texas</text>
+          </g>
+
+          <!-- R9 Alamo · San Antonio ~29.42°N 98.49°W → (437,471) -->
+          <g class="region-pin" data-region="Alamo" data-jobs="221" data-agencies="48" tabindex="0" role="button" aria-label="Alamo, 221 jobs">
+            <circle cx="432" cy="468" r="23" fill="#5B7AA0" stroke="#fff" stroke-width="2"/>
+            <text x="432" y="463" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="-apple-system,sans-serif">221</text>
+            <text x="432" y="475" text-anchor="middle" font-size="8" fill="#cdd8eb" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="432" y="501" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Alamo · SA</text>
+          </g>
+
+          <!-- R10 Coastal Bend · Corpus Christi ~27.80°N 97.40°W → (489,568) -->
+          <g class="region-pin" data-region="Coastal Bend" data-jobs="74" data-agencies="20" tabindex="0" role="button" aria-label="Coastal Bend, 74 jobs">
+            <circle cx="484" cy="560" r="21" fill="#7B95B7" stroke="#fff" stroke-width="2"/>
+            <text x="484" y="556" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">74</text>
+            <text x="484" y="567" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="484" y="591" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Coastal Bend</text>
+          </g>
+
+          <!-- R11 South Texas Border · Laredo/RGV ~26.9°N 98.9°W → (418,623) -->
+          <g class="region-pin" data-region="South Texas Border" data-jobs="172" data-agencies="44" tabindex="0" role="button" aria-label="South Texas Border, 172 jobs">
+            <circle cx="412" cy="615" r="22" fill="#92AAC8" stroke="#fff" stroke-width="2"/>
+            <text x="412" y="610" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">172</text>
+            <text x="412" y="622" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="412" y="647" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">South TX Border</text>
+          </g>
+
+          <!-- R12 West Texas · Midland ~31.99°N 102.08°W → (268,315) -->
+          <g class="region-pin" data-region="West Texas" data-jobs="129" data-agencies="38" tabindex="0" role="button" aria-label="West Texas, 129 jobs">
+            <circle cx="268" cy="315" r="22" fill="#B7C9DD" stroke="#fff" stroke-width="2"/>
+            <text x="268" y="310" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">129</text>
+            <text x="268" y="322" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="268" y="347" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">West Texas</text>
+          </g>
+
+          <!-- R13 Upper Rio Grande · El Paso ~31.76°N 106.49°W → (61,329) -->
+          <g class="region-pin" data-region="Upper Rio Grande" data-jobs="52" data-agencies="14" tabindex="0" role="button" aria-label="Upper Rio Grande, 52 jobs">
+            <circle cx="72" cy="325" r="21" fill="#94A8C0" stroke="#fff" stroke-width="2"/>
+            <text x="72" y="321" text-anchor="middle" font-size="12" font-weight="800" fill="#0B2545" font-family="-apple-system,sans-serif">52</text>
+            <text x="72" y="332" text-anchor="middle" font-size="8" fill="#0B2545" font-family="-apple-system,sans-serif">jobs</text>
+            <text x="72" y="356" text-anchor="middle" font-size="9" font-weight="700" fill="#1A202C" font-family="-apple-system,sans-serif">Upper Rio Grande</text>
+          </g>
+
+          <!-- Austin capital star -->
+          <g transform="translate(470 395)" fill="#C9A227" pointer-events="none">
+            <polygon points="0,-7 2,-2 7,-2 3,1.5 4.5,7 0,4 -4.5,7 -3,1.5 -7,-2 -2,-2"/>
+          </g>
+
+          <!-- Compass rose -->
+          <g transform="translate(672 56)" font-family="-apple-system,sans-serif" font-size="9" fill="#4A5568" pointer-events="none">
+            <circle r="20" fill="rgba(255,255,255,.9)" stroke="#CBD5E1" stroke-width="1"/>
+            <text y="-10" text-anchor="middle" font-weight="700" font-size="10">N</text>
+            <text y="17" text-anchor="middle">S</text>
+            <text x="-13" y="4" text-anchor="middle">W</text>
+            <text x="13" y="4" text-anchor="middle">E</text>
+            <polygon points="0,-8 -2.5,4 0,2 2.5,4" fill="#BF2C2F"/>
+          </g>
+
         </svg>
 
         <div id="region-tooltip"></div>
