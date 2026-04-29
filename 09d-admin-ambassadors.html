@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ambassador Management — TPCA Admin — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .bar-row { display:grid; grid-template-columns: 160px 1fr 60px; gap: 10px; align-items:center; padding: 6px 0; }
+  .bar-row .lbl { font-size: 13px; color: var(--text-2); }
+  .bar-row .val { font-weight:700; color: var(--navy-900); text-align:right; font-variant-numeric: tabular-nums; }
+  .bar-bg { height: 10px; background: var(--bg); border-radius:6px; overflow:hidden; }
+  .bar-fg { height:100%; background: linear-gradient(90deg, var(--navy-700), var(--navy-900)); }
+  .bar-fg.red { background: linear-gradient(90deg, #d8595b, var(--tx-red)); }
+  .star-rating { color: var(--gold); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 09d — TPCA Admin · Ambassador Management
+  <a href="index.html">All Mockups</a> |
+  <a href="09-admin-analytics.html">Analytics</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="09-admin-analytics.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ TPCA Admin</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="09-admin-analytics.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Analytics</a>
+      <a href="09a-admin-agencies.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Agencies</a>
+      <a href="09b-admin-job-listings.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Job Listings</a>
+      <a href="09c-admin-applicants.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Applicants</a>
+      <a href="09d-admin-ambassadors.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Ambassadors</a>
+      <a href="09e-admin-marketing.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Marketing</a>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a href="#" class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,.35);">Log Out</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:18px;">
+      <div>
+        <span class="eyebrow">Recruitment Ambassadors</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Ambassador Program</h1>
+        <p style="color:var(--text-2); margin:0;">Active sworn officers serving as candidate liaisons across all 13 regions.</p>
+      </div>
+      <a href="#" class="btn btn-primary">+ Invite Ambassador</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">84</div><div class="l">Active ambassadors</div><div class="delta up">+12 vs Q1</div></div>
+      <div class="stat"><div class="v">13</div><div class="l">Regions covered</div><div class="delta up">Full coverage</div></div>
+      <div class="stat"><div class="v">4,218</div><div class="l">Candidate conversations</div><div class="delta up">+847 vs Q1</div></div>
+      <div class="stat"><div class="v">4.8 / 5</div><div class="l">Avg candidate satisfaction</div><div class="delta up">+0.2 vs Q1</div></div>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap:24px;">
+
+      <div>
+        <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
+          <input class="input" type="search" placeholder="Search ambassadors…" style="flex:1; min-width:200px; max-width:300px; font-size:13px;">
+          <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+            <option>All Regions</option>
+            <option>Capital (Austin)</option>
+            <option>Metroplex (DFW)</option>
+            <option>Gulf Coast (Houston)</option>
+            <option>Alamo (San Antonio)</option>
+            <option>South Texas Border</option>
+            <option>Statewide</option>
+          </select>
+          <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+            <option>All Statuses</option>
+            <option>Active</option>
+            <option>On Leave</option>
+            <option>Inactive</option>
+          </select>
+        </div>
+
+        <div class="card" style="padding:0; overflow:hidden;">
+          <table class="data" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Ambassador</th>
+                <th>Agency</th>
+                <th>Region</th>
+                <th style="text-align:right;">Conversations</th>
+                <th style="text-align:right;">Candidates Referred</th>
+                <th style="text-align:center;">Rating</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lt. James Patterson</strong><br><span class="small">18 yrs sworn</span></td>
+                <td>Texas DPS</td><td>Statewide</td>
+                <td style="text-align:right; font-variant-numeric:tabular-nums;">312</td>
+                <td style="text-align:right;">58</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.9</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Lt. Marcus Delgado</strong><br><span class="small">18 yrs sworn</span></td>
+                <td>San Antonio PD</td><td>Capital</td>
+                <td style="text-align:right;">218</td>
+                <td style="text-align:right;">42</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.9</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="10-ambassadors.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Officer Deja Williams</strong><br><span class="small">9 yrs sworn</span></td>
+                <td>Harris County SO</td><td>Gulf Coast</td>
+                <td style="text-align:right;">176</td>
+                <td style="text-align:right;">29</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.8</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Cpl. Travis Houston</strong><br><span class="small">11 yrs sworn</span></td>
+                <td>Houston PD</td><td>Gulf Coast</td>
+                <td style="text-align:right;">203</td>
+                <td style="text-align:right;">38</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.7</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Det. Angela Kim</strong><br><span class="small">14 yrs sworn</span></td>
+                <td>Dallas PD</td><td>Metroplex</td>
+                <td style="text-align:right;">156</td>
+                <td style="text-align:right;">27</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.9</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Lt. Sandra Chen</strong><br><span class="small">16 yrs sworn</span></td>
+                <td>TX Parks &amp; Wildlife</td><td>Statewide</td>
+                <td style="text-align:right;">112</td>
+                <td style="text-align:right;">21</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.9</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Sgt. Diana Reyes</strong><br><span class="small">12 yrs sworn</span></td>
+                <td>Austin PD</td><td>Capital</td>
+                <td style="text-align:right;">187</td>
+                <td style="text-align:right;">31</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.8</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Sgt. Maria Espinoza</strong><br><span class="small">13 yrs sworn</span></td>
+                <td>Laredo PD</td><td>South TX Border</td>
+                <td style="text-align:right;">134</td>
+                <td style="text-align:right;">19</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.8</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Officer Marcus Webb</strong><br><span class="small">7 yrs sworn</span></td>
+                <td>Fort Worth PD</td><td>Metroplex</td>
+                <td style="text-align:right;">142</td>
+                <td style="text-align:right;">23</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.6</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Cpl. Kevin Brown</strong><br><span class="small">10 yrs sworn</span></td>
+                <td>Lubbock PD</td><td>High Plains</td>
+                <td style="text-align:right;">94</td>
+                <td style="text-align:right;">16</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.7</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Chief Carlos Ruiz</strong><br><span class="small">22 yrs sworn</span></td>
+                <td>Corpus Christi PD</td><td>Coastal Bend</td>
+                <td style="text-align:right;">98</td>
+                <td style="text-align:right;">14</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.7</span></td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Sgt. Rachel Torres</strong><br><span class="small">8 yrs sworn</span></td>
+                <td>El Paso PD</td><td>Upper Rio Grande</td>
+                <td style="text-align:right;">87</td>
+                <td style="text-align:right;">11</td>
+                <td style="text-align:center;"><span class="star-rating">★ 4.5</span></td>
+                <td><span class="tag">On leave</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="padding:12px 18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+            <span class="small">Showing 12 of 84 ambassadors</span>
+            <div style="display:flex; gap:6px;">
+              <a href="#" class="btn btn-outline btn-sm">← Prev</a>
+              <a href="#" class="btn btn-outline btn-sm">Next →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card" style="padding:18px;">
+          <strong style="color:var(--navy-900)">Conversations by region</strong>
+          <div class="small" style="margin-bottom:12px;">Q2 2026</div>
+          <div class="bar-row"><span class="lbl">Statewide</span><span class="bar-bg"><span class="bar-fg" style="width:100%"></span></span><span class="val">424</span></div>
+          <div class="bar-row"><span class="lbl">Gulf Coast</span><span class="bar-bg"><span class="bar-fg" style="width:89%"></span></span><span class="val">379</span></div>
+          <div class="bar-row"><span class="lbl">Capital</span><span class="bar-bg"><span class="bar-fg" style="width:72%"></span></span><span class="val">405</span></div>
+          <div class="bar-row"><span class="lbl">Metroplex</span><span class="bar-bg"><span class="bar-fg" style="width:70%"></span></span><span class="val">298</span></div>
+          <div class="bar-row"><span class="lbl">Alamo</span><span class="bar-bg"><span class="bar-fg" style="width:50%"></span></span><span class="val">212</span></div>
+          <div class="bar-row"><span class="lbl">South TX Border</span><span class="bar-bg"><span class="bar-fg red" style="width:32%"></span></span><span class="val">134</span></div>
+          <div class="bar-row"><span class="lbl">Other regions</span><span class="bar-bg"><span class="bar-fg red" style="width:84%"></span></span><span class="val">366</span></div>
+        </div>
+
+        <div class="spacer-16"></div>
+
+        <div class="card" style="padding:18px; background:#fff8f7; border-color:#FBE9EA;">
+          <strong style="color:var(--navy-900)">Program health</strong>
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="small">Region coverage</span>
+              <strong style="color:var(--success)">13 / 13 ✓</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="small">Avg response time</span>
+              <strong>4.2 hrs</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="small">Referrals → applied</span>
+              <strong>68%</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="small">Ambassadors this qtr</span>
+              <strong style="color:var(--success)">+12 new</strong>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <a href="10-ambassadors.html" class="small">View public ambassador page →</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2" style="color:var(--gold)">★ TPCA Admin</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

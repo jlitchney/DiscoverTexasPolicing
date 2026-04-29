@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agency Management — TPCA Admin — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .bar-row { display:grid; grid-template-columns: 160px 1fr 60px; gap: 10px; align-items:center; padding: 6px 0; }
+  .bar-row .lbl { font-size: 13px; color: var(--text-2); }
+  .bar-row .val { font-weight:700; color: var(--navy-900); text-align:right; font-variant-numeric: tabular-nums; }
+  .bar-bg { height: 10px; background: var(--bg); border-radius:6px; overflow:hidden; }
+  .bar-fg { height:100%; background: linear-gradient(90deg, var(--navy-700), var(--navy-900)); }
+  .bar-fg.red { background: linear-gradient(90deg, #d8595b, var(--tx-red)); }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 09a — TPCA Admin · Agency Management
+  <a href="index.html">All Mockups</a> |
+  <a href="09-admin-analytics.html">Analytics</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="09-admin-analytics.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ TPCA Admin</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="09-admin-analytics.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Analytics</a>
+      <a href="09a-admin-agencies.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Agencies</a>
+      <a href="09b-admin-job-listings.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Job Listings</a>
+      <a href="09c-admin-applicants.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Applicants</a>
+      <a href="09d-admin-ambassadors.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Ambassadors</a>
+      <a href="09e-admin-marketing.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Marketing</a>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a href="#" class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,.35);">Log Out</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:18px;">
+      <div>
+        <span class="eyebrow">Agency Management</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Registered Agencies</h1>
+        <p style="color:var(--text-2); margin:0;">All law enforcement agencies registered on DiscoverTexasPolicing.</p>
+      </div>
+      <a href="#" class="btn btn-primary">+ Add Agency</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">472</div><div class="l">Active agencies</div><div class="delta up">+24 vs Q1</div></div>
+      <div class="stat"><div class="v">14</div><div class="l">Pending approval</div><div class="delta">Awaiting review</div></div>
+      <div class="stat"><div class="v">38</div><div class="l">Inactive</div><div class="delta down">+4 vs Q1</div></div>
+      <div class="stat"><div class="v">6</div><div class="l">Suspended</div><div class="delta">Under review</div></div>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap:24px;">
+
+      <div>
+        <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
+          <input class="input" type="search" placeholder="Search agencies…" style="flex:1; min-width:200px; max-width:300px; font-size:13px;">
+          <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+            <option>All Regions</option>
+            <option>Metroplex (DFW)</option>
+            <option>Capital (Austin)</option>
+            <option>Gulf Coast (Houston)</option>
+            <option>Alamo (San Antonio)</option>
+            <option>South Texas Border</option>
+            <option>Central Texas</option>
+            <option>High Plains</option>
+            <option>West Texas</option>
+            <option>Upper Rio Grande</option>
+            <option>Coastal Bend</option>
+          </select>
+          <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+            <option>All Types</option>
+            <option>Municipal</option>
+            <option>County</option>
+            <option>State</option>
+            <option>Federal</option>
+            <option>Campus</option>
+          </select>
+          <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+            <option>All Statuses</option>
+            <option>Active</option>
+            <option>Pending</option>
+            <option>Inactive</option>
+            <option>Suspended</option>
+          </select>
+        </div>
+
+        <div class="card" style="padding:0; overflow:hidden;">
+          <table class="data" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Agency</th>
+                <th>Type</th>
+                <th>Region</th>
+                <th style="text-align:right;">Active Listings</th>
+                <th style="text-align:right;">Candidates Q2</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Texas Dept. of Public Safety</strong></td>
+                <td>State</td><td>Statewide</td>
+                <td style="text-align:right; font-variant-numeric:tabular-nums;">14</td>
+                <td style="text-align:right; font-variant-numeric:tabular-nums;">2,847</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Houston Police Department</strong></td>
+                <td>Municipal</td><td>Gulf Coast</td>
+                <td style="text-align:right;">22</td><td style="text-align:right;">1,963</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>San Antonio Police Department</strong></td>
+                <td>Municipal</td><td>Alamo</td>
+                <td style="text-align:right;">22</td><td style="text-align:right;">1,504</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Dallas Police Department</strong></td>
+                <td>Municipal</td><td>Metroplex</td>
+                <td style="text-align:right;">18</td><td style="text-align:right;">1,287</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Austin Police Department</strong></td>
+                <td>Municipal</td><td>Capital</td>
+                <td style="text-align:right;">14</td><td style="text-align:right;">892</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="07-agency-dashboard.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Fort Worth Police Department</strong></td>
+                <td>Municipal</td><td>Metroplex</td>
+                <td style="text-align:right;">16</td><td style="text-align:right;">743</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Harris County Sheriff's Office</strong></td>
+                <td>County</td><td>Gulf Coast</td>
+                <td style="text-align:right;">11</td><td style="text-align:right;">614</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Bexar County Sheriff's Office</strong></td>
+                <td>County</td><td>Alamo</td>
+                <td style="text-align:right;">8</td><td style="text-align:right;">412</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Tarrant County Sheriff's Office</strong></td>
+                <td>County</td><td>Metroplex</td>
+                <td style="text-align:right;">9</td><td style="text-align:right;">387</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Travis County Sheriff's Office</strong></td>
+                <td>County</td><td>Capital</td>
+                <td style="text-align:right;">7</td><td style="text-align:right;">318</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>El Paso Police Department</strong></td>
+                <td>Municipal</td><td>Upper Rio Grande</td>
+                <td style="text-align:right;">6</td><td style="text-align:right;">284</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>TX Parks &amp; Wildlife Dept.</strong></td>
+                <td>State</td><td>Statewide</td>
+                <td style="text-align:right;">8</td><td style="text-align:right;">203</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Corpus Christi Police Dept.</strong></td>
+                <td>Municipal</td><td>Coastal Bend</td>
+                <td style="text-align:right;">5</td><td style="text-align:right;">178</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>Lubbock Police Department</strong></td>
+                <td>Municipal</td><td>High Plains</td>
+                <td style="text-align:right;">6</td><td style="text-align:right;">156</td>
+                <td><span class="tag green">Active</span></td>
+                <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr style="background:#fffbf0;">
+                <td><strong>Garland Police Department</strong></td>
+                <td>Municipal</td><td>Metroplex</td>
+                <td style="text-align:right; color:var(--text-3);">—</td>
+                <td style="text-align:right;">134</td>
+                <td><span class="tag gold">Pending</span></td>
+                <td style="text-align:right;"><div style="display:flex; gap:6px; justify-content:flex-end;"><a href="#" class="btn btn-primary btn-sm">Approve</a><a href="#" class="btn btn-outline btn-sm">Review</a></div></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="padding:12px 18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+            <span class="small">Showing 15 of 530 agencies</span>
+            <div style="display:flex; gap:6px;">
+              <a href="#" class="btn btn-outline btn-sm">← Prev</a>
+              <a href="#" class="btn btn-outline btn-sm">Next →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card" style="padding:18px;">
+          <strong style="color:var(--navy-900)">Agency type breakdown</strong>
+          <div class="small" style="margin-bottom:12px;">Active accounts only</div>
+          <div class="bar-row"><span class="lbl">Municipal</span><span class="bar-bg"><span class="bar-fg" style="width:100%"></span></span><span class="val">287</span></div>
+          <div class="bar-row"><span class="lbl">County</span><span class="bar-bg"><span class="bar-fg" style="width:52%"></span></span><span class="val">148</span></div>
+          <div class="bar-row"><span class="lbl">State</span><span class="bar-bg"><span class="bar-fg" style="width:14%"></span></span><span class="val">22</span></div>
+          <div class="bar-row"><span class="lbl">Campus</span><span class="bar-bg"><span class="bar-fg red" style="width:6%"></span></span><span class="val">9</span></div>
+          <div class="bar-row"><span class="lbl">Federal</span><span class="bar-bg"><span class="bar-fg red" style="width:4%"></span></span><span class="val">6</span></div>
+        </div>
+
+        <div class="spacer-16"></div>
+
+        <div class="card" style="padding:18px;">
+          <strong style="color:var(--navy-900)">Pending approvals</strong>
+          <div class="small" style="margin-bottom:12px;">14 agencies awaiting review</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="padding:10px; background:var(--bg); border-radius:var(--radius); border-left:3px solid var(--gold);">
+              <div style="font-size:13px; font-weight:700; color:var(--navy-900);">Garland Police Dept.</div>
+              <div class="small">Metroplex · Submitted Apr 26</div>
+              <a href="#" class="btn btn-primary btn-sm" style="margin-top:8px;">Approve</a>
+            </div>
+            <div style="padding:10px; background:var(--bg); border-radius:var(--radius); border-left:3px solid var(--gold);">
+              <div style="font-size:13px; font-weight:700; color:var(--navy-900);">Midland Police Dept.</div>
+              <div class="small">West Texas · Submitted Apr 24</div>
+              <a href="#" class="btn btn-primary btn-sm" style="margin-top:8px;">Approve</a>
+            </div>
+            <div style="padding:10px; background:var(--bg); border-radius:var(--radius); border-left:3px solid var(--gold);">
+              <div style="font-size:13px; font-weight:700; color:var(--navy-900);">Odessa Police Dept.</div>
+              <div class="small">West Texas · Submitted Apr 22</div>
+              <a href="#" class="btn btn-primary btn-sm" style="margin-top:8px;">Approve</a>
+            </div>
+            <a href="#" class="small">View all 14 pending →</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2" style="color:var(--gold)">★ TPCA Admin</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

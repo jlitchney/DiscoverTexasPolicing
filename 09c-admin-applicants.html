@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Applicant Management — TPCA Admin — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .bar-row { display:grid; grid-template-columns: 160px 1fr 60px; gap: 10px; align-items:center; padding: 6px 0; }
+  .bar-row .lbl { font-size: 13px; color: var(--text-2); }
+  .bar-row .val { font-weight:700; color: var(--navy-900); text-align:right; font-variant-numeric: tabular-nums; }
+  .bar-bg { height: 10px; background: var(--bg); border-radius:6px; overflow:hidden; }
+  .bar-fg { height:100%; background: linear-gradient(90deg, var(--navy-700), var(--navy-900)); }
+  .bar-fg.red { background: linear-gradient(90deg, #d8595b, var(--tx-red)); }
+  .score-badge { display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:700; }
+  .score-high { background:#d1fae5; color:#065f46; }
+  .score-mid { background:#fef3c7; color:#92400e; }
+  .score-low { background:#fee2e2; color:#991b1b; }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 09c — TPCA Admin · Applicant Management
+  <a href="index.html">All Mockups</a> |
+  <a href="09-admin-analytics.html">Analytics</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="09-admin-analytics.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ TPCA Admin</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="09-admin-analytics.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Analytics</a>
+      <a href="09a-admin-agencies.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Agencies</a>
+      <a href="09b-admin-job-listings.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Job Listings</a>
+      <a href="09c-admin-applicants.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Applicants</a>
+      <a href="09d-admin-ambassadors.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Ambassadors</a>
+      <a href="09e-admin-marketing.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Marketing</a>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a href="#" class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,.35);">Log Out</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:18px;">
+      <div>
+        <span class="eyebrow">Applicant Management</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Candidate Pool</h1>
+        <p style="color:var(--text-2); margin:0;">All registered applicants in the shared statewide pool.</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <a href="#" class="btn btn-outline">Export CSV</a>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">28,418</div><div class="l">Total applicants YTD</div><div class="delta up">+44% vs Q1</div></div>
+      <div class="stat"><div class="v">22,166</div><div class="l">Passed pre-screen</div><div class="delta up">+38% vs Q1</div></div>
+      <div class="stat"><div class="v">14,238</div><div class="l">In shared pool</div><div class="delta up">+1,866 vs Q1</div></div>
+      <div class="stat"><div class="v">7,699</div><div class="l">Agency-reviewed</div><div class="delta up">+22% vs Q1</div></div>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div style="background:#f0f7ff; border:1px solid #bdd7f5; border-radius:var(--radius); padding:12px 16px; margin-bottom:16px; display:flex; gap:12px; align-items:center;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d63b8" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span style="font-size:13px; color:#1d63b8;">Applicant data is subject to Texas DIR privacy guidelines. PII access is logged. Data may not be exported for non-recruitment purposes.</span>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
+      <input class="input" type="search" placeholder="Search by name or applicant ID…" style="flex:1; min-width:220px; max-width:340px; font-size:13px;">
+      <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+        <option>All Regions</option>
+        <option>Metroplex (DFW)</option>
+        <option>Capital (Austin)</option>
+        <option>Gulf Coast (Houston)</option>
+        <option>Alamo (San Antonio)</option>
+        <option>South Texas Border</option>
+        <option>High Plains</option>
+        <option>West Texas</option>
+      </select>
+      <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+        <option>All Pre-screen Statuses</option>
+        <option>Passed</option>
+        <option>Pending</option>
+        <option>Failed</option>
+        <option>Not yet taken</option>
+      </select>
+      <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+        <option>All Pipeline Stages</option>
+        <option>Applied</option>
+        <option>Pre-screen passed</option>
+        <option>Agency review</option>
+        <option>Written / POPAT</option>
+        <option>Background</option>
+        <option>Conditional offer</option>
+        <option>Hired</option>
+      </select>
+    </div>
+
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="data" style="width:100%;">
+        <thead>
+          <tr>
+            <th>Applicant</th>
+            <th>Region</th>
+            <th style="text-align:center;">Applications</th>
+            <th style="text-align:center;">Pre-screen Score</th>
+            <th>Pipeline Stage</th>
+            <th>Joined</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Maria Gonzalez</strong><br><span class="small">#TX-10482</span></td>
+            <td>Capital</td>
+            <td style="text-align:center;">3</td>
+            <td style="text-align:center;"><span class="score-badge score-high">96</span></td>
+            <td><span class="tag green">Agency review</span></td>
+            <td>Apr 28</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>James Williams</strong><br><span class="small">#TX-10481</span></td>
+            <td>Metroplex</td>
+            <td style="text-align:center;">2</td>
+            <td style="text-align:center;"><span class="score-badge score-high">88</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 27</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Ashley Thompson</strong><br><span class="small">#TX-10479</span></td>
+            <td>Gulf Coast</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-high">82</span></td>
+            <td><span class="tag green">Agency review</span></td>
+            <td>Apr 26</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Robert Martinez</strong><br><span class="small">#TX-10476</span></td>
+            <td>Alamo</td>
+            <td style="text-align:center;">2</td>
+            <td style="text-align:center;"><span class="score-badge score-mid">79</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 25</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jennifer Davis</strong><br><span class="small">#TX-10475</span></td>
+            <td>Capital</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-high">91</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 25</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Brown</strong><br><span class="small">#TX-10473</span></td>
+            <td>Metroplex</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-mid">74</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 24</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Sarah Johnson</strong><br><span class="small">#TX-10470</span></td>
+            <td>Gulf Coast</td>
+            <td style="text-align:center;">2</td>
+            <td style="text-align:center;"><span class="score-badge score-mid">68</span></td>
+            <td><span class="tag">Pending review</span></td>
+            <td>Apr 23</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>David Wilson</strong><br><span class="small">#TX-10468</span></td>
+            <td>High Plains</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-high">86</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 22</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Emily Rodriguez</strong><br><span class="small">#TX-10467</span></td>
+            <td>Alamo</td>
+            <td style="text-align:center;">3</td>
+            <td style="text-align:center;"><span class="score-badge score-high">93</span></td>
+            <td><span class="tag green">Agency review</span></td>
+            <td>Apr 22</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Daniel Lee</strong><br><span class="small">#TX-10463</span></td>
+            <td>Gulf Coast</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-low">55</span></td>
+            <td><span class="tag red">Pre-screen failed</span></td>
+            <td>Apr 21</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Amanda White</strong><br><span class="small">#TX-10461</span></td>
+            <td>Capital</td>
+            <td style="text-align:center;">2</td>
+            <td style="text-align:center;"><span class="score-badge score-mid">77</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 20</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Carlos Rivera</strong><br><span class="small">#TX-10458</span></td>
+            <td>South TX Border</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-high">89</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 19</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Brittany Taylor</strong><br><span class="small">#TX-10454</span></td>
+            <td>Metroplex</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-mid">71</span></td>
+            <td><span class="tag">Pending</span></td>
+            <td>Apr 18</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Kevin Anderson</strong><br><span class="small">#TX-10451</span></td>
+            <td>West Texas</td>
+            <td style="text-align:center;">2</td>
+            <td style="text-align:center;"><span class="score-badge score-high">84</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 17</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Lauren Jackson</strong><br><span class="small">#TX-10449</span></td>
+            <td>Central Texas</td>
+            <td style="text-align:center;">1</td>
+            <td style="text-align:center;"><span class="score-badge score-high">90</span></td>
+            <td><span class="tag green">Pre-screen passed</span></td>
+            <td>Apr 17</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+        <span class="small">Showing 15 of 28,418 applicants · Sorted by most recent</span>
+        <div style="display:flex; gap:6px;">
+          <a href="#" class="btn btn-outline btn-sm">← Prev</a>
+          <a href="#" class="btn btn-outline btn-sm">Next →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2" style="color:var(--gold)">★ TPCA Admin</div></div>
+        </div>
+      </div>
+      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
