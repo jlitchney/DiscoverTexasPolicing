@@ -107,6 +107,34 @@
     transition: border-color .15s;
   }
   .field-group input:focus { border-color: var(--navy-600); }
+  .preview-card {
+    display:block; background:#fff; border-radius: var(--radius-lg);
+    overflow:hidden; text-decoration:none; color:inherit;
+    box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .preview-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.45); transform: translateY(-3px); text-decoration:none; }
+  .preview-thumb {
+    aspect-ratio: 16/10; background: var(--navy-50);
+    position:relative; overflow:hidden;
+  }
+  .preview-thumb iframe {
+    position:absolute; inset:0; width:200%; height:200%;
+    transform:scale(.5); transform-origin: top left;
+    border:0; pointer-events:none;
+  }
+  .preview-badge {
+    position:absolute; top:8px; left:8px; z-index:2;
+    background:var(--navy-900); color:#fff; font-size:11px;
+    font-weight:700; padding:3px 8px; border-radius:5px;
+    border:1px solid var(--gold); letter-spacing:.4px;
+  }
+  .preview-footer {
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px; font-size:12.5px; color:var(--text-2);
+    border-top:1px solid var(--border); background:#fff;
+    font-weight:500;
+  }
 </style>
 </head>
 <body>
@@ -268,10 +296,18 @@
           <li>Free for candidates — removing financial barriers to entry</li>
         </ul>
       </div>
-      <div style="text-align:center; min-width:200px;">
-        <p style="color:rgba(255,255,255,.55); font-size:13px; margin:0 0 16px; line-height:1.5;">See the platform exactly as a candidate would.</p>
-        <a href="01-homepage-v2.html" class="btn btn-primary btn-lg" style="white-space:nowrap;">See it in action →</a>
-        <p style="color:rgba(255,255,255,.35); font-size:11px; margin:12px 0 0;">Opens the candidate homepage</p>
+      <div style="min-width:280px; max-width:340px;">
+        <p style="color:rgba(255,255,255,.55); font-size:13px; margin:0 0 12px; line-height:1.5;">See the platform exactly as a candidate would.</p>
+        <a href="01-homepage-v2.html" class="preview-card">
+          <div class="preview-thumb">
+            <span class="preview-badge">Candidate View</span>
+            <iframe src="01-homepage-v2.html" loading="lazy"></iframe>
+          </div>
+          <div class="preview-footer">
+            <span>DiscoverTexasPolicing — Candidate Homepage</span>
+            <span style="margin-left:auto; white-space:nowrap;">View →</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
