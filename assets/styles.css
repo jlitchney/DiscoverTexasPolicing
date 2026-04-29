@@ -234,8 +234,15 @@ button { font-family: inherit; cursor: pointer; }
   display:grid; grid-template-columns: 56px 1fr auto; gap:16px;
   background:#fff; border:1px solid var(--border); border-radius: var(--radius);
   padding:18px; align-items:center; box-shadow: var(--shadow-sm);
+  transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
 }
-.job-row:hover { border-color: var(--navy-700); }
+.job-row:hover {
+  border-color: var(--navy-700);
+  box-shadow: 0 6px 20px rgba(11,37,69,.13);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.job-row:hover * { text-decoration: none; }
 .agency-logo {
   width:56px; height:56px; border-radius: 8px; background: var(--navy-50);
   display:grid; place-items:center; font-weight:800; color: var(--navy-900); font-size:18px;
