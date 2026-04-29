@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DiscoverTexasPolicing.org — Start Your Career in Texas Law Enforcement</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .nav-clean {
+    background: var(--navy-900);
+    border-bottom: 3px solid var(--gold);
+  }
+  .nav-clean .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .nav-clean .nav-links {
+    display: flex;
+    gap: 32px;
+  }
+  .nav-clean .nav-links a {
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .2px;
+  }
+  .nav-clean .nav-links a:hover { color: #fff; }
+
+  .hero-clean {
+    background: var(--navy-900);
+    background-image: url('assets/images/hero-cruisers-night.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    padding: 96px 0 112px;
+    position: relative;
+  }
+  .hero-clean::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(11,37,69,.88) 0%, rgba(11,37,69,.55) 60%, rgba(11,37,69,.35) 100%);
+  }
+  .hero-clean .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+  .hero-clean h1 {
+    font-size: 54px;
+    line-height: 1.04;
+    color: #fff;
+    margin: 16px 0 22px;
+    font-family: var(--font-display);
+  }
+  .hero-clean .lede {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #cdd8eb;
+    margin: 0 0 36px;
+    max-width: 540px;
+  }
+
+  .search-bar {
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    overflow: hidden;
+    max-width: 580px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 28px rgba(0,0,0,.25);
+  }
+  .search-bar input {
+    flex: 1;
+    border: none;
+    padding: 16px 20px;
+    font-size: 15px;
+    outline: none;
+    color: var(--text-1);
+  }
+  .search-bar .btn {
+    border-radius: 0;
+    padding: 16px 28px;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .search-hints {
+    color: #9db0cb;
+    font-size: 13px;
+  }
+  .search-hints a {
+    color: #cdd8eb;
+    margin: 0 6px;
+    text-decoration: none;
+  }
+  .search-hints a:hover { color: #fff; }
+
+  .stats-strip {
+    display: flex;
+    background: var(--navy-900);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-item {
+    flex: 1;
+    padding: 26px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #9db0cb;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+  }
+
+  .step-num {
+    width: 54px;
+    height: 54px;
+    background: var(--navy-900);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    border: 2px solid var(--gold);
+  }
+
+  .ambassador-strip {
+    background: var(--navy-50);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .ambassador-inner {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 36px 0;
+  }
+  .amb-icon {
+    width: 68px;
+    height: 68px;
+    background: var(--navy-900);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid var(--gold);
+  }
+
+  .cta-dark {
+    background: var(--navy-900);
+    border-top: 3px solid var(--gold);
+    padding: 72px 0;
+    text-align: center;
+  }
+  .cta-dark h2 {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 38px;
+    margin: 0 0 14px;
+  }
+  .cta-dark p {
+    color: #cdd8eb;
+    font-size: 17px;
+    margin: 0 0 32px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-dark .btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 01-v2 — Homepage (Candidate-Focused, Simplified)
+  <a href="index.html">All Mockups</a> |
+  <a href="01-homepage.html">← v1 (original)</a> |
+  <a href="02-jobs.html">Jobs</a> |
+  <a href="03-regional-map.html">Regions</a>
+</div>
+
+<!-- Nav: clean, candidate-focused -->
+<nav class="nav-clean">
+  <div class="container">
+    <a href="01-homepage-v2.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ Law Enforcement Careers in Texas</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="02-jobs.html">Find Jobs</a>
+      <a href="03-regional-map.html">Explore Regions</a>
+      <a href="10-ambassadors.html">Ambassadors</a>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="05-applicant-signup.html" class="btn btn-primary">Create Free Profile</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero-clean">
+  <div class="container">
+    <span class="pill"><span class="star">★</span> Official statewide recruitment platform · Texas Police Chiefs Association</span>
+    <h1>Your Career in Texas Law Enforcement Starts Here.</h1>
+    <p class="lede">Search 1,800+ openings across all 13 Texas regions. Build one profile — every agency can find you.</p>
+
+    <div class="search-bar">
+      <input placeholder="Search by role, city, agency, or region…" />
+      <a href="02-jobs.html" class="btn btn-primary">Search Jobs</a>
+    </div>
+
+    <div class="search-hints">
+      Popular:
+      <a href="02-jobs.html">Police Officer</a>·
+      <a href="02-jobs.html">State Trooper</a>·
+      <a href="02-jobs.html">Deputy Sheriff</a>·
+      <a href="02-jobs.html">Cadet / No Experience</a>·
+      <a href="02-jobs.html">Telecommunicator</a>
+    </div>
+  </div>
+</header>
+
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">1,800+</div>
+    <div class="stat-label">Active openings</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">472</div>
+    <div class="stat-label">Agencies hiring</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">13</div>
+    <div class="stat-label">Regions statewide</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">$0</div>
+    <div class="stat-label">Cost to apply</div>
+  </div>
+</div>
+
+<!-- How it works -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:40px;">
+      <span class="eyebrow">★ How It Works</span>
+      <h2 style="margin-top:8px;">From profile to badge in three steps</h2>
+    </div>
+    <div class="grid cols-3">
+      <div style="text-align:center; padding: 20px 28px;">
+        <div class="step-num">1</div>
+        <h3 style="font-size:18px; margin:0 0 10px;">Build your profile</h3>
+        <p style="color:var(--text-2); font-size:14.5px; margin:0; line-height:1.6;">Takes about 10 minutes. Includes TPCA/TCOLE pre-screening questions so you know where you stand before you apply anywhere.</p>
+      </div>
+      <div style="text-align:center; padding: 20px 28px;">
+        <div class="step-num">2</div>
+        <h3 style="font-size:18px; margin:0 0 10px;">Get matched statewide</h3>
+        <p style="color:var(--text-2); font-size:14.5px; margin:0; line-height:1.6;">Set your preferred region and role type. Your profile is visible to all 472 participating agencies — they'll reach out when there's a match.</p>
+      </div>
+      <div style="text-align:center; padding: 20px 28px;">
+        <div class="step-num">3</div>
+        <h3 style="font-size:18px; margin:0 0 10px;">Apply with one click</h3>
+        <p style="color:var(--text-2); font-size:14.5px; margin:0; line-height:1.6;">No re-entering information for each department. Your profile is accepted by every participating agency across Texas.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="05-applicant-signup.html" class="btn btn-primary btn-lg">Create Your Free Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured jobs -->
+<section class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Now Hiring</span>
+        <h2>Featured openings</h2>
+        <p>Updated every 15 minutes from agencies across all 13 Texas regions.</p>
+      </div>
+      <a href="02-jobs.html" class="more">View all 1,593 jobs →</a>
+    </div>
+    <div class="grid cols-3">
+      <a href="04-job-detail.html" class="card">
+        <div class="agency-line">★ Austin Police Department · Capital</div>
+        <h3>Police Officer (Lateral &amp; Entry)</h3>
+        <div class="meta">
+          <span>📍 Austin, TX</span>
+          <span>💵 $74,800–$112,400</span>
+        </div>
+        <div class="tags">
+          <span class="tag">TCOLE Peace Officer</span>
+          <span class="tag gold">Sign-on bonus $15k</span>
+          <span class="tag green">Accepting applications</span>
+        </div>
+      </a>
+      <a href="04-job-detail.html" class="card">
+        <div class="agency-line">★ Texas Department of Public Safety · Statewide</div>
+        <h3>State Trooper Recruit (Class A-2026)</h3>
+        <div class="meta">
+          <span>📍 Multiple locations</span>
+          <span>💵 $79,308 starting</span>
+        </div>
+        <div class="tags">
+          <span class="tag">TCOLE Peace Officer</span>
+          <span class="tag red">Closing in 12 days</span>
+          <span class="tag">Academy provided</span>
+        </div>
+      </a>
+      <a href="04-job-detail.html" class="card">
+        <div class="agency-line">★ Harris County Sheriff's Office · Gulf Coast</div>
+        <h3>Detention Officer / Jailer</h3>
+        <div class="meta">
+          <span>📍 Houston, TX</span>
+          <span>💵 $52,200–$66,500</span>
+        </div>
+        <div class="tags">
+          <span class="tag">TCOLE Jailer</span>
+          <span class="tag gold">No experience required</span>
+          <span class="tag green">Accepting applications</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Explore roles: 4 cards, not 12 -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">★ Find Your Fit</span>
+        <h2>Many ways to serve Texas</h2>
+        <p>Law enforcement is more than one role. Explore what fits your background and goals.</p>
+      </div>
+      <a href="02-jobs.html" class="more">Browse all roles →</a>
+    </div>
+    <div class="grid cols-4">
+      <a href="02-jobs.html" class="photo-card" style="background-image: url('assets/images/specialty-patrol.jpg');">
+        <div class="overlay"><div><strong>Patrol Officer</strong><span>1,124 openings statewide</span></div></div>
+      </a>
+      <a href="02-jobs.html" class="photo-card" style="background-image: url('assets/images/specialty-academy.jpg');">
+        <div class="overlay"><div><strong>Cadet / Academy</strong><span>Paid training, no experience needed</span></div></div>
+      </a>
+      <a href="02-jobs.html" class="photo-card" style="background-image: url('assets/images/specialty-forensics.jpg');">
+        <div class="overlay"><div><strong>Investigations</strong><span>Detective &amp; forensics roles</span></div></div>
+      </a>
+      <a href="02-jobs.html" class="photo-card" style="background-image: url('assets/images/specialty-community.jpg');">
+        <div class="overlay"><div><strong>Telecommunicator</strong><span>Dispatch &amp; communications</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Ambassador strip -->
+<div class="ambassador-strip">
+  <div class="container">
+    <div class="ambassador-inner">
+      <div class="amb-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" width="30" height="30">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <h3 style="margin:0 0 6px; font-family:var(--font-display); color:var(--navy-900); font-size:22px;">Not sure where to start? Talk to a Recruitment Ambassador.</h3>
+        <p style="color:var(--text-2); margin:0; font-size:15px;">Every Texas region has an active peace officer who volunteers to answer questions from people considering a career in law enforcement. No commitment, no sales pitch — just honest answers.</p>
+      </div>
+      <a href="10-ambassadors.html" class="btn btn-primary btn-lg" style="flex-shrink:0;">Find an Ambassador</a>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials: 2 only -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:32px;">
+      <span class="eyebrow">Voices from the field</span>
+      <h2 style="margin-top:8px;">Texas officers, hired here</h2>
+    </div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; max-width:860px; margin:0 auto;">
+      <div class="card">
+        <p style="font-size:15.5px; line-height:1.6;">"I'm a third-generation Texan and a Marine. DiscoverTexasPolicing matched me to three departments in my home region within a week. Today I'm a sworn officer in Lubbock."</p>
+        <div class="divider"></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="photo-avatar lg" style="background-image: url('assets/images/officer-portrait-1.jpg');"></div>
+          <div>
+            <div style="font-weight:700; color:var(--navy-900);">Officer J. Ramirez</div>
+            <div class="small">Lubbock PD · High Plains</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <p style="font-size:15.5px; line-height:1.6;">"I wasn't sure if my background fit a career in law enforcement. The Recruitment Ambassador answered every question. I start the academy next month."</p>
+        <div class="divider"></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="photo-avatar lg" style="background-image: url('assets/images/applicant-portrait.jpg');"></div>
+          <div>
+            <div style="font-weight:700; color:var(--navy-900);">Cadet M. Thompson</div>
+            <div class="small">Future class · Metroplex</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<div class="cta-dark">
+  <div class="container">
+    <h2>Ready to serve Texas?</h2>
+    <p>Create your free applicant profile in under 10 minutes. One profile, every agency across all 13 regions.</p>
+    <div class="btn-row">
+      <a href="05-applicant-signup.html" class="btn btn-primary btn-lg">Create Free Profile</a>
+      <a href="02-jobs.html" class="btn btn-outline btn-lg" style="background:transparent; color:#fff; border-color:rgba(255,255,255,.35);">Browse Jobs First</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer: simplified, agency links de-emphasized -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="brand-text">
+            <div class="t1">DiscoverTexasPolicing.org</div>
+            <div class="t2" style="color:var(--gold)">★ Law Enforcement Careers in Texas</div>
+          </div>
+        </div>
+        <p style="color:#a8b6cf; font-size:13.5px; max-width:340px; margin-top:12px;">Operated by the Texas Police Chiefs Association in partnership with the Texas Commission on Law Enforcement.</p>
+      </div>
+      <div>
+        <h5>For Candidates</h5>
+        <a href="02-jobs.html">Find Jobs</a>
+        <a href="03-regional-map.html">Browse by Region</a>
+        <a href="05-applicant-signup.html">Create Profile</a>
+        <a href="10-ambassadors.html">Recruitment Ambassadors</a>
+        <a href="#">Salary Info</a>
+        <a href="#">Hiring Standards</a>
+      </div>
+      <div>
+        <h5>About</h5>
+        <a href="#">About TPCA</a>
+        <a href="#">About TCOLE</a>
+        <a href="#">News &amp; Updates</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h5>For Agencies</h5>
+        <a href="07-agency-dashboard.html">Agency Sign In</a>
+        <a href="08-post-a-job.html">Post a Job</a>
+        <a href="#">Onboarding Guide</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 Texas Police Chiefs Association. All rights reserved.</div>
+      <div><a href="#">Privacy</a> · <a href="#">Accessibility (WCAG 2.1 AA)</a> · <a href="#">Texas Cybersecurity Compliance</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
