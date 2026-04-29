@@ -6,7 +6,7 @@
 <title>Saved Jobs — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  .saved-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:18px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow-sm); transition:box-shadow .15s ease; }
+  .saved-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:18px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow-sm); transition:box-shadow .15s ease; cursor:pointer; }
   .saved-card:hover { box-shadow:0 6px 20px rgba(11,37,69,.1); }
   .saved-card .title { font-family:var(--font-display); font-size:16px; color:var(--navy-900); font-weight:700; }
   .saved-card .agency { font-size:13.5px; color:var(--text-2); }
@@ -79,13 +79,10 @@
     <!-- Job cards grid -->
     <div class="grid cols-2" style="gap:16px;">
 
-      <div class="saved-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Deputy Sheriff (Lateral)</div>
-            <div class="agency">Bexar County Sheriff's Office · Alamo</div>
-          </div>
-          <span class="tag green">95% match</span>
+      <div class="saved-card" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Deputy Sheriff (Lateral)</div>
+          <div class="agency">Bexar County Sheriff's Office · Alamo</div>
         </div>
         <div class="meta"><span>📍 San Antonio, TX (12 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="tag gold">Bilingual bonus</span><span class="tag">Take-home vehicle</span></div>
@@ -94,20 +91,17 @@
             <div class="pay">$65,200 – $88,000</div>
             <div class="small">Saved 3 days ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Police Officer (Lateral)</div>
-            <div class="agency">San Marcos Police Department · Capital</div>
-          </div>
-          <span class="tag green">92% match</span>
+      <div class="saved-card" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Police Officer (Lateral)</div>
+          <div class="agency">San Marcos Police Department · Capital</div>
         </div>
         <div class="meta"><span>📍 San Marcos, TX (38 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="tag">Take-home vehicle</span><span class="tag">Tuition reimbursement</span></div>
@@ -116,20 +110,17 @@
             <div class="pay">$68,400 – $95,200</div>
             <div class="small">Saved 3 days ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card" style="border-color:#fde68a;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Police Officer</div>
-            <div class="agency">Seguin Police Department · Alamo</div>
-          </div>
-          <span class="tag green">84% match</span>
+      <div class="saved-card" style="border-color:#fde68a;" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Police Officer</div>
+          <div class="agency">Seguin Police Department · Alamo</div>
         </div>
         <div class="meta"><span>📍 Seguin, TX (35 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="close-warn">⚠ Closes May 2</span><span class="tag">Pension (TMRS)</span></div>
@@ -138,20 +129,17 @@
             <div class="pay">$58,000 – $78,400</div>
             <div class="small">Saved 1 week ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Police Officer</div>
-            <div class="agency">Cibolo Police Department · Alamo</div>
-          </div>
-          <span class="tag green">90% match</span>
+      <div class="saved-card" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Police Officer</div>
+          <div class="agency">Cibolo Police Department · Alamo</div>
         </div>
         <div class="meta"><span>📍 Cibolo, TX (22 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="tag gold">Sign-on $10,000</span><span class="tag">New</span></div>
@@ -160,20 +148,17 @@
             <div class="pay">$62,000 – $84,600</div>
             <div class="small">Saved 3 days ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Police Officer</div>
-            <div class="agency">New Braunfels Police Department · Alamo</div>
-          </div>
-          <span class="tag green">88% match</span>
+      <div class="saved-card" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Police Officer</div>
+          <div class="agency">New Braunfels Police Department · Alamo</div>
         </div>
         <div class="meta"><span>📍 New Braunfels, TX (30 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="tag gold">Sign-on $8,000</span><span class="tag">457(b) plan</span></div>
@@ -182,20 +167,17 @@
             <div class="pay">$64,000 – $88,000</div>
             <div class="small">Saved 5 days ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card" style="border-color:#fde68a;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">State Trooper Recruit</div>
-            <div class="agency">Texas Department of Public Safety · Statewide</div>
-          </div>
-          <span class="tag green">86% match</span>
+      <div class="saved-card" style="border-color:#fde68a;" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">State Trooper Recruit</div>
+          <div class="agency">Texas Department of Public Safety · Statewide</div>
         </div>
         <div class="meta"><span>📍 San Antonio district</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="close-warn">⚠ Closes May 5</span><span class="tag">Academy paid</span></div>
@@ -204,20 +186,17 @@
             <div class="pay">$52,400 – $74,000</div>
             <div class="small">Saved 5 days ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Police Officer</div>
-            <div class="agency">Kyle Police Department · Capital</div>
-          </div>
-          <span class="tag green">81% match</span>
+      <div class="saved-card" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Police Officer</div>
+          <div class="agency">Kyle Police Department · Capital</div>
         </div>
         <div class="meta"><span>📍 Kyle, TX (48 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="tag">New listing</span><span class="tag">Bilingual stipend</span></div>
@@ -226,20 +205,17 @@
             <div class="pay">$66,000 – $90,400</div>
             <div class="small">Saved 1 week ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
         </div>
       </div>
 
-      <div class="saved-card">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-          <div>
-            <div class="title">Patrol Deputy</div>
-            <div class="agency">Comal County Sheriff's Office · Alamo</div>
-          </div>
-          <span class="tag green">83% match</span>
+      <div class="saved-card" onclick="window.location='04-job-detail.html'">
+        <div>
+          <div class="title">Patrol Deputy</div>
+          <div class="agency">Comal County Sheriff's Office · Alamo</div>
         </div>
         <div class="meta"><span>📍 New Braunfels, TX (30 miles)</span> · <span>🛡 Peace Officer</span></div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;"><span class="tag">Pension (TMRS)</span><span class="tag">Medical/Dental/Vision</span></div>
@@ -248,7 +224,7 @@
             <div class="pay">$60,000 – $82,000</div>
             <div class="small">Saved 1 week ago</div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" onclick="event.stopPropagation()">
             <a href="#" class="btn btn-outline btn-sm" style="color:var(--text-3);">✕ Remove</a>
             <a href="04-job-detail.html" class="btn btn-primary btn-sm">Apply Now</a>
           </div>
