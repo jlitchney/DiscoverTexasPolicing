@@ -3,249 +3,414 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Create Applicant Profile — DiscoverTexasPolicing.org</title>
+<title>Create Your Profile — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .signup-wrap {
+    min-height: calc(100vh - 71px);
+    background: var(--surface);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 56px 20px 80px;
+  }
+  .signup-layout {
+    display: grid;
+    grid-template-columns: 480px 340px;
+    gap: 28px;
+    width: 100%;
+    max-width: 860px;
+    align-items: start;
+  }
+  .signup-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px 40px;
+    box-shadow: var(--shadow-sm);
+  }
+  .signup-card h1 {
+    font-family: var(--font-display);
+    color: var(--navy-900);
+    font-size: 26px;
+    margin: 0 0 6px;
+  }
+  .signup-card .sub {
+    color: var(--text-2);
+    font-size: 15px;
+    margin: 0 0 28px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .form-row.full { grid-template-columns: 1fr; }
+  .field-group { display: flex; flex-direction: column; gap: 5px; }
+  .field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy-900);
+    letter-spacing: .2px;
+  }
+  .field-group input {
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    padding: 11px 14px;
+    font-size: 15px;
+    color: var(--text-1);
+    outline: none;
+    transition: border-color .15s;
+  }
+  .field-group input:focus { border-color: var(--navy-600); }
+  .field-group .hint {
+    font-size: 12px;
+    color: var(--text-3);
+  }
+
+  .optin-block {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .optin-block.checked {
+    border-color: var(--navy-600);
+    background: var(--navy-50);
+  }
+  .optin-block input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--navy-900);
+  }
+  .optin-block .optin-text strong {
+    display: block;
+    font-size: 14px;
+    color: var(--navy-900);
+    margin-bottom: 2px;
+  }
+  .optin-block .optin-text span {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .2px;
+  }
+  .legal-note {
+    font-size: 12px;
+    color: var(--text-3);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .legal-note a { color: var(--text-2); }
+
+  /* What happens next panel */
+  .next-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .next-panel .panel-head {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-900);
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .next-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .step-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy-900);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .next-step .step-text strong {
+    display: block;
+    font-size: 14px;
+    color: var(--navy-900);
+    margin-bottom: 3px;
+  }
+  .next-step .step-text p {
+    font-size: 13px;
+    color: var(--text-2);
+    margin: 0;
+    line-height: 1.55;
+  }
+  .step-connector {
+    width: 2px;
+    height: 16px;
+    background: var(--border);
+    margin-left: 16px;
+  }
+
+  .ambassador-nudge {
+    background: var(--navy-50);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .amb-icon-sm {
+    width: 40px;
+    height: 40px;
+    background: var(--navy-900);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Success state */
+  .success-card {
+    background: #fff;
+    border: 1.5px solid #c3e6cb;
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: #d4edda;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .success-card h2 {
+    font-family: var(--font-display);
+    color: var(--navy-900);
+    font-size: 24px;
+    margin: 0 0 10px;
+  }
+  .success-card p {
+    color: var(--text-2);
+    font-size: 15px;
+    margin: 0 0 24px;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
 </head>
 <body>
 
 <div class="mock-bar">
-  Mockup 05 — Applicant Signup & Pre-screening
+  Mockup 05 — Applicant Profile (Simplified)
   <a href="index.html">All Mockups</a> |
-  <a href="01-homepage.html">Home</a> |
-  <a href="06-applicant-dashboard.html">Applicant Dashboard</a>
+  <a href="01-homepage-v2.html">Home</a> |
+  <a href="02-jobs.html">Jobs</a> |
+  <a href="06-applicant-dashboard.html">Dashboard</a>
 </div>
 
-<div class="utility-bar"><div class="container">
-  <div class="left"><span class="star">★</span> A program of TPCA in partnership with TCOLE</div>
-  <div class="right"><a href="07-agency-dashboard.html">For Agencies</a><a href="10-ambassadors.html">Ambassadors</a><a href="#">Help</a><a href="#">Sign In</a></div>
-</div></div>
-
-<nav class="main-nav"><div class="container">
-  <a href="01-homepage.html" class="brand">
-    <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2">★ Careers in Texas Law Enforcement</div></div>
-  </a>
-  <div class="primary-nav">
-    <a href="01-homepage.html">Home</a>
-    <a href="02-jobs.html">Find Jobs</a>
-    <a href="03-regional-map.html">Regions</a>
-    <a href="10-ambassadors.html">Ambassadors</a>
-    <a href="#">Resources</a>
-    <a href="07-agency-dashboard.html">For Agencies</a>
-  </div>
-  <div class="nav-cta">
-    <a href="#" class="btn btn-ghost btn-sm">Already have an account? Sign In</a>
-  </div>
-</div></nav>
-
-<section class="section tight">
-  <div class="container" style="max-width: 980px;">
-    <div class="small"><a href="01-homepage.html">Home</a> › Create Profile</div>
-    <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 8px 0 6px; font-size: 30px;">Create your Texas applicant profile</h1>
-    <p style="color:var(--text-2); margin: 0 0 24px; max-width: 720px;">One profile. Every TCOLE-licensed agency in Texas. Takes about 8 minutes — including pre-screening.</p>
-
-    <!-- Stepper -->
-    <div class="stepper">
-      <div class="step done"><div class="dot">✓</div><div class="lbl">Account</div></div>
-      <div class="step done"><div class="dot">✓</div><div class="lbl">About you</div></div>
-      <div class="step active"><div class="dot">3</div><div class="lbl">Pre-screening</div></div>
-      <div class="step"><div class="dot">4</div><div class="lbl">Qualifications</div></div>
-      <div class="step"><div class="dot">5</div><div class="lbl">Preferences</div></div>
-      <div class="step"><div class="dot">6</div><div class="lbl">Review</div></div>
+<!-- Nav -->
+<nav class="nav-clean" style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="01-homepage-v2.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ Law Enforcement Careers in Texas</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:32px;">
+      <a href="02-jobs.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Find Jobs</a>
+      <a href="03-regional-map.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Explore Regions</a>
+      <a href="10-ambassadors.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Ambassadors</a>
     </div>
+    <a href="#" style="color:rgba(255,255,255,.6); text-decoration:none; font-size:13px;">Already have a profile? <span style="color:#fff; font-weight:600;">Sign In</span></a>
+  </div>
+</nav>
 
-    <div style="display:grid; grid-template-columns: 1fr 320px; gap: 24px;">
-      <!-- Form -->
-      <div class="card" style="padding: 24px;">
-        <span class="eyebrow">Step 3 of 6</span>
-        <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 6px; font-size: 22px;">Pre-screening — High-profile disqualifiers</h2>
-        <p style="color:var(--text-2); margin: 0 0 18px;">Texas peace officer, jailer and telecommunicator standards include statutory disqualifiers under Texas Occupations Code §1701. Answer honestly — your responses are encrypted and only become visible to an agency after you apply to them.</p>
+<!-- Page header -->
+<div style="background:var(--navy-900); padding: 28px 0 32px; border-bottom: 1px solid rgba(255,255,255,.08);">
+  <div class="container">
+    <span class="pill" style="margin-bottom:10px; display:inline-flex;"><span class="star">★</span> Free for candidates · Takes under 2 minutes</span>
+    <h1 style="font-family:var(--font-display); color:#fff; font-size:30px; margin:0;">Create your Texas Law Enforcement profile</h1>
+  </div>
+</div>
 
-        <div class="alert info" style="margin-bottom: 18px;">
-          <span style="color:var(--navy-900); font-size:18px;">ⓘ</span>
-          <div>
-            <h4>What "high-profile disqualifier" means</h4>
-            <p>These three categories — felony convictions, dishonorable military discharge, and history of drug abuse — disqualify candidates statewide under TCOLE rules. Answering Yes means we won't waste your time submitting applications to agencies that cannot consider you. Most agencies offer alternative pathways (telecommunicator, civilian, support roles) you can still pursue.</p>
-          </div>
+<!-- Main -->
+<div class="signup-wrap">
+  <div class="signup-layout">
+
+    <!-- Form card (default state) -->
+    <div class="signup-card" id="form-state">
+      <h1>Tell us about yourself</h1>
+      <p class="sub">We'll use this to match you with open positions across Texas and keep you updated on your applications.</p>
+
+      <div class="form-row">
+        <div class="field-group">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" placeholder="Maria" value="Maria" />
         </div>
-
-        <!-- Q1 -->
-        <fieldset class="fieldset" style="margin-bottom: 16px;">
-          <legend>1. Felony convictions</legend>
-          <p class="small" style="margin: 4px 0 12px; color:var(--text-2);">Have you ever been convicted of, pleaded guilty to, or received deferred adjudication for a felony offense in any jurisdiction (including expunged or sealed records)?</p>
-          <div class="radio-row">
-            <div class="radio-card checked" data-group="q1"><div class="lbl">No</div><div class="desc">No felony history of any kind.</div></div>
-            <div class="radio-card" data-group="q1"><div class="lbl">Yes</div><div class="desc">I have a felony conviction or deferred adjudication.</div></div>
-            <div class="radio-card" data-group="q1"><div class="lbl">Prefer to discuss</div><div class="desc">Let an Ambassador contact me confidentially.</div></div>
-          </div>
-        </fieldset>
-
-        <!-- Q2 -->
-        <fieldset class="fieldset" style="margin-bottom: 16px;">
-          <legend>2. Class A / B misdemeanors</legend>
-          <p class="small" style="margin: 4px 0 12px; color:var(--text-2);">Have you, in the last 10 years, been convicted of or received deferred adjudication for a Class A misdemeanor, or any Class B involving family violence or moral turpitude?</p>
-          <div class="radio-row">
-            <div class="radio-card checked" data-group="q2"><div class="lbl">No</div><div class="desc">None within the past 10 years.</div></div>
-            <div class="radio-card" data-group="q2"><div class="lbl">Yes</div><div class="desc">I'd like to disclose details.</div></div>
-          </div>
-        </fieldset>
-
-        <!-- Q3 -->
-        <fieldset class="fieldset" style="margin-bottom: 16px;">
-          <legend>3. Military discharge</legend>
-          <p class="small" style="margin: 4px 0 12px; color:var(--text-2);">If you have served in the U.S. armed forces, what was the character of your discharge?</p>
-          <div class="radio-row">
-            <div class="radio-card" data-group="q3"><div class="lbl">N/A — never served</div><div class="desc"></div></div>
-            <div class="radio-card checked" data-group="q3"><div class="lbl">Honorable</div><div class="desc"></div></div>
-            <div class="radio-card" data-group="q3"><div class="lbl">General (under honorable)</div><div class="desc"></div></div>
-            <div class="radio-card" data-group="q3"><div class="lbl">Other than honorable</div><div class="desc"></div></div>
-            <div class="radio-card" data-group="q3"><div class="lbl">Bad conduct</div><div class="desc"></div></div>
-            <div class="radio-card" data-group="q3"><div class="lbl">Dishonorable</div><div class="desc">Disqualifying under Texas standards.</div></div>
-          </div>
-        </fieldset>
-
-        <!-- Q4 -->
-        <fieldset class="fieldset" style="margin-bottom: 16px;">
-          <legend>4. Substance use history</legend>
-          <p class="small" style="margin: 4px 0 12px; color:var(--text-2);">Texas hiring standards distinguish between experimentation and chronic use/abuse. Please answer with reference to TCOLE-approved categories.</p>
-          <div class="form-grid cols-2">
-            <div>
-              <label class="field-label">Marijuana — last use within</label>
-              <select class="input"><option>Never used</option><option>1–3 years ago</option><option>3–5 years ago</option><option selected>5+ years ago</option></select>
-            </div>
-            <div>
-              <label class="field-label">Other illegal substances (cocaine, heroin, methamphetamine, etc.)</label>
-              <select class="input"><option selected>Never used</option><option>Used once, more than 10 years ago</option><option>Multiple uses, more than 7 years ago</option><option>Used within the past 7 years</option></select>
-            </div>
-            <div>
-              <label class="field-label">Have you ever sold or distributed an illegal substance?</label>
-              <select class="input"><option selected>No</option><option>Yes</option></select>
-            </div>
-            <div>
-              <label class="field-label">Have you ever been diagnosed with substance abuse disorder?</label>
-              <select class="input"><option selected>No</option><option>Yes — in recovery 5+ years</option><option>Yes — in recovery less than 5 years</option></select>
-            </div>
-          </div>
-        </fieldset>
-
-        <!-- Q5 -->
-        <fieldset class="fieldset" style="margin-bottom: 16px;">
-          <legend>5. Driving history</legend>
-          <div class="form-grid cols-2">
-            <div>
-              <label class="field-label">Texas driver's license status</label>
-              <select class="input"><option selected>Valid Class C</option><option>Valid Class A or B</option><option>Suspended within last 5 years</option><option>None</option></select>
-            </div>
-            <div>
-              <label class="field-label">DWI/DUI convictions, ever?</label>
-              <select class="input"><option selected>No</option><option>One, more than 10 years ago</option><option>One, less than 10 years ago</option><option>Multiple</option></select>
-            </div>
-          </div>
-        </fieldset>
-
-        <!-- Certification -->
-        <fieldset class="fieldset" style="margin-bottom: 18px;">
-          <legend>Applicant certification</legend>
-          <div class="checkbox">
-            <input type="checkbox" checked />
-            <div>
-              <strong>I certify that my answers are true and complete.</strong>
-              <div class="small">I understand any false statement may disqualify me and may also constitute a violation of Texas Penal Code §37.10 (tampering with a governmental record).</div>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" checked />
-            <div>
-              <strong>I authorize TPCA / TCOLE-approved automated screening of my responses.</strong>
-              <div class="small">My answers will not be visible to any agency until I apply. Disqualified applicants receive a notification with reason and resources.</div>
-            </div>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" />
-            <div>
-              <strong>I'd like a Recruitment Ambassador to contact me</strong>
-              <div class="small">Confidential, free, by phone or text. Optional.</div>
-            </div>
-          </div>
-        </fieldset>
-
-        <div style="display:flex; justify-content:space-between; gap:10px;">
-          <a href="#" class="btn btn-outline">‹ Back: About you</a>
-          <div style="display:flex; gap:10px;">
-            <a href="#" class="btn btn-ghost">Save & exit</a>
-            <a href="06-applicant-dashboard.html" class="btn btn-primary">Continue to qualifications ›</a>
-          </div>
-        </div>
-
-        <!-- ALT STATE PREVIEWS -->
-        <div class="spacer-32"></div>
-        <div class="divider"></div>
-        <span class="kicker">Alternate states (preview)</span>
-        <h3 style="margin: 6px 0 10px; color:var(--navy-900); font-size: 18px;">What applicants see after submitting pre-screening</h3>
-
-        <div class="grid cols-2">
-          <div class="alert success">
-            <span style="color:var(--success); font-size:18px;">✓</span>
-            <div>
-              <h4>You're cleared to apply statewide</h4>
-              <p>Your responses meet Texas baseline standards. We'll send your application directly to any TCOLE agency you select. You can update answers anytime in your profile settings.</p>
-            </div>
-          </div>
-          <div class="alert danger">
-            <span style="color:var(--danger); font-size:18px;">!</span>
-            <div>
-              <h4>Some sworn roles aren't available right now</h4>
-              <p>Based on your responses, you don't currently meet Texas baseline standards for sworn peace officer roles. You may still qualify for telecommunicator, civilian or support positions — and many disqualifiers have time-based pathways. <a href="#">See your options →</a></p>
-            </div>
-          </div>
+        <div class="field-group">
+          <label for="lname">Last name</label>
+          <input type="text" id="lname" placeholder="Gonzalez" value="Gonzalez" />
         </div>
       </div>
 
-      <!-- Sidebar -->
-      <aside>
-        <div class="photo-card wide" style="background-image: url('assets/images/cadets-training.jpg'); margin-bottom: 16px;">
-          <div class="overlay">
-            <div>
-              <strong>Texas peace officer academy</strong>
-              <span>Cadets in physical fitness training, Class 167.</span>
-            </div>
+      <div class="form-row full">
+        <div class="field-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="maria@example.com" value="maria.gonzalez@email.com" />
+        </div>
+      </div>
+
+      <div class="form-row full" style="margin-bottom:20px;">
+        <div class="field-group">
+          <label for="phone">Mobile phone number</label>
+          <input type="tel" id="phone" placeholder="(512) 555-0100" value="(512) 555-0142" />
+          <span class="hint">Used to send you application updates and your candidate portal link.</span>
+        </div>
+      </div>
+
+      <!-- Opt-ins -->
+      <div style="margin-bottom: 4px;">
+        <div style="font-size:13px; font-weight:600; color:var(--navy-900); margin-bottom:10px;">How would you like to hear from us?</div>
+
+        <label class="optin-block checked" for="optin-email">
+          <input type="checkbox" id="optin-email" checked />
+          <div class="optin-text">
+            <strong>Email updates</strong>
+            <span>Job matches, application status, and your candidate portal link when you're ready to apply.</span>
           </div>
-        </div>
-        <div class="card">
-          <h4 style="margin:0 0 8px; color:var(--navy-900); font-size:14px;">Why we ask</h4>
-          <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 10px;">Pre-screening reduces wasted time for applicants and administrative burden for departments — a primary goal of this platform.</p>
-          <p style="color:var(--text-2); font-size:13.5px; margin: 0;">All disqualifier criteria are reviewed and approved by TPCA and TCOLE.</p>
-        </div>
+        </label>
 
-        <div class="spacer-16"></div>
-
-        <div class="card" style="background:#fff8f7; border-color:#FBE9EA;">
-          <div style="display:flex; gap:12px; align-items:center;">
-            <div class="agency-logo" style="background:var(--tx-red); color:#fff">RA</div>
-            <div>
-              <div class="kicker">Need to talk first?</div>
-              <strong>Recruitment Ambassadors</strong>
-            </div>
+        <label class="optin-block checked" for="optin-sms">
+          <input type="checkbox" id="optin-sms" checked />
+          <div class="optin-text">
+            <strong>Text message updates</strong>
+            <span>A text link to your secure candidate portal when you select a position. Standard messaging rates may apply.</span>
           </div>
-          <p style="color:var(--text-2); font-size:13.5px; margin: 12px 0 8px;">Free, confidential conversation with a Texas peace officer in your region.</p>
-          <a href="10-ambassadors.html" class="btn btn-outline btn-block btn-sm">Find my regional ambassador</a>
-        </div>
+        </label>
+      </div>
 
-        <div class="spacer-16"></div>
+      <button class="btn btn-primary submit-btn" onclick="showSuccess()">Create My Profile →</button>
 
-        <div class="card">
-          <h4 style="margin:0 0 8px; color:var(--navy-900); font-size:14px;">Privacy & security</h4>
-          <ul style="margin:0; padding-left: 18px; color:var(--text-2); font-size:13.5px;">
-            <li>End-to-end encryption (AES-256)</li>
-            <li>Texas DIR-CTF cybersecurity compliant</li>
-            <li>Not visible to agencies until you apply</li>
-            <li>WCAG 2.1 AA accessible</li>
-          </ul>
-        </div>
-      </aside>
+      <p class="legal-note">
+        By creating a profile you agree to our <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>.<br>
+        You can unsubscribe from messages at any time. Your information is only shared with agencies you apply to.
+      </p>
     </div>
+
+    <!-- Success state (hidden by default) -->
+    <div class="success-card" id="success-state" style="display:none;">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5" width="30" height="30">
+          <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You're all set, Maria!</h2>
+      <p>Your profile has been created. Browse open positions and select the ones you're interested in — we'll send you a text and email with a link to your secure candidate portal to complete your application.</p>
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <a href="02-jobs.html" class="btn btn-primary btn-lg">Browse Open Positions</a>
+        <a href="03-regional-map.html" class="btn btn-outline btn-lg">Explore by Region</a>
+      </div>
+      <div style="margin-top:20px; font-size:13px; color:var(--text-2);">
+        We sent a confirmation to <strong>maria.gonzalez@email.com</strong>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <div class="next-panel">
+      <div class="panel-head">What happens next</div>
+
+      <div class="next-step">
+        <div class="step-badge">1</div>
+        <div class="step-text">
+          <strong>Your profile is created</strong>
+          <p>Takes under 2 minutes. No paperwork, no documents needed at this stage.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="next-step">
+        <div class="step-badge">2</div>
+        <div class="step-text">
+          <strong>Browse jobs &amp; pick a position</strong>
+          <p>Search 1,800+ openings by region, role type, or agency. Save jobs or select one to apply.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="next-step">
+        <div class="step-badge">3</div>
+        <div class="step-text">
+          <strong>We send you a secure link</strong>
+          <p>Once you select a position, you'll receive a text and email with a link to your personal candidate portal to complete your application and pre-screening.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="next-step">
+        <div class="step-badge">4</div>
+        <div class="step-text">
+          <strong>The agency is notified</strong>
+          <p>Your completed application goes directly to the hiring department. They'll contact you through the portal to schedule next steps.</p>
+        </div>
+      </div>
+
+      <div style="height:8px;"></div>
+
+      <!-- Ambassador nudge -->
+      <div class="ambassador-nudge">
+        <div class="amb-icon-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" width="20" height="20">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--navy-900); margin-bottom:4px;">Have questions first?</div>
+          <p style="font-size:13px; color:var(--text-2); margin:0 0 10px; line-height:1.5;">Talk to a Recruitment Ambassador — an active Texas peace officer in your region who can answer questions before you apply.</p>
+          <a href="10-ambassadors.html" class="btn btn-outline btn-sm">Find an Ambassador</a>
+        </div>
+      </div>
+    </div>
+
   </div>
-</section>
+</div>
 
 <footer class="site-footer">
   <div class="container">
@@ -253,17 +418,26 @@
       <div>
         <div class="brand-line">
           <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
-          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ Law Enforcement Careers in Texas</div></div>
         </div>
       </div>
-      <div><h5>For Applicants</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a><a href="05-applicant-signup.html">Create Profile</a></div>
-      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
-      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+      <div><h5>For Candidates</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Browse by Region</a><a href="10-ambassadors.html">Ambassadors</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Sign In</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="#">Contact</a></div>
     </div>
-    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div class="legal">
+      <div>© 2026 Texas Police Chiefs Association. All rights reserved.</div>
+      <div><a href="#">Privacy</a> · <a href="#">Accessibility (WCAG 2.1 AA)</a> · <a href="#">Terms of Use</a></div>
+    </div>
   </div>
 </footer>
 
-<script src="assets/script.js"></script>
+<script>
+function showSuccess() {
+  document.getElementById('form-state').style.display = 'none';
+  document.getElementById('success-state').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
