@@ -75,10 +75,7 @@
       <div class="stat"><div class="v">1,593</div><div class="l">Active job listings</div><div class="delta up">+182 vs Q1</div></div>
       <div class="stat"><div class="v">28,418</div><div class="l">Applicant submissions YTD</div><div class="delta up">+44% vs Q1</div></div>
       <div class="stat"><div class="v">14,238</div><div class="l">Shared applicant pool</div><div class="delta up">+1,866 vs Q1</div></div>
-      <div class="stat"><div class="v">52 days</div><div class="l">Avg time-to-fill</div><div class="delta up">−9 days vs Q1</div></div>
       <div class="stat"><div class="v">1.21M</div><div class="l">Site visits</div><div class="delta up">+18% MoM</div></div>
-      <div class="stat"><div class="v">4.7 / 5</div><div class="l">Agency satisfaction</div><div class="delta up">+0.2 vs Q1</div></div>
-      <div class="stat"><div class="v">4.5 / 5</div><div class="l">Applicant satisfaction</div><div class="delta up">+0.3 vs Q1</div></div>
     </div>
 
     <div class="spacer-32"></div>
@@ -146,59 +143,17 @@
 
     <div class="spacer-24"></div>
 
-    <!-- Three-up: time-to-fill, applicant funnel, satisfaction -->
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-      <div class="card" style="padding:18px;">
-        <strong style="color:var(--navy-900)">Avg time-to-fill</strong>
-        <div class="small" style="margin-bottom: 12px;">By agency size, days</div>
-        <div class="bar-row"><span class="lbl">Small (≤25 sworn)</span><span class="bar-bg"><span class="bar-fg" style="width:90%"></span></span><span class="val">68</span></div>
-        <div class="bar-row"><span class="lbl">Medium (26–100)</span><span class="bar-bg"><span class="bar-fg" style="width:70%"></span></span><span class="val">52</span></div>
-        <div class="bar-row"><span class="lbl">Large (101–500)</span><span class="bar-bg"><span class="bar-fg" style="width:55%"></span></span><span class="val">42</span></div>
-        <div class="bar-row"><span class="lbl">Very large (500+)</span><span class="bar-bg"><span class="bar-fg" style="width:48%"></span></span><span class="val">37</span></div>
-        <div class="divider"></div>
-        <div class="small">Statewide improvement vs pre-launch baseline of 79 days: <strong style="color:var(--success)">−27 days (-34%)</strong></div>
-      </div>
-
-      <div class="card" style="padding:18px;">
-        <strong style="color:var(--navy-900)">Applicant funnel — Q2</strong>
-        <div class="small" style="margin-bottom: 12px;">Applications → Hire</div>
-        <div class="bar-row"><span class="lbl">Applications</span><span class="bar-bg"><span class="bar-fg" style="width:100%"></span></span><span class="val">12,418</span></div>
-        <div class="bar-row"><span class="lbl">Pre-screen pass</span><span class="bar-bg"><span class="bar-fg" style="width:78%"></span></span><span class="val">9,686</span></div>
-        <div class="bar-row"><span class="lbl">Reviewed by agency</span><span class="bar-bg"><span class="bar-fg" style="width:62%"></span></span><span class="val">7,699</span></div>
-        <div class="bar-row"><span class="lbl">Written / POPAT</span><span class="bar-bg"><span class="bar-fg" style="width:32%"></span></span><span class="val">3,973</span></div>
-        <div class="bar-row"><span class="lbl">Background</span><span class="bar-bg"><span class="bar-fg" style="width:18%"></span></span><span class="val">2,235</span></div>
-        <div class="bar-row"><span class="lbl">Conditional offer</span><span class="bar-bg"><span class="bar-fg red" style="width:9%"></span></span><span class="val">1,118</span></div>
-        <div class="bar-row"><span class="lbl">Hired</span><span class="bar-bg"><span class="bar-fg red" style="width:6%"></span></span><span class="val">745</span></div>
-      </div>
-
-      <div class="card" style="padding:18px;">
-        <strong style="color:var(--navy-900)">Satisfaction — surveys</strong>
-        <div class="small" style="margin-bottom: 12px;">Out of 5, n=4,212 responses</div>
-
-        <div style="display:flex; gap:18px; align-items:center; margin-bottom: 12px;">
-          <svg class="ring" viewBox="0 0 36 36">
-            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#E2E8F0" stroke-width="3.6"/>
-            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0B2545" stroke-width="3.6" stroke-dasharray="94 100" transform="rotate(-90 18 18)"/>
-            <text x="18" y="20" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#0B2545" font-weight="700">4.7</text>
-          </svg>
-          <div>
-            <strong style="color:var(--navy-900)">Agency satisfaction</strong>
-            <div class="small">"Reduced administrative burden" cited by 86% of respondents.</div>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:18px; align-items:center;">
-          <svg class="ring" viewBox="0 0 36 36">
-            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#E2E8F0" stroke-width="3.6"/>
-            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#BF2C2F" stroke-width="3.6" stroke-dasharray="90 100" transform="rotate(-90 18 18)"/>
-            <text x="18" y="20" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#BF2C2F" font-weight="700">4.5</text>
-          </svg>
-          <div>
-            <strong style="color:var(--navy-900)">Applicant satisfaction</strong>
-            <div class="small">"Confidence in hiring process" cited by 81% of respondents.</div>
-          </div>
-        </div>
-      </div>
+    <!-- Applicant funnel -->
+    <div class="card" style="padding:18px; max-width:480px;">
+      <strong style="color:var(--navy-900)">Applicant funnel — Q2</strong>
+      <div class="small" style="margin-bottom: 12px;">Applications → Hire</div>
+      <div class="bar-row"><span class="lbl">Applications</span><span class="bar-bg"><span class="bar-fg" style="width:100%"></span></span><span class="val">12,418</span></div>
+      <div class="bar-row"><span class="lbl">Pre-screen pass</span><span class="bar-bg"><span class="bar-fg" style="width:78%"></span></span><span class="val">9,686</span></div>
+      <div class="bar-row"><span class="lbl">Reviewed by agency</span><span class="bar-bg"><span class="bar-fg" style="width:62%"></span></span><span class="val">7,699</span></div>
+      <div class="bar-row"><span class="lbl">Written / POPAT</span><span class="bar-bg"><span class="bar-fg" style="width:32%"></span></span><span class="val">3,973</span></div>
+      <div class="bar-row"><span class="lbl">Background</span><span class="bar-bg"><span class="bar-fg" style="width:18%"></span></span><span class="val">2,235</span></div>
+      <div class="bar-row"><span class="lbl">Conditional offer</span><span class="bar-bg"><span class="bar-fg red" style="width:9%"></span></span><span class="val">1,118</span></div>
+      <div class="bar-row"><span class="lbl">Hired</span><span class="bar-bg"><span class="bar-fg red" style="width:6%"></span></span><span class="val">745</span></div>
     </div>
 
     <div class="spacer-24"></div>
