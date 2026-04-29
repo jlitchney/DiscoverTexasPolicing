@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Applications — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .stage-box { display:flex; flex-direction:column; align-items:center; padding:14px 18px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); flex:1; text-align:center; }
+  .stage-box .num { font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--navy-900); line-height:1; }
+  .stage-box .lbl { font-size:12px; color:var(--text-2); margin-top:4px; }
+  .stage-box.highlight { border-color:var(--gold); background:#fffbf0; }
+  .stage-box.alert { border-color:#fca5a5; background:#fff5f5; }
+  .stage-box.alert .num { color:var(--tx-red); }
+  .timeline { display:flex; flex-direction:column; gap:0; }
+  .tl-step { display:flex; gap:12px; padding:6px 0; }
+  .tl-dot { width:10px; height:10px; border-radius:50%; background:var(--navy-300); margin-top:4px; flex-shrink:0; }
+  .tl-dot.done { background:var(--success); }
+  .tl-dot.active { background:var(--gold); }
+  .tl-dot.warn { background:var(--tx-red); }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 06a — Applicant Portal · My Applications
+  <a href="index.html">All Mockups</a> |
+  <a href="06-applicant-dashboard.html">Dashboard</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="01-homepage-v2.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ My Applicant Portal</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="06-applicant-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
+      <a href="02-jobs.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Find Jobs</a>
+      <a href="06a-applicant-applications.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">My Applications</a>
+      <a href="06b-applicant-saved-jobs.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Saved Jobs</a>
+      <a href="06c-applicant-profile.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Profile</a>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="photo-avatar" style="width:36px; height:36px; background-image: url('assets/images/applicant-portrait.jpg');"></div>
+      <div style="line-height:1.1; color:#fff;"><div style="font-weight:700; font-size:14px;">Daniela Reyes</div><div style="font-size:12px; color:rgba(255,255,255,.6);">Alamo · San Antonio</div></div>
+      <a href="01-homepage-v2.html" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Log Out</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+      <div>
+        <span class="eyebrow">Applicant Portal</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">My Applications</h1>
+        <p style="color:var(--text-2); margin:0;">Tracking 8 active applications across 7 agencies.</p>
+      </div>
+      <a href="02-jobs.html" class="btn btn-primary">+ Find More Jobs</a>
+    </div>
+
+    <!-- Stage pipeline -->
+    <div style="display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
+      <div class="stage-box alert">
+        <div class="num">2</div>
+        <div class="lbl">Action required</div>
+      </div>
+      <div class="stage-box highlight">
+        <div class="num">1</div>
+        <div class="lbl">Background check</div>
+      </div>
+      <div class="stage-box">
+        <div class="num">2</div>
+        <div class="lbl">Agency review</div>
+      </div>
+      <div class="stage-box">
+        <div class="num">4</div>
+        <div class="lbl">Application received</div>
+      </div>
+      <div class="stage-box">
+        <div class="num">0</div>
+        <div class="lbl" style="color:var(--text-3);">Conditional offers</div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
+      <input class="input" type="search" placeholder="Search by position or agency…" style="flex:1; min-width:220px; max-width:340px; font-size:13px;">
+      <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+        <option>All Stages</option>
+        <option>Action required</option>
+        <option>Background check</option>
+        <option>Agency review</option>
+        <option>Application received</option>
+      </select>
+      <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
+        <option>All Regions</option>
+        <option>Alamo</option>
+        <option>Capital</option>
+        <option>Statewide</option>
+        <option>Coastal Bend</option>
+      </select>
+    </div>
+
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="data" style="width:100%;">
+        <thead>
+          <tr>
+            <th>Position &amp; Agency</th>
+            <th>Region</th>
+            <th>Applied</th>
+            <th>Stage</th>
+            <th>Last Update</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Police Officer (Lateral)</strong><br>
+              <span class="small">Austin Police Department</span>
+            </td>
+            <td>Alamo</td>
+            <td>Apr 22</td>
+            <td><span class="tag green">Background check</span></td>
+            <td>2 days ago</td>
+            <td style="text-align:right;">
+              <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Deputy Sheriff</strong><br>
+              <span class="small">Bexar County Sheriff's Office</span>
+            </td>
+            <td>Alamo</td>
+            <td>Apr 18</td>
+            <td><span class="tag">Written exam scheduled</span></td>
+            <td>5 days ago</td>
+            <td style="text-align:right;">
+              <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+              </a>
+            </td>
+          </tr>
+          <tr style="background:#fff5f5;">
+            <td>
+              <strong>Police Officer</strong><br>
+              <span class="small">Round Rock Police Department</span>
+            </td>
+            <td>Capital</td>
+            <td>Apr 7</td>
+            <td><span class="tag red">Action needed: documents</span></td>
+            <td>3 wks ago</td>
+            <td style="text-align:right;">
+              <div style="display:flex; gap:6px; justify-content:flex-end;">
+                <a href="#" class="btn btn-primary btn-sm">Upload docs</a>
+                <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Police Officer Cadet</strong><br>
+              <span class="small">San Marcos Police Department</span>
+            </td>
+            <td>Capital</td>
+            <td>Apr 21</td>
+            <td><span class="tag gold">Application received</span></td>
+            <td>1 wk ago</td>
+            <td style="text-align:right;">
+              <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>State Trooper Recruit</strong><br>
+              <span class="small">Texas DPS</span>
+            </td>
+            <td>Statewide</td>
+            <td>Apr 14</td>
+            <td><span class="tag">Pre-application</span></td>
+            <td>2 wks ago</td>
+            <td style="text-align:right;">
+              <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Police Officer</strong><br>
+              <span class="small">Corpus Christi Police Department</span>
+            </td>
+            <td>Coastal Bend</td>
+            <td>Apr 7</td>
+            <td><span class="tag gold">Application received</span></td>
+            <td>3 wks ago</td>
+            <td style="text-align:right;">
+              <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+              </a>
+            </td>
+          </tr>
+          <tr style="background:#fff5f5;">
+            <td>
+              <strong>Campus Police Officer</strong><br>
+              <span class="small">UT San Antonio Police Dept.</span>
+            </td>
+            <td>Alamo</td>
+            <td>Apr 1</td>
+            <td><span class="tag red">Action needed: interview</span></td>
+            <td>4 wks ago</td>
+            <td style="text-align:right;">
+              <div style="display:flex; gap:6px; justify-content:flex-end;">
+                <a href="#" class="btn btn-primary btn-sm">Schedule</a>
+                <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Deputy Sheriff</strong><br>
+              <span class="small">Kendall County Sheriff's Office</span>
+            </td>
+            <td>Alamo</td>
+            <td>Mar 28</td>
+            <td><span class="tag gold">Application received</span></td>
+            <td>4 wks ago</td>
+            <td style="text-align:right;">
+              <a href="#" class="btn btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:5px; font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols" style="grid-template-columns: 2fr 1fr 1fr;">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2" style="color:var(--gold)">★ Law Enforcement Careers in Texas</div></div>
+        </div>
+        <p style="color:#a8b6cf; font-size:13.5px; max-width:340px; margin-top:12px;">Operated by the Texas Police Chiefs Association in partnership with the Texas Commission on Law Enforcement.</p>
+      </div>
+      <div>
+        <h5>For Candidates</h5>
+        <a href="02-jobs.html">Find Jobs</a>
+        <a href="03-regional-map.html">Browse by Region</a>
+        <a href="10-ambassadors.html">Recruitment Ambassadors</a>
+      </div>
+      <div>
+        <h5>About</h5>
+        <a href="#">About TPCA</a>
+        <a href="#">About TCOLE</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 Texas Police Chiefs Association. All rights reserved.</div>
+      <div><a href="#">Privacy</a> · <a href="#">Accessibility (WCAG 2.1 AA)</a> · <a href="#">Texas Cybersecurity Compliance</a></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

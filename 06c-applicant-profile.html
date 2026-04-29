@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Profile — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; margin-bottom:20px; box-shadow:var(--shadow-sm); }
+  .section-card h3 { font-size:16px; color:var(--navy-900); margin:0 0 18px; padding-bottom:12px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+  .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .field-grid.single { grid-template-columns:1fr; }
+  .field { display:flex; flex-direction:column; gap:5px; }
+  .field label { font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.04em; }
+  .doc-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .doc-row:last-child { border-bottom:0; }
+  .doc-icon { width:36px; height:36px; background:var(--bg); border-radius:6px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .completion-item { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:13px; }
+  .check { width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; }
+  .check.done { background:#d1fae5; color:#065f46; }
+  .check.todo { background:#fee2e2; color:#991b1b; }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 06c — Applicant Portal · Profile
+  <a href="index.html">All Mockups</a> |
+  <a href="06-applicant-dashboard.html">Dashboard</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="01-homepage-v2.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ My Applicant Portal</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="06-applicant-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
+      <a href="02-jobs.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Find Jobs</a>
+      <a href="06a-applicant-applications.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">My Applications</a>
+      <a href="06b-applicant-saved-jobs.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Saved Jobs</a>
+      <a href="06c-applicant-profile.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Profile</a>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="photo-avatar" style="width:36px; height:36px; background-image: url('assets/images/applicant-portrait.jpg');"></div>
+      <div style="line-height:1.1; color:#fff;"><div style="font-weight:700; font-size:14px;">Daniela Reyes</div><div style="font-size:12px; color:rgba(255,255,255,.6);">Alamo · San Antonio</div></div>
+      <a href="01-homepage-v2.html" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Log Out</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
+      <div>
+        <span class="eyebrow">Applicant Portal</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">My Profile</h1>
+        <p style="color:var(--text-2); margin:0;">Your profile is shared with agencies you apply to and visible in the statewide pool.</p>
+      </div>
+      <button class="btn btn-primary">Save Changes</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 300px; gap:28px;">
+
+      <!-- Main form -->
+      <div>
+
+        <!-- Personal Info -->
+        <div class="section-card">
+          <h3>Personal Information <a href="#" class="btn btn-outline btn-sm">Edit</a></h3>
+          <div class="field-grid">
+            <div class="field">
+              <label>First name</label>
+              <input class="input" type="text" value="Daniela" />
+            </div>
+            <div class="field">
+              <label>Last name</label>
+              <input class="input" type="text" value="Reyes" />
+            </div>
+            <div class="field">
+              <label>Email address</label>
+              <input class="input" type="email" value="daniela.reyes@email.com" />
+            </div>
+            <div class="field">
+              <label>Phone number</label>
+              <input class="input" type="tel" value="(210) 555-0184" />
+            </div>
+            <div class="field">
+              <label>City</label>
+              <input class="input" type="text" value="San Antonio" />
+            </div>
+            <div class="field">
+              <label>State</label>
+              <input class="input" type="text" value="Texas" />
+            </div>
+            <div class="field">
+              <label>Date of birth</label>
+              <input class="input" type="text" value="09 / 14 / 1997" />
+            </div>
+            <div class="field">
+              <label>U.S. Citizen</label>
+              <select class="input"><option>Yes</option><option>No</option></select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Background & Experience -->
+        <div class="section-card">
+          <h3>Background &amp; Experience <a href="#" class="btn btn-outline btn-sm">Edit</a></h3>
+          <div class="field-grid">
+            <div class="field">
+              <label>Military service</label>
+              <input class="input" type="text" value="U.S. Army — Honorable Discharge" />
+            </div>
+            <div class="field">
+              <label>Years of service</label>
+              <input class="input" type="text" value="4 years (2017–2021)" />
+            </div>
+            <div class="field">
+              <label>Education</label>
+              <input class="input" type="text" value="B.S. Criminal Justice — UTSA, 2023" />
+            </div>
+            <div class="field">
+              <label>Prior LE experience</label>
+              <select class="input"><option>None (Entry-level)</option><option>1–2 years</option><option>3–5 years</option><option>5+ years</option></select>
+            </div>
+            <div class="field">
+              <label>Primary language</label>
+              <input class="input" type="text" value="English (Native)" />
+            </div>
+            <div class="field">
+              <label>Secondary language</label>
+              <input class="input" type="text" value="Spanish (Conversational)" />
+            </div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="field field-grid single">
+              <label>Brief personal statement <span style="font-weight:400; color:var(--text-3); text-transform:none;">(shown to agencies)</span></label>
+              <textarea class="input" rows="3" style="resize:vertical; font-size:13.5px; line-height:1.6;">U.S. Army veteran with a B.S. in Criminal Justice and a deep commitment to community-oriented policing. Bilingual in English and Spanish. Seeking a patrol officer role in the Alamo region.</textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- TCOLE Certification -->
+        <div class="section-card">
+          <h3>TCOLE Certification</h3>
+          <div style="background:#f0f7ff; border:1px solid #bdd7f5; border-radius:var(--radius); padding:14px 16px; display:flex; gap:14px; align-items:flex-start;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d63b8" stroke-width="2" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <div>
+              <div style="font-size:13.5px; font-weight:700; color:#1d4e89; margin-bottom:4px;">No TCOLE license on file</div>
+              <div style="font-size:13px; color:#1d63b8;">Adding a verified TCOLE license gets your profile seen by 4× more agencies. If you are currently attending a cadet academy, you can add your enrollment instead.</div>
+              <div style="display:flex; gap:8px; margin-top:10px;">
+                <a href="#" class="btn btn-primary btn-sm">Add TCOLE license</a>
+                <a href="#" class="btn btn-outline btn-sm">Add academy enrollment</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job Preferences -->
+        <div class="section-card">
+          <h3>Job Preferences <a href="#" class="btn btn-outline btn-sm">Edit</a></h3>
+          <div class="field-grid">
+            <div class="field">
+              <label>Preferred regions</label>
+              <input class="input" type="text" value="Alamo, Capital" />
+            </div>
+            <div class="field">
+              <label>Availability</label>
+              <select class="input"><option>Immediate</option><option>Within 30 days</option><option>Within 60 days</option><option>Within 90 days</option></select>
+            </div>
+            <div class="field">
+              <label>Position type</label>
+              <input class="input" type="text" value="Patrol Officer, Sheriff Deputy" />
+            </div>
+            <div class="field">
+              <label>Minimum salary</label>
+              <input class="input" type="text" value="$55,000" />
+            </div>
+            <div class="field">
+              <label>Willing to relocate</label>
+              <select class="input"><option>Within Alamo region</option><option>Anywhere in Texas</option><option>No</option></select>
+            </div>
+            <div class="field">
+              <label>Employment type</label>
+              <select class="input"><option>Full-time only</option><option>Full-time or Part-time</option></select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documents -->
+        <div class="section-card">
+          <h3>Documents on File <a href="#" class="btn btn-primary btn-sm">+ Upload</a></h3>
+          <div class="doc-row">
+            <div class="doc-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--navy-700)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600; color:var(--navy-900);">Resume / CV</div>
+              <div class="small">Daniela_Reyes_Resume_2026.pdf · 184 KB · Uploaded Apr 20</div>
+            </div>
+            <span class="tag green">Active</span>
+            <a href="#" class="btn btn-outline btn-sm">Replace</a>
+          </div>
+          <div class="doc-row">
+            <div class="doc-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--navy-700)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600; color:var(--navy-900);">DD-214 (Military Discharge)</div>
+              <div class="small">DD214_Reyes.pdf · 96 KB · Uploaded Apr 20</div>
+            </div>
+            <span class="tag green">Verified</span>
+            <a href="#" class="btn btn-outline btn-sm">View</a>
+          </div>
+          <div class="doc-row">
+            <div class="doc-icon" style="border-style:dashed;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-2);">Background authorization form</div>
+              <div class="small" style="color:var(--tx-red);">Not yet uploaded — required by most agencies</div>
+            </div>
+            <a href="#" class="btn btn-primary btn-sm">Upload now</a>
+          </div>
+          <div class="doc-row">
+            <div class="doc-icon" style="border-style:dashed;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-2);">College transcript (optional)</div>
+              <div class="small">Recommended for education incentive eligibility</div>
+            </div>
+            <a href="#" class="btn btn-outline btn-sm">Upload</a>
+          </div>
+        </div>
+
+        <!-- Privacy -->
+        <div class="section-card">
+          <h3>Privacy &amp; Visibility</h3>
+          <p class="small" style="margin:0 0 14px; color:var(--text-2);">Control who can see your profile in the shared statewide applicant pool.</p>
+          <fieldset class="fieldset" style="padding:14px;">
+            <div class="checkbox" style="padding:8px 0;">
+              <input type="radio" name="vis" checked />
+              <div>
+                <strong>Visible to all TCOLE-registered agencies</strong>
+                <div class="small">Maximum opportunities — recommended for active job seekers.</div>
+              </div>
+            </div>
+            <div class="checkbox" style="padding:8px 0;">
+              <input type="radio" name="vis" />
+              <div>
+                <strong>Alamo &amp; Capital regions only</strong>
+                <div class="small">Limits visibility to agencies in San Antonio and Austin metro areas.</div>
+              </div>
+            </div>
+            <div class="checkbox" style="padding:8px 0;">
+              <input type="radio" name="vis" />
+              <div>
+                <strong>Hidden — only visible when I apply</strong>
+                <div class="small">Most private. Agencies can only see your profile after you submit an application.</div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <div class="card" style="padding:20px; text-align:center; position:sticky; top:20px;">
+          <div class="photo-avatar xl" style="background-image: url('assets/images/applicant-portrait.jpg'); margin:0 auto 12px;"></div>
+          <strong style="color:var(--navy-900); font-size:16px;">Daniela Reyes</strong>
+          <div class="small" style="margin:4px 0 2px;">San Antonio · Alamo region</div>
+          <div class="small">U.S. Army Veteran · Entry-level</div>
+
+          <div style="margin:16px 0 6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span class="small">Profile completeness</span>
+              <strong style="font-size:13px;">85%</strong>
+            </div>
+            <div style="height:8px; background:var(--bg); border-radius:6px; overflow:hidden;">
+              <div style="width:85%; height:100%; background:linear-gradient(90deg, var(--gold), var(--tx-red));"></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="text-align:left;">
+            <div style="font-size:13px; font-weight:700; color:var(--navy-900); margin-bottom:8px;">Complete your profile</div>
+            <div class="completion-item"><span class="check done">✓</span> Personal info</div>
+            <div class="completion-item"><span class="check done">✓</span> Background & experience</div>
+            <div class="completion-item"><span class="check done">✓</span> Job preferences</div>
+            <div class="completion-item"><span class="check done">✓</span> Resume uploaded</div>
+            <div class="completion-item"><span class="check done">✓</span> DD-214 uploaded</div>
+            <div class="completion-item"><span class="check todo">!</span> Background auth form</div>
+            <div class="completion-item"><span class="check todo">!</span> TCOLE certification</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Profile views (30d)</span>
+              <strong>47</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Active applications</span>
+              <strong>8</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Member since</span>
+              <strong>Mar 2026</strong>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols" style="grid-template-columns: 2fr 1fr 1fr;">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2" style="color:var(--gold)">★ Law Enforcement Careers in Texas</div></div>
+        </div>
+        <p style="color:#a8b6cf; font-size:13.5px; max-width:340px; margin-top:12px;">Operated by the Texas Police Chiefs Association in partnership with the Texas Commission on Law Enforcement.</p>
+      </div>
+      <div>
+        <h5>For Candidates</h5>
+        <a href="02-jobs.html">Find Jobs</a>
+        <a href="03-regional-map.html">Browse by Region</a>
+        <a href="10-ambassadors.html">Recruitment Ambassadors</a>
+      </div>
+      <div>
+        <h5>About</h5>
+        <a href="#">About TPCA</a>
+        <a href="#">About TCOLE</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 Texas Police Chiefs Association. All rights reserved.</div>
+      <div><a href="#">Privacy</a> · <a href="#">Accessibility (WCAG 2.1 AA)</a> · <a href="#">Texas Cybersecurity Compliance</a></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
