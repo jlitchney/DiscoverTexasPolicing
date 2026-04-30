@@ -375,6 +375,7 @@ function setMode(mode) {
   document.getElementById('existing-panel').style.display  = isBuild ? 'none' : 'block';
   document.getElementById('req-col-header').style.display  = isBuild ? 'flex' : 'none';
   document.getElementById('btn-add-req').style.display     = isBuild ? '' : 'none';
+  document.getElementById('add-req-form').style.display    = 'none';
   renderRequirements();
   if (isBuild) {
     renderPreview();
