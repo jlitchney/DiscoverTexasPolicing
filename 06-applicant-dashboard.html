@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>My Dashboard — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .amb-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow-sm); }
+  .amb-card .photo-avatar.xl { border:3px solid var(--gold); }
+</style>
 </head>
 <body>
 
@@ -254,6 +258,33 @@
           </div>
           <div class="small" style="margin: 6px 0 14px;">Profile 85% complete</div>
           <a href="#" class="btn btn-outline btn-block btn-sm">Edit profile</a>
+        </div>
+
+        <div class="spacer-16"></div>
+
+        <div class="spacer-16"></div>
+
+        <!-- Ambassador card -->
+        <div style="margin-bottom:4px;">
+          <span class="eyebrow">Your Alamo Region Ambassador</span>
+        </div>
+        <div class="amb-card" style="border-left:4px solid var(--tx-red); background:#fff8f7;">
+          <div style="display:flex; gap:14px; align-items:center; margin-bottom:12px;">
+            <div class="photo-avatar xl" style="background-image:url('assets/images/ambassador-r4.jpg');"></div>
+            <div>
+              <strong style="color:var(--navy-900); font-size:16px;">Lt. Marcus Delgado</strong>
+              <div class="small">Alamo · San Antonio</div>
+              <div class="small">San Antonio PD · 18 yrs sworn</div>
+            </div>
+          </div>
+          <p style="color:var(--text-2); font-size:13px; margin:0 0 10px;">Patrol Lieutenant overseeing SAPD's hiring outreach. Bilingual. Speaks regularly at high schools and academies across the Alamo region.</p>
+          <div class="tags" style="margin-bottom:12px;">
+            <span class="tag red">Featured</span><span class="tag">Recruiting</span><span class="tag gold">Bilingual</span>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+            <a href="#" class="btn btn-outline btn-sm">Schedule call</a>
+          </div>
         </div>
 
         <div class="spacer-16"></div>
