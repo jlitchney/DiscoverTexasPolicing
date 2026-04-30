@@ -213,36 +213,6 @@
 
           <div id="req-list"></div>
 
-          <!-- Add custom requirement -->
-          <div style="padding-top:16px; margin-top:4px;">
-            <button id="btn-add-req" onclick="showAddForm()" class="btn btn-outline btn-sm">+ Add a requirement</button>
-            <div id="add-req-form" style="display:none; margin-top:14px; background:#f8faff; border:1px solid #dde6f5; border-radius:var(--radius-lg); padding:18px 20px;">
-              <div style="font-weight:600; color:var(--navy-900); font-size:14px; margin-bottom:14px;">Add a custom requirement</div>
-              <div class="form-grid" style="gap:10px;">
-                <div>
-                  <label class="field-label">Requirement label <span class="req">*</span></label>
-                  <input id="new-label" class="input" placeholder="e.g. Bilingual (Spanish/English)" oninput="autoFillQuestion()" />
-                  <div class="help">Shown on the job posting as a listed requirement.</div>
-                </div>
-                <div>
-                  <label class="field-label">Pre-screen question</label>
-                  <input id="new-question" class="input" placeholder="e.g. Are you fluent in both Spanish and English?" />
-                  <div class="help">Auto-filled from the label — edit as needed.</div>
-                </div>
-                <div>
-                  <label class="field-label">Passing answer</label>
-                  <div style="display:flex; gap:16px; margin-top:4px;">
-                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;"><input type="radio" name="new-pass" value="Yes" checked> Yes</label>
-                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;"><input type="radio" name="new-pass" value="No"> No</label>
-                  </div>
-                </div>
-              </div>
-              <div style="display:flex; gap:8px; margin-top:14px; justify-content:flex-end;">
-                <button onclick="hideAddForm()" class="btn btn-outline btn-sm">Cancel</button>
-                <button onclick="addCustomRequirement()" class="btn btn-primary btn-sm">Add requirement</button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
