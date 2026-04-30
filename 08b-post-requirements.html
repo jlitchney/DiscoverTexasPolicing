@@ -384,7 +384,10 @@ function setMode(mode) {
 }
 
 function renderRequirements() {
-  var html = requirements.map(function(r) {
+  var reqs = currentMode === 'existing'
+    ? requirements.filter(function(r){ return !r.fixed; })
+    : requirements;
+  var html = reqs.map(function(r) {
     var valueHtml = '';
     if (r.inputType === 'number') {
       valueHtml = '<div style="display:flex;align-items:center;gap:8px;margin-top:4px;">' +
