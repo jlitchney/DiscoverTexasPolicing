@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Candidates — San Antonio PD — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+.stage-tabs { display:flex; gap:0; border:1px solid var(--border); border-radius:8px; overflow:hidden; background:#fff; }
+.stage-tab { padding:8px 16px; font-size:13px; font-weight:500; color:var(--text-2); border:none; background:transparent; cursor:pointer; border-right:1px solid var(--border); white-space:nowrap; }
+.stage-tab:last-child { border-right:none; }
+.stage-tab.active { background:var(--navy-900); color:#fff; font-weight:600; }
+.stage-tab .count { font-size:11px; font-weight:700; background:rgba(255,255,255,.2); padding:1px 6px; border-radius:10px; margin-left:5px; }
+.stage-tab:not(.active) .count { background:#f1f5f9; color:var(--navy-900); }
+.candidate-row { display:grid; grid-template-columns:40px 1fr 180px 130px 130px 120px auto; gap:12px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--border); font-size:13.5px; }
+.candidate-row:last-child { border-bottom:none; }
+.candidate-row:hover { background:#f8faff; }
+.avatar { width:36px; height:36px; border-radius:50%; background:var(--navy-900); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
+.stage-pill { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:12px; font-size:12px; font-weight:600; }
+.stage-applied    { background:#f0f4ff; color:#3b5bdb; }
+.stage-prescreened { background:#dcfce7; color:#15803d; }
+.stage-review     { background:#fef9c3; color:#854d0e; }
+.stage-interview  { background:#fff7ed; color:#c2410c; }
+.stage-offer      { background:#f5f0ff; color:#7c3aed; }
+.stage-hired      { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+.stage-disqualified { background:#fee2e2; color:#dc2626; }
+.ps-pass { color:#15803d; font-weight:600; font-size:12px; }
+.ps-fail { color:#dc2626; font-weight:600; font-size:12px; }
+.ps-pending { color:var(--text-3); font-size:12px; }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 07c — Agency Candidates
+  <a href="index.html">All Mockups</a> |
+  <a href="07-agency-dashboard.html">Agency Dashboard</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--tx-red);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="agency-home.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--tx-red);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:#f5a5a7;">★ Agency Portal</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="07-agency-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
+      <a href="08-post-a-job.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Post a Job</a>
+      <a href="07c-agency-candidates.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--tx-red); padding-bottom:2px;">Candidates</a>
+      <a href="07s-agency-shared-pool.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Shared Pool</a>
+      <a href="07r-agency-reports.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Reports</a>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div style="text-align:right; line-height:1.2;">
+        <div style="font-size:13px; font-weight:700; color:#fff;">San Antonio PD</div>
+        <div style="font-size:11px; color:rgba(255,255,255,.5);">Sgt. K. Walker · <a href="#" style="color:rgba(255,255,255,.5);">Sign Out</a></div>
+      </div>
+      <a href="08-post-a-job.html" class="btn btn-primary btn-sm">+ New Posting</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+      <div>
+        <span class="eyebrow">Agency Portal</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Candidates</h1>
+        <p style="color:var(--text-2); margin:0;">All applicants to San Antonio Police Department postings · Q2 2026</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <a href="#" class="btn btn-outline btn-sm">Export CSV</a>
+        <a href="07s-agency-shared-pool.html" class="btn btn-secondary btn-sm">Search shared pool</a>
+      </div>
+    </div>
+
+    <!-- Pipeline stage tabs -->
+    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:16px;">
+      <div class="stage-tabs">
+        <button class="stage-tab active" onclick="filterStage('all')">All <span class="count">418</span></button>
+        <button class="stage-tab" onclick="filterStage('applied')">Applied <span class="count">284</span></button>
+        <button class="stage-tab" onclick="filterStage('prescreened')">Pre-screened <span class="count">62</span></button>
+        <button class="stage-tab" onclick="filterStage('review')">Under Review <span class="count">38</span></button>
+        <button class="stage-tab" onclick="filterStage('interview')">Interview <span class="count">22</span></button>
+        <button class="stage-tab" onclick="filterStage('offer')">Offer <span class="count">8</span></button>
+        <button class="stage-tab" onclick="filterStage('hired')">Hired <span class="count">4</span></button>
+      </div>
+    </div>
+
+    <!-- Filter row -->
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+      <input class="input" style="width:220px;" placeholder="Search by name or email…" />
+      <select class="input" style="width:200px;">
+        <option>All positions</option>
+        <option>Police Officer (Lateral)</option>
+        <option>Police Officer Cadet</option>
+        <option>Detention Officer</option>
+        <option>Telecommunicator</option>
+        <option>Detective — Robbery</option>
+      </select>
+      <select class="input" style="width:160px;">
+        <option>Any pre-screen result</option>
+        <option>Pass</option>
+        <option>Fail</option>
+        <option>Pending</option>
+      </select>
+      <select class="input" style="width:160px;">
+        <option>All dates</option>
+        <option>This week</option>
+        <option>This month</option>
+        <option>This quarter</option>
+      </select>
+    </div>
+
+    <!-- Candidates table -->
+    <div class="card" style="padding:0; overflow:hidden;">
+      <!-- Header -->
+      <div style="display:grid; grid-template-columns:40px 1fr 180px 130px 130px 120px auto; gap:12px; padding:10px 16px; border-bottom:2px solid var(--border); background:#f8faff;">
+        <div></div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Candidate</div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Position</div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Applied</div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Pre-screen</div>
+        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Stage</div>
+        <div></div>
+      </div>
+
+      <!-- Rows -->
+      <div class="candidate-row">
+        <div class="avatar" style="background:#1e3a5f;">JT</div>
+        <div><strong>Jasmine Torres</strong><div class="small">jasmine.torres@email.com</div></div>
+        <div style="color:var(--text-2);">Police Officer Cadet</div>
+        <div style="color:var(--text-3);">Apr 22</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-interview">Interview</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#7c3aed;">MR</div>
+        <div><strong>Marcus Rivera</strong><div class="small">m.rivera@email.com</div></div>
+        <div style="color:var(--text-2);">Police Officer (Lateral)</div>
+        <div style="color:var(--text-3);">Apr 21</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-offer">Offer sent</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:var(--tx-red);">DL</div>
+        <div><strong>David Lim</strong><div class="small">david.lim@email.com</div></div>
+        <div style="color:var(--text-2);">Police Officer (Lateral)</div>
+        <div style="color:var(--text-3);">Apr 20</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-review">Under Review</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#0d9488;">AJ</div>
+        <div><strong>Aisha Johnson</strong><div class="small">aisha.j@email.com</div></div>
+        <div style="color:var(--text-2);">Detention Officer</div>
+        <div style="color:var(--text-3);">Apr 19</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-interview">Interview</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#475569;">SK</div>
+        <div><strong>Sandra Kim</strong><div class="small">s.kim@email.com</div></div>
+        <div style="color:var(--text-2);">Telecommunicator</div>
+        <div style="color:var(--text-3);">Apr 18</div>
+        <div><span class="ps-fail">✗ Fail</span></div>
+        <div><span class="stage-pill stage-disqualified">Disqualified</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#1e3a5f;">CV</div>
+        <div><strong>Carlos Vega</strong><div class="small">cvega@email.com</div></div>
+        <div style="color:var(--text-2);">Police Officer (Lateral)</div>
+        <div style="color:var(--text-3);">Apr 17</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-review">Under Review</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#b45309;">RM</div>
+        <div><strong>Robert Martinez</strong><div class="small">r.martinez@email.com</div></div>
+        <div style="color:var(--text-2);">Police Officer Cadet</div>
+        <div style="color:var(--text-3);">Apr 16</div>
+        <div><span class="ps-pending">Pending</span></div>
+        <div><span class="stage-pill stage-applied">Applied</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#0d9488;">TH</div>
+        <div><strong>Thomas Hughes</strong><div class="small">t.hughes@email.com</div></div>
+        <div style="color:var(--text-2);">Telecommunicator</div>
+        <div style="color:var(--text-3);">Apr 15</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-hired">Hired</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:#7c3aed;">PN</div>
+        <div><strong>Priya Nair</strong><div class="small">priya.n@email.com</div></div>
+        <div style="color:var(--text-2);">Police Officer Cadet</div>
+        <div style="color:var(--text-3);">Apr 14</div>
+        <div><span class="ps-pending">Pending</span></div>
+        <div><span class="stage-pill stage-applied">Applied</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+      <div class="candidate-row">
+        <div class="avatar" style="background:var(--tx-red);">ED</div>
+        <div><strong>Emily Davis</strong><div class="small">emily.d@email.com</div></div>
+        <div style="color:var(--text-2);">Detective — Robbery</div>
+        <div style="color:var(--text-3);">Apr 12</div>
+        <div><span class="ps-pass">✓ Pass</span></div>
+        <div><span class="stage-pill stage-review">Under Review</span></div>
+        <div><a href="#" class="small">View →</a></div>
+      </div>
+
+      <!-- Pagination -->
+      <div style="padding:14px 16px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); background:#fafafa;">
+        <div class="small" style="color:var(--text-3);">Showing 1–10 of 418 candidates</div>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-outline btn-sm" disabled>← Prev</button>
+          <button class="btn btn-outline btn-sm" style="background:var(--navy-900);color:#fff;border-color:var(--navy-900);">1</button>
+          <button class="btn btn-outline btn-sm">2</button>
+          <button class="btn btn-outline btn-sm">3</button>
+          <span style="padding:4px 8px; font-size:13px; color:var(--text-3);">…</span>
+          <button class="btn btn-outline btn-sm">42</button>
+          <button class="btn btn-outline btn-sm">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Candidates</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="07r-agency-reports.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+function filterStage(stage) {
+  document.querySelectorAll('.stage-tab').forEach(function(t) { t.classList.remove('active'); });
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shared Pool — San Antonio PD — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+.pool-card {
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:box-shadow .15s;
+}
+.pool-card:hover { box-shadow:0 4px 16px rgba(11,37,69,.1); }
+.pool-avatar {
+  width:48px; height:48px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.cert-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px;
+  text-transform:uppercase; letter-spacing:.04em;
+}
+.cert-peace { background:#dbeafe; color:#1d4ed8; }
+.cert-telecom { background:#fef9c3; color:#854d0e; }
+.cert-detention { background:#f3e8ff; color:#7c3aed; }
+.cert-cadet { background:#dcfce7; color:#15803d; }
+.avail-now { color:#15803d; font-weight:600; font-size:12px; }
+.avail-soon { color:#b45309; font-weight:600; font-size:12px; }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 07s — Agency Shared Pool
+  <a href="index.html">All Mockups</a> |
+  <a href="07-agency-dashboard.html">Agency Dashboard</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--tx-red);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="agency-home.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--tx-red);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:#f5a5a7;">★ Agency Portal</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="07-agency-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
+      <a href="08-post-a-job.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Post a Job</a>
+      <a href="07c-agency-candidates.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Candidates</a>
+      <a href="07s-agency-shared-pool.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--tx-red); padding-bottom:2px;">Shared Pool</a>
+      <a href="07r-agency-reports.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Reports</a>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div style="text-align:right; line-height:1.2;">
+        <div style="font-size:13px; font-weight:700; color:#fff;">San Antonio PD</div>
+        <div style="font-size:11px; color:rgba(255,255,255,.5);">Sgt. K. Walker · <a href="#" style="color:rgba(255,255,255,.5);">Sign Out</a></div>
+      </div>
+      <a href="08-post-a-job.html" class="btn btn-primary btn-sm">+ New Posting</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+      <div>
+        <span class="eyebrow">Agency Portal</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Shared Candidate Pool</h1>
+        <p style="color:var(--text-2); margin:0;">Pre-screened candidates statewide who are open to new opportunities</p>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="stats" style="margin-bottom:24px;">
+      <div class="stat"><div class="v">14,238</div><div class="l">Candidates in pool</div><div class="delta up" style="margin-top:4px;">+1,866 vs Q1</div></div>
+      <div class="stat"><div class="v">9,847</div><div class="l">Peace officer certified</div></div>
+      <div class="stat"><div class="v">2,104</div><div class="l">Open to Alamo region</div></div>
+      <div class="stat"><div class="v">4,312</div><div class="l">Available now</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:280px 1fr; gap:24px; align-items:flex-start;">
+
+      <!-- Filters sidebar -->
+      <aside>
+        <div class="card" style="padding:20px;">
+          <h4 style="margin:0 0 14px; color:var(--navy-900); font-size:14px; font-weight:700;">Filter candidates</h4>
+          <div class="form-grid" style="gap:12px;">
+            <div>
+              <label class="field-label">Certification type</label>
+              <select class="input">
+                <option>All certifications</option>
+                <option selected>Peace Officer (TCOLE)</option>
+                <option>Detention / Jailer</option>
+                <option>Telecommunicator</option>
+                <option>Cadet / In-training</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">Region preference</label>
+              <select class="input">
+                <option selected>Alamo (San Antonio)</option>
+                <option>Open to statewide</option>
+                <option>Capital (Austin)</option>
+                <option>Metroplex (DFW)</option>
+                <option>Gulf Coast (Houston)</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">Experience level</label>
+              <select class="input">
+                <option>Any experience</option>
+                <option>Lateral — 1+ years</option>
+                <option>Lateral — 3+ years</option>
+                <option>Lateral — 5+ years</option>
+                <option>Entry / Cadet</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">Availability</label>
+              <select class="input">
+                <option>Any availability</option>
+                <option>Available now</option>
+                <option>Available within 30 days</option>
+                <option>Available within 90 days</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">Last active</label>
+              <select class="input">
+                <option>Any time</option>
+                <option>Within 7 days</option>
+                <option>Within 30 days</option>
+                <option>Within 90 days</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary">Apply filters</button>
+            <a href="#" class="small" style="text-align:center;">Clear all filters</a>
+          </div>
+        </div>
+
+        <!-- Pro upsell -->
+        <div style="background:linear-gradient(135deg,#faf5ff 0%,#f5f0ff 100%); border:1px solid #d8b4fe; border-radius:var(--radius-lg); padding:18px; margin-top:16px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <strong style="color:#7c3aed; font-size:13px;">All-Star Recruiter Pro</strong>
+            <span style="font-size:10px; font-weight:700; background:#ede9fe; color:#7c3aed; padding:2px 6px; border-radius:10px;">UPGRADE</span>
+          </div>
+          <div style="font-size:12.5px; color:#6b21a8; margin-bottom:10px; display:flex; flex-direction:column; gap:5px;">
+            <div>● Bulk outreach to matched candidates</div>
+            <div>● Save search alerts (notify on new matches)</div>
+            <div>● See full contact details &amp; resume</div>
+            <div>● Advanced filters: GPA, languages, skills</div>
+          </div>
+          <a href="crm-pricing.html" class="btn btn-sm" style="background:#7c3aed; color:#fff; border:none; text-decoration:none; width:100%; text-align:center; display:block;">View plans &amp; pricing →</a>
+        </div>
+      </aside>
+
+      <!-- Results -->
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <div class="small" style="color:var(--text-2);"><strong>2,104</strong> candidates match your filters</div>
+          <select class="input" style="width:auto; font-size:13px; padding:6px 10px;">
+            <option>Sort: Most recently active</option>
+            <option>Sort: Most experience</option>
+            <option>Sort: Closest to Alamo region</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#1e3a5f;">JK</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">J. K.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 2 days ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-peace">Peace Officer</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Alamo (San Antonio)</div>
+              <div>⏱ 3 years sworn experience</div>
+              <div>🎓 TCOLE Licensed · Class C DL</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-now">● Available now</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#7c3aed;">AM</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">A. M.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 3 days ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-peace">Peace Officer</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Statewide (prefers Alamo)</div>
+              <div>⏱ 7 years sworn experience</div>
+              <div>🎓 TCOLE Licensed · Bilingual (ES)</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-now">● Available now</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#0d9488;">KR</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">K. R.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 5 days ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-telecom">Telecom</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Alamo (San Antonio)</div>
+              <div>⏱ 4 years dispatch experience</div>
+              <div>🎓 TCOLE Licensed · 50 WPM</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-now">● Available now</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:var(--tx-red);">DW</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">D. W.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 1 week ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-cadet">Cadet</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Alamo (San Antonio)</div>
+              <div>⏱ Entry level · No prior license</div>
+              <div>🎓 Bachelor's — Criminal Justice</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-now">● Available now</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#475569;">LP</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">L. P.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 1 week ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-detention">Detention</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Alamo / South Texas</div>
+              <div>⏱ 2 years detention experience</div>
+              <div>🎓 TCOLE Licensed · Bilingual (ES)</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-soon">◐ Available in 30 days</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#b45309;">NB</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">N. B.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 10 days ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-peace">Peace Officer</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Gulf Coast (open to Alamo)</div>
+              <div>⏱ 5 years sworn · SWAT trained</div>
+              <div>🎓 TCOLE Licensed · Veteran (Army)</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-soon">◐ Available in 45 days</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#1e3a5f;">RS</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">R. S.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 2 weeks ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-telecom">Telecom</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Statewide</div>
+              <div>⏱ 2 years CAD experience</div>
+              <div>🎓 TCOLE Certified · Associate's</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-now">● Available now</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+          <div class="pool-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="pool-avatar" style="background:#7c3aed;">MT</div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">M. T.</div>
+                <div style="font-size:12px; color:var(--text-3);">Active 2 weeks ago</div>
+              </div>
+              <div style="margin-left:auto;"><span class="cert-badge cert-cadet">Cadet</span></div>
+            </div>
+            <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+              <div>📍 Open to statewide</div>
+              <div>⏱ Entry level · Military background</div>
+              <div>🎓 DD-214 (Honorable) · Some college</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="avail-now">● Available now</span>
+              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Pagination -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px;">
+          <div class="small" style="color:var(--text-3);">Showing 1–8 of 2,104 results</div>
+          <div style="display:flex; gap:6px;">
+            <button class="btn btn-outline btn-sm" disabled>← Prev</button>
+            <button class="btn btn-outline btn-sm" style="background:var(--navy-900);color:#fff;border-color:var(--navy-900);">1</button>
+            <button class="btn btn-outline btn-sm">2</button>
+            <button class="btn btn-outline btn-sm">3</button>
+            <span style="padding:4px 8px; font-size:13px; color:var(--text-3);">…</span>
+            <button class="btn btn-outline btn-sm">263</button>
+            <button class="btn btn-outline btn-sm">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Candidates</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="07r-agency-reports.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
