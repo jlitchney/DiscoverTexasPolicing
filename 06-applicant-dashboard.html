@@ -64,23 +64,56 @@
     <div style="display:grid; grid-template-columns: 1fr 340px; gap: 28px;">
       <!-- Main column -->
       <div>
-        <!-- Profile completion alert -->
-        <div class="alert warn">
-          <span style="color:var(--warn); font-size:18px;">★</span>
-          <div style="flex:1">
-            <h4>Add your TCOLE certification (if any) to boost matches</h4>
-            <p>Verified TCOLE-licensed applicants receive 4x more direct outreach from agencies. Takes 90 seconds.</p>
-          </div>
-          <a href="#" class="btn btn-outline btn-sm">Add now</a>
-        </div>
 
-        <div class="spacer-24"></div>
+        <!-- Action Needed -->
+        <div class="card" style="padding:0; overflow:hidden; border-color:#fca5a5; margin-bottom:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:#fff5f5; border-bottom:1px solid #fca5a5;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></svg>
+              <strong style="color:#b91c1c; font-size:14px;">Action Needed — 3 items require your attention</strong>
+            </div>
+            <a href="06a-applicant-applications.html" class="small" style="color:#b91c1c;">View all →</a>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">RPD</div>
+            <div style="flex:1;">
+              <strong style="font-size:13.5px; color:var(--navy-900);">Round Rock Police Department</strong>
+              <div class="small">Police Officer · Capital Region</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="tag red" style="white-space:nowrap;">Documents required</span>
+              <a href="#" class="btn btn-primary btn-sm">Upload now</a>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">CPD</div>
+            <div style="flex:1;">
+              <strong style="font-size:13.5px; color:var(--navy-900);">Corpus Christi Police Department</strong>
+              <div class="small">Police Officer · Coastal Bend Region</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="tag gold" style="white-space:nowrap;">Complete pre-screen</span>
+              <a href="#" class="btn btn-primary btn-sm">Start now</a>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px;">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">SMP</div>
+            <div style="flex:1;">
+              <strong style="font-size:13.5px; color:var(--navy-900);">San Marcos Police Department</strong>
+              <div class="small">Police Officer Cadet · Capital Region</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="tag gold" style="white-space:nowrap;">Complete pre-screen</span>
+              <a href="#" class="btn btn-primary btn-sm">Start now</a>
+            </div>
+          </div>
+        </div>
 
         <!-- Applications -->
         <div class="card" style="padding: 0;">
           <div style="display:flex; justify-content:space-between; align-items:center; padding: 16px 18px; border-bottom: 1px solid var(--border);">
             <strong style="color:var(--navy-900);">My applications (8)</strong>
-            <a href="#" class="small">View all →</a>
+            <a href="06a-applicant-applications.html" class="small">View all →</a>
           </div>
           <table class="data" style="border:0; border-radius:0;">
             <thead><tr><th>Position</th><th>Region</th><th>Stage</th><th>Updated</th><th></th></tr></thead>
@@ -115,10 +148,10 @@
               </tr>
               <tr>
                 <td><strong>Police Officer</strong><br><span class="small">Round Rock PD</span></td>
-                <td>Alamo</td>
+                <td>Capital</td>
                 <td><span class="tag red">Action needed: documents</span></td>
                 <td>3 wks ago</td>
-                <td><a href="#" class="small">Upload →</a></td>
+                <td><a href="#" class="btn btn-primary btn-sm">Upload</a></td>
               </tr>
             </tbody>
           </table>
@@ -126,47 +159,74 @@
 
         <div class="spacer-24"></div>
 
-        <!-- Recommended jobs -->
-        <div class="section-head" style="margin-bottom: 14px;">
-          <div>
-            <span class="eyebrow">Recommended for you</span>
-            <h2 style="font-size: 22px;">Jobs that match your profile</h2>
+        <!-- Messages (expanded) -->
+        <div class="card" style="padding:0; overflow:hidden;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 18px; border-bottom:1px solid var(--border);">
+            <strong style="color:var(--navy-900);">Messages</strong>
+            <a href="#" class="small">Open inbox →</a>
           </div>
-          <a href="02-jobs.html?auth=1" class="more">See all matches →</a>
+          <!-- Thread: Austin PD -->
+          <div style="display:flex; gap:12px; padding:14px 18px; border-bottom:1px solid var(--border); background:#f8faff;">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">APD</div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <strong style="font-size:13.5px; color:var(--navy-900);">Austin PD Recruiting</strong>
+                <span class="small">2h ago</span>
+              </div>
+              <div style="font-size:13px; color:var(--text-1); margin:3px 0;">Background interview scheduled — May 6 at 2:00 PM. Please bring two forms of ID.</div>
+              <div style="display:flex; gap:6px; margin-top:8px;">
+                <input class="input" style="flex:1; font-size:12px; padding:6px 10px;" placeholder="Reply…" />
+                <a href="#" class="btn btn-primary btn-sm">Send</a>
+              </div>
+            </div>
+          </div>
+          <!-- Thread: Lt. Delgado -->
+          <div style="display:flex; gap:12px; padding:14px 18px; border-bottom:1px solid var(--border);">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0; background:var(--tx-red); color:#fff;">MD</div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <strong style="font-size:13.5px; color:var(--navy-900);">Lt. M. Delgado · Ambassador</strong>
+                <span class="small">Yesterday</span>
+              </div>
+              <div style="font-size:13px; color:var(--text-1); margin:3px 0;">"Glad you submitted your APD application. Reach out anytime if you have questions about the process."</div>
+              <div style="display:flex; gap:6px; margin-top:8px;">
+                <input class="input" style="flex:1; font-size:12px; padding:6px 10px;" placeholder="Reply…" />
+                <a href="#" class="btn btn-primary btn-sm">Send</a>
+              </div>
+            </div>
+          </div>
+          <!-- Thread: Round Rock PD -->
+          <div style="display:flex; gap:12px; padding:14px 18px; border-bottom:1px solid var(--border);">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">RPD</div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <strong style="font-size:13.5px; color:var(--navy-900);">Round Rock PD Recruiting</strong>
+                <span class="small">3 days ago</span>
+              </div>
+              <div style="font-size:13px; color:var(--text-1); margin:3px 0;">We're still waiting on your background authorization form and DD-214. Please upload at your earliest convenience.</div>
+              <div style="display:flex; gap:6px; margin-top:8px;">
+                <input class="input" style="flex:1; font-size:12px; padding:6px 10px;" placeholder="Reply…" />
+                <a href="#" class="btn btn-primary btn-sm">Send</a>
+              </div>
+            </div>
+          </div>
+          <!-- Thread: Bexar County SO -->
+          <div style="display:flex; gap:12px; padding:14px 18px;">
+            <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">BCSO</div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <strong style="font-size:13.5px; color:var(--navy-900);">Bexar County Sheriff's Office</strong>
+                <span class="small">1 wk ago</span>
+              </div>
+              <div style="font-size:13px; color:var(--text-1); margin:3px 0;">Your written exam is confirmed for May 12 at 9:00 AM. Location details attached.</div>
+              <div style="display:flex; gap:6px; margin-top:8px;">
+                <input class="input" style="flex:1; font-size:12px; padding:6px 10px;" placeholder="Reply…" />
+                <a href="#" class="btn btn-primary btn-sm">Send</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="grid" style="gap: 12px;">
-          <a href="04-job-detail.html?auth=1" class="job-row">
-            <div class="agency-logo">SAS</div>
-            <div>
-              <h3>Deputy Sheriff (Lateral)</h3>
-              <div class="agency">Bexar County Sheriff's Office · Alamo</div>
-              <div class="meta"><span>📍 San Antonio, TX (12 miles)</span><span>🛡 Peace Officer</span></div>
-              <div class="tags"><span class="tag green">95% match</span><span class="tag gold">Bilingual bonus</span></div>
-            </div>
-            <div style="text-align:right"><div class="pay">$65.2k–$88.0k</div><div class="actions" style="margin-top:8px"><span class="btn btn-primary btn-sm">Quick apply</span></div></div>
-          </a>
-          <a href="04-job-detail.html?auth=1" class="job-row">
-            <div class="agency-logo">SMP</div>
-            <div>
-              <h3>Police Officer (Lateral)</h3>
-              <div class="agency">San Marcos Police Department · Capital</div>
-              <div class="meta"><span>📍 San Marcos, TX (38 miles)</span><span>🛡 Peace Officer</span></div>
-              <div class="tags"><span class="tag green">92% match</span><span class="tag">Take-home vehicle</span></div>
-            </div>
-            <div style="text-align:right"><div class="pay">$68.4k–$95.2k</div><div class="actions" style="margin-top:8px"><span class="btn btn-primary btn-sm">Quick apply</span></div></div>
-          </a>
-          <a href="04-job-detail.html?auth=1" class="job-row">
-            <div class="agency-logo" style="background:#FBE9EA; color:var(--tx-red-dk)">CSP</div>
-            <div>
-              <h3>Police Officer</h3>
-              <div class="agency">Cibolo Police Department · Alamo</div>
-              <div class="meta"><span>📍 Cibolo, TX (22 miles)</span><span>🛡 Peace Officer</span></div>
-              <div class="tags"><span class="tag green">90% match</span><span class="tag gold">Sign-on $10k</span></div>
-            </div>
-            <div style="text-align:right"><div class="pay">$62.0k–$84.6k</div><div class="actions" style="margin-top:8px"><span class="btn btn-primary btn-sm">Quick apply</span></div></div>
-          </a>
-        </div>
       </div>
 
       <!-- Sidebar -->
@@ -227,29 +287,6 @@
           </fieldset>
         </div>
 
-        <div class="spacer-16"></div>
-
-        <!-- Recent messages -->
-        <div class="card">
-          <h4 style="margin: 0 0 8px; color:var(--navy-900); font-size:14px;">Messages</h4>
-          <div style="display:flex; gap:10px; padding: 8px 0; border-bottom: 1px solid var(--border);">
-            <div class="agency-logo" style="width:36px; height:36px; font-size:12px;">APD</div>
-            <div style="flex:1;">
-              <strong style="font-size:13.5px;">Austin PD Recruiting</strong>
-              <div class="small">Background interview scheduled — May 6 at 2:00 PM.</div>
-              <div class="small">2h ago</div>
-            </div>
-          </div>
-          <div style="display:flex; gap:10px; padding: 8px 0; border-bottom: 1px solid var(--border);">
-            <div class="agency-logo" style="width:36px; height:36px; font-size:12px; background:var(--tx-red); color:#fff">MD</div>
-            <div style="flex:1;">
-              <strong style="font-size:13.5px;">Lt. M. Delgado · Ambassador</strong>
-              <div class="small">"Glad you submitted your APD application. Reach out anytime…"</div>
-              <div class="small">Yesterday</div>
-            </div>
-          </div>
-          <a href="#" class="btn btn-ghost btn-block btn-sm" style="margin-top: 8px;">Open inbox →</a>
-        </div>
       </aside>
     </div>
   </div>
