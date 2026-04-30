@@ -8,12 +8,13 @@
 <style>
 .req-row {
   display: grid;
-  grid-template-columns: 1fr 220px;
   gap: 16px;
   align-items: flex-start;
   padding: 15px 0;
   border-bottom: 1px solid var(--border);
 }
+.req-row.build-mode { grid-template-columns: 1fr 220px; }
+.req-row.existing-mode { grid-template-columns: 1fr; }
 .req-label {
   font-weight: 600;
   font-size: 14px;
@@ -92,6 +93,24 @@
   border-radius: 10px;
   margin-top: 6px;
 }
+.mode-tab {
+  flex: 1;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.mode-tab.active { background: var(--navy-900); color: #fff; font-weight: 600; }
+.mode-tab.inactive { background: transparent; color: var(--text-2); font-weight: 500; }
+.pro-upsell {
+  background: linear-gradient(135deg, #faf5ff 0%, #f5f0ff 100%);
+  border: 1px solid #d8b4fe;
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-top: 16px;
+}
 </style>
 </head>
 <body>
@@ -149,9 +168,46 @@
         <div class="card" style="padding:24px;">
           <span class="eyebrow">Step 2</span>
           <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 22px;">Requirements &amp; Pre-screen</h2>
-          <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 6px;">Set each requirement and choose which ones generate a pre-screen question candidates must answer before applying. Toggling <strong>Pre-screen: On</strong> adds that question to the candidate survey and syncs it to your All-Star Recruiter account.</p>
+          <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 16px;">Define position requirements and choose how candidates are pre-screened before they apply.</p>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0 8px; border-bottom: 2px solid var(--border); margin-bottom:4px;">
+          <!-- Mode toggle -->
+          <div style="display:flex; background:#f1f5f9; border-radius:8px; padding:3px; gap:2px; margin-bottom:20px;">
+            <button id="mode-build" class="mode-tab active" onclick="setMode('build')">Build from requirements</button>
+            <button id="mode-existing" class="mode-tab inactive" onclick="setMode('existing')">Use existing pre-screen</button>
+          </div>
+
+          <!-- Build mode: existing pre-screen selector -->
+          <div id="existing-panel" style="display:none; margin-bottom:20px;">
+            <div>
+              <label class="field-label">Select a pre-screen from All-Star Recruiter</label>
+              <select id="existing-select" class="input" onchange="renderExistingPreview()" style="margin-top:4px;">
+                <option value="">— Select a pre-screen —</option>
+                <option value="po">Police Officer – Pre-Screen (6 questions)</option>
+                <option value="detention">Detention Officer – Pre-Screen (5 questions)</option>
+                <option value="telecom">Telecommunicator – Pre-Screen (4 questions)</option>
+                <option value="basic">Basic Eligibility Check (3 questions)</option>
+              </select>
+              <div class="help">Pre-screens are pulled from your All-Star Recruiter account.</div>
+            </div>
+
+            <!-- Pro upsell -->
+            <div class="pro-upsell">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                <strong style="color:#7c3aed; font-size:14px;">All-Star Recruiter Pro</strong>
+                <span style="font-size:10px; font-weight:700; background:#ede9fe; color:#7c3aed; padding:2px 8px; border-radius:10px; letter-spacing:.04em;">UPGRADE</span>
+              </div>
+              <p style="font-size:13px; color:#6b21a8; margin: 0 0 10px;">Unlock advanced pre-screen capabilities beyond simple Yes/No questions:</p>
+              <div style="display:flex; flex-direction:column; gap:6px; font-size:13px; color:#581c87; margin-bottom:14px;">
+                <div style="display:flex; align-items:flex-start; gap:8px;"><span style="color:#a855f7;">●</span><span><strong>Customize questions</strong> — edit wording, add helper text, choose question type (dropdown, radio, free text)</span></div>
+                <div style="display:flex; align-items:flex-start; gap:8px;"><span style="color:#a855f7;">●</span><span><strong>Conditional logic</strong> — show or hide follow-up questions based on how a candidate answers</span></div>
+                <div style="display:flex; align-items:flex-start; gap:8px;"><span style="color:#a855f7;">●</span><span><strong>Tag-based scoring</strong> — apply tags (e.g. "Lateral candidate", "Bilingual") to specific answers for automatic segmentation</span></div>
+              </div>
+              <a href="crm-pricing.html" class="btn btn-sm" style="background:#7c3aed; color:#fff; border:none; text-decoration:none;">View plans &amp; pricing →</a>
+            </div>
+          </div>
+
+          <!-- Column header (build mode only) -->
+          <div id="req-col-header" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom: 2px solid var(--border); margin-bottom:4px;">
             <span style="font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Requirement</span>
             <span style="font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Add to pre-screen</span>
           </div>
@@ -161,7 +217,6 @@
           <!-- Add custom requirement -->
           <div style="padding-top:16px; margin-top:4px;">
             <button id="btn-add-req" onclick="showAddForm()" class="btn btn-outline btn-sm">+ Add a requirement</button>
-
             <div id="add-req-form" style="display:none; margin-top:14px; background:#f8faff; border:1px solid #dde6f5; border-radius:var(--radius-lg); padding:18px 20px;">
               <div style="font-weight:600; color:var(--navy-900); font-size:14px; margin-bottom:14px;">Add a custom requirement</div>
               <div class="form-grid" style="gap:10px;">
@@ -178,12 +233,8 @@
                 <div>
                   <label class="field-label">Passing answer</label>
                   <div style="display:flex; gap:16px; margin-top:4px;">
-                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;">
-                      <input type="radio" name="new-pass" value="Yes" checked> Yes
-                    </label>
-                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;">
-                      <input type="radio" name="new-pass" value="No"> No
-                    </label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;"><input type="radio" name="new-pass" value="Yes" checked> Yes</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;"><input type="radio" name="new-pass" value="No"> No</label>
                   </div>
                 </div>
               </div>
@@ -199,17 +250,12 @@
       <!-- Right: Survey preview -->
       <aside>
         <div class="card" style="position:sticky; top:96px; padding:20px;">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
-            <h4 style="margin:0; color:var(--navy-900); font-size:14px;">Pre-screen survey preview</h4>
-            <span class="tag green" style="font-size:10px; white-space:nowrap;">Synced via API</span>
-          </div>
+          <h4 style="margin:0 0 4px; color:var(--navy-900); font-size:14px;">Pre-screen survey preview</h4>
           <p style="color:var(--text-2); font-size:12.5px; margin: 0 0 14px;">How candidates see the survey when they apply.</p>
-
           <div id="survey-preview-list"></div>
-
           <div style="background:#f0f4ff; border:1px solid #c7d7f9; border-radius:var(--radius); padding:10px 12px; margin-top:8px;">
             <div style="font-size:12px; color:var(--navy-900); font-weight:600; margin-bottom:2px;">Connected to All-Star Recruiter</div>
-            <div style="font-size:11.5px; color:var(--text-2);">These questions sync automatically when the posting is published. Pass/fail evaluation is set to <strong>Pass/Fail Assessment</strong> mode.</div>
+            <div style="font-size:11.5px; color:var(--text-2);">This survey syncs automatically when the posting is published. Evaluation mode: <strong>Pass/Fail Assessment</strong>.</div>
           </div>
         </div>
       </aside>
@@ -250,86 +296,103 @@
 
 <script src="assets/script.js"></script>
 <script>
+var currentMode = 'build';
+var customCount = 0;
+
 var requirements = [
-  {
-    id: 'min-age', fixed: true,
-    label: 'Minimum age',
+  { id: 'min-age', fixed: true, label: 'Minimum age',
     inputType: 'number', value: '21', unit: 'years at appointment',
     prescreen: true,
     getQ: function(v) { return 'Are you at least ' + (v || '?') + ' years old?'; },
-    correctAnswer: 'Yes'
-  },
-  {
-    id: 'max-age', fixed: true,
-    label: 'Maximum age',
+    correctAnswer: 'Yes' },
+  { id: 'max-age', fixed: true, label: 'Maximum age',
     inputType: 'number-opt', value: '', unit: 'years (leave blank if none)',
     prescreen: false,
     getQ: function(v) { return v ? 'Are you ' + v + ' years of age or younger?' : ''; },
-    correctAnswer: 'Yes'
-  },
-  {
-    id: 'education', fixed: true,
-    label: 'Education minimum',
+    correctAnswer: 'Yes' },
+  { id: 'education', fixed: true, label: 'Education minimum',
     inputType: 'select', value: 'High school diploma or GED',
-    options: ['High school diploma or GED', '30+ college credit hours', '60+ college credit hours', "Associate's degree", "Bachelor's degree"],
+    options: ['High school diploma or GED','30+ college credit hours','60+ college credit hours',"Associate's degree","Bachelor's degree"],
     prescreen: true,
     getQ: function(v) { return 'Do you have a ' + v + ' or higher?'; },
-    correctAnswer: 'Yes'
-  },
-  {
-    id: 'citizenship', fixed: true,
-    label: 'U.S. citizenship',
-    inputType: 'static', value: 'Required',
-    prescreen: true,
+    correctAnswer: 'Yes' },
+  { id: 'citizenship', fixed: true, label: 'U.S. citizenship',
+    inputType: 'static', value: 'Required', prescreen: true,
     getQ: function() { return 'Are you a U.S. citizen or legally authorized to work in the United States?'; },
-    correctAnswer: 'Yes'
-  },
-  {
-    id: 'drivers-license', fixed: true,
-    label: "Driver's license",
-    inputType: 'static', value: 'Required',
-    prescreen: true,
-    getQ: function() { return 'Do you possess a valid driver\'s license?'; },
-    correctAnswer: 'Yes'
-  },
-  {
-    id: 'military', fixed: true,
-    label: 'Military discharge',
-    inputType: 'static', value: 'Honorable only',
-    prescreen: true,
+    correctAnswer: 'Yes' },
+  { id: 'drivers-license', fixed: true, label: "Driver's license",
+    inputType: 'static', value: 'Required', prescreen: true,
+    getQ: function() { return "Do you possess a valid driver's license?"; },
+    correctAnswer: 'Yes' },
+  { id: 'military', fixed: true, label: 'Military discharge',
+    inputType: 'static', value: 'Honorable only', prescreen: true,
     getQ: function() { return 'Have you ever received a less than honorable discharge from the military?'; },
-    correctAnswer: 'No'
-  },
-  {
-    id: 'felony', fixed: true,
-    label: 'Felony convictions',
-    inputType: 'static', value: 'None allowed',
-    prescreen: true,
+    correctAnswer: 'No' },
+  { id: 'felony', fixed: true, label: 'Felony convictions',
+    inputType: 'static', value: 'None allowed', prescreen: true,
     getQ: function() { return 'Have you ever been convicted of a felony?'; },
-    correctAnswer: 'No'
-  }
+    correctAnswer: 'No' }
 ];
 
-var customCount = 0;
+var existingPrescreens = {
+  'po': { name: 'Police Officer – Pre-Screen', questions: [
+    { q: 'Are you eligible to work in the United States?', correct: 'Yes' },
+    { q: 'Are you at least 21 years old?', correct: 'Yes' },
+    { q: "Do you possess a valid driver's license?", correct: 'Yes' },
+    { q: 'Have you ever been convicted of a felony?', correct: 'No' },
+    { q: 'Have you ever been convicted of domestic violence?', correct: 'No' },
+    { q: 'Have you ever received a less than honorable military discharge?', correct: 'No' }
+  ]},
+  'detention': { name: 'Detention Officer – Pre-Screen', questions: [
+    { q: 'Are you eligible to work in the United States?', correct: 'Yes' },
+    { q: 'Are you at least 18 years old?', correct: 'Yes' },
+    { q: 'Have you ever been convicted of a felony?', correct: 'No' },
+    { q: 'Have you ever been convicted of domestic violence?', correct: 'No' },
+    { q: 'Are you willing to work rotating shifts, including nights and weekends?', correct: 'Yes' }
+  ]},
+  'telecom': { name: 'Telecommunicator – Pre-Screen', questions: [
+    { q: 'Are you eligible to work in the United States?', correct: 'Yes' },
+    { q: 'Are you at least 18 years old?', correct: 'Yes' },
+    { q: 'Have you ever been convicted of a felony?', correct: 'No' },
+    { q: 'Are you able to type at least 35 words per minute?', correct: 'Yes' }
+  ]},
+  'basic': { name: 'Basic Eligibility Check', questions: [
+    { q: 'Are you eligible to work in the United States?', correct: 'Yes' },
+    { q: 'Are you at least 21 years old?', correct: 'Yes' },
+    { q: 'Have you ever been convicted of a felony?', correct: 'No' }
+  ]}
+};
 
 function getQuestion(r) {
   return typeof r.getQ === 'function' ? r.getQ(r.value) : (r.question || '');
 }
 
+function setMode(mode) {
+  currentMode = mode;
+  var isBuild = mode === 'build';
+  document.getElementById('mode-build').className    = 'mode-tab ' + (isBuild ? 'active' : 'inactive');
+  document.getElementById('mode-existing').className = 'mode-tab ' + (isBuild ? 'inactive' : 'active');
+  document.getElementById('existing-panel').style.display  = isBuild ? 'none' : 'block';
+  document.getElementById('req-col-header').style.display  = isBuild ? 'flex' : 'none';
+  document.getElementById('btn-add-req').style.display     = isBuild ? '' : 'none';
+  renderRequirements();
+  if (isBuild) {
+    renderPreview();
+  } else {
+    renderExistingPreview();
+  }
+}
+
 function renderRequirements() {
   var html = requirements.map(function(r) {
-
-    // Value control
     var valueHtml = '';
     if (r.inputType === 'number') {
       valueHtml = '<div style="display:flex;align-items:center;gap:8px;margin-top:4px;">' +
-        '<input type="number" class="input" style="width:72px;padding:5px 8px;font-size:13px;" value="' + r.value + '" min="0"' +
-        ' onchange="updateVal(\'' + r.id + '\',this.value)">' +
+        '<input type="number" class="input" style="width:72px;padding:5px 8px;font-size:13px;" value="' + r.value + '" min="0" onchange="updateVal(\'' + r.id + '\',this.value)">' +
         '<span style="font-size:13px;color:var(--text-2);">' + r.unit + '</span></div>';
     } else if (r.inputType === 'number-opt') {
       valueHtml = '<div style="display:flex;align-items:center;gap:8px;margin-top:4px;">' +
-        '<input type="number" class="input" style="width:72px;padding:5px 8px;font-size:13px;" value="' + r.value + '" min="0" placeholder="—"' +
-        ' onchange="updateVal(\'' + r.id + '\',this.value)">' +
+        '<input type="number" class="input" style="width:72px;padding:5px 8px;font-size:13px;" value="' + r.value + '" min="0" placeholder="—" onchange="updateVal(\'' + r.id + '\',this.value)">' +
         '<span style="font-size:13px;color:var(--text-3);">' + r.unit + '</span></div>';
     } else if (r.inputType === 'select') {
       var opts = r.options.map(function(o) {
@@ -340,30 +403,31 @@ function renderRequirements() {
       valueHtml = '<span class="tag" style="font-size:12px;margin-top:4px;display:inline-block;">' + r.value + '</span>';
     }
 
-    var q = getQuestion(r);
-    var psHtml;
-    if (r.prescreen) {
-      psHtml = '<button class="ps-pill on" onclick="togglePS(\'' + r.id + '\')">● Pre-screen: On</button>';
-      if (q) {
-        psHtml += '<div class="ps-q-preview">"' + q + '"<br><span style="color:#15803d;font-weight:600;font-style:normal;">Correct: ' + r.correctAnswer + '</span></div>';
+    var psCol = '';
+    if (currentMode === 'build') {
+      var q = getQuestion(r);
+      if (r.prescreen) {
+        psCol = '<div>' +
+          '<button class="ps-pill on" onclick="togglePS(\'' + r.id + '\')">● Pre-screen: On</button>' +
+          (q ? '<div class="ps-q-preview">"' + q + '"<br><span style="color:#15803d;font-weight:600;font-style:normal;">Correct: ' + r.correctAnswer + '</span></div>'
+             : '<div class="ps-q-preview" style="color:var(--text-3);">Enter a value to generate question</div>') +
+        '</div>';
       } else {
-        psHtml += '<div class="ps-q-preview" style="color:var(--text-3);">Enter a value to generate question</div>';
+        psCol = '<div><button class="ps-pill off" onclick="togglePS(\'' + r.id + '\')">○ Pre-screen: Off</button></div>';
       }
-    } else {
-      psHtml = '<button class="ps-pill off" onclick="togglePS(\'' + r.id + '\')">○ Pre-screen: Off</button>';
     }
 
     var removeBtn = r.fixed ? '' :
       '<button onclick="removeReq(\'' + r.id + '\')" style="background:none;border:none;color:#ef4444;font-size:18px;cursor:pointer;padding:2px 4px;line-height:1;float:right;" title="Remove">×</button>';
 
-    return '<div class="req-row" id="row-' + r.id + '">' +
+    return '<div class="req-row ' + (currentMode === 'build' ? 'build-mode' : 'existing-mode') + '" id="row-' + r.id + '">' +
       '<div>' +
         '<div class="req-label">' + removeBtn + r.label +
           (r.fixed ? '<span class="fixed-badge">Fixed</span>' : '') +
         '</div>' +
         valueHtml +
       '</div>' +
-      '<div>' + psHtml + '</div>' +
+      psCol +
     '</div>';
   }).join('');
 
@@ -382,19 +446,15 @@ function updateVal(id, val) {
   var r = requirements.filter(function(x){return x.id===id;})[0];
   if (!r) return;
   r.value = val;
-  // Re-render just the preview to avoid losing focus on input
   renderPreview();
-  // Update the question preview text inline if pre-screen is on
-  var q = getQuestion(r);
   var rowEl = document.getElementById('row-' + id);
-  if (rowEl) {
+  if (rowEl && r.prescreen) {
     var previewEl = rowEl.querySelector('.ps-q-preview');
-    if (previewEl && r.prescreen) {
-      if (q) {
-        previewEl.innerHTML = '"' + q + '"<br><span style="color:#15803d;font-weight:600;font-style:normal;">Correct: ' + r.correctAnswer + '</span>';
-      } else {
-        previewEl.innerHTML = '<span style="color:var(--text-3);">Enter a value to generate question</span>';
-      }
+    var q = getQuestion(r);
+    if (previewEl) {
+      previewEl.innerHTML = q
+        ? '"' + q + '"<br><span style="color:#15803d;font-weight:600;font-style:normal;">Correct: ' + r.correctAnswer + '</span>'
+        : '<span style="color:var(--text-3);">Enter a value to generate question</span>';
     }
   }
 }
@@ -409,15 +469,31 @@ function renderPreview() {
   var active = requirements.filter(function(r){return r.prescreen && getQuestion(r);});
   var listEl = document.getElementById('survey-preview-list');
   if (active.length === 0) {
-    listEl.innerHTML = '<p style="color:var(--text-3);font-size:13px;text-align:center;padding:16px 0;">No pre-screen questions active.<br>Toggle <strong>Pre-screen: On</strong> on any requirement.</p>';
+    listEl.innerHTML = '<p style="color:var(--text-3);font-size:13px;text-align:center;padding:16px 0;">No questions active.<br>Toggle <strong>Pre-screen: On</strong> on any requirement.</p>';
     return;
   }
   listEl.innerHTML = active.map(function(r, i) {
-    var q = getQuestion(r);
     return '<div class="survey-q">' +
-      '<div class="survey-q-text">' + (i+1) + '. ' + q + ' <span style="color:var(--tx-red);">*</span></div>' +
+      '<div class="survey-q-text">' + (i+1) + '. ' + getQuestion(r) + ' <span style="color:var(--tx-red);">*</span></div>' +
       '<select class="survey-q-select" disabled><option>Select an option</option><option>Yes</option><option>No</option></select>' +
       '<div><span class="correct-badge">✓ Correct: ' + r.correctAnswer + '</span></div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderExistingPreview() {
+  var val = document.getElementById('existing-select').value;
+  var listEl = document.getElementById('survey-preview-list');
+  if (!val || !existingPrescreens[val]) {
+    listEl.innerHTML = '<p style="color:var(--text-3);font-size:13px;text-align:center;padding:16px 0;">Select a pre-screen above to preview its questions.</p>';
+    return;
+  }
+  var ps = existingPrescreens[val];
+  listEl.innerHTML = ps.questions.map(function(q, i) {
+    return '<div class="survey-q">' +
+      '<div class="survey-q-text">' + (i+1) + '. ' + q.q + ' <span style="color:var(--tx-red);">*</span></div>' +
+      '<select class="survey-q-select" disabled><option>Select an option</option><option>Yes</option><option>No</option></select>' +
+      '<div><span class="correct-badge">✓ Correct: ' + q.correct + '</span></div>' +
     '</div>';
   }).join('');
 }
@@ -438,38 +514,28 @@ function hideAddForm() {
 function autoFillQuestion() {
   var label = document.getElementById('new-label').value.trim();
   var qField = document.getElementById('new-question');
-  if (!qField.dataset.edited) {
-    qField.value = label ? label + '?' : '';
-  }
+  if (!qField.dataset.edited) qField.value = label ? label + '?' : '';
 }
 
 function addCustomRequirement() {
   var label = document.getElementById('new-label').value.trim();
-  var question = document.getElementById('new-question').value.trim();
+  var question = document.getElementById('new-question').value.trim() || (label + '?');
   var passAnswer = document.querySelector('input[name="new-pass"]:checked').value;
   if (!label) { document.getElementById('new-label').focus(); return; }
-  if (!question) question = label + '?';
   var id = 'custom-' + (++customCount);
-  var q = question; // capture for closure
-  requirements.push({
-    id: id, fixed: false,
-    label: label, inputType: 'static', value: '',
-    prescreen: true,
-    getQ: function() { return q; },
-    correctAnswer: passAnswer
-  });
+  var q = question;
+  requirements.push({ id: id, fixed: false, label: label, inputType: 'static', value: '',
+    prescreen: true, getQ: function() { return q; }, correctAnswer: passAnswer });
   hideAddForm();
   renderRequirements();
   renderPreview();
 }
 
-// Mark the question field as manually edited so auto-fill stops
 document.addEventListener('DOMContentLoaded', function() {
   var qf = document.getElementById('new-question');
   if (qf) qf.addEventListener('input', function() { this.dataset.edited = '1'; });
 });
 
-// Init
 renderRequirements();
 renderPreview();
 </script>
