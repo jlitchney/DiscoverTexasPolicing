@@ -60,22 +60,22 @@
       <!-- Initial communication email -->
       <div style="margin-bottom:20px;">
         <label class="field-label">Initial communication email <span class="req">*</span></label>
-        <p style="color:var(--text-2); font-size:13px; margin: 4px 0 14px;">This email is sent to the candidate automatically the moment they apply. Use merge tags like <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{FirstName}</code>, <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{JobTitle}</code>, and <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{AgencyName}</code> to personalize it.</p>
+        <p style="color:var(--text-2); font-size:13px; margin: 4px 0 14px;">This email is sent to the candidate automatically the moment they apply. Use merge tags like <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{{FirstName}}</code>, <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{{JobTitle}}</code>, and <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{{AgencyName}}</code> to personalize it.</p>
         <div style="margin-bottom:10px;">
           <label class="field-label" style="font-weight:400; color:var(--text-2);">Subject line <span class="req">*</span></label>
-          <input class="input" value="Thank you for applying — {AgencyName}" />
+          <input class="input" value="Thank you for applying — {{AgencyName}}" />
         </div>
         <div>
           <label class="field-label" style="font-weight:400; color:var(--text-2);">Email body <span class="req">*</span></label>
-          <textarea class="input" style="min-height:180px;">Hi {FirstName},
+          <textarea class="input" style="min-height:180px;">Hi {{FirstName}},
 
-Thank you for your interest in the {JobTitle} position with {AgencyName}. We've received your application and our recruiting team will be in touch within 5–7 business days to discuss next steps.
+Thank you for your interest in the {{JobTitle}} position with {{AgencyName}}. We've received your application and our recruiting team will be in touch within 5–7 business days to discuss next steps.
 
 In the meantime, if you have any questions please don't hesitate to reach out.
 
 We look forward to speaking with you.
 
-{AgencyName} Recruiting Team</textarea>
+{{AgencyName}} Recruiting Team</textarea>
         </div>
       </div>
 
