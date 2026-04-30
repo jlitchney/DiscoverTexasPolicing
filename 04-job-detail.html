@@ -15,7 +15,30 @@
   <a href="05-applicant-signup.html">Apply Flow</a>
 </div>
 
-<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+<!-- logged-out nav (default) -->
+<nav id="nav-public" style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="01-homepage-v2.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ Law Enforcement Careers in Texas</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:32px;">
+      <a href="02-jobs.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Find Jobs</a>
+      <a href="03-regional-map.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Explore Regions</a>
+      <a href="10-ambassadors.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Ambassadors</a>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="05-applicant-signup.html" class="btn btn-primary">Create Free Profile</a>
+      <a href="06-applicant-dashboard.html" class="btn" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Log In</a>
+    </div>
+  </div>
+</nav>
+
+<!-- logged-in nav (shown when ?auth=1) -->
+<nav id="nav-portal" style="display:none; background:var(--navy-900); border-bottom:3px solid var(--gold);">
   <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
     <a href="01-homepage-v2.html" class="brand" style="text-decoration:none;">
       <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -26,7 +49,7 @@
     </a>
     <div style="display:flex; gap:28px;">
       <a href="06-applicant-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
-      <a href="02-jobs.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Find Jobs</a>
+      <a href="02-jobs.html?auth=1" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Find Jobs</a>
       <a href="06a-applicant-applications.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">My Applications</a>
       <a href="06b-applicant-saved-jobs.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Saved Jobs</a>
       <a href="06c-applicant-profile.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Profile</a>
@@ -38,6 +61,12 @@
     </div>
   </div>
 </nav>
+<script>
+  if (new URLSearchParams(window.location.search).get('auth') === '1') {
+    document.getElementById('nav-public').style.display = 'none';
+    document.getElementById('nav-portal').style.display = 'block';
+  }
+</script>
 
 <section class="section tight">
   <div class="container">
