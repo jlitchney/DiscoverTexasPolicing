@@ -31,8 +31,8 @@
       <a href="09-admin-analytics.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Reports</a>
     </div>
     <div style="display:flex; gap:10px; align-items:center;">
-      <a href="#" class="btn btn-outline btn-sm" style="border-color:rgba(255,255,255,.3); color:#fff;">Save draft</a>
-      <a href="#" class="btn btn-primary btn-sm">Preview &amp; publish</a>
+      <a href="#" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Save draft</a>
+      <a href="08f-post-review.html" class="btn btn-primary btn-sm">Preview &amp; publish</a>
     </div>
   </div>
 </nav>
@@ -123,94 +123,11 @@
           </div>
         </div>
 
-        <!-- Section preview: requirements -->
-        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
-          <span class="eyebrow">Step 2 — preview</span>
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Requirements (collapsed)</h2>
-          <div class="form-grid cols-2">
-            <div><label class="field-label">Minimum age</label><input class="input" value="21 at appointment"/></div>
-            <div><label class="field-label">Education minimum</label><select class="input"><option>HS / GED</option><option>Some college</option><option>Associate</option><option>Bachelor</option></select></div>
-            <div><label class="field-label">Experience required</label><select class="input"><option>None / will train</option><option>1+ year sworn</option><option>3+ years sworn</option><option>5+ years sworn</option></select></div>
-            <div><label class="field-label">License required at hire?</label><select class="input"><option>Yes — TCOLE Peace Officer</option><option>No — academy provided</option></select></div>
-          </div>
-        </div>
-
-        <!-- Section: compensation -->
-        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
-          <span class="eyebrow">Step 3 — preview</span>
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Compensation & benefits</h2>
-          <div class="form-grid cols-2">
-            <div><label class="field-label">Salary minimum (annual) <span class="req">*</span></label><input class="input" value="$74,800"/></div>
-            <div><label class="field-label">Salary maximum (annual) <span class="req">*</span></label><input class="input" value="$112,400"/></div>
-            <div><label class="field-label">Sign-on bonus (optional)</label><input class="input" value="$15,000"/></div>
-            <div><label class="field-label">Pension</label><select class="input"><option>TMRS</option><option>JRS</option><option>ERS</option><option>Local pension</option></select></div>
-          </div>
-          <div style="margin-top:14px;">
-            <label class="field-label">Benefits (check all that apply)</label>
-            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;">
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Take-home vehicle</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Tuition reimbursement</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Bilingual stipend</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Education incentive</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox"> Relocation assistance</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Medical / Dental / Vision</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox"> Take-home K-9</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section: application -->
-        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
-          <span class="eyebrow">Step 4 — preview</span>
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Application path</h2>
-
-          <div class="radio-row">
-            <div class="radio-card checked" data-group="apply"><div class="lbl">Built-in application</div><div class="desc">Receive applications inside DiscoverTexasPolicing's ATS. Fastest setup.</div></div>
-            <div class="radio-card" data-group="apply"><div class="lbl">External link</div><div class="desc">Send candidates to your existing application URL.</div></div>
-          </div>
-
-          <div style="margin-top:14px;">
-            <label class="field-label">Supplemental documents agencies may request</label>
-            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;">
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> Resume</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> DD-214 (if veteran)</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox" checked> TCOLE certification</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox"> Personal History Statement</label>
-              <label class="checkbox" style="padding:0;"><input type="checkbox"> Cover letter</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section: pre-screen -->
-        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
-          <span class="eyebrow">Step 5 — preview</span>
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Pre-screen disqualifiers</h2>
-          <p class="small" style="margin: 0 0 12px;">By default, all postings inherit TPCA/TCOLE-approved high-profile disqualifiers (felony, dishonorable discharge, drug abuse history). Below you may toggle agency-specific additional rules.</p>
-          <div class="form-grid">
-            <label class="checkbox"><input type="checkbox" checked> Use statewide TPCA/TCOLE pre-screen baseline (recommended)</label>
-            <label class="checkbox"><input type="checkbox"> Disqualify if any DWI/DUI within last 7 years</label>
-            <label class="checkbox"><input type="checkbox"> Disqualify if no Texas residency at time of application</label>
-            <label class="checkbox"><input type="checkbox"> Require valid Texas DL Class C minimum at time of application</label>
-            <label class="checkbox"><input type="checkbox" checked> Auto-notify disqualified candidates with reason and resources</label>
-          </div>
-        </div>
-
-        <!-- Section: timeline -->
-        <div class="card" style="padding:24px; margin-bottom:16px; opacity:.8;">
-          <span class="eyebrow">Step 6 — preview</span>
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 12px; font-size: 22px;">Schedule & visibility</h2>
-          <div class="form-grid cols-2">
-            <div><label class="field-label">Open date</label><input class="input" value="2026-04-28"/></div>
-            <div><label class="field-label">Close date</label><input class="input" value="2026-05-31"/></div>
-            <div><label class="field-label">Visibility</label><select class="input"><option>Public — searchable statewide</option><option>Region only</option><option>Internal lateral only</option></select></div>
-          </div>
-        </div>
-
         <div style="display:flex; justify-content:space-between; margin-top:20px;">
           <a href="07-agency-dashboard.html" class="btn btn-ghost">Cancel</a>
           <div style="display:flex; gap:10px;">
             <a href="#" class="btn btn-outline">Save as draft</a>
-            <a href="#" class="btn btn-primary">Preview & publish</a>
+            <a href="08b-post-requirements.html" class="btn btn-primary">Continue: Requirements →</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Post a Job — Step 2: Requirements — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 08b — Post a Job · Step 2: Requirements
+  <a href="index.html">All Mockups</a> |
+  <a href="07-agency-dashboard.html">Agency Dashboard</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--tx-red);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="agency-home.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--tx-red);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:#f5a5a7;">★ Agency Portal</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="07-agency-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
+      <a href="08-post-a-job.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--tx-red); padding-bottom:2px;">Post a Job</a>
+      <a href="#" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Candidates</a>
+      <a href="#" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Shared Pool</a>
+      <a href="09-admin-analytics.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Reports</a>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="#" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Save draft</a>
+      <a href="08f-post-review.html" class="btn btn-primary btn-sm">Preview &amp; publish</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container" style="max-width: 1100px;">
+    <div class="small"><a href="07-agency-dashboard.html">Dashboard</a> › <a href="08-post-a-job.html">Post a Job</a> › Requirements</div>
+    <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 8px 0 6px; font-size: 28px;">Post a job</h1>
+    <p style="color:var(--text-2); margin: 0 0 16px; max-width: 720px;">Use the standardized template below — candidates can search by these fields. All postings are free for TCOLE-licensed Texas agencies.</p>
+
+    <!-- Stepper -->
+    <div class="stepper" style="margin-bottom: 20px;">
+      <div class="step"><div class="dot" style="background:var(--navy-900);color:#fff;font-size:11px;">✓</div><div class="lbl" style="color:var(--navy-900);font-weight:600;">Position basics</div></div>
+      <div class="step active"><div class="dot">2</div><div class="lbl">Requirements</div></div>
+      <div class="step"><div class="dot">3</div><div class="lbl">Compensation</div></div>
+      <div class="step"><div class="dot">4</div><div class="lbl">Application</div></div>
+      <div class="step"><div class="dot">5</div><div class="lbl">Pre-screen rules</div></div>
+      <div class="step"><div class="dot">6</div><div class="lbl">Review &amp; publish</div></div>
+    </div>
+
+    <div class="card" style="padding:24px; margin-bottom:16px;">
+      <span class="eyebrow">Step 2</span>
+      <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 22px;">Requirements</h2>
+      <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 20px;">These fields power candidate filtering. Be as accurate as possible — candidates who don't meet minimums are flagged before they apply.</p>
+
+      <div class="form-grid cols-2">
+        <div>
+          <label class="field-label">Minimum age at appointment <span class="req">*</span></label>
+          <input class="input" value="21" />
+          <div class="help">Texas law requires peace officers to be at least 21 at time of appointment.</div>
+        </div>
+        <div>
+          <label class="field-label">Education minimum <span class="req">*</span></label>
+          <select class="input">
+            <option selected>High school diploma or GED</option>
+            <option>30+ college credit hours</option>
+            <option>60+ college credit hours</option>
+            <option>Associate degree</option>
+            <option>Bachelor's degree</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Experience required <span class="req">*</span></label>
+          <select class="input">
+            <option selected>None — Entry / will train</option>
+            <option>Lateral: 1+ year sworn</option>
+            <option>Lateral: 3+ years sworn</option>
+            <option>Lateral: 5+ years sworn</option>
+          </select>
+          <div class="help">Select the minimum for this posting. If accepting both entry and lateral, choose "None."</div>
+        </div>
+        <div>
+          <label class="field-label">TCOLE license required at hire? <span class="req">*</span></label>
+          <select class="input">
+            <option selected>No — paid academy provided</option>
+            <option>Yes — TCOLE Peace Officer</option>
+            <option>Yes — TCOLE Jailer</option>
+            <option>Yes — TCOLE Telecommunicator</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Texas driver's license</label>
+          <select class="input">
+            <option selected>Class C minimum required at appointment</option>
+            <option>Class A or B required</option>
+            <option>Not required</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Physical fitness assessment</label>
+          <select class="input">
+            <option selected>POPAT (Peace Officer Physical Aptitude Test)</option>
+            <option>APFT (Army Physical Fitness Test)</option>
+            <option>Department's own fitness test</option>
+            <option>None required</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Vision standard</label>
+          <input class="input" value="Correctable to 20/20 in each eye" />
+        </div>
+        <div>
+          <label class="field-label">Residency requirement</label>
+          <select class="input">
+            <option>None</option>
+            <option selected>Within 30 miles of duty station at hire</option>
+            <option>Within city limits at hire</option>
+            <option>Within county at hire</option>
+            <option>Texas resident required</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="spacer-16"></div>
+
+      <div>
+        <label class="field-label">Additional requirements</label>
+        <textarea class="input" style="min-height:80px;" placeholder="Any other requirements not covered above (e.g. bilingual preferred, specific certifications, background conditions)…">No felony convictions; no Class A misdemeanor involving moral turpitude. Honorable military discharge required (if applicable). Pass psychological evaluation, polygraph, drug screen, and comprehensive background investigation.</textarea>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; margin-top:20px;">
+      <a href="08-post-a-job.html" class="btn btn-ghost">← Position basics</a>
+      <div style="display:flex; gap:10px;">
+        <a href="#" class="btn btn-outline">Save as draft</a>
+        <a href="08c-post-compensation.html" class="btn btn-primary">Continue: Compensation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Candidates</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
