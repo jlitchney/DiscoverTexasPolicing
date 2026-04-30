@@ -173,13 +173,13 @@
           <!-- Mode toggle -->
           <div style="display:flex; background:#f1f5f9; border-radius:8px; padding:3px; gap:2px; margin-bottom:20px;">
             <button id="mode-build" class="mode-tab active" onclick="setMode('build')">Build from requirements</button>
-            <button id="mode-existing" class="mode-tab inactive" onclick="setMode('existing')">Use existing pre-screen</button>
+            <button id="mode-existing" class="mode-tab inactive" onclick="setMode('existing')">Custom pre-screen (pro feature)</button>
           </div>
 
           <!-- Build mode: existing pre-screen selector -->
           <div id="existing-panel" style="display:none; margin-bottom:20px;">
             <div>
-              <label class="field-label">Select a pre-screen from All-Star Recruiter</label>
+              <label class="field-label">Select a custom pre-screen from All-Star Recruiter</label>
               <select id="existing-select" class="input" onchange="renderExistingPreview()" style="margin-top:4px;">
                 <option value="">— Select a pre-screen —</option>
                 <option value="po">Police Officer – Pre-Screen (6 questions)</option>
