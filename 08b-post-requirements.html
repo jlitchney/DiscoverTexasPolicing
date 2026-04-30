@@ -5,11 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Post a Job — Step 2: Requirements — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+.req-row {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+}
+.req-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy-900);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.fixed-badge {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-3);
+  background: #f1f5f9;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+.ps-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  width: 100%;
+  justify-content: center;
+  transition: all .12s;
+}
+.ps-pill.on  { background: #dcfce7; color: #15803d; border-color: #86efac; }
+.ps-pill.off { background: #f1f5f9; color: var(--text-3); border-color: #e2e8f0; }
+.ps-q-preview {
+  font-size: 11.5px;
+  color: var(--text-2);
+  font-style: italic;
+  margin-top: 6px;
+  line-height: 1.4;
+  padding: 6px 10px;
+  background: #f8faff;
+  border-radius: 6px;
+  border-left: 3px solid #c7d7f9;
+}
+.survey-q {
+  background: #fff;
+  border: 1px solid #dde6f5;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+}
+.survey-q-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.survey-q-select {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fff;
+  color: var(--text-3);
+}
+.correct-badge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+</style>
 </head>
 <body>
 
 <div class="mock-bar">
-  Mockup 08b — Post a Job · Step 2: Requirements
+  Mockup 08b — Post a Job · Step 2: Requirements &amp; Pre-screen
   <a href="index.html">All Mockups</a> |
   <a href="07-agency-dashboard.html">Agency Dashboard</a>
 </div>
@@ -38,7 +126,7 @@
 </nav>
 
 <section class="section tight">
-  <div class="container" style="max-width: 1100px;">
+  <div class="container" style="max-width: 1200px;">
     <div class="small"><a href="07-agency-dashboard.html">Dashboard</a> › <a href="08-post-a-job.html">Post a Job</a> › Requirements</div>
     <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 8px 0 6px; font-size: 28px;">Post a job</h1>
     <p style="color:var(--text-2); margin: 0 0 16px; max-width: 720px;">Use the standardized template below — candidates can search by these fields. All postings are free for TCOLE-licensed Texas agencies.</p>
@@ -53,85 +141,78 @@
       <div class="step"><div class="dot">6</div><div class="lbl">Review &amp; publish</div></div>
     </div>
 
-    <div class="card" style="padding:24px; margin-bottom:16px;">
-      <span class="eyebrow">Step 2</span>
-      <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 22px;">Requirements</h2>
-      <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 20px;">These fields power candidate filtering. Be as accurate as possible — candidates who don't meet minimums are flagged before they apply.</p>
+    <!-- Two-column layout -->
+    <div style="display:grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: flex-start;">
 
-      <div class="form-grid cols-2">
-        <div>
-          <label class="field-label">Minimum age at appointment <span class="req">*</span></label>
-          <input class="input" value="21" />
-          <div class="help">Texas law requires peace officers to be at least 21 at time of appointment.</div>
-        </div>
-        <div>
-          <label class="field-label">Education minimum <span class="req">*</span></label>
-          <select class="input">
-            <option selected>High school diploma or GED</option>
-            <option>30+ college credit hours</option>
-            <option>60+ college credit hours</option>
-            <option>Associate degree</option>
-            <option>Bachelor's degree</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Experience required <span class="req">*</span></label>
-          <select class="input">
-            <option selected>None — Entry / will train</option>
-            <option>Lateral: 1+ year sworn</option>
-            <option>Lateral: 3+ years sworn</option>
-            <option>Lateral: 5+ years sworn</option>
-          </select>
-          <div class="help">Select the minimum for this posting. If accepting both entry and lateral, choose "None."</div>
-        </div>
-        <div>
-          <label class="field-label">TCOLE license required at hire? <span class="req">*</span></label>
-          <select class="input">
-            <option selected>No — paid academy provided</option>
-            <option>Yes — TCOLE Peace Officer</option>
-            <option>Yes — TCOLE Jailer</option>
-            <option>Yes — TCOLE Telecommunicator</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Texas driver's license</label>
-          <select class="input">
-            <option selected>Class C minimum required at appointment</option>
-            <option>Class A or B required</option>
-            <option>Not required</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Physical fitness assessment</label>
-          <select class="input">
-            <option selected>POPAT (Peace Officer Physical Aptitude Test)</option>
-            <option>APFT (Army Physical Fitness Test)</option>
-            <option>Department's own fitness test</option>
-            <option>None required</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Vision standard</label>
-          <input class="input" value="Correctable to 20/20 in each eye" />
-        </div>
-        <div>
-          <label class="field-label">Residency requirement</label>
-          <select class="input">
-            <option>None</option>
-            <option selected>Within 30 miles of duty station at hire</option>
-            <option>Within city limits at hire</option>
-            <option>Within county at hire</option>
-            <option>Texas resident required</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="spacer-16"></div>
-
+      <!-- Left: Requirements builder -->
       <div>
-        <label class="field-label">Additional requirements</label>
-        <textarea class="input" style="min-height:80px;" placeholder="Any other requirements not covered above (e.g. bilingual preferred, specific certifications, background conditions)…">No felony convictions; no Class A misdemeanor involving moral turpitude. Honorable military discharge required (if applicable). Pass psychological evaluation, polygraph, drug screen, and comprehensive background investigation.</textarea>
+        <div class="card" style="padding:24px;">
+          <span class="eyebrow">Step 2</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 22px;">Requirements &amp; Pre-screen</h2>
+          <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 6px;">Set each requirement and choose which ones generate a pre-screen question candidates must answer before applying. Toggling <strong>Pre-screen: On</strong> adds that question to the candidate survey and syncs it to your All-Star Recruiter account.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0 8px; border-bottom: 2px solid var(--border); margin-bottom:4px;">
+            <span style="font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Requirement</span>
+            <span style="font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Add to pre-screen</span>
+          </div>
+
+          <div id="req-list"></div>
+
+          <!-- Add custom requirement -->
+          <div style="padding-top:16px; margin-top:4px;">
+            <button id="btn-add-req" onclick="showAddForm()" class="btn btn-outline btn-sm">+ Add a requirement</button>
+
+            <div id="add-req-form" style="display:none; margin-top:14px; background:#f8faff; border:1px solid #dde6f5; border-radius:var(--radius-lg); padding:18px 20px;">
+              <div style="font-weight:600; color:var(--navy-900); font-size:14px; margin-bottom:14px;">Add a custom requirement</div>
+              <div class="form-grid" style="gap:10px;">
+                <div>
+                  <label class="field-label">Requirement label <span class="req">*</span></label>
+                  <input id="new-label" class="input" placeholder="e.g. Bilingual (Spanish/English)" oninput="autoFillQuestion()" />
+                  <div class="help">Shown on the job posting as a listed requirement.</div>
+                </div>
+                <div>
+                  <label class="field-label">Pre-screen question</label>
+                  <input id="new-question" class="input" placeholder="e.g. Are you fluent in both Spanish and English?" />
+                  <div class="help">Auto-filled from the label — edit as needed.</div>
+                </div>
+                <div>
+                  <label class="field-label">Passing answer</label>
+                  <div style="display:flex; gap:16px; margin-top:4px;">
+                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;">
+                      <input type="radio" name="new-pass" value="Yes" checked> Yes
+                    </label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer;">
+                      <input type="radio" name="new-pass" value="No"> No
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:14px; justify-content:flex-end;">
+                <button onclick="hideAddForm()" class="btn btn-outline btn-sm">Cancel</button>
+                <button onclick="addCustomRequirement()" class="btn btn-primary btn-sm">Add requirement</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Right: Survey preview -->
+      <aside>
+        <div class="card" style="position:sticky; top:96px; padding:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
+            <h4 style="margin:0; color:var(--navy-900); font-size:14px;">Pre-screen survey preview</h4>
+            <span class="tag green" style="font-size:10px; white-space:nowrap;">Synced via API</span>
+          </div>
+          <p style="color:var(--text-2); font-size:12.5px; margin: 0 0 14px;">How candidates see the survey when they apply.</p>
+
+          <div id="survey-preview-list"></div>
+
+          <div style="background:#f0f4ff; border:1px solid #c7d7f9; border-radius:var(--radius); padding:10px 12px; margin-top:8px;">
+            <div style="font-size:12px; color:var(--navy-900); font-weight:600; margin-bottom:2px;">Connected to All-Star Recruiter</div>
+            <div style="font-size:11.5px; color:var(--text-2);">These questions sync automatically when the posting is published. Pass/fail evaluation is set to <strong>Pass/Fail Assessment</strong> mode.</div>
+          </div>
+        </div>
+      </aside>
     </div>
 
     <div style="display:flex; justify-content:space-between; margin-top:20px;">
@@ -168,5 +249,229 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+var requirements = [
+  {
+    id: 'min-age', fixed: true,
+    label: 'Minimum age',
+    inputType: 'number', value: '21', unit: 'years at appointment',
+    prescreen: true,
+    getQ: function(v) { return 'Are you at least ' + (v || '?') + ' years old?'; },
+    correctAnswer: 'Yes'
+  },
+  {
+    id: 'max-age', fixed: true,
+    label: 'Maximum age',
+    inputType: 'number-opt', value: '', unit: 'years (leave blank if none)',
+    prescreen: false,
+    getQ: function(v) { return v ? 'Are you ' + v + ' years of age or younger?' : ''; },
+    correctAnswer: 'Yes'
+  },
+  {
+    id: 'education', fixed: true,
+    label: 'Education minimum',
+    inputType: 'select', value: 'High school diploma or GED',
+    options: ['High school diploma or GED', '30+ college credit hours', '60+ college credit hours', "Associate's degree", "Bachelor's degree"],
+    prescreen: true,
+    getQ: function(v) { return 'Do you have a ' + v + ' or higher?'; },
+    correctAnswer: 'Yes'
+  },
+  {
+    id: 'citizenship', fixed: true,
+    label: 'U.S. citizenship',
+    inputType: 'static', value: 'Required',
+    prescreen: true,
+    getQ: function() { return 'Are you a U.S. citizen or legally authorized to work in the United States?'; },
+    correctAnswer: 'Yes'
+  },
+  {
+    id: 'drivers-license', fixed: true,
+    label: "Driver's license",
+    inputType: 'static', value: 'Required',
+    prescreen: true,
+    getQ: function() { return 'Do you possess a valid driver\'s license?'; },
+    correctAnswer: 'Yes'
+  },
+  {
+    id: 'military', fixed: true,
+    label: 'Military discharge',
+    inputType: 'static', value: 'Honorable only',
+    prescreen: true,
+    getQ: function() { return 'Have you ever received a less than honorable discharge from the military?'; },
+    correctAnswer: 'No'
+  },
+  {
+    id: 'felony', fixed: true,
+    label: 'Felony convictions',
+    inputType: 'static', value: 'None allowed',
+    prescreen: true,
+    getQ: function() { return 'Have you ever been convicted of a felony?'; },
+    correctAnswer: 'No'
+  }
+];
+
+var customCount = 0;
+
+function getQuestion(r) {
+  return typeof r.getQ === 'function' ? r.getQ(r.value) : (r.question || '');
+}
+
+function renderRequirements() {
+  var html = requirements.map(function(r) {
+
+    // Value control
+    var valueHtml = '';
+    if (r.inputType === 'number') {
+      valueHtml = '<div style="display:flex;align-items:center;gap:8px;margin-top:4px;">' +
+        '<input type="number" class="input" style="width:72px;padding:5px 8px;font-size:13px;" value="' + r.value + '" min="0"' +
+        ' onchange="updateVal(\'' + r.id + '\',this.value)">' +
+        '<span style="font-size:13px;color:var(--text-2);">' + r.unit + '</span></div>';
+    } else if (r.inputType === 'number-opt') {
+      valueHtml = '<div style="display:flex;align-items:center;gap:8px;margin-top:4px;">' +
+        '<input type="number" class="input" style="width:72px;padding:5px 8px;font-size:13px;" value="' + r.value + '" min="0" placeholder="—"' +
+        ' onchange="updateVal(\'' + r.id + '\',this.value)">' +
+        '<span style="font-size:13px;color:var(--text-3);">' + r.unit + '</span></div>';
+    } else if (r.inputType === 'select') {
+      var opts = r.options.map(function(o) {
+        return '<option' + (o === r.value ? ' selected' : '') + '>' + o + '</option>';
+      }).join('');
+      valueHtml = '<select class="input" style="font-size:13px;padding:5px 8px;margin-top:4px;" onchange="updateVal(\'' + r.id + '\',this.value)">' + opts + '</select>';
+    } else {
+      valueHtml = '<span class="tag" style="font-size:12px;margin-top:4px;display:inline-block;">' + r.value + '</span>';
+    }
+
+    var q = getQuestion(r);
+    var psHtml;
+    if (r.prescreen) {
+      psHtml = '<button class="ps-pill on" onclick="togglePS(\'' + r.id + '\')">● Pre-screen: On</button>';
+      if (q) {
+        psHtml += '<div class="ps-q-preview">"' + q + '"<br><span style="color:#15803d;font-weight:600;font-style:normal;">Correct: ' + r.correctAnswer + '</span></div>';
+      } else {
+        psHtml += '<div class="ps-q-preview" style="color:var(--text-3);">Enter a value to generate question</div>';
+      }
+    } else {
+      psHtml = '<button class="ps-pill off" onclick="togglePS(\'' + r.id + '\')">○ Pre-screen: Off</button>';
+    }
+
+    var removeBtn = r.fixed ? '' :
+      '<button onclick="removeReq(\'' + r.id + '\')" style="background:none;border:none;color:#ef4444;font-size:18px;cursor:pointer;padding:2px 4px;line-height:1;float:right;" title="Remove">×</button>';
+
+    return '<div class="req-row" id="row-' + r.id + '">' +
+      '<div>' +
+        '<div class="req-label">' + removeBtn + r.label +
+          (r.fixed ? '<span class="fixed-badge">Fixed</span>' : '') +
+        '</div>' +
+        valueHtml +
+      '</div>' +
+      '<div>' + psHtml + '</div>' +
+    '</div>';
+  }).join('');
+
+  document.getElementById('req-list').innerHTML = html;
+}
+
+function togglePS(id) {
+  var r = requirements.filter(function(x){return x.id===id;})[0];
+  if (!r) return;
+  r.prescreen = !r.prescreen;
+  renderRequirements();
+  renderPreview();
+}
+
+function updateVal(id, val) {
+  var r = requirements.filter(function(x){return x.id===id;})[0];
+  if (!r) return;
+  r.value = val;
+  // Re-render just the preview to avoid losing focus on input
+  renderPreview();
+  // Update the question preview text inline if pre-screen is on
+  var q = getQuestion(r);
+  var rowEl = document.getElementById('row-' + id);
+  if (rowEl) {
+    var previewEl = rowEl.querySelector('.ps-q-preview');
+    if (previewEl && r.prescreen) {
+      if (q) {
+        previewEl.innerHTML = '"' + q + '"<br><span style="color:#15803d;font-weight:600;font-style:normal;">Correct: ' + r.correctAnswer + '</span>';
+      } else {
+        previewEl.innerHTML = '<span style="color:var(--text-3);">Enter a value to generate question</span>';
+      }
+    }
+  }
+}
+
+function removeReq(id) {
+  requirements = requirements.filter(function(r){return r.id!==id;});
+  renderRequirements();
+  renderPreview();
+}
+
+function renderPreview() {
+  var active = requirements.filter(function(r){return r.prescreen && getQuestion(r);});
+  var listEl = document.getElementById('survey-preview-list');
+  if (active.length === 0) {
+    listEl.innerHTML = '<p style="color:var(--text-3);font-size:13px;text-align:center;padding:16px 0;">No pre-screen questions active.<br>Toggle <strong>Pre-screen: On</strong> on any requirement.</p>';
+    return;
+  }
+  listEl.innerHTML = active.map(function(r, i) {
+    var q = getQuestion(r);
+    return '<div class="survey-q">' +
+      '<div class="survey-q-text">' + (i+1) + '. ' + q + ' <span style="color:var(--tx-red);">*</span></div>' +
+      '<select class="survey-q-select" disabled><option>Select an option</option><option>Yes</option><option>No</option></select>' +
+      '<div><span class="correct-badge">✓ Correct: ' + r.correctAnswer + '</span></div>' +
+    '</div>';
+  }).join('');
+}
+
+function showAddForm() {
+  document.getElementById('add-req-form').style.display = 'block';
+  document.getElementById('btn-add-req').style.display = 'none';
+  document.getElementById('new-label').focus();
+}
+
+function hideAddForm() {
+  document.getElementById('add-req-form').style.display = 'none';
+  document.getElementById('btn-add-req').style.display = '';
+  document.getElementById('new-label').value = '';
+  document.getElementById('new-question').value = '';
+}
+
+function autoFillQuestion() {
+  var label = document.getElementById('new-label').value.trim();
+  var qField = document.getElementById('new-question');
+  if (!qField.dataset.edited) {
+    qField.value = label ? label + '?' : '';
+  }
+}
+
+function addCustomRequirement() {
+  var label = document.getElementById('new-label').value.trim();
+  var question = document.getElementById('new-question').value.trim();
+  var passAnswer = document.querySelector('input[name="new-pass"]:checked').value;
+  if (!label) { document.getElementById('new-label').focus(); return; }
+  if (!question) question = label + '?';
+  var id = 'custom-' + (++customCount);
+  var q = question; // capture for closure
+  requirements.push({
+    id: id, fixed: false,
+    label: label, inputType: 'static', value: '',
+    prescreen: true,
+    getQ: function() { return q; },
+    correctAnswer: passAnswer
+  });
+  hideAddForm();
+  renderRequirements();
+  renderPreview();
+}
+
+// Mark the question field as manually edited so auto-fill stops
+document.addEventListener('DOMContentLoaded', function() {
+  var qf = document.getElementById('new-question');
+  if (qf) qf.addEventListener('input', function() { this.dataset.edited = '1'; });
+});
+
+// Init
+renderRequirements();
+renderPreview();
+</script>
 </body>
 </html>
