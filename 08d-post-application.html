@@ -54,25 +54,44 @@
 
     <div class="card" style="padding:24px; margin-bottom:16px;">
       <span class="eyebrow">Step 4</span>
-      <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 22px;">Application path</h2>
-      <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 20px;">Choose how candidates submit their application and what documents they'll need to provide.</p>
+      <h2 style="font-family:var(--font-display); color:var(--navy-900); margin: 4px 0 4px; font-size: 22px;">Application &amp; communication</h2>
+      <p style="color:var(--text-2); font-size:13.5px; margin: 0 0 20px;">Set the posting schedule, configure what candidates submit, and write the message they receive the moment they apply.</p>
 
+      <!-- Initial communication email -->
       <div style="margin-bottom:20px;">
-        <label class="field-label">How will candidates apply? <span class="req">*</span></label>
-        <div class="radio-row" style="margin-top:8px;">
-          <div class="radio-card checked" data-group="apply">
-            <div class="lbl">Built-in application</div>
-            <div class="desc">Candidates apply through DiscoverTexasPolicing. Applications land directly in your agency dashboard. No external system needed.</div>
-          </div>
-          <div class="radio-card" data-group="apply">
-            <div class="lbl">External link</div>
-            <div class="desc">Candidates are redirected to your existing applicant tracking system or city/county HR portal.</div>
-          </div>
+        <label class="field-label">Initial communication email <span class="req">*</span></label>
+        <p style="color:var(--text-2); font-size:13px; margin: 4px 0 14px;">This email is sent to the candidate automatically the moment they apply. Use merge tags like <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{FirstName}</code>, <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{JobTitle}</code>, and <code style="background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px;">{AgencyName}</code> to personalize it.</p>
+        <div style="margin-bottom:10px;">
+          <label class="field-label" style="font-weight:400; color:var(--text-2);">Subject line <span class="req">*</span></label>
+          <input class="input" value="Thank you for applying — {AgencyName}" />
         </div>
-        <div id="external-url" style="margin-top:12px; display:none;">
-          <label class="field-label">External application URL <span class="req">*</span></label>
-          <input class="input" placeholder="https://cityofsanantonio.gov/apply/sapd-officer" />
+        <div>
+          <label class="field-label" style="font-weight:400; color:var(--text-2);">Email body <span class="req">*</span></label>
+          <textarea class="input" style="min-height:180px;">Hi {FirstName},
+
+Thank you for your interest in the {JobTitle} position with {AgencyName}. We've received your application and our recruiting team will be in touch within 5–7 business days to discuss next steps.
+
+In the meantime, if you have any questions please don't hesitate to reach out.
+
+We look forward to speaking with you.
+
+{AgencyName} Recruiting Team</textarea>
         </div>
+      </div>
+
+      <!-- SMS upsell -->
+      <div style="background:linear-gradient(135deg,#faf5ff 0%,#f5f0ff 100%); border:1px solid #d8b4fe; border-radius:var(--radius-lg); padding:18px 20px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+          <strong style="color:#7c3aed; font-size:14px;">SMS follow-up</strong>
+          <span style="font-size:10px; font-weight:700; background:#ede9fe; color:#7c3aed; padding:2px 8px; border-radius:10px; letter-spacing:.04em;">PRO FEATURE</span>
+        </div>
+        <p style="font-size:13px; color:#6b21a8; margin:0 0 10px;">Reach candidates instantly with an automated text message sent alongside the confirmation email:</p>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:13px; color:#581c87; margin-bottom:14px;">
+          <div style="display:flex; align-items:flex-start; gap:8px;"><span style="color:#a855f7;">●</span><span><strong>Instant SMS confirmation</strong> — candidates get a text the moment they apply, keeping your agency top of mind</span></div>
+          <div style="display:flex; align-items:flex-start; gap:8px;"><span style="color:#a855f7;">●</span><span><strong>Custom message</strong> — write your own SMS copy with the same merge tags as the email</span></div>
+          <div style="display:flex; align-items:flex-start; gap:8px;"><span style="color:#a855f7;">●</span><span><strong>Two-way opt-in</strong> — candidates can reply to continue the conversation directly in All-Star Recruiter</span></div>
+        </div>
+        <a href="crm-pricing.html" class="btn btn-sm" style="background:#7c3aed; color:#fff; border:none; text-decoration:none;">View plans &amp; pricing →</a>
       </div>
 
       <div style="border-top:1px solid var(--border); padding-top:20px; margin-bottom:20px;">
