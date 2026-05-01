@@ -33,6 +33,26 @@
 .cert-cadet { background:#dcfce7; color:#15803d; }
 .avail-now { color:#15803d; font-weight:600; font-size:12px; }
 .avail-soon { color:#b45309; font-weight:600; font-size:12px; }
+
+/* Modal */
+.modal-backdrop {
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,.45);
+  z-index:1000; align-items:center; justify-content:center;
+}
+.modal-backdrop.open { display:flex; }
+.modal-box {
+  background:#fff; border-radius:var(--radius-lg); padding:28px 32px;
+  width:100%; max-width:500px; box-shadow:0 16px 48px rgba(0,0,0,.2);
+  position:relative;
+}
+.modal-posting {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:8px; cursor:pointer; transition:border-color .1s, background .1s;
+}
+.modal-posting:hover { border-color:#3b82f6; background:#f8faff; }
+.modal-posting input[type=radio] { margin-top:3px; flex-shrink:0; }
+.modal-posting.selected { border-color:#3b82f6; background:#f0f7ff; }
 </style>
 </head>
 <body>
@@ -94,6 +114,7 @@
         <div class="card" style="padding:20px;">
           <h4 style="margin:0 0 14px; color:var(--navy-900); font-size:14px; font-weight:700;">Filter candidates</h4>
           <div class="form-grid" style="gap:12px;">
+
             <div>
               <label class="field-label">Certification type</label>
               <select class="input">
@@ -104,8 +125,22 @@
                 <option>Cadet / In-training</option>
               </select>
             </div>
+
             <div>
-              <label class="field-label">Region preference</label>
+              <label class="field-label">Position type <span style="font-size:10px; font-weight:400; color:var(--text-3);">— from candidate profile</span></label>
+              <select class="input">
+                <option>Any position</option>
+                <option>Patrol Officer</option>
+                <option>Deputy Sheriff</option>
+                <option>School Resource Officer</option>
+                <option>Telecommunicator / Dispatcher</option>
+                <option>Detention Officer</option>
+                <option>Cadet / Entry-level</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label">Region open to</label>
               <select class="input">
                 <option selected>Alamo (San Antonio)</option>
                 <option>Open to statewide</option>
@@ -114,25 +149,29 @@
                 <option>Gulf Coast (Houston)</option>
               </select>
             </div>
+
             <div>
-              <label class="field-label">Experience level</label>
+              <label class="field-label">LE experience</label>
               <select class="input">
                 <option>Any experience</option>
-                <option>Lateral — 1+ years</option>
-                <option>Lateral — 3+ years</option>
-                <option>Lateral — 5+ years</option>
-                <option>Entry / Cadet</option>
+                <option>Entry-level (no prior)</option>
+                <option>1–2 years</option>
+                <option>3–5 years</option>
+                <option>5+ years</option>
               </select>
             </div>
+
             <div>
               <label class="field-label">Availability</label>
               <select class="input">
                 <option>Any availability</option>
-                <option>Available now</option>
-                <option>Available within 30 days</option>
-                <option>Available within 90 days</option>
+                <option>Available now (immediate)</option>
+                <option>Within 30 days</option>
+                <option>Within 60 days</option>
+                <option>Within 90 days</option>
               </select>
             </div>
+
             <div>
               <label class="field-label">Last active</label>
               <select class="input">
@@ -142,8 +181,14 @@
                 <option>Within 90 days</option>
               </select>
             </div>
+
             <button class="btn btn-secondary">Apply filters</button>
             <a href="#" class="small" style="text-align:center;">Clear all filters</a>
+          </div>
+
+          <!-- Position type note -->
+          <div style="margin-top:14px; padding:10px 12px; background:#f8faff; border:1px solid #c7d7f9; border-radius:var(--radius); font-size:12px; color:#1d4e89;">
+            <strong>About position type:</strong> Candidates set their preferred positions in their candidate profile. Only candidates who have filled in this field will appear when this filter is active.
           </div>
         </div>
 
@@ -154,10 +199,10 @@
             <span style="font-size:10px; font-weight:700; background:#ede9fe; color:#7c3aed; padding:2px 6px; border-radius:10px;">UPGRADE</span>
           </div>
           <div style="font-size:12.5px; color:#6b21a8; margin-bottom:10px; display:flex; flex-direction:column; gap:5px;">
-            <div>● Bulk outreach to matched candidates</div>
+            <div>● Bulk invite to multiple candidates</div>
             <div>● Save search alerts (notify on new matches)</div>
             <div>● See full contact details &amp; resume</div>
-            <div>● Advanced filters: GPA, languages, skills</div>
+            <div>● Advanced filters: languages, salary range, relocation</div>
           </div>
           <a href="crm-pricing.html" class="btn btn-sm" style="background:#7c3aed; color:#fff; border:none; text-decoration:none; width:100%; text-align:center; display:block;">View plans &amp; pricing →</a>
         </div>
@@ -186,13 +231,14 @@
               <div style="margin-left:auto;"><span class="cert-badge cert-peace">Peace Officer</span></div>
             </div>
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
-              <div>📍 Alamo (San Antonio)</div>
-              <div>⏱ 3 years sworn experience</div>
-              <div>🎓 TCOLE Licensed · Class C DL</div>
+              <div>📍 Alamo (San Antonio) · open to statewide</div>
+              <div>⏱ 3 years LE experience</div>
+              <div>🎓 TCOLE Licensed · B.S. Criminal Justice</div>
+              <div>🎯 Interested in: Patrol Officer, SRO</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-now">● Available now</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('J. K.')">Invite to apply</button>
             </div>
           </div>
 
@@ -207,12 +253,13 @@
             </div>
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Statewide (prefers Alamo)</div>
-              <div>⏱ 7 years sworn experience</div>
-              <div>🎓 TCOLE Licensed · Bilingual (ES)</div>
+              <div>⏱ 7 years LE experience</div>
+              <div>🎓 TCOLE Licensed · Bilingual (English / Spanish)</div>
+              <div>🎯 Interested in: Patrol Officer, Deputy Sheriff</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-now">● Available now</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('A. M.')">Invite to apply</button>
             </div>
           </div>
 
@@ -228,11 +275,12 @@
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Alamo (San Antonio)</div>
               <div>⏱ 4 years dispatch experience</div>
-              <div>🎓 TCOLE Licensed · 50 WPM</div>
+              <div>🎓 TCOLE Licensed · Associate's degree</div>
+              <div>🎯 Interested in: Telecommunicator / Dispatcher</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-now">● Available now</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('K. R.')">Invite to apply</button>
             </div>
           </div>
 
@@ -247,12 +295,13 @@
             </div>
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Alamo (San Antonio)</div>
-              <div>⏱ Entry level · No prior license</div>
-              <div>🎓 Bachelor's — Criminal Justice</div>
+              <div>⏱ Entry-level (no prior LE)</div>
+              <div>🎓 B.S. Criminal Justice · U.S. Citizen</div>
+              <div>🎯 Interested in: Cadet / Entry-level, Patrol Officer</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-now">● Available now</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('D. W.')">Invite to apply</button>
             </div>
           </div>
 
@@ -268,11 +317,12 @@
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Alamo / South Texas</div>
               <div>⏱ 2 years detention experience</div>
-              <div>🎓 TCOLE Licensed · Bilingual (ES)</div>
+              <div>🎓 TCOLE Licensed · Bilingual (English / Spanish)</div>
+              <div>🎯 Interested in: Detention Officer, Patrol Officer</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-soon">◐ Available in 30 days</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('L. P.')">Invite to apply</button>
             </div>
           </div>
 
@@ -287,12 +337,13 @@
             </div>
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Gulf Coast (open to Alamo)</div>
-              <div>⏱ 5 years sworn · SWAT trained</div>
-              <div>🎓 TCOLE Licensed · Veteran (Army)</div>
+              <div>⏱ 5 years LE experience</div>
+              <div>🎓 TCOLE Licensed · U.S. Army Veteran (Honorable)</div>
+              <div>🎯 Interested in: Patrol Officer, Deputy Sheriff</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-soon">◐ Available in 45 days</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('N. B.')">Invite to apply</button>
             </div>
           </div>
 
@@ -307,12 +358,13 @@
             </div>
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Statewide</div>
-              <div>⏱ 2 years CAD experience</div>
-              <div>🎓 TCOLE Certified · Associate's</div>
+              <div>⏱ 2 years dispatch experience</div>
+              <div>🎓 TCOLE Certified · Associate's degree</div>
+              <div>🎯 Interested in: Telecommunicator / Dispatcher</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-now">● Available now</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('R. S.')">Invite to apply</button>
             </div>
           </div>
 
@@ -327,12 +379,13 @@
             </div>
             <div style="font-size:13px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
               <div>📍 Open to statewide</div>
-              <div>⏱ Entry level · Military background</div>
-              <div>🎓 DD-214 (Honorable) · Some college</div>
+              <div>⏱ Entry-level · U.S. Army (Honorable Discharge)</div>
+              <div>🎓 Some college · U.S. Citizen</div>
+              <div>🎯 Interested in: Cadet / Entry-level, Patrol Officer</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="avail-now">● Available now</span>
-              <button class="btn btn-primary btn-sm">Add to pipeline</button>
+              <button class="btn btn-outline btn-sm" onclick="openInviteModal('M. T.')">Invite to apply</button>
             </div>
           </div>
 
@@ -355,6 +408,57 @@
     </div>
   </div>
 </section>
+
+<!-- Invite to Apply Modal -->
+<div class="modal-backdrop" id="invite-modal" onclick="closeInviteModal(event)">
+  <div class="modal-box">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+      <div>
+        <h2 style="font-family:var(--font-display); color:var(--navy-900); font-size:20px; margin:0 0 4px;">Invite to Apply</h2>
+        <p style="color:var(--text-2); font-size:13.5px; margin:0;">Candidate: <strong id="modal-candidate-name"></strong></p>
+      </div>
+      <button onclick="closeInviteModal()" style="background:none; border:none; font-size:20px; color:var(--text-3); cursor:pointer; padding:0 0 0 16px; line-height:1;">×</button>
+    </div>
+
+    <p style="color:var(--text-2); font-size:13px; margin:14px 0 12px;">Select which active posting you'd like to invite this candidate to apply for. They'll receive a notification with a direct link to the application.</p>
+
+    <div id="modal-postings">
+      <label class="modal-posting" onclick="selectPosting(this)">
+        <input type="radio" name="posting" value="1" style="margin-top:2px;" />
+        <div style="flex:1;">
+          <div style="font-weight:600; color:var(--navy-900); font-size:14px;">Police Officer (Lateral)</div>
+          <div style="font-size:12.5px; color:var(--text-2); margin-top:2px;">Full-time · Sworn · Closes May 31, 2026</div>
+        </div>
+      </label>
+      <label class="modal-posting" onclick="selectPosting(this)">
+        <input type="radio" name="posting" value="2" style="margin-top:2px;" />
+        <div style="flex:1;">
+          <div style="font-weight:600; color:var(--navy-900); font-size:14px;">Police Officer Cadet</div>
+          <div style="font-size:12.5px; color:var(--text-2); margin-top:2px;">Full-time · Entry-level · Closes Jun 15, 2026</div>
+        </div>
+      </label>
+      <label class="modal-posting" onclick="selectPosting(this)">
+        <input type="radio" name="posting" value="3" style="margin-top:2px;" />
+        <div style="flex:1;">
+          <div style="font-weight:600; color:var(--navy-900); font-size:14px;">911 Dispatch Operator</div>
+          <div style="font-size:12.5px; color:var(--text-2); margin-top:2px;">Full-time · Telecommunicator · Open until filled</div>
+        </div>
+      </label>
+      <label class="modal-posting" onclick="selectPosting(this)">
+        <input type="radio" name="posting" value="4" style="margin-top:2px;" />
+        <div style="flex:1;">
+          <div style="font-weight:600; color:var(--navy-900); font-size:14px;">Telecommunicator</div>
+          <div style="font-size:12.5px; color:var(--text-2); margin-top:2px;">Part-time · Telecommunicator · Closes Jun 1, 2026</div>
+        </div>
+      </label>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:16px; border-top:1px solid var(--border);">
+      <button onclick="closeInviteModal()" style="background:none; border:none; color:var(--text-2); font-size:13.5px; cursor:pointer; text-decoration:underline;">Cancel</button>
+      <button class="btn btn-primary" onclick="sendInvitation()">Send Invitation</button>
+    </div>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="container">
@@ -380,5 +484,43 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+function openInviteModal(name) {
+  document.getElementById('modal-candidate-name').textContent = name;
+  document.querySelectorAll('.modal-posting').forEach(function(p) { p.classList.remove('selected'); });
+  document.querySelectorAll('input[name="posting"]').forEach(function(r) { r.checked = false; });
+  document.getElementById('invite-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInviteModal(e) {
+  if (e && e.target !== document.getElementById('invite-modal')) return;
+  document.getElementById('invite-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function selectPosting(el) {
+  document.querySelectorAll('.modal-posting').forEach(function(p) { p.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+function sendInvitation() {
+  var selected = document.querySelector('input[name="posting"]:checked');
+  if (!selected) {
+    alert('Please select a posting to invite this candidate to.');
+    return;
+  }
+  var name = document.getElementById('modal-candidate-name').textContent;
+  var posting = selected.closest('.modal-posting').querySelector('div div:first-child').textContent;
+  document.getElementById('invite-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  // Show confirmation toast
+  var toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:28px;right:28px;background:#15803d;color:#fff;padding:14px 20px;border-radius:8px;font-size:14px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:2000;';
+  toast.textContent = 'Invitation sent to ' + name + ' for ' + posting;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 4000);
+}
+</script>
 </body>
 </html>
