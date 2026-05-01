@@ -19,6 +19,34 @@
   .check { width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; }
   .check.done { background:#d1fae5; color:#065f46; }
   .check.todo { background:#fee2e2; color:#991b1b; }
+
+  /* Multi-select */
+  .ms-wrap { position:relative; }
+  .ms-box {
+    min-height:40px; padding:5px 8px; border:1px solid var(--border); border-radius:var(--radius);
+    background:#fff; cursor:pointer; display:flex; flex-wrap:wrap; gap:4px; align-items:center;
+  }
+  .ms-box:focus-within { border-color:#3b82f6; }
+  .ms-pill {
+    background:#eff6ff; border:1px solid #bfdbfe; color:#1d4ed8;
+    border-radius:4px; padding:2px 8px; font-size:12px; font-weight:600;
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .ms-pill .x { color:#93c5fd; cursor:pointer; font-style:normal; }
+  .ms-pill .x:hover { color:#1e40af; }
+  .ms-placeholder { color:#9ca3af; font-size:13px; }
+  .ms-dd {
+    display:none; position:absolute; top:calc(100% + 3px); left:0; right:0;
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:0 6px 20px rgba(0,0,0,.1); z-index:200; max-height:210px; overflow-y:auto;
+  }
+  .ms-dd.open { display:block; }
+  .ms-dd label {
+    display:flex; align-items:center; gap:9px; padding:8px 14px;
+    font-size:13.5px; cursor:pointer; font-weight:400; color:var(--text-1); margin:0;
+  }
+  .ms-dd label:hover { background:#f8faff; }
+  .ms-dd label input { margin:0; flex-shrink:0; }
 </style>
 </head>
 <body>
@@ -122,8 +150,14 @@
               <input class="input" type="text" value="4 years (2017–2021)" />
             </div>
             <div class="field">
-              <label>Education</label>
-              <input class="input" type="text" value="B.S. Criminal Justice — UTSA, 2023" />
+              <label>Education (highest level)</label>
+              <select class="input">
+                <option>High school diploma / GED</option>
+                <option>30+ College Credits</option>
+                <option>60+ College Credits</option>
+                <option selected>Bachelor's degree</option>
+                <option>Advanced degree (Master's or higher)</option>
+              </select>
             </div>
             <div class="field">
               <label>Prior LE experience</label>
@@ -168,15 +202,48 @@
           <div class="field-grid">
             <div class="field">
               <label>Preferred regions</label>
-              <input class="input" type="text" value="Alamo, Capital" />
+              <div class="ms-wrap" id="ms-regions">
+                <div class="ms-box">
+                  <span class="ms-pill">Alamo (San Antonio) <i class="x">×</i></span>
+                  <span class="ms-pill">Capital (Austin) <i class="x">×</i></span>
+                  <span class="ms-placeholder" style="display:none;">Select regions…</span>
+                </div>
+                <div class="ms-dd">
+                  <label><input type="checkbox" checked data-label="Alamo (San Antonio)"> Alamo (San Antonio)</label>
+                  <label><input type="checkbox" checked data-label="Capital (Austin)"> Capital (Austin)</label>
+                  <label><input type="checkbox" data-label="Metroplex (DFW)"> Metroplex (DFW)</label>
+                  <label><input type="checkbox" data-label="Gulf Coast (Houston)"> Gulf Coast (Houston)</label>
+                  <label><input type="checkbox" data-label="Panhandle (Amarillo)"> Panhandle (Amarillo)</label>
+                  <label><input type="checkbox" data-label="Border (El Paso)"> Border (El Paso)</label>
+                  <label><input type="checkbox" data-label="South Texas (Corpus Christi)"> South Texas (Corpus Christi)</label>
+                  <label><input type="checkbox" data-label="Hill Country"> Hill Country</label>
+                  <label><input type="checkbox" data-label="Statewide (open to all)"> Statewide (open to all)</label>
+                </div>
+              </div>
             </div>
             <div class="field">
               <label>Availability</label>
               <select class="input"><option>Immediate</option><option>Within 30 days</option><option>Within 60 days</option><option>Within 90 days</option></select>
             </div>
             <div class="field">
-              <label>Position type</label>
-              <input class="input" type="text" value="Patrol Officer, Sheriff Deputy" />
+              <label>Position type <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--text-3); font-size:11px;">(shown to agencies in shared pool)</span></label>
+              <div class="ms-wrap" id="ms-positions">
+                <div class="ms-box">
+                  <span class="ms-pill">Patrol Officer <i class="x">×</i></span>
+                  <span class="ms-pill">Deputy Sheriff <i class="x">×</i></span>
+                  <span class="ms-placeholder" style="display:none;">Select position types…</span>
+                </div>
+                <div class="ms-dd">
+                  <label><input type="checkbox" checked data-label="Patrol Officer"> Patrol Officer</label>
+                  <label><input type="checkbox" checked data-label="Deputy Sheriff"> Deputy Sheriff</label>
+                  <label><input type="checkbox" data-label="School Resource Officer (SRO)"> School Resource Officer (SRO)</label>
+                  <label><input type="checkbox" data-label="Telecommunicator / Dispatcher"> Telecommunicator / Dispatcher</label>
+                  <label><input type="checkbox" data-label="Detention Officer"> Detention Officer</label>
+                  <label><input type="checkbox" data-label="Cadet / Entry-level"> Cadet / Entry-level</label>
+                  <label><input type="checkbox" data-label="Criminal Investigator"> Criminal Investigator</label>
+                  <label><input type="checkbox" data-label="Traffic Enforcement"> Traffic Enforcement</label>
+                </div>
+              </div>
             </div>
             <div class="field">
               <label>Minimum salary</label>
@@ -362,5 +429,67 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+// Multi-select behaviour
+document.querySelectorAll('.ms-wrap').forEach(function(wrap) {
+  var box = wrap.querySelector('.ms-box');
+  var dd  = wrap.querySelector('.ms-dd');
+
+  box.addEventListener('click', function(e) {
+    if (e.target.classList.contains('x')) {
+      // Remove pill and uncheck matching option
+      var pill = e.target.closest('.ms-pill');
+      var label = pill.childNodes[0].textContent.trim();
+      wrap.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+        if (cb.dataset.label === label) cb.checked = false;
+      });
+      pill.remove();
+      updatePlaceholder(wrap);
+      return;
+    }
+    document.querySelectorAll('.ms-dd.open').forEach(function(d) { if (d !== dd) d.classList.remove('open'); });
+    dd.classList.toggle('open');
+  });
+
+  dd.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      if (this.checked) {
+        addPill(wrap, this.dataset.label);
+      } else {
+        removePillByLabel(wrap, this.dataset.label);
+      }
+    });
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.ms-wrap')) {
+    document.querySelectorAll('.ms-dd.open').forEach(function(d) { d.classList.remove('open'); });
+  }
+});
+
+function addPill(wrap, label) {
+  var box = wrap.querySelector('.ms-box');
+  var placeholder = box.querySelector('.ms-placeholder');
+  var pill = document.createElement('span');
+  pill.className = 'ms-pill';
+  pill.innerHTML = label + ' <i class="x">×</i>';
+  box.insertBefore(pill, placeholder);
+  updatePlaceholder(wrap);
+}
+
+function removePillByLabel(wrap, label) {
+  wrap.querySelectorAll('.ms-pill').forEach(function(p) {
+    if (p.childNodes[0].textContent.trim() === label) p.remove();
+  });
+  updatePlaceholder(wrap);
+}
+
+function updatePlaceholder(wrap) {
+  var placeholder = wrap.querySelector('.ms-placeholder');
+  var pills = wrap.querySelectorAll('.ms-pill');
+  placeholder.style.display = pills.length > 0 ? 'none' : '';
+}
+</script>
 </body>
 </html>
