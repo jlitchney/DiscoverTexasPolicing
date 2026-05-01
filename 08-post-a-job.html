@@ -70,17 +70,10 @@
             </div>
             <div>
               <label class="field-label">Job role <span class="req">*</span></label>
-              <select class="input">
-                <option>Police Officer / Deputy</option>
-                <option>Detective / Investigator</option>
-                <option>Detention Officer / Jailer</option>
-                <option>Dispatcher / Telecommunicator</option>
-                <option>K-9 Handler</option>
-                <option>SWAT / Tactical</option>
-                <option>School Resource Officer</option>
-                <option>Supervisor / Sergeant</option>
-                <option>Lieutenant / Command</option>
+              <select id="job-role-select" class="input">
+                <option value="">— Select a role —</option>
               </select>
+              <div class="help">Roles are managed in your <a href="07p-agency-profile.html">Agency Profile</a>.</div>
             </div>
             <div>
               <label class="field-label">Employment type <span class="req">*</span></label>
@@ -106,44 +99,11 @@
             </div>
             <div>
               <label class="field-label">Primary city <span class="req">*</span></label>
-              <select class="input">
-                <option>San Antonio</option>
-                <option>Austin</option>
-                <option>Houston</option>
-                <option>Dallas</option>
-                <option>Fort Worth</option>
-                <option>El Paso</option>
-                <option>Arlington</option>
-                <option>Corpus Christi</option>
-                <option>Laredo</option>
-                <option>Lubbock</option>
-                <option>Garland</option>
-                <option>Irving</option>
-                <option>Amarillo</option>
-                <option>Beaumont</option>
-                <option>Waco</option>
-                <option>Other / Unincorporated</option>
-              </select>
+              <input class="input" value="San Antonio" />
             </div>
             <div>
               <label class="field-label">County <span class="req">*</span></label>
-              <select class="input">
-                <option>Bexar County</option>
-                <option>Travis County</option>
-                <option>Harris County</option>
-                <option>Dallas County</option>
-                <option>Tarrant County</option>
-                <option>El Paso County</option>
-                <option>Collin County</option>
-                <option>Nueces County</option>
-                <option>Webb County</option>
-                <option>Lubbock County</option>
-                <option>Dallas County</option>
-                <option>Potter County</option>
-                <option>Jefferson County</option>
-                <option>McLennan County</option>
-                <option>Other</option>
-              </select>
+              <input class="input" value="Bexar County" />
             </div>
             <div style="grid-column: 1 / -1;">
               <label class="field-label">Position summary <span class="req">*</span></label>
@@ -190,7 +150,6 @@
 </footer>
 
 <script>
-// Mirrors the checked positions from Agency Profile (07p-agency-profile.html)
 var agencyPositions = [
   'Police Officer — Patrol',
   'Police Officer — Lateral transfer',
@@ -202,17 +161,15 @@ var agencyPositions = [
   'Civilian Investigator'
 ];
 
-(function() {
-  var sel = document.getElementById('job-title-select');
+['job-title-select','job-role-select'].forEach(function(id) {
+  var sel = document.getElementById(id);
   agencyPositions.forEach(function(name) {
     var opt = document.createElement('option');
-    opt.value = name;
-    opt.textContent = name;
+    opt.value = name; opt.textContent = name;
     sel.appendChild(opt);
   });
-  // Pre-select the first real option to match prior mockup state
   sel.value = 'Police Officer — Lateral transfer';
-})();
+});
 </script>
 <script src="assets/script.js"></script>
 </body>
