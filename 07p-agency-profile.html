@@ -295,30 +295,35 @@
 
 <script>
 var positions = [
-  { name: 'Police Officer — Patrol',            checked: true  },
-  { name: 'Police Officer — Lateral transfer',  checked: true  },
-  { name: 'Police Officer Cadet / Academy',     checked: true  },
-  { name: 'Corporal',                           checked: false },
-  { name: 'Sergeant',                           checked: true  },
-  { name: 'Lieutenant',                         checked: false },
-  { name: 'Captain',                            checked: false },
-  { name: 'Detective / Investigator',           checked: true  },
-  { name: 'Detention Officer / Jailer',         checked: true  },
-  { name: 'Telecommunicator / 911 Dispatcher',  checked: true  },
-  { name: 'School Resource Officer',            checked: false },
-  { name: 'Civilian Investigator',              checked: true  },
-  { name: 'Administrative / Civilian Support',  checked: false },
-  { name: 'Community Service Officer',          checked: false }
+  { name: 'Police Officer — Patrol',            checked: true,  locked: true  },
+  { name: 'Police Officer — Lateral transfer',  checked: true,  locked: true  },
+  { name: 'Police Officer Cadet / Academy',     checked: true,  locked: true  },
+  { name: 'Detention Officer / Jailer',         checked: true,  locked: true  },
+  { name: 'Telecommunicator / 911 Dispatcher',  checked: true,  locked: true  },
+  { name: 'Corporal',                           checked: false, locked: false },
+  { name: 'Sergeant',                           checked: true,  locked: false },
+  { name: 'Lieutenant',                         checked: false, locked: false },
+  { name: 'Captain',                            checked: false, locked: false },
+  { name: 'Detective / Investigator',           checked: true,  locked: false },
+  { name: 'School Resource Officer',            checked: false, locked: false },
+  { name: 'Civilian Investigator',              checked: true,  locked: false },
+  { name: 'Administrative / Civilian Support',  checked: false, locked: false },
+  { name: 'Community Service Officer',          checked: false, locked: false }
 ];
+
+var lockIcon = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#9ca3af" stroke-width="1.8" style="flex-shrink:0;margin-right:2px;"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>';
 
 function renderPositions() {
   var container = document.getElementById('pos-list');
   container.innerHTML = positions.map(function(p, i) {
+    var action = p.locked
+      ? '<span title="Standard TPCA position — cannot be removed" style="display:inline-flex;align-items:center;gap:3px;font-size:10.5px;color:#9ca3af;font-weight:500;white-space:nowrap;flex-shrink:0;">' + lockIcon + 'Standard</span>'
+      : '<button onclick="removePos(' + i + ')" title="Remove position" style="background:none;border:none;color:#d1d5db;cursor:pointer;font-size:17px;line-height:1;padding:0 2px;flex-shrink:0;" onmouseenter="this.style.color=\'#ef4444\'" onmouseleave="this.style.color=\'#d1d5db\'">×</button>';
     return '<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 6px;border-radius:5px;" onmouseenter="this.style.background=\'#f8faff\'" onmouseleave="this.style.background=\'transparent\'">' +
       '<label class="checkbox" style="margin:0;flex:1;cursor:pointer;">' +
         '<input type="checkbox"' + (p.checked ? ' checked' : '') + ' onchange="positions[' + i + '].checked=this.checked"> ' + p.name +
       '</label>' +
-      '<button onclick="removePos(' + i + ')" title="Remove position" style="background:none;border:none;color:#d1d5db;cursor:pointer;font-size:17px;line-height:1;padding:0 2px;flex-shrink:0;" onmouseenter="this.style.color=\'#ef4444\'" onmouseleave="this.style.color=\'#d1d5db\'">×</button>' +
+      action +
     '</div>';
   }).join('');
 }
