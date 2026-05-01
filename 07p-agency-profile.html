@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agency Profile — San Antonio PD — DiscoverTexasPolicing.org</title>
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 07p — Agency Profile
+  <a href="index.html">All Mockups</a> |
+  <a href="07-agency-dashboard.html">Agency Dashboard</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--tx-red);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="agency-home.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--tx-red);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:#f5a5a7;">★ Agency Portal</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="07-agency-dashboard.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Dashboard</a>
+      <a href="08-post-a-job.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Post a Job</a>
+      <a href="07c-agency-candidates.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Candidates</a>
+      <a href="07s-agency-shared-pool.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Shared Pool</a>
+      <a href="07r-agency-reports.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Reports</a>
+      <a href="07p-agency-profile.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--tx-red); padding-bottom:2px;">Agency Profile</a>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div style="text-align:right; line-height:1.2;">
+        <div style="font-size:13px; font-weight:700; color:#fff;">San Antonio PD</div>
+        <div style="font-size:11px; color:rgba(255,255,255,.5);">Sgt. K. Walker · <a href="#" style="color:rgba(255,255,255,.5);">Sign Out</a></div>
+      </div>
+      <a href="08-post-a-job.html" class="btn btn-primary btn-sm">+ New Posting</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container" style="max-width:1100px;">
+    <div class="small" style="margin-bottom:8px;"><a href="07-agency-dashboard.html">Dashboard</a> › Agency Profile</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
+      <div>
+        <span class="eyebrow">Agency Portal</span>
+        <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Agency Profile</h1>
+        <p style="color:var(--text-2); margin:0;">Manage your department's public information and recruiting settings.</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="btn btn-outline" onclick="discardChanges()">Discard changes</button>
+        <button class="btn btn-primary" onclick="saveProfile()">Save profile</button>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 296px; gap:28px;">
+
+      <!-- Main column -->
+      <div>
+
+        <!-- Agency Information -->
+        <div class="card" style="padding:24px; margin-bottom:20px;">
+          <span class="eyebrow">Section 1</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 16px; font-size:20px;">Agency Information</h2>
+
+          <div style="margin-bottom:16px;">
+            <label class="field-label">Agency / Department name</label>
+            <input class="input" value="San Antonio Police Department" />
+          </div>
+
+          <div class="form-grid" style="margin-bottom:16px;">
+            <div>
+              <label class="field-label">Department type</label>
+              <select class="input">
+                <option selected>Municipal Police</option>
+                <option>County Sheriff</option>
+                <option>State Agency</option>
+                <option>University / Campus Police</option>
+                <option>Special District</option>
+                <option>Tribal Police</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">TCOLE Agency License #</label>
+              <input class="input" value="TCOLE-0482" />
+            </div>
+          </div>
+
+          <div class="form-grid" style="margin-bottom:16px;">
+            <div>
+              <label class="field-label">Total authorized sworn officers</label>
+              <input class="input" type="number" value="2400" />
+            </div>
+            <div>
+              <label class="field-label">Region</label>
+              <select class="input">
+                <option selected>Alamo (San Antonio)</option>
+                <option>Capital (Austin)</option>
+                <option>Gulf Coast (Houston)</option>
+                <option>North Texas (Dallas / Fort Worth)</option>
+                <option>West Texas (Permian Basin / El Paso)</option>
+                <option>East Texas</option>
+                <option>South Texas (Rio Grande Valley)</option>
+                <option>Panhandle (Amarillo / Lubbock)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <label class="field-label">Street address</label>
+            <input class="input" value="315 S Santa Rosa Ave" />
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 80px 100px; gap:12px; margin-bottom:16px;">
+            <div>
+              <label class="field-label">City</label>
+              <input class="input" value="San Antonio" />
+            </div>
+            <div>
+              <label class="field-label">State</label>
+              <input class="input" value="TX" />
+            </div>
+            <div>
+              <label class="field-label">ZIP</label>
+              <input class="input" value="78204" />
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label">Department website URL</label>
+            <input class="input" value="https://www.sanantonio.gov/SAPD" placeholder="https://..." />
+            <div class="help">Displayed on your public agency page and all job listings.</div>
+          </div>
+        </div>
+
+        <!-- Recruiting Contact -->
+        <div class="card" style="padding:24px; margin-bottom:20px;">
+          <span class="eyebrow">Section 2</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Recruiting Contact</h2>
+          <p style="color:var(--text-2); font-size:13.5px; margin:0 0 16px;">This contact is shown to candidates who have questions about a posting. It does not need to be the same person managing this portal account.</p>
+
+          <div class="form-grid" style="margin-bottom:16px;">
+            <div>
+              <label class="field-label">Contact name</label>
+              <input class="input" value="Sgt. Karen Walker" />
+            </div>
+            <div>
+              <label class="field-label">Title / Rank</label>
+              <input class="input" value="Recruiting Sergeant" />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label class="field-label">Phone number</label>
+              <input class="input" type="tel" value="(210) 207-7273" />
+            </div>
+            <div>
+              <label class="field-label">Email address</label>
+              <input class="input" type="email" value="recruiting@sanantonio.gov" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Positions Recruited For -->
+        <div class="card" style="padding:24px; margin-bottom:20px;">
+          <span class="eyebrow">Section 3</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Positions Recruited For</h2>
+          <p style="color:var(--text-2); font-size:13.5px; margin:0 0 16px;">Select all position types your department actively recruits. This appears on your public agency page and helps candidates find you through filtered searches.</p>
+
+          <div class="form-grid" style="margin-bottom:20px;">
+            <label class="checkbox"><input type="checkbox" checked> Police Officer — Patrol</label>
+            <label class="checkbox"><input type="checkbox" checked> Police Officer — Lateral transfer</label>
+            <label class="checkbox"><input type="checkbox" checked> Police Officer Cadet / Academy</label>
+            <label class="checkbox"><input type="checkbox"> Corporal</label>
+            <label class="checkbox"><input type="checkbox" checked> Sergeant</label>
+            <label class="checkbox"><input type="checkbox"> Lieutenant</label>
+            <label class="checkbox"><input type="checkbox"> Captain</label>
+            <label class="checkbox"><input type="checkbox" checked> Detective / Investigator</label>
+            <label class="checkbox"><input type="checkbox" checked> Detention Officer / Jailer</label>
+            <label class="checkbox"><input type="checkbox" checked> Telecommunicator / 911 Dispatcher</label>
+            <label class="checkbox"><input type="checkbox"> School Resource Officer</label>
+            <label class="checkbox"><input type="checkbox" checked> Civilian Investigator</label>
+            <label class="checkbox"><input type="checkbox"> Administrative / Civilian Support</label>
+            <label class="checkbox"><input type="checkbox"> Community Service Officer</label>
+          </div>
+
+          <div style="border-top:1px solid var(--border); padding-top:16px;">
+            <label class="field-label">Add a custom position type (optional)</label>
+            <div style="display:flex; gap:8px;">
+              <input id="custom-pos" class="input" placeholder="e.g. Harbor Patrol Officer" style="flex:1;" onkeydown="if(event.key==='Enter')addCustomPos()" />
+              <button onclick="addCustomPos()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add</button>
+            </div>
+            <div id="custom-pos-list" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+
+        <!-- Department Logo -->
+        <div class="card" style="padding:20px; margin-bottom:16px;">
+          <h4 style="margin:0 0 14px; color:var(--navy-900); font-size:14px;">Department Logo</h4>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="width:112px; height:112px; border-radius:50%; background:var(--navy-900); display:flex; align-items:center; justify-content:center; border:3px solid var(--tx-red); flex-shrink:0;">
+              <span style="font-size:26px; font-weight:800; color:#fff; letter-spacing:.05em;">SAPD</span>
+            </div>
+            <div style="text-align:center;">
+              <button class="btn btn-outline btn-sm" style="font-size:12px;">Upload new logo</button>
+              <div class="help" style="margin-top:6px; text-align:center;">PNG or SVG · square · min 200×200 px</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Status -->
+        <div class="card" style="padding:20px; margin-bottom:16px;">
+          <h4 style="margin:0 0 14px; color:var(--navy-900); font-size:14px;">Verification Status</h4>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:flex-start; gap:10px;">
+              <div style="width:22px; height:22px; border-radius:50%; background:#dcfce7; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="3 8 6.5 11.5 13 5"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px; font-weight:600; color:var(--navy-900); line-height:1.3;">TPCA Member Agency</div>
+                <div class="small">Verified · Member since 2019</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:10px;">
+              <div style="width:22px; height:22px; border-radius:50%; background:#dcfce7; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="3 8 6.5 11.5 13 5"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px; font-weight:600; color:var(--navy-900); line-height:1.3;">TCOLE License Active</div>
+                <div class="small">TCOLE-0482 · Expires Dec 2026</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:10px;">
+              <div style="width:22px; height:22px; border-radius:50%; background:#dcfce7; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="3 8 6.5 11.5 13 5"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px; font-weight:600; color:var(--navy-900); line-height:1.3;">Data Privacy Agreement</div>
+                <div class="small">Signed · Apr 2, 2026</div>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--border); margin-top:14px; padding-top:12px;">
+            <a href="#" class="small">Contact TPCA to update verification →</a>
+          </div>
+        </div>
+
+        <!-- Public Profile Preview -->
+        <div class="card" style="padding:20px;">
+          <h4 style="margin:0 0 4px; color:var(--navy-900); font-size:14px;">Public Profile Preview</h4>
+          <p class="small" style="margin:0 0 12px; color:var(--text-2);">How your agency appears on the job board.</p>
+
+          <div style="border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+            <div style="background:var(--navy-900); height:54px; position:relative; display:flex; align-items:flex-end; padding:0 12px 10px;">
+              <div style="position:absolute; bottom:-18px; left:12px; width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; z-index:1;">
+                <span style="font-size:8.5px; font-weight:800; color:var(--navy-900); letter-spacing:.03em;">SAPD</span>
+              </div>
+              <span style="font-size:10px; font-weight:700; background:#22c55e; color:#fff; padding:2px 8px; border-radius:10px; margin-left:auto; line-height:1.6;">TPCA Verified</span>
+            </div>
+            <div style="padding:22px 12px 14px;">
+              <div style="font-size:13px; font-weight:700; color:var(--navy-900);">San Antonio Police Department</div>
+              <div class="small" style="margin-top:3px; color:var(--text-2);">Alamo Region · Municipal · 2,400 sworn</div>
+              <div style="margin-top:8px; font-size:12px; color:var(--text-2);">Recruiting for: <span style="font-weight:600; color:var(--navy-900);">Patrol Officer, Lateral, Cadet, Telecom…</span></div>
+              <div style="margin-top:8px;">
+                <span style="font-size:12px; font-weight:700; color:var(--tx-red);">22 open positions</span>
+                <a href="#" style="font-size:12px; margin-left:10px; color:var(--navy-900);">View all →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- Bottom save bar -->
+    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+      <button class="btn btn-outline" onclick="discardChanges()">Discard changes</button>
+      <button class="btn btn-primary" onclick="saveProfile()">Save profile</button>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing.org</div><div class="t2" style="color:var(--gold)">★ A One-Stop Shop</div></div>
+        </div>
+      </div>
+      <div><h5>For Candidates</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="07r-agency-reports.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function saveProfile() {
+  var toast = document.createElement('div');
+  toast.textContent = 'Profile saved successfully.';
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#16a34a;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.2);';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 3000);
+}
+
+function discardChanges() {
+  if (confirm('Discard all unsaved changes?')) location.reload();
+}
+
+function addCustomPos() {
+  var input = document.getElementById('custom-pos');
+  var val = input.value.trim();
+  if (!val) return;
+  var list = document.getElementById('custom-pos-list');
+  var tag = document.createElement('span');
+  tag.style.cssText = 'display:inline-flex;align-items:center;gap:5px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:4px;padding:3px 9px;font-size:12px;font-weight:600;';
+  tag.innerHTML = val + ' <button onclick="this.parentNode.remove()" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:15px;line-height:1;padding:0 0 0 2px;" title="Remove">×</button>';
+  list.appendChild(tag);
+  input.value = '';
+  input.focus();
+}
+</script>
+<script src="assets/script.js"></script>
+</body>
+</html>
