@@ -350,6 +350,7 @@ function renderUsers() {
       '<td>' + badge + '</td>' +
       '<td style="text-align:right;">' +
         '<div style="display:flex;gap:6px;justify-content:flex-end;">' +
+          '<button onclick="sendReset(' + i + ')" class="btn btn-outline btn-sm" style="font-size:11px;padding:3px 10px;">Reset password</button>' +
           pauseBtn +
           '<button onclick="deleteUser(' + i + ')" class="btn btn-sm" style="font-size:11px;padding:3px 10px;background:none;border:1px solid #fca5a5;color:#ef4444;" onmouseenter="this.style.background=\'#fef2f2\'" onmouseleave="this.style.background=\'none\'">Delete</button>' +
         '</div>' +
@@ -361,6 +362,15 @@ function renderUsers() {
 function toggleUser(i) {
   users[i].active = !users[i].active;
   renderUsers();
+}
+
+function sendReset(i) {
+  var u = users[i];
+  var toast = document.createElement('div');
+  toast.textContent = 'Password reset email sent to ' + u.email;
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--navy-900);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.2);';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 3500);
 }
 
 function deleteUser(i) {
