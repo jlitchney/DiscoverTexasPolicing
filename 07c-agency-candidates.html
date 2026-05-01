@@ -50,15 +50,32 @@
   border:1px solid #d1d5db;
   border-radius:6px;
   padding:4px 10px;
-  min-width:90px;
   background:#fff;
+  font-size:12.5px;
+  white-space:nowrap;
 }
-.ctag .ctag-label { font-size:10px; color:#9ca3af; font-weight:500; display:block; margin-bottom:2px; }
-.ctag .ctag-value { font-size:13px; font-weight:700; color:var(--navy-900); display:block; line-height:1.2; }
-.ctag .ctag-value.pass  { color:#15803d; }
-.ctag .ctag-value.fail  { color:#dc2626; }
-.ctag .ctag-value.pending { color:#9ca3af; }
-.ctag .ctag-date  { font-size:10px; color:#9ca3af; display:block; margin-top:2px; }
+.ctag-lbl { color:#9ca3af; font-weight:500; }
+.ctag-val { font-weight:700; color:var(--navy-900); }
+.ctag-val.pass    { color:#15803d; }
+.ctag-val.fail    { color:#dc2626; }
+.ctag-val.pending { color:#9ca3af; }
+
+.cand-extra {
+  display:none;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--border);
+}
+.cand-extra-grid {
+  display:grid;
+  grid-template-columns: repeat(4, auto);
+  gap:6px 24px;
+  font-size:12.5px;
+}
+.cand-extra-grid .xlbl { font-size:11px; color:var(--text-3); font-weight:500; display:block; margin-bottom:1px; }
+.cand-extra-grid .xval { color:var(--text-2); }
+.cand-extra-grid .xval a { color:#2563eb; text-decoration:none; }
+.cand-extra-grid .xval a:hover { text-decoration:underline; }
 
 .col-cell { display:flex; align-items:flex-start; padding-top:4px; font-size:13px; color:var(--text-2); }
 .activity-time { font-size:12.5px; color:var(--text-3); text-align:right; padding-top:4px; }
@@ -68,6 +85,17 @@
   padding:12px 16px; border-bottom:1px solid var(--border);
   background:#fafbfc;
 }
+
+/* Segmented view control */
+.view-seg { display:flex; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.vseg {
+  padding:5px 13px; font-size:12.5px; font-weight:500; cursor:pointer;
+  background:#fff; border:none; border-right:1px solid var(--border);
+  color:var(--text-2); transition:background .1s, color .1s; line-height:1.4;
+}
+.vseg:last-child { border-right:none; }
+.vseg:hover:not(.active) { background:#f1f5f9; }
+.vseg.active { background:var(--navy-900); color:#fff; }
 </style>
 </head>
 <body>
@@ -123,11 +151,17 @@
       <!-- Filter bar -->
       <div class="filter-bar">
         <div style="display:flex; gap:8px; align-items:center;">
+          <!-- View segmented control -->
+          <div class="view-seg">
+            <button class="vseg" id="vBtn-compact" onclick="setView('compact')">Compact</button>
+            <button class="vseg active" id="vBtn-tagged" onclick="setView('tagged')">Tagged</button>
+            <button class="vseg" id="vBtn-expanded" onclick="setView('expanded')">Expanded</button>
+          </div>
+          <div style="width:1px; height:22px; background:var(--border); margin:0 2px;"></div>
           <button class="btn btn-outline btn-sm" style="display:flex; align-items:center; gap:6px;">
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h14M4 8h8M7 13h2"/></svg>
             Filters
           </button>
-          <input style="border:1px solid var(--border); border-radius:6px; padding:6px 12px; font-size:13px; width:220px; outline:none;" placeholder="Search candidates…" />
         </div>
         <button class="btn btn-sm" style="color:var(--tx-red); border:1px solid var(--tx-red); background:#fff;">Clear Filters</button>
       </div>
@@ -146,24 +180,24 @@
       <div class="cand-row selected">
         <div><input type="checkbox" checked style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:#0d9488; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">A</div>
-          <div class="cand-name">Aisha Johnson</div>
-          <div class="cand-created">Created 05/01/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:#0d9488;">A</div>
+            <div>
+              <div class="cand-name">Aisha Johnson</div>
+              <div class="cand-created" style="margin:0;">Created 05/01/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value pass">Pass</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">Police Officer Cadet</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">5/1/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val pass">Pass</span></div>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">Police Officer Cadet</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">aisha.j@gmail.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(210) 555-0142</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
@@ -177,30 +211,30 @@
       <div class="cand-row">
         <div><input type="checkbox" style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:var(--tx-red); display:inline-flex; width:36px; height:36px; margin-bottom:6px;">D</div>
-          <div class="cand-name">David Lim</div>
-          <div class="cand-created">Created 05/01/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:var(--tx-red);">D</div>
+            <div>
+              <div class="cand-name">David Lim</div>
+              <div class="cand-created" style="margin:0;">Created 05/01/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">Police Officer (Lateral)</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value pending">Pending</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">5/1/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">Police Officer (Lateral)</span></div>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val pending">Pending</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">david.lim@outlook.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(512) 555-0293</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
         <div class="col-cell">Sgt. K. Walker</div>
         <div class="col-cell">05/01/2026</div>
-        <div class="col-cell activity-time">1 min ago</div>
+        <div class="col-cell activity-time">47 min ago</div>
         <div class="col-cell activity-time"></div>
       </div>
 
@@ -208,30 +242,30 @@
       <div class="cand-row">
         <div><input type="checkbox" style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:#7c3aed; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">M</div>
-          <div class="cand-name">Marcus Rivera</div>
-          <div class="cand-created">Created 05/01/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:#7c3aed;">M</div>
+            <div>
+              <div class="cand-name">Marcus Rivera</div>
+              <div class="cand-created" style="margin:0;">Created 05/01/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">Police Officer (Academy Grad)</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value fail">Fail</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">5/1/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">Police Officer (Academy Grad)</span></div>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val fail">Fail</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">m.rivera@gmail.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(210) 555-0471</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
         <div class="col-cell">Lt. J. Morales</div>
         <div class="col-cell">05/01/2026</div>
-        <div class="col-cell activity-time">2 min ago</div>
+        <div class="col-cell activity-time">48 min ago</div>
         <div class="col-cell activity-time"></div>
       </div>
 
@@ -239,24 +273,24 @@
       <div class="cand-row">
         <div><input type="checkbox" style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:#1e3a5f; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">G</div>
-          <div class="cand-name">Greg Schumann</div>
-          <div class="cand-created">Created 05/01/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:#1e3a5f;">G</div>
+            <div>
+              <div class="cand-name">Greg Schumann</div>
+              <div class="cand-created" style="margin:0;">Created 05/01/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">911 Dispatch Operator</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value pass">Pass</span>
-              <span class="ctag-date">5/1/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">5/1/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">911 Dispatch Operator</span></div>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val pass">Pass</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">g.schumann@yahoo.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(830) 555-0118</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
@@ -270,24 +304,24 @@
       <div class="cand-row">
         <div><input type="checkbox" style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:#b45309; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">J</div>
-          <div class="cand-name">Jasmine Torres</div>
-          <div class="cand-created">Created 04/30/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:#b45309;">J</div>
+            <div>
+              <div class="cand-name">Jasmine Torres</div>
+              <div class="cand-created" style="margin:0;">Created 04/30/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">Police Officer Cadet</span>
-              <span class="ctag-date">4/30/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value pass">Pass</span>
-              <span class="ctag-date">4/30/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">4/30/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">Police Officer Cadet</span></div>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val pass">Pass</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">jasmine.t@gmail.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(210) 555-0267</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
@@ -301,24 +335,24 @@
       <div class="cand-row">
         <div><input type="checkbox" style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:#475569; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">C</div>
-          <div class="cand-name">Carlos Vega</div>
-          <div class="cand-created">Created 04/29/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:#475569;">C</div>
+            <div>
+              <div class="cand-name">Carlos Vega</div>
+              <div class="cand-created" style="margin:0;">Created 04/29/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">Police Officer (Lateral)</span>
-              <span class="ctag-date">4/29/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value pass">Pass</span>
-              <span class="ctag-date">4/29/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">4/29/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">Police Officer (Lateral)</span></div>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val pass">Pass</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">c.vega@outlook.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(956) 555-0389</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
@@ -332,24 +366,24 @@
       <div class="cand-row">
         <div><input type="checkbox" style="margin-top:6px;" /></div>
         <div>
-          <div class="cand-avatar" style="background:#dc2626; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">S</div>
-          <div class="cand-name">Sandra Kim</div>
-          <div class="cand-created">Created 04/28/2026</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <div class="cand-avatar" style="background:#dc2626;">S</div>
+            <div>
+              <div class="cand-name">Sandra Kim</div>
+              <div class="cand-created" style="margin:0;">Created 04/28/2026</div>
+            </div>
+          </div>
           <div class="cand-tags">
-            <div class="ctag">
-              <span class="ctag-label">Position</span>
-              <span class="ctag-value">Telecommunicator</span>
-              <span class="ctag-date">4/28/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">Pre-Screen Status</span>
-              <span class="ctag-value fail">Fail</span>
-              <span class="ctag-date">4/28/2026</span>
-            </div>
-            <div class="ctag">
-              <span class="ctag-label">&nbsp;</span>
-              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
-              <span class="ctag-date">4/28/2026</span>
+            <div class="ctag"><span class="ctag-lbl">Position: </span><span class="ctag-val">Telecommunicator</span></div>
+            <div class="ctag"><span class="ctag-lbl">Pre-Screen Status: </span><span class="ctag-val fail">Fail</span></div>
+            <div class="ctag"><span class="ctag-lbl">candidate: </span><span class="ctag-val" style="color:var(--text-3); font-weight:500;">created</span></div>
+          </div>
+          <div class="cand-extra">
+            <div class="cand-extra-grid">
+              <div><span class="xlbl">Email</span><span class="xval">sandra.kim@gmail.com</span></div>
+              <div><span class="xlbl">Phone</span><span class="xval">(210) 555-0541</span></div>
+              <div><span class="xlbl">Resume</span><span class="xval"><a href="#">View PDF</a></span></div>
+              <div><span class="xlbl">Notes</span><span class="xval" style="color:var(--text-3);">No notes yet</span></div>
             </div>
           </div>
         </div>
@@ -393,5 +427,29 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+function setView(mode) {
+  ['compact','tagged','expanded'].forEach(function(m) {
+    document.getElementById('vBtn-' + m).classList.toggle('active', m === mode);
+  });
+  var tags   = document.querySelectorAll('.cand-tags');
+  var extras = document.querySelectorAll('.cand-extra');
+  var rows   = document.querySelectorAll('.cand-row');
+
+  if (mode === 'compact') {
+    tags.forEach(function(t) { t.style.display = 'none'; });
+    extras.forEach(function(e) { e.style.display = 'none'; });
+    rows.forEach(function(r) { r.style.paddingTop = '10px'; r.style.paddingBottom = '10px'; });
+  } else if (mode === 'tagged') {
+    tags.forEach(function(t) { t.style.display = ''; });
+    extras.forEach(function(e) { e.style.display = 'none'; });
+    rows.forEach(function(r) { r.style.paddingTop = ''; r.style.paddingBottom = ''; });
+  } else {
+    tags.forEach(function(t) { t.style.display = ''; });
+    extras.forEach(function(e) { e.style.display = ''; });
+    rows.forEach(function(r) { r.style.paddingTop = ''; r.style.paddingBottom = ''; });
+  }
+}
+</script>
 </body>
 </html>
