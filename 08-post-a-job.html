@@ -63,7 +63,10 @@
           <div class="form-grid cols-2">
             <div>
               <label class="field-label">Job title <span class="req">*</span></label>
-              <input class="input" value="Police Officer (Lateral & Entry)" />
+              <select id="job-title-select" class="input">
+                <option value="">— Select a position —</option>
+              </select>
+              <div class="help">Positions are managed in your <a href="07p-agency-profile.html">Agency Profile</a>.</div>
             </div>
             <div>
               <label class="field-label">Job role <span class="req">*</span></label>
@@ -186,6 +189,31 @@
   </div>
 </footer>
 
+<script>
+// Mirrors the checked positions from Agency Profile (07p-agency-profile.html)
+var agencyPositions = [
+  'Police Officer — Patrol',
+  'Police Officer — Lateral transfer',
+  'Police Officer Cadet / Academy',
+  'Detention Officer / Jailer',
+  'Telecommunicator / 911 Dispatcher',
+  'Sergeant',
+  'Detective / Investigator',
+  'Civilian Investigator'
+];
+
+(function() {
+  var sel = document.getElementById('job-title-select');
+  agencyPositions.forEach(function(name) {
+    var opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+  // Pre-select the first real option to match prior mockup state
+  sel.value = 'Police Officer — Lateral transfer';
+})();
+</script>
 <script src="assets/script.js"></script>
 </body>
 </html>
