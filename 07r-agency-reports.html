@@ -204,6 +204,145 @@
         </table>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Vacancy Tracker -->
+<section style="background:#f7f9fc; border-top:1px solid var(--border); padding:36px 0 44px;">
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+      <div>
+        <span class="eyebrow">Staffing</span>
+        <h2 style="font-family:var(--font-display); color:var(--navy-900); font-size:24px; margin:4px 0 2px;">Vacancy Tracker</h2>
+        <p id="last-updated" style="color:var(--text-2); font-size:13.5px; margin:0;">Last updated Apr 28, 2026 · San Antonio Police Department</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <div style="display:flex; background:#fff; border:1px solid var(--border); border-radius:6px; overflow:hidden; font-size:13px;">
+          <button id="btn-current" onclick="vacancyView('current')" style="padding:7px 18px; font-weight:600; border:none; background:var(--navy-900); color:#fff; cursor:pointer;">Current</button>
+          <button id="btn-historic" onclick="vacancyView('historic')" style="padding:7px 18px; font-weight:500; border:none; background:transparent; color:var(--text-2); cursor:pointer;">Historic</button>
+        </div>
+        <button onclick="toggleManage()" class="btn btn-primary btn-sm">Manage Positions</button>
+      </div>
+    </div>
+
+    <!-- Manage Positions panel -->
+    <div id="manage-form" style="display:none; background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px 24px; margin-bottom:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <strong style="color:var(--navy-900); font-size:15px;">Manage tracked positions</strong>
+        <span class="small" style="color:var(--text-3);">Edit numbers, add or remove positions, then save.</span>
+      </div>
+      <table class="data" style="width:100%;">
+        <thead>
+          <tr>
+            <th>Position / Rank</th>
+            <th style="width:160px;">Authorized</th>
+            <th style="width:160px;">Currently Filled</th>
+            <th style="width:48px;"></th>
+          </tr>
+        </thead>
+        <tbody id="manage-tbody"></tbody>
+      </table>
+      <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+        <div style="font-size:13px; font-weight:600; color:var(--navy-900); margin-bottom:10px;">+ Add a position</div>
+        <div style="display:grid; grid-template-columns:1fr 140px 140px auto; gap:8px; align-items:flex-end;">
+          <div>
+            <label class="field-label">Position name</label>
+            <input id="add-name" class="input" style="font-size:13px;" placeholder="e.g. School Resource Officer" />
+          </div>
+          <div>
+            <label class="field-label">Authorized</label>
+            <input id="add-auth" class="input" style="font-size:13px;" type="number" min="0" placeholder="0" />
+          </div>
+          <div>
+            <label class="field-label">Currently filled</label>
+            <input id="add-filled" class="input" style="font-size:13px;" type="number" min="0" placeholder="0" />
+          </div>
+          <button onclick="addPosition()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">Add position</button>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:20px;">
+        <button onclick="toggleManage()" class="btn btn-outline btn-sm">Cancel</button>
+        <button onclick="saveManage()" class="btn btn-primary btn-sm">Save &amp; Update</button>
+      </div>
+    </div>
+
+    <!-- Current view -->
+    <div id="view-current">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table class="data" style="width:100%;">
+          <thead>
+            <tr>
+              <th>Position / Rank</th>
+              <th style="text-align:center;">Authorized</th>
+              <th style="text-align:center;">Filled</th>
+              <th style="text-align:center;">Vacancies</th>
+              <th style="width:200px;">Vacancy rate</th>
+            </tr>
+          </thead>
+          <tbody id="vacancy-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Historic view -->
+    <div id="view-historic" style="display:none;">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table class="data" style="width:100%;">
+          <thead>
+            <tr>
+              <th>Position / Rank</th>
+              <th style="text-align:center;">Q2 2025</th>
+              <th style="text-align:center;">Q3 2025</th>
+              <th style="text-align:center;">Q4 2025</th>
+              <th style="text-align:center;">Q1 2026</th>
+              <th style="text-align:center; background:#f0f4ff;">Q2 2026 (Now)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Police Officer</strong><div class="small">Vacancies / Authorized</div></td>
+              <td style="text-align:center;"><span style="color:var(--tx-red); font-weight:700;">52</span> / 285<div class="small" style="color:var(--tx-red);">18.2%</div></td>
+              <td style="text-align:center;"><span style="color:var(--tx-red); font-weight:700;">48</span> / 285<div class="small" style="color:var(--tx-red);">16.8%</div></td>
+              <td style="text-align:center;"><span style="color:#b45309; font-weight:700;">44</span> / 285<div class="small" style="color:#b45309;">15.4%</div></td>
+              <td style="text-align:center;"><span style="color:#b45309; font-weight:700;">41</span> / 285<div class="small" style="color:#b45309;">14.4%</div></td>
+              <td style="text-align:center; background:#f0f4ff;"><span style="color:var(--tx-red); font-weight:700;">38</span> / 285<div class="small" style="color:var(--tx-red);">13.3%</div></td>
+            </tr>
+            <tr>
+              <td><strong>Sergeant</strong></td>
+              <td style="text-align:center;"><span style="color:#b45309; font-weight:700;">8</span> / 64<div class="small" style="color:#b45309;">12.5%</div></td>
+              <td style="text-align:center;"><span style="color:#b45309; font-weight:700;">7</span> / 64<div class="small" style="color:#b45309;">10.9%</div></td>
+              <td style="text-align:center;"><span style="color:#b45309; font-weight:700;">6</span> / 64<div class="small" style="color:#b45309;">9.4%</div></td>
+              <td style="text-align:center;"><span style="color:#b45309; font-weight:700;">6</span> / 64<div class="small" style="color:#b45309;">9.4%</div></td>
+              <td style="text-align:center; background:#f0f4ff;"><span style="color:#b45309; font-weight:700;">5</span> / 64<div class="small" style="color:#b45309;">7.8%</div></td>
+            </tr>
+            <tr>
+              <td><strong>Telecommunicator</strong></td>
+              <td style="text-align:center;"><span style="color:var(--tx-red); font-weight:700;">12</span> / 32<div class="small" style="color:var(--tx-red);">37.5%</div></td>
+              <td style="text-align:center;"><span style="color:var(--tx-red); font-weight:700;">11</span> / 32<div class="small" style="color:var(--tx-red);">34.4%</div></td>
+              <td style="text-align:center;"><span style="color:var(--tx-red); font-weight:700;">10</span> / 32<div class="small" style="color:var(--tx-red);">31.3%</div></td>
+              <td style="text-align:center;"><span style="color:var(--tx-red); font-weight:700;">9</span> / 32<div class="small" style="color:var(--tx-red);">28.1%</div></td>
+              <td style="text-align:center; background:#f0f4ff;"><span style="color:var(--tx-red); font-weight:700;">8</span> / 32<div class="small" style="color:var(--tx-red);">25.0%</div></td>
+            </tr>
+            <tr style="background:#f8faff; font-weight:700;">
+              <td><strong>All Positions (Total vacancies)</strong></td>
+              <td style="text-align:center;"><strong style="color:var(--tx-red);">84</strong><div class="small" style="color:var(--tx-red);">18.1%</div></td>
+              <td style="text-align:center;"><strong style="color:var(--tx-red);">78</strong><div class="small" style="color:var(--tx-red);">16.8%</div></td>
+              <td style="text-align:center;"><strong style="color:#b45309;">71</strong><div class="small" style="color:#b45309;">15.3%</div></td>
+              <td style="text-align:center;"><strong style="color:#b45309;">65</strong><div class="small" style="color:#b45309;">14.0%</div></td>
+              <td style="text-align:center; background:#f0f4ff;"><strong style="color:var(--tx-red);">58</strong><div class="small" style="color:var(--tx-red);">12.5%</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:10px; color:var(--text-3);">Historic data reflects numbers entered by the agency at the end of each quarter. <a href="#">Download as CSV →</a></p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section tight" style="padding-top:36px;">
+  <div class="container">
 
     <!-- Custom Reports upsell -->
     <div style="margin-top:28px; background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 55%,#7c3aed 100%); border-radius:var(--radius-lg); padding:32px 36px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
@@ -310,6 +449,118 @@
   </div>
 </footer>
 
+<script>
+var positions = [
+  { name: 'Police Officer',        authorized: 285, filled: 247 },
+  { name: 'Corporal',              authorized: 42,  filled: 38  },
+  { name: 'Sergeant',              authorized: 64,  filled: 59  },
+  { name: 'Lieutenant',            authorized: 18,  filled: 17  },
+  { name: 'Captain',               authorized: 8,   filled: 8   },
+  { name: 'Commander / Major',     authorized: 4,   filled: 4   },
+  { name: 'Telecommunicator',      authorized: 32,  filled: 24  },
+  { name: 'Civilian Investigator', authorized: 12,  filled: 10  }
+];
+
+function rateColor(pct) {
+  if (pct === 0)  return { bar: '#22c55e', text: '#16a34a' };
+  if (pct <= 13)  return { bar: 'var(--navy-900)', text: '#b45309' };
+  return { bar: 'var(--navy-900)', text: 'var(--tx-red)' };
+}
+
+function renderCurrentTable() {
+  var tbody = document.getElementById('vacancy-tbody');
+  var totalAuth = 0, totalFilled = 0;
+  var html = positions.map(function(p) {
+    var vac = p.authorized - p.filled;
+    var pct = p.authorized > 0 ? vac / p.authorized * 100 : 0;
+    var fillPct = p.authorized > 0 ? p.filled / p.authorized * 100 : 100;
+    var c = rateColor(pct);
+    var rowBg = pct > 13 ? 'background:#fff5f5;' : '';
+    var vacHtml = vac > 0 ? '<strong style="color:var(--tx-red);">' + vac + '</strong>' : '<span style="color:var(--text-3);">0</span>';
+    totalAuth += p.authorized; totalFilled += p.filled;
+    return '<tr style="' + rowBg + '">' +
+      '<td><strong>' + p.name + '</strong></td>' +
+      '<td style="text-align:center;">' + p.authorized + '</td>' +
+      '<td style="text-align:center;">' + p.filled + '</td>' +
+      '<td style="text-align:center;">' + vacHtml + '</td>' +
+      '<td><div style="display:flex;align-items:center;gap:8px;">' +
+        '<div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">' +
+          '<div style="width:' + fillPct.toFixed(1) + '%;height:100%;background:' + c.bar + ';border-radius:4px;"></div>' +
+        '</div>' +
+        '<span style="font-size:12px;color:' + c.text + ';font-weight:600;white-space:nowrap;">' + pct.toFixed(1) + '%</span>' +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+  var totalVac = totalAuth - totalFilled;
+  var totalPct = totalAuth > 0 ? totalVac / totalAuth * 100 : 0;
+  var totalFillPct = totalAuth > 0 ? totalFilled / totalAuth * 100 : 100;
+  var tc = rateColor(totalPct);
+  html += '<tr style="background:#f8faff;">' +
+    '<td><strong>Total</strong></td>' +
+    '<td style="text-align:center;"><strong>' + totalAuth + '</strong></td>' +
+    '<td style="text-align:center;"><strong>' + totalFilled + '</strong></td>' +
+    '<td style="text-align:center;"><strong style="color:var(--tx-red);">' + totalVac + '</strong></td>' +
+    '<td><div style="display:flex;align-items:center;gap:8px;">' +
+      '<div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">' +
+        '<div style="width:' + totalFillPct.toFixed(1) + '%;height:100%;background:' + tc.bar + ';border-radius:4px;"></div>' +
+      '</div>' +
+      '<span style="font-size:12px;color:' + tc.text + ';font-weight:600;white-space:nowrap;">' + totalPct.toFixed(1) + '%</span>' +
+    '</div></td>' +
+  '</tr>';
+  tbody.innerHTML = html;
+}
+
+function renderManageForm() {
+  var tbody = document.getElementById('manage-tbody');
+  tbody.innerHTML = positions.map(function(p, i) {
+    return '<tr>' +
+      '<td style="padding:6px 8px;"><input class="input" style="padding:5px 8px;font-size:13px;" data-idx="' + i + '" data-field="name" value="' + p.name + '" onchange="updateField(this)" /></td>' +
+      '<td style="padding:6px 8px;"><input class="input" style="padding:5px 8px;font-size:13px;" type="number" min="0" data-idx="' + i + '" data-field="authorized" value="' + p.authorized + '" onchange="updateField(this)" /></td>' +
+      '<td style="padding:6px 8px;"><input class="input" style="padding:5px 8px;font-size:13px;" type="number" min="0" data-idx="' + i + '" data-field="filled" value="' + p.filled + '" onchange="updateField(this)" /></td>' +
+      '<td style="padding:6px 8px;text-align:center;"><button onclick="removePosition(' + i + ')" style="background:none;border:none;color:#ef4444;font-size:20px;line-height:1;cursor:pointer;padding:0 4px;" title="Remove">×</button></td>' +
+    '</tr>';
+  }).join('');
+}
+
+function updateField(el) {
+  var i = parseInt(el.dataset.idx), field = el.dataset.field;
+  positions[i][field] = field === 'name' ? el.value : (parseInt(el.value) || 0);
+}
+function removePosition(i) { positions.splice(i, 1); renderManageForm(); }
+function addPosition() {
+  var name = document.getElementById('add-name').value.trim();
+  var auth = parseInt(document.getElementById('add-auth').value) || 0;
+  var filled = parseInt(document.getElementById('add-filled').value) || 0;
+  if (!name) { document.getElementById('add-name').focus(); return; }
+  positions.push({ name: name, authorized: auth, filled: filled });
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-auth').value = '';
+  document.getElementById('add-filled').value = '';
+  renderManageForm();
+  document.getElementById('add-name').focus();
+}
+function toggleManage() {
+  var panel = document.getElementById('manage-form');
+  var open = panel.style.display !== 'none';
+  if (open) { panel.style.display = 'none'; } else { renderManageForm(); panel.style.display = 'block'; panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+function saveManage() {
+  document.getElementById('manage-form').style.display = 'none';
+  renderCurrentTable();
+  var now = new Date();
+  document.getElementById('last-updated').textContent =
+    'Last updated ' + now.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) + ' · San Antonio Police Department';
+}
+function vacancyView(v) {
+  document.getElementById('view-current').style.display  = v === 'current'  ? 'block' : 'none';
+  document.getElementById('view-historic').style.display = v === 'historic' ? 'block' : 'none';
+  document.getElementById('btn-current').style.background  = v === 'current'  ? 'var(--navy-900)' : 'transparent';
+  document.getElementById('btn-current').style.color       = v === 'current'  ? '#fff' : 'var(--text-2)';
+  document.getElementById('btn-historic').style.background = v === 'historic' ? 'var(--navy-900)' : 'transparent';
+  document.getElementById('btn-historic').style.color      = v === 'historic' ? '#fff' : 'var(--text-2)';
+}
+renderCurrentTable();
+</script>
 <script src="assets/script.js"></script>
 </body>
 </html>
