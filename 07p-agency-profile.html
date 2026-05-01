@@ -135,22 +135,6 @@
           </div>
         </div>
 
-        <!-- Positions Recruited For -->
-        <div class="card" style="padding:24px; margin-bottom:20px;">
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Positions Recruited For</h2>
-          <p style="color:var(--text-2); font-size:13.5px; margin:0 0 16px;">Select all position types your department actively recruits. This appears on your public agency page and helps candidates find you through filtered searches.</p>
-
-          <div id="pos-list" style="display:grid; grid-template-columns:1fr 1fr; gap:4px 16px; margin-bottom:20px;"></div>
-
-          <div style="border-top:1px solid var(--border); padding-top:16px;">
-            <label class="field-label">Add a position type</label>
-            <div style="display:flex; gap:8px;">
-              <input id="custom-pos" class="input" placeholder="e.g. Harbor Patrol Officer" style="flex:1;" onkeydown="if(event.key==='Enter')addPos()" />
-              <button onclick="addPos()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add</button>
-            </div>
-          </div>
-        </div>
-
         <!-- Users -->
         <div class="card" style="padding:24px; margin-bottom:20px;">
           <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Users</h2>
@@ -185,6 +169,22 @@
                 <input id="new-email" class="input" style="font-size:13px;" type="email" placeholder="email@agency.gov" />
               </div>
               <button onclick="addUser()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add user</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Positions Recruited For -->
+        <div class="card" style="padding:24px; margin-bottom:20px;">
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Positions Recruited For</h2>
+          <p style="color:var(--text-2); font-size:13.5px; margin:0 0 16px;">Select all position types your department actively recruits. This appears on your public agency page and helps candidates find you through filtered searches.</p>
+
+          <div id="pos-list" style="display:grid; grid-template-columns:1fr 1fr; gap:4px 16px; margin-bottom:20px;"></div>
+
+          <div style="border-top:1px solid var(--border); padding-top:16px;">
+            <label class="field-label">Add a position type</label>
+            <div style="display:flex; gap:8px;">
+              <input id="custom-pos" class="input" placeholder="e.g. Harbor Patrol Officer" style="flex:1;" onkeydown="if(event.key==='Enter')addPos()" />
+              <button onclick="addPos()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add</button>
             </div>
           </div>
         </div>
