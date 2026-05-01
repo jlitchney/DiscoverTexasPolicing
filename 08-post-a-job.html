@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Post a Job — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+.rte-wrap { border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+.rte-toolbar { display:flex; gap:2px; padding:5px 8px; background:#f8faff; border-bottom:1px solid var(--border); }
+.rte-btn { background:none; border:1px solid transparent; border-radius:4px; padding:3px 9px; font-size:12px; font-weight:700; cursor:pointer; color:var(--text-2); line-height:1.4; }
+.rte-btn:hover, .rte-btn.active { background:#e5e7eb; border-color:var(--border); color:var(--navy-900); }
+.rte-body { min-height:110px; padding:10px 12px; font-size:13.5px; line-height:1.65; outline:none; color:var(--text-1); }
+.rte-body ul { padding-left:20px; margin:4px 0; }
+.rte-body:focus { box-shadow:inset 0 0 0 2px rgba(59,130,246,.25); }
+</style>
 </head>
 <body>
 
@@ -110,6 +119,43 @@
               <textarea class="input">San Antonio Police Department is hiring sworn officers for assignment across Patrol and Specialty Units. Both Lateral candidates (1+ year sworn experience) and Entry candidates (no prior license required — paid academy provided) are welcome.</textarea>
               <div class="help">Candidates see this on the search results page. Aim for 1–2 sentences.</div>
             </div>
+
+            <div style="grid-column: 1 / -1;">
+              <label class="field-label">About this role / Job details <span class="req">*</span></label>
+              <div class="rte-wrap">
+                <div class="rte-toolbar">
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('bold')" title="Bold"><b>B</b></button>
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('italic')" title="Italic"><i>I</i></button>
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('insertUnorderedList')" title="Bullet list">• List</button>
+                </div>
+                <div class="rte-body" contenteditable="true" id="rte-about">San Antonio Police Department patrol officers are responsible for responding to calls for service, conducting investigations, and building community relationships across the city's diverse neighborhoods. Officers may be assigned to specialized units including K-9, Motors, Community Action Team, and SWAT based on department needs and personal qualifications.</div>
+              </div>
+            </div>
+
+            <div style="grid-column: 1 / -1;">
+              <label class="field-label">Minimum qualifications <span class="req">*</span></label>
+              <div class="rte-wrap">
+                <div class="rte-toolbar">
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('bold')" title="Bold"><b>B</b></button>
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('italic')" title="Italic"><i>I</i></button>
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('insertUnorderedList')" title="Bullet list">• List</button>
+                </div>
+                <div class="rte-body" contenteditable="true" id="rte-qualifications"><ul><li>Must be 21 years of age or older at time of hire</li><li>U.S. citizen or permanent resident eligible for citizenship</li><li>Valid Texas driver's license (or ability to obtain within 90 days)</li><li>High school diploma or GED equivalent</li><li>No felony convictions or disqualifying criminal history</li><li><b>Lateral applicants:</b> Current or previous TCOLE-licensed peace officer with 1+ year of sworn experience</li></ul></div>
+              </div>
+            </div>
+
+            <div style="grid-column: 1 / -1;">
+              <label class="field-label">Compensation &amp; benefits <span class="req">*</span></label>
+              <div class="rte-wrap">
+                <div class="rte-toolbar">
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('bold')" title="Bold"><b>B</b></button>
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('italic')" title="Italic"><i>I</i></button>
+                  <button class="rte-btn" onmousedown="event.preventDefault(); fmt('insertUnorderedList')" title="Bullet list">• List</button>
+                </div>
+                <div class="rte-body" contenteditable="true" id="rte-compensation"><ul><li><b>Starting salary:</b> $58,500 (Entry) · $66,000–$78,000 (Lateral, DOE)</li><li>Comprehensive health, dental, and vision insurance</li><li>Texas Municipal Retirement System (TMRS) pension</li><li>Paid academy and field training for entry-level candidates</li><li>Uniform and equipment allowance</li><li>Lateral hire signing bonus up to $10,000</li></ul></div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -150,6 +196,8 @@
 </footer>
 
 <script>
+function fmt(cmd) { document.execCommand(cmd, false, null); }
+
 var agencyPositions = [
   'Police Officer — Patrol',
   'Police Officer — Lateral transfer',
