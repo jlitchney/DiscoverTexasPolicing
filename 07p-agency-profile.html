@@ -64,71 +64,47 @@
 
         <!-- Agency Information -->
         <div class="card" style="padding:24px; margin-bottom:20px;">
-          <span class="eyebrow">Section 1</span>
-          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 16px; font-size:20px;">Agency Information</h2>
-
-          <div style="margin-bottom:16px;">
-            <label class="field-label">Agency / Department name</label>
-            <input class="input" value="San Antonio Police Department" />
-          </div>
-
-          <div class="form-grid" style="margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
             <div>
-              <label class="field-label">Department type</label>
-              <select class="input">
-                <option selected>Municipal Police</option>
-                <option>County Sheriff</option>
-                <option>State Agency</option>
-                <option>University / Campus Police</option>
-                <option>Special District</option>
-                <option>Tribal Police</option>
-                <option>Other</option>
-              </select>
+              <span class="eyebrow">Section 1</span>
+              <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 0; font-size:20px;">Agency Information</h2>
             </div>
-            <div>
-              <label class="field-label">TCOLE Agency License #</label>
-              <input class="input" value="TCOLE-0482" />
+            <div style="display:flex; align-items:center; gap:7px; background:#f8faff; border:1px solid #c7d7f9; border-radius:6px; padding:7px 12px;">
+              <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="#3b82f6" stroke-width="1.8"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5" stroke-linecap="round"/></svg>
+              <span style="font-size:12.5px; color:#1d4ed8;">Set during onboarding · <a href="#" style="color:#1d4ed8; font-weight:600;">Contact TPCA to update</a></span>
             </div>
           </div>
 
-          <div style="margin-bottom:16px;">
-            <label class="field-label">Region</label>
-            <select class="input">
-              <option selected>Alamo (San Antonio)</option>
-              <option>Capital (Austin)</option>
-              <option>Gulf Coast (Houston)</option>
-              <option>North Texas (Dallas / Fort Worth)</option>
-              <option>West Texas (Permian Basin / El Paso)</option>
-              <option>East Texas</option>
-              <option>South Texas (Rio Grande Valley)</option>
-              <option>Panhandle (Amarillo / Lubbock)</option>
-            </select>
-          </div>
-
-          <div style="margin-bottom:16px;">
-            <label class="field-label">Street address</label>
-            <input class="input" value="315 S Santa Rosa Ave" />
-          </div>
-
-          <div style="display:grid; grid-template-columns:1fr 80px 100px; gap:12px; margin-bottom:16px;">
-            <div>
-              <label class="field-label">City</label>
-              <input class="input" value="San Antonio" />
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+            <div style="padding:12px 16px; border-bottom:1px solid var(--border); border-right:1px solid var(--border);">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">Agency / Department name</div>
+              <div style="font-size:14px; font-weight:600; color:var(--navy-900);">San Antonio Police Department</div>
             </div>
-            <div>
-              <label class="field-label">State</label>
-              <input class="input" value="TX" />
+            <div style="padding:12px 16px; border-bottom:1px solid var(--border);">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">Department type</div>
+              <div style="font-size:14px; font-weight:600; color:var(--navy-900);">Municipal Police</div>
             </div>
-            <div>
-              <label class="field-label">ZIP</label>
-              <input class="input" value="78204" />
+            <div style="padding:12px 16px; border-bottom:1px solid var(--border); border-right:1px solid var(--border);">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">TCOLE Agency License #</div>
+              <div style="font-size:14px; font-weight:600; color:var(--navy-900);">TCOLE-0482</div>
             </div>
-          </div>
-
-          <div>
-            <label class="field-label">Department website URL</label>
-            <input class="input" value="https://www.sanantonio.gov/SAPD" placeholder="https://..." />
-            <div class="help">Displayed on your public agency page and all job listings.</div>
+            <div style="padding:12px 16px; border-bottom:1px solid var(--border);">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">Region</div>
+              <div style="font-size:14px; font-weight:600; color:var(--navy-900);">Alamo (San Antonio)</div>
+            </div>
+            <div style="padding:12px 16px; border-bottom:1px solid var(--border); border-right:1px solid var(--border);">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">Address</div>
+              <div style="font-size:14px; font-weight:600; color:var(--navy-900);">315 S Santa Rosa Ave</div>
+              <div style="font-size:13px; color:var(--text-2);">San Antonio, TX 78204</div>
+            </div>
+            <div style="padding:12px 16px; border-bottom:1px solid var(--border);">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">Department website</div>
+              <div style="font-size:14px; font-weight:600;"><a href="https://www.sanantonio.gov/SAPD" style="color:var(--navy-900);">sanantonio.gov/SAPD</a></div>
+            </div>
+            <div style="padding:12px 16px; grid-column:1/-1; border-right:0;">
+              <div class="small" style="color:var(--text-3); margin-bottom:3px;">Member since</div>
+              <div style="font-size:14px; font-weight:600; color:var(--navy-900);">2019 · TPCA Verified Agency</div>
+            </div>
           </div>
         </div>
 
