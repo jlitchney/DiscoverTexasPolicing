@@ -178,6 +178,45 @@
           </div>
         </div>
 
+        <!-- Users -->
+        <div class="card" style="padding:24px; margin-bottom:20px;">
+          <span class="eyebrow">Section 4</span>
+          <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Users</h2>
+          <p style="color:var(--text-2); font-size:13.5px; margin:0 0 16px;">Manage who has access to this agency's portal account. All users share the same agency login.</p>
+
+          <table class="data" style="border:0; margin-bottom:20px;" id="users-table">
+            <thead>
+              <tr>
+                <th style="width:36px;"></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th style="width:90px;">Status</th>
+                <th style="width:130px;"></th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+
+          <div style="border-top:1px solid var(--border); padding-top:16px;">
+            <label class="field-label" style="margin-bottom:10px; display:block;">Add a user</label>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:8px; align-items:flex-end;">
+              <div>
+                <label class="field-label">First name</label>
+                <input id="new-first" class="input" style="font-size:13px;" placeholder="First" />
+              </div>
+              <div>
+                <label class="field-label">Last name</label>
+                <input id="new-last" class="input" style="font-size:13px;" placeholder="Last" />
+              </div>
+              <div>
+                <label class="field-label">Email</label>
+                <input id="new-email" class="input" style="font-size:13px;" type="email" placeholder="email@agency.gov" />
+              </div>
+              <button onclick="addUser()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add user</button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar -->
@@ -311,6 +350,71 @@ var positions = [
   { name: 'Community Service Officer',          checked: false, locked: false }
 ];
 
+var users = [
+  { first: 'Karen',  last: 'Walker',  email: 'k.walker@sanantonio.gov',  active: true  },
+  { first: 'James',  last: 'Morales', email: 'j.morales@sanantonio.gov', active: true  },
+  { first: 'Diana',  last: 'Chen',    email: 'd.chen@sanantonio.gov',    active: false }
+];
+
+function userInitials(u) { return u.first[0] + u.last[0]; }
+
+function renderUsers() {
+  var tbody = document.getElementById('users-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = users.map(function(u, i) {
+    var initials = userInitials(u);
+    var avatarBg = u.active ? 'var(--navy-900)' : '#e5e7eb';
+    var avatarColor = u.active ? '#fff' : '#9ca3af';
+    var badge = u.active
+      ? '<span class="tag green" style="font-size:11px;">Active</span>'
+      : '<span class="tag" style="font-size:11px;background:#fef3c7;color:#92400e;border-color:#fde68a;">Paused</span>';
+    var pauseBtn = u.active
+      ? '<button onclick="toggleUser(' + i + ')" class="btn btn-outline btn-sm" style="font-size:11px;padding:3px 10px;">Pause</button>'
+      : '<button onclick="toggleUser(' + i + ')" class="btn btn-secondary btn-sm" style="font-size:11px;padding:3px 10px;">Resume</button>';
+    return '<tr>' +
+      '<td><div style="width:30px;height:30px;border-radius:50%;background:' + avatarBg + ';color:' + avatarColor + ';display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">' + initials + '</div></td>' +
+      '<td><strong>' + u.first + ' ' + u.last + '</strong></td>' +
+      '<td style="color:var(--text-2);">' + u.email + '</td>' +
+      '<td>' + badge + '</td>' +
+      '<td style="text-align:right;">' +
+        '<div style="display:flex;gap:6px;justify-content:flex-end;">' +
+          pauseBtn +
+          '<button onclick="deleteUser(' + i + ')" class="btn btn-sm" style="font-size:11px;padding:3px 10px;background:none;border:1px solid #fca5a5;color:#ef4444;" onmouseenter="this.style.background=\'#fef2f2\'" onmouseleave="this.style.background=\'none\'">Delete</button>' +
+        '</div>' +
+      '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+function toggleUser(i) {
+  users[i].active = !users[i].active;
+  renderUsers();
+}
+
+function deleteUser(i) {
+  if (!confirm('Remove ' + users[i].first + ' ' + users[i].last + ' from this account?')) return;
+  users.splice(i, 1);
+  renderUsers();
+}
+
+function addUser() {
+  var first = document.getElementById('new-first').value.trim();
+  var last  = document.getElementById('new-last').value.trim();
+  var email = document.getElementById('new-email').value.trim();
+  if (!first || !last || !email) {
+    if (!first) document.getElementById('new-first').focus();
+    else if (!last) document.getElementById('new-last').focus();
+    else document.getElementById('new-email').focus();
+    return;
+  }
+  users.push({ first: first, last: last, email: email, active: true });
+  renderUsers();
+  document.getElementById('new-first').value  = '';
+  document.getElementById('new-last').value   = '';
+  document.getElementById('new-email').value  = '';
+  document.getElementById('new-first').focus();
+}
+
 var lockIcon = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#9ca3af" stroke-width="1.8" style="flex-shrink:0;margin-right:2px;"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>';
 
 function renderPositions() {
@@ -356,6 +460,7 @@ function discardChanges() {
 }
 
 renderPositions();
+renderUsers();
 </script>
 <script src="assets/script.js"></script>
 </body>
