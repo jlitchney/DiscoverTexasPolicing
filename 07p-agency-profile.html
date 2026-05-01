@@ -167,30 +167,14 @@
           <h2 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:20px;">Positions Recruited For</h2>
           <p style="color:var(--text-2); font-size:13.5px; margin:0 0 16px;">Select all position types your department actively recruits. This appears on your public agency page and helps candidates find you through filtered searches.</p>
 
-          <div class="form-grid" style="margin-bottom:20px;">
-            <label class="checkbox"><input type="checkbox" checked> Police Officer — Patrol</label>
-            <label class="checkbox"><input type="checkbox" checked> Police Officer — Lateral transfer</label>
-            <label class="checkbox"><input type="checkbox" checked> Police Officer Cadet / Academy</label>
-            <label class="checkbox"><input type="checkbox"> Corporal</label>
-            <label class="checkbox"><input type="checkbox" checked> Sergeant</label>
-            <label class="checkbox"><input type="checkbox"> Lieutenant</label>
-            <label class="checkbox"><input type="checkbox"> Captain</label>
-            <label class="checkbox"><input type="checkbox" checked> Detective / Investigator</label>
-            <label class="checkbox"><input type="checkbox" checked> Detention Officer / Jailer</label>
-            <label class="checkbox"><input type="checkbox" checked> Telecommunicator / 911 Dispatcher</label>
-            <label class="checkbox"><input type="checkbox"> School Resource Officer</label>
-            <label class="checkbox"><input type="checkbox" checked> Civilian Investigator</label>
-            <label class="checkbox"><input type="checkbox"> Administrative / Civilian Support</label>
-            <label class="checkbox"><input type="checkbox"> Community Service Officer</label>
-          </div>
+          <div id="pos-list" style="display:grid; grid-template-columns:1fr 1fr; gap:4px 16px; margin-bottom:20px;"></div>
 
           <div style="border-top:1px solid var(--border); padding-top:16px;">
-            <label class="field-label">Add a custom position type (optional)</label>
+            <label class="field-label">Add a position type</label>
             <div style="display:flex; gap:8px;">
-              <input id="custom-pos" class="input" placeholder="e.g. Harbor Patrol Officer" style="flex:1;" onkeydown="if(event.key==='Enter')addCustomPos()" />
-              <button onclick="addCustomPos()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add</button>
+              <input id="custom-pos" class="input" placeholder="e.g. Harbor Patrol Officer" style="flex:1;" onkeydown="if(event.key==='Enter')addPos()" />
+              <button onclick="addPos()" class="btn btn-secondary btn-sm" style="white-space:nowrap;">+ Add</button>
             </div>
-            <div id="custom-pos-list" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px;"></div>
           </div>
         </div>
 
@@ -310,6 +294,50 @@
 </footer>
 
 <script>
+var positions = [
+  { name: 'Police Officer — Patrol',            checked: true  },
+  { name: 'Police Officer — Lateral transfer',  checked: true  },
+  { name: 'Police Officer Cadet / Academy',     checked: true  },
+  { name: 'Corporal',                           checked: false },
+  { name: 'Sergeant',                           checked: true  },
+  { name: 'Lieutenant',                         checked: false },
+  { name: 'Captain',                            checked: false },
+  { name: 'Detective / Investigator',           checked: true  },
+  { name: 'Detention Officer / Jailer',         checked: true  },
+  { name: 'Telecommunicator / 911 Dispatcher',  checked: true  },
+  { name: 'School Resource Officer',            checked: false },
+  { name: 'Civilian Investigator',              checked: true  },
+  { name: 'Administrative / Civilian Support',  checked: false },
+  { name: 'Community Service Officer',          checked: false }
+];
+
+function renderPositions() {
+  var container = document.getElementById('pos-list');
+  container.innerHTML = positions.map(function(p, i) {
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 6px;border-radius:5px;" onmouseenter="this.style.background=\'#f8faff\'" onmouseleave="this.style.background=\'transparent\'">' +
+      '<label class="checkbox" style="margin:0;flex:1;cursor:pointer;">' +
+        '<input type="checkbox"' + (p.checked ? ' checked' : '') + ' onchange="positions[' + i + '].checked=this.checked"> ' + p.name +
+      '</label>' +
+      '<button onclick="removePos(' + i + ')" title="Remove position" style="background:none;border:none;color:#d1d5db;cursor:pointer;font-size:17px;line-height:1;padding:0 2px;flex-shrink:0;" onmouseenter="this.style.color=\'#ef4444\'" onmouseleave="this.style.color=\'#d1d5db\'">×</button>' +
+    '</div>';
+  }).join('');
+}
+
+function removePos(i) {
+  positions.splice(i, 1);
+  renderPositions();
+}
+
+function addPos() {
+  var input = document.getElementById('custom-pos');
+  var val = input.value.trim();
+  if (!val) { input.focus(); return; }
+  positions.push({ name: val, checked: true });
+  renderPositions();
+  input.value = '';
+  input.focus();
+}
+
 function saveProfile() {
   var toast = document.createElement('div');
   toast.textContent = 'Profile saved successfully.';
@@ -322,18 +350,7 @@ function discardChanges() {
   if (confirm('Discard all unsaved changes?')) location.reload();
 }
 
-function addCustomPos() {
-  var input = document.getElementById('custom-pos');
-  var val = input.value.trim();
-  if (!val) return;
-  var list = document.getElementById('custom-pos-list');
-  var tag = document.createElement('span');
-  tag.style.cssText = 'display:inline-flex;align-items:center;gap:5px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:4px;padding:3px 9px;font-size:12px;font-weight:600;';
-  tag.innerHTML = val + ' <button onclick="this.parentNode.remove()" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:15px;line-height:1;padding:0 0 0 2px;" title="Remove">×</button>';
-  list.appendChild(tag);
-  input.value = '';
-  input.focus();
-}
+renderPositions();
 </script>
 <script src="assets/script.js"></script>
 </body>
