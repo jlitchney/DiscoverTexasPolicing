@@ -6,27 +6,68 @@
 <title>Candidates — San Antonio PD — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-.stage-tabs { display:flex; gap:0; border:1px solid var(--border); border-radius:8px; overflow:hidden; background:#fff; }
-.stage-tab { padding:8px 16px; font-size:13px; font-weight:500; color:var(--text-2); border:none; background:transparent; cursor:pointer; border-right:1px solid var(--border); white-space:nowrap; }
-.stage-tab:last-child { border-right:none; }
-.stage-tab.active { background:var(--navy-900); color:#fff; font-weight:600; }
-.stage-tab .count { font-size:11px; font-weight:700; background:rgba(255,255,255,.2); padding:1px 6px; border-radius:10px; margin-left:5px; }
-.stage-tab:not(.active) .count { background:#f1f5f9; color:var(--navy-900); }
-.candidate-row { display:grid; grid-template-columns:40px 1fr 180px 130px 130px 120px auto; gap:12px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--border); font-size:13.5px; }
-.candidate-row:last-child { border-bottom:none; }
-.candidate-row:hover { background:#f8faff; }
-.avatar { width:36px; height:36px; border-radius:50%; background:var(--navy-900); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
-.stage-pill { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:12px; font-size:12px; font-weight:600; }
-.stage-applied    { background:#f0f4ff; color:#3b5bdb; }
-.stage-prescreened { background:#dcfce7; color:#15803d; }
-.stage-review     { background:#fef9c3; color:#854d0e; }
-.stage-interview  { background:#fff7ed; color:#c2410c; }
-.stage-offer      { background:#f5f0ff; color:#7c3aed; }
-.stage-hired      { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
-.stage-disqualified { background:#fee2e2; color:#dc2626; }
-.ps-pass { color:#15803d; font-weight:600; font-size:12px; }
-.ps-fail { color:#dc2626; font-weight:600; font-size:12px; }
-.ps-pending { color:var(--text-3); font-size:12px; }
+.cand-list { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+
+.cand-col-header {
+  display:grid;
+  grid-template-columns: 36px 1fr 160px 130px 110px 110px;
+  gap:0;
+  padding:10px 16px;
+  border-bottom:2px solid var(--border);
+  background:#fafbfc;
+}
+.cand-col-header span {
+  font-size:12px; font-weight:700; color:#3b82f6; text-transform:none;
+  letter-spacing:0; cursor:pointer; display:flex; align-items:center; gap:4px;
+}
+.cand-col-header span.plain { color:var(--text-3); cursor:default; }
+
+.cand-row {
+  display:grid;
+  grid-template-columns: 36px 1fr 160px 130px 110px 110px;
+  gap:0;
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  align-items:flex-start;
+  transition:background .1s;
+}
+.cand-row:last-child { border-bottom:none; }
+.cand-row:hover { background:#f8faff; }
+.cand-row.selected { border-left:3px solid #3b82f6; background:#f0f7ff; }
+
+.cand-avatar {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:700; color:#fff; flex-shrink:0; margin-top:2px;
+}
+
+.cand-name { font-size:15px; font-weight:600; color:#2563eb; cursor:pointer; }
+.cand-name:hover { text-decoration:underline; }
+.cand-created { font-size:12px; color:var(--text-3); margin-top:2px; margin-bottom:8px; }
+
+.cand-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.ctag {
+  border:1px solid #d1d5db;
+  border-radius:6px;
+  padding:4px 10px;
+  min-width:90px;
+  background:#fff;
+}
+.ctag .ctag-label { font-size:10px; color:#9ca3af; font-weight:500; display:block; margin-bottom:2px; }
+.ctag .ctag-value { font-size:13px; font-weight:700; color:var(--navy-900); display:block; line-height:1.2; }
+.ctag .ctag-value.pass  { color:#15803d; }
+.ctag .ctag-value.fail  { color:#dc2626; }
+.ctag .ctag-value.pending { color:#9ca3af; }
+.ctag .ctag-date  { font-size:10px; color:#9ca3af; display:block; margin-top:2px; }
+
+.col-cell { display:flex; align-items:flex-start; padding-top:4px; font-size:13px; color:var(--text-2); }
+.activity-time { font-size:12.5px; color:var(--text-3); text-align:right; padding-top:4px; }
+
+.filter-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; border-bottom:1px solid var(--border);
+  background:#fafbfc;
+}
 </style>
 </head>
 <body>
@@ -69,7 +110,7 @@
       <div>
         <span class="eyebrow">Agency Portal</span>
         <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">Candidates</h1>
-        <p style="color:var(--text-2); margin:0;">All applicants to San Antonio Police Department postings · Q2 2026</p>
+        <p style="color:var(--text-2); margin:0;">All applicants to San Antonio Police Department postings · 418 total</p>
       </div>
       <div style="display:flex; gap:10px;">
         <a href="#" class="btn btn-outline btn-sm">Export CSV</a>
@@ -77,162 +118,253 @@
       </div>
     </div>
 
-    <!-- Pipeline stage tabs -->
-    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:16px;">
-      <div class="stage-tabs">
-        <button class="stage-tab active" onclick="filterStage('all')">All <span class="count">418</span></button>
-        <button class="stage-tab" onclick="filterStage('applied')">Applied <span class="count">284</span></button>
-        <button class="stage-tab" onclick="filterStage('prescreened')">Pre-screened <span class="count">62</span></button>
-        <button class="stage-tab" onclick="filterStage('review')">Under Review <span class="count">38</span></button>
-        <button class="stage-tab" onclick="filterStage('interview')">Interview <span class="count">22</span></button>
-        <button class="stage-tab" onclick="filterStage('offer')">Offer <span class="count">8</span></button>
-        <button class="stage-tab" onclick="filterStage('hired')">Hired <span class="count">4</span></button>
-      </div>
-    </div>
+    <div class="cand-list">
 
-    <!-- Filter row -->
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
-      <input class="input" style="width:220px;" placeholder="Search by name or email…" />
-      <select class="input" style="width:200px;">
-        <option>All positions</option>
-        <option>Police Officer (Lateral)</option>
-        <option>Police Officer Cadet</option>
-        <option>Detention Officer</option>
-        <option>Telecommunicator</option>
-        <option>Detective — Robbery</option>
-      </select>
-      <select class="input" style="width:160px;">
-        <option>Any pre-screen result</option>
-        <option>Pass</option>
-        <option>Fail</option>
-        <option>Pending</option>
-      </select>
-      <select class="input" style="width:160px;">
-        <option>All dates</option>
-        <option>This week</option>
-        <option>This month</option>
-        <option>This quarter</option>
-      </select>
-    </div>
-
-    <!-- Candidates table -->
-    <div class="card" style="padding:0; overflow:hidden;">
-      <!-- Header -->
-      <div style="display:grid; grid-template-columns:40px 1fr 180px 130px 130px 120px auto; gap:12px; padding:10px 16px; border-bottom:2px solid var(--border); background:#f8faff;">
-        <div></div>
-        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Candidate</div>
-        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Position</div>
-        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Applied</div>
-        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Pre-screen</div>
-        <div style="font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em;">Stage</div>
-        <div></div>
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button class="btn btn-outline btn-sm" style="display:flex; align-items:center; gap:6px;">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h14M4 8h8M7 13h2"/></svg>
+            Filters
+          </button>
+          <input style="border:1px solid var(--border); border-radius:6px; padding:6px 12px; font-size:13px; width:220px; outline:none;" placeholder="Search candidates…" />
+        </div>
+        <button class="btn btn-sm" style="color:var(--tx-red); border:1px solid var(--tx-red); background:#fff;">Clear Filters</button>
       </div>
 
-      <!-- Rows -->
-      <div class="candidate-row">
-        <div class="avatar" style="background:#1e3a5f;">JT</div>
-        <div><strong>Jasmine Torres</strong><div class="small">jasmine.torres@email.com</div></div>
-        <div style="color:var(--text-2);">Police Officer Cadet</div>
-        <div style="color:var(--text-3);">Apr 22</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-interview">Interview</span></div>
-        <div><a href="#" class="small">View →</a></div>
+      <!-- Column headers -->
+      <div class="cand-col-header">
+        <span class="plain"><input type="checkbox" style="margin:0;" /></span>
+        <span>Name <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 1l2 3H3zm0 8L3 6h4z"/></svg></span>
+        <span>Recruiter <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 1l2 3H3zm0 8L3 6h4z"/></svg></span>
+        <span>Created <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 1l2 3H3zm0 8L3 6h4z"/></svg></span>
+        <span>Activity <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 8L3 5h4z"/></svg></span>
+        <span>Comm <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 8L3 5h4z"/></svg></span>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#7c3aed;">MR</div>
-        <div><strong>Marcus Rivera</strong><div class="small">m.rivera@email.com</div></div>
-        <div style="color:var(--text-2);">Police Officer (Lateral)</div>
-        <div style="color:var(--text-3);">Apr 21</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-offer">Offer sent</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: Aisha Johnson (selected) -->
+      <div class="cand-row selected">
+        <div><input type="checkbox" checked style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:#0d9488; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">A</div>
+          <div class="cand-name">Aisha Johnson</div>
+          <div class="cand-created">Created 05/01/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value pass">Pass</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">Police Officer Cadet</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Sgt. K. Walker</div>
+        <div class="col-cell">05/01/2026</div>
+        <div class="col-cell activity-time">1 min ago</div>
+        <div class="col-cell activity-time">1 min ago</div>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:var(--tx-red);">DL</div>
-        <div><strong>David Lim</strong><div class="small">david.lim@email.com</div></div>
-        <div style="color:var(--text-2);">Police Officer (Lateral)</div>
-        <div style="color:var(--text-3);">Apr 20</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-review">Under Review</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: David Lim -->
+      <div class="cand-row">
+        <div><input type="checkbox" style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:var(--tx-red); display:inline-flex; width:36px; height:36px; margin-bottom:6px;">D</div>
+          <div class="cand-name">David Lim</div>
+          <div class="cand-created">Created 05/01/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">Police Officer (Lateral)</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value pending">Pending</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Sgt. K. Walker</div>
+        <div class="col-cell">05/01/2026</div>
+        <div class="col-cell activity-time">1 min ago</div>
+        <div class="col-cell activity-time"></div>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#0d9488;">AJ</div>
-        <div><strong>Aisha Johnson</strong><div class="small">aisha.j@email.com</div></div>
-        <div style="color:var(--text-2);">Detention Officer</div>
-        <div style="color:var(--text-3);">Apr 19</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-interview">Interview</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: Marcus Rivera -->
+      <div class="cand-row">
+        <div><input type="checkbox" style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:#7c3aed; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">M</div>
+          <div class="cand-name">Marcus Rivera</div>
+          <div class="cand-created">Created 05/01/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">Police Officer (Academy Grad)</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value fail">Fail</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Lt. J. Morales</div>
+        <div class="col-cell">05/01/2026</div>
+        <div class="col-cell activity-time">2 min ago</div>
+        <div class="col-cell activity-time"></div>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#475569;">SK</div>
-        <div><strong>Sandra Kim</strong><div class="small">s.kim@email.com</div></div>
-        <div style="color:var(--text-2);">Telecommunicator</div>
-        <div style="color:var(--text-3);">Apr 18</div>
-        <div><span class="ps-fail">✗ Fail</span></div>
-        <div><span class="stage-pill stage-disqualified">Disqualified</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: Greg Schumann -->
+      <div class="cand-row">
+        <div><input type="checkbox" style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:#1e3a5f; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">G</div>
+          <div class="cand-name">Greg Schumann</div>
+          <div class="cand-created">Created 05/01/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">911 Dispatch Operator</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value pass">Pass</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">5/1/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Sgt. K. Walker</div>
+        <div class="col-cell">05/01/2026</div>
+        <div class="col-cell activity-time">5 min ago</div>
+        <div class="col-cell activity-time"></div>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#1e3a5f;">CV</div>
-        <div><strong>Carlos Vega</strong><div class="small">cvega@email.com</div></div>
-        <div style="color:var(--text-2);">Police Officer (Lateral)</div>
-        <div style="color:var(--text-3);">Apr 17</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-review">Under Review</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: Jasmine Torres -->
+      <div class="cand-row">
+        <div><input type="checkbox" style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:#b45309; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">J</div>
+          <div class="cand-name">Jasmine Torres</div>
+          <div class="cand-created">Created 04/30/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">Police Officer Cadet</span>
+              <span class="ctag-date">4/30/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value pass">Pass</span>
+              <span class="ctag-date">4/30/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">4/30/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Lt. J. Morales</div>
+        <div class="col-cell">04/30/2026</div>
+        <div class="col-cell activity-time">1 day ago</div>
+        <div class="col-cell activity-time"></div>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#b45309;">RM</div>
-        <div><strong>Robert Martinez</strong><div class="small">r.martinez@email.com</div></div>
-        <div style="color:var(--text-2);">Police Officer Cadet</div>
-        <div style="color:var(--text-3);">Apr 16</div>
-        <div><span class="ps-pending">Pending</span></div>
-        <div><span class="stage-pill stage-applied">Applied</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: Carlos Vega -->
+      <div class="cand-row">
+        <div><input type="checkbox" style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:#475569; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">C</div>
+          <div class="cand-name">Carlos Vega</div>
+          <div class="cand-created">Created 04/29/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">Police Officer (Lateral)</span>
+              <span class="ctag-date">4/29/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value pass">Pass</span>
+              <span class="ctag-date">4/29/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">4/29/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Sgt. K. Walker</div>
+        <div class="col-cell">04/29/2026</div>
+        <div class="col-cell activity-time">2 days ago</div>
+        <div class="col-cell activity-time"></div>
       </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#0d9488;">TH</div>
-        <div><strong>Thomas Hughes</strong><div class="small">t.hughes@email.com</div></div>
-        <div style="color:var(--text-2);">Telecommunicator</div>
-        <div style="color:var(--text-3);">Apr 15</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-hired">Hired</span></div>
-        <div><a href="#" class="small">View →</a></div>
-      </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:#7c3aed;">PN</div>
-        <div><strong>Priya Nair</strong><div class="small">priya.n@email.com</div></div>
-        <div style="color:var(--text-2);">Police Officer Cadet</div>
-        <div style="color:var(--text-3);">Apr 14</div>
-        <div><span class="ps-pending">Pending</span></div>
-        <div><span class="stage-pill stage-applied">Applied</span></div>
-        <div><a href="#" class="small">View →</a></div>
-      </div>
-      <div class="candidate-row">
-        <div class="avatar" style="background:var(--tx-red);">ED</div>
-        <div><strong>Emily Davis</strong><div class="small">emily.d@email.com</div></div>
-        <div style="color:var(--text-2);">Detective — Robbery</div>
-        <div style="color:var(--text-3);">Apr 12</div>
-        <div><span class="ps-pass">✓ Pass</span></div>
-        <div><span class="stage-pill stage-review">Under Review</span></div>
-        <div><a href="#" class="small">View →</a></div>
+
+      <!-- Row: Sandra Kim -->
+      <div class="cand-row">
+        <div><input type="checkbox" style="margin-top:6px;" /></div>
+        <div>
+          <div class="cand-avatar" style="background:#dc2626; display:inline-flex; width:36px; height:36px; margin-bottom:6px;">S</div>
+          <div class="cand-name">Sandra Kim</div>
+          <div class="cand-created">Created 04/28/2026</div>
+          <div class="cand-tags">
+            <div class="ctag">
+              <span class="ctag-label">Position</span>
+              <span class="ctag-value">Telecommunicator</span>
+              <span class="ctag-date">4/28/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">Pre-Screen Status</span>
+              <span class="ctag-value fail">Fail</span>
+              <span class="ctag-date">4/28/2026</span>
+            </div>
+            <div class="ctag">
+              <span class="ctag-label">&nbsp;</span>
+              <span class="ctag-value" style="font-size:12px; color:var(--text-3); font-weight:500;">candidate created</span>
+              <span class="ctag-date">4/28/2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-cell">Sgt. K. Walker</div>
+        <div class="col-cell">04/28/2026</div>
+        <div class="col-cell activity-time">3 days ago</div>
+        <div class="col-cell activity-time"></div>
       </div>
 
       <!-- Pagination -->
-      <div style="padding:14px 16px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); background:#fafafa;">
-        <div class="small" style="color:var(--text-3);">Showing 1–10 of 418 candidates</div>
-        <div style="display:flex; gap:6px;">
-          <button class="btn btn-outline btn-sm" disabled>← Prev</button>
-          <button class="btn btn-outline btn-sm" style="background:var(--navy-900);color:#fff;border-color:var(--navy-900);">1</button>
-          <button class="btn btn-outline btn-sm">2</button>
-          <button class="btn btn-outline btn-sm">3</button>
-          <span style="padding:4px 8px; font-size:13px; color:var(--text-3);">…</span>
-          <button class="btn btn-outline btn-sm">42</button>
-          <button class="btn btn-outline btn-sm">Next →</button>
-        </div>
+      <div style="padding:16px; display:flex; justify-content:center; gap:10px; border-top:1px solid var(--border); background:#fafbfc;">
+        <button class="btn btn-outline btn-sm" disabled>Previous</button>
+        <button class="btn btn-outline btn-sm">Next</button>
       </div>
+
     </div>
   </div>
 </section>
@@ -261,11 +393,5 @@
 </footer>
 
 <script src="assets/script.js"></script>
-<script>
-function filterStage(stage) {
-  document.querySelectorAll('.stage-tab').forEach(function(t) { t.classList.remove('active'); });
-  event.target.classList.add('active');
-}
-</script>
 </body>
 </html>
