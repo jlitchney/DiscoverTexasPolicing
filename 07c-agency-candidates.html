@@ -10,7 +10,7 @@
 
 .cand-col-header {
   display:grid;
-  grid-template-columns: 36px 1fr 130px 190px 130px;
+  grid-template-columns: 36px 1fr 130px 190px 130px 80px;
   gap:0;
   padding:10px 16px;
   border-bottom:2px solid var(--border);
@@ -24,7 +24,7 @@
 
 .cand-row {
   display:grid;
-  grid-template-columns: 36px 1fr 130px 190px 130px;
+  grid-template-columns: 36px 1fr 130px 190px 130px 80px;
   gap:0;
   padding:14px 16px;
   border-bottom:1px solid var(--border);
@@ -96,6 +96,15 @@
 .vseg:last-child { border-right:none; }
 .vseg:hover:not(.active) { background:#f1f5f9; }
 .vseg.active { background:var(--navy-900); color:#fff; }
+
+.docs-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  background:none; border:1px solid var(--border); border-radius:6px;
+  padding:4px 9px; cursor:pointer; color:#3b82f6;
+  font-size:12px; font-weight:600; transition:background .1s;
+}
+.docs-btn:hover { background:#eff6ff; border-color:#3b82f6; }
+.docs-count { background:#3b82f6; color:#fff; border-radius:10px; padding:1px 6px; font-size:11px; }
 </style>
 </head>
 <body>
@@ -173,6 +182,7 @@
         <span>Created <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 1l2 3H3zm0 8L3 6h4z"/></svg></span>
         <span>Email</span>
         <span>Phone</span>
+        <span class="plain">Docs</span>
       </div>
 
       <!-- Row: Aisha Johnson (selected) -->
@@ -202,6 +212,7 @@
         <div class="col-cell">05/01/2026</div>
         <div class="col-cell" style="font-size:12.5px;">aisha.j@gmail.com</div>
         <div class="col-cell" style="font-size:12.5px;">(210) 555-0142</div>
+        <div class="col-cell"><button class="docs-btn" onclick="openDocsModal('Aisha Johnson')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="docs-count">3</span></button></div>
       </div>
 
       <!-- Row: David Lim -->
@@ -229,6 +240,7 @@
         <div class="col-cell">05/01/2026</div>
         <div class="col-cell" style="font-size:12.5px;">david.lim@outlook.com</div>
         <div class="col-cell" style="font-size:12.5px;">(512) 555-0293</div>
+        <div class="col-cell"><button class="docs-btn" onclick="openDocsModal('David Lim')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="docs-count">1</span></button></div>
       </div>
 
       <!-- Row: Marcus Rivera -->
@@ -256,6 +268,7 @@
         <div class="col-cell">05/01/2026</div>
         <div class="col-cell" style="font-size:12.5px;">m.rivera@gmail.com</div>
         <div class="col-cell" style="font-size:12.5px;">(210) 555-0471</div>
+        <div class="col-cell"><button class="docs-btn" onclick="openDocsModal('Marcus Rivera')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="docs-count">2</span></button></div>
       </div>
 
       <!-- Row: Greg Schumann -->
@@ -283,6 +296,7 @@
         <div class="col-cell">05/01/2026</div>
         <div class="col-cell" style="font-size:12.5px;">g.schumann@yahoo.com</div>
         <div class="col-cell" style="font-size:12.5px;">(830) 555-0118</div>
+        <div class="col-cell"><button class="docs-btn" onclick="openDocsModal('Greg Schumann')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="docs-count">2</span></button></div>
       </div>
 
       <!-- Row: Jasmine Torres -->
@@ -310,6 +324,7 @@
         <div class="col-cell">04/30/2026</div>
         <div class="col-cell" style="font-size:12.5px;">jasmine.t@gmail.com</div>
         <div class="col-cell" style="font-size:12.5px;">(210) 555-0267</div>
+        <div class="col-cell"><button class="docs-btn" onclick="openDocsModal('Jasmine Torres')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="docs-count">3</span></button></div>
       </div>
 
       <!-- Row: Carlos Vega -->
@@ -337,6 +352,7 @@
         <div class="col-cell">04/29/2026</div>
         <div class="col-cell" style="font-size:12.5px;">c.vega@outlook.com</div>
         <div class="col-cell" style="font-size:12.5px;">(956) 555-0389</div>
+        <div class="col-cell"><button class="docs-btn" onclick="openDocsModal('Carlos Vega')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="docs-count">2</span></button></div>
       </div>
 
       <!-- Row: Sandra Kim -->
@@ -364,6 +380,7 @@
         <div class="col-cell">04/28/2026</div>
         <div class="col-cell" style="font-size:12.5px;">sandra.kim@gmail.com</div>
         <div class="col-cell" style="font-size:12.5px;">(210) 555-0541</div>
+        <div class="col-cell" style="color:var(--text-3); padding-top:4px;">—</div>
       </div>
 
       <!-- Pagination -->
@@ -419,6 +436,17 @@
   </div>
 </section>
 
+<!-- Documents modal -->
+<div id="docs-backdrop" onclick="closeDocsModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:200;"></div>
+<div id="docs-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:12px; padding:28px 32px; min-width:380px; max-width:500px; z-index:201; box-shadow:0 20px 60px rgba(0,0,0,.22);">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+    <h3 id="docs-modal-name" style="font-family:var(--font-display); color:var(--navy-900); margin:0; font-size:18px;"></h3>
+    <button onclick="closeDocsModal()" style="background:none; border:none; cursor:pointer; color:var(--text-3); font-size:22px; line-height:1; padding:0 4px;">×</button>
+  </div>
+  <p style="color:var(--text-2); font-size:13px; margin:0 0 16px;">Submitted documents</p>
+  <div id="docs-modal-list"></div>
+</div>
+
 <footer class="site-footer">
   <div class="container">
     <div class="cols">
@@ -444,6 +472,61 @@
 
 <script src="assets/script.js"></script>
 <script>
+var candDocs = {
+  'Aisha Johnson':  [
+    { name: 'Resume',               uploaded: '05/01/2026' },
+    { name: 'DD-214 (Military)',    uploaded: '05/01/2026' },
+    { name: 'TCOLE Certification',  uploaded: '05/01/2026' }
+  ],
+  'David Lim':      [
+    { name: 'Resume',               uploaded: '05/01/2026' }
+  ],
+  'Marcus Rivera':  [
+    { name: 'Resume',               uploaded: '05/01/2026' },
+    { name: 'TCOLE Certification',  uploaded: '05/01/2026' }
+  ],
+  'Greg Schumann':  [
+    { name: 'Resume',               uploaded: '05/01/2026' },
+    { name: 'TCOLE Certification',  uploaded: '05/01/2026' }
+  ],
+  'Jasmine Torres': [
+    { name: 'Resume',               uploaded: '04/30/2026' },
+    { name: 'DD-214 (Military)',    uploaded: '04/30/2026' },
+    { name: 'TCOLE Certification',  uploaded: '04/30/2026' }
+  ],
+  'Carlos Vega':    [
+    { name: 'Resume',               uploaded: '04/29/2026' },
+    { name: 'TCOLE Certification',  uploaded: '04/29/2026' }
+  ],
+  'Sandra Kim':     []
+};
+
+function openDocsModal(name) {
+  var docs = candDocs[name] || [];
+  document.getElementById('docs-modal-name').textContent = name;
+  var list = document.getElementById('docs-modal-list');
+  if (docs.length === 0) {
+    list.innerHTML = '<p style="color:var(--text-3); font-size:13px; margin:0;">No documents submitted.</p>';
+  } else {
+    list.innerHTML = docs.map(function(d) {
+      return '<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border:1px solid var(--border); border-radius:6px; margin-bottom:8px;">' +
+        '<div style="display:flex; align-items:center; gap:10px;">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' +
+        '<div><div style="font-size:13.5px; font-weight:600; color:var(--navy-900);">' + d.name + '</div>' +
+        '<div style="font-size:11px; color:var(--text-3);">Uploaded ' + d.uploaded + '</div></div></div>' +
+        '<a href="#" style="font-size:12.5px; font-weight:600; color:#3b82f6; text-decoration:none;">View →</a>' +
+        '</div>';
+    }).join('');
+  }
+  document.getElementById('docs-backdrop').style.display = '';
+  document.getElementById('docs-modal').style.display = '';
+}
+
+function closeDocsModal() {
+  document.getElementById('docs-backdrop').style.display = 'none';
+  document.getElementById('docs-modal').style.display = 'none';
+}
+
 function setView(mode) {
   ['compact','tagged','expanded'].forEach(function(m) {
     document.getElementById('vBtn-' + m).classList.toggle('active', m === mode);
