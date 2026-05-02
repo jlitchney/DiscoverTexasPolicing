@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ambassador Profile — Lt. Marcus Delgado — TPCA Admin</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; margin-bottom:20px; }
+  .section-card h3 { font-size:15px; font-weight:700; color:var(--navy-900); margin:0 0 18px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .form-row.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+  .form-group { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }
+  .form-group:last-child { margin-bottom:0; }
+  .form-group label { font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; }
+
+  /* Photo upload */
+  .photo-upload-area { display:flex; gap:20px; align-items:flex-start; }
+  .photo-preview { width:96px; height:96px; border-radius:50%; background-image:url('assets/images/ambassador-r4.jpg'); background-size:cover; background-position:center; border:3px solid var(--gold); flex:none; }
+  .photo-upload-controls { display:flex; flex-direction:column; gap:8px; }
+  .upload-zone { border:2px dashed var(--border); border-radius:var(--radius); padding:14px 18px; text-align:center; cursor:pointer; background:var(--bg); transition:border-color .15s; }
+  .upload-zone:hover { border-color:var(--navy-700); }
+  .upload-zone input[type=file] { display:none; }
+
+  /* Tag checkboxes */
+  .tag-checkboxes { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag-check { display:none; }
+  .tag-check + label {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:4px 12px; border-radius:20px; font-size:13px; font-weight:500;
+    border:1px solid var(--border); background:#fff; color:var(--text-2);
+    cursor:pointer; user-select:none; transition:all .15s;
+  }
+  .tag-check:checked + label { background:var(--navy-900); color:#fff; border-color:var(--navy-900); }
+
+  /* Card preview */
+  .preview-card { background:#fff8f7; border:1px solid var(--border); border-left:4px solid var(--tx-red); border-radius:var(--radius); padding:16px; }
+  .preview-card .preview-avatar { width:52px; height:52px; border-radius:50%; background-image:url('assets/images/ambassador-r4.jpg'); background-size:cover; background-position:center; border:3px solid var(--tx-red); flex:none; }
+  .preview-tags { display:flex; flex-wrap:wrap; gap:5px; margin:8px 0 10px; }
+  .preview-tag { font-size:11px; padding:2px 8px; border-radius:20px; background:#f1f5f9; color:var(--text-2); border:1px solid var(--border); }
+  .preview-tag.red { background:#fef2f2; color:#991b1b; border-color:#fecaca; }
+  .preview-tag.gold { background:#fffbeb; color:#92400e; border-color:#fde68a; }
+
+  /* Toggle */
+  .toggle-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); }
+  .toggle-row:last-child { border-bottom:0; }
+  .toggle-switch { position:relative; display:inline-block; width:40px; height:22px; }
+  .toggle-switch input { opacity:0; width:0; height:0; }
+  .toggle-slider { position:absolute; cursor:pointer; inset:0; background:#cbd5e1; border-radius:22px; transition:.2s; }
+  .toggle-slider:before { content:''; position:absolute; height:16px; width:16px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:.2s; }
+  .toggle-switch input:checked + .toggle-slider { background:var(--navy-800); }
+  .toggle-switch input:checked + .toggle-slider:before { transform:translateX(18px); }
+</style>
+</head>
+<body>
+
+<div class="mock-bar">
+  Mockup 09d1 — TPCA Admin · Ambassador Profile
+  <a href="index.html">All Mockups</a> |
+  <a href="09d-admin-ambassadors.html">← Back to Ambassadors</a>
+</div>
+
+<nav style="background:var(--navy-900); border-bottom:3px solid var(--gold);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+    <a href="09-admin-analytics.html" class="brand" style="text-decoration:none;">
+      <div class="brand-mark" style="background:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="brand-text">
+        <div class="t1">DiscoverTexasPolicing</div>
+        <div class="t2" style="color:var(--gold);">★ TPCA Admin</div>
+      </div>
+    </a>
+    <div style="display:flex; gap:28px;">
+      <a href="09-admin-analytics.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Analytics</a>
+      <a href="09a-admin-agencies.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Agencies</a>
+      <a href="09b-admin-job-listings.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Job Listings</a>
+      <a href="09d-admin-ambassadors.html" style="color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:2px;">Ambassadors</a>
+      <a href="09e-admin-marketing.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Marketing</a>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a href="#" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Log Out</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section tight">
+  <div class="container">
+
+    <!-- Breadcrumb + header -->
+    <div style="margin-bottom:20px;">
+      <a href="09d-admin-ambassadors.html" style="color:var(--text-3); font-size:13px; text-decoration:none;">← Back to Ambassadors</a>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-top:10px;">
+        <div>
+          <span class="eyebrow">Ambassador Profile</span>
+          <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 6px; font-size:28px;">Lt. Marcus Delgado</h1>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span class="tag green">Active</span>
+            <span class="tag red">Featured</span>
+            <span style="color:var(--text-3); font-size:13px;">Alamo (San Antonio) · San Antonio PD</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <a href="10-ambassadors.html" class="btn btn-outline" target="_blank">View public card →</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 300px; gap:24px; align-items:start;">
+
+      <!-- Left: edit form -->
+      <div>
+
+        <!-- Photo -->
+        <div class="section-card">
+          <h3>Profile Photo</h3>
+          <div class="photo-upload-area">
+            <div class="photo-preview" id="photo-preview"></div>
+            <div class="photo-upload-controls">
+              <div class="upload-zone" onclick="document.getElementById('photo-file').click()">
+                <input type="file" id="photo-file" accept="image/*" onchange="previewPhoto(this)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" style="margin-bottom:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <div style="font-size:13px; font-weight:600; color:var(--navy-900);">Click to upload new photo</div>
+                <div class="small" style="margin-top:2px;">JPG or PNG · max 5 MB · minimum 400×400 px</div>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="document.getElementById('photo-file').click()">Choose file</button>
+              <span class="small" id="photo-filename" style="color:var(--text-3);">Current: ambassador-r4.jpg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal information -->
+        <div class="section-card">
+          <h3>Personal Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Rank / Title</label>
+              <select class="input">
+                <option>Off.</option>
+                <option>Cpl.</option>
+                <option>Sgt.</option>
+                <option selected>Lt.</option>
+                <option>Capt.</option>
+                <option>Det.</option>
+                <option>Tpr.</option>
+                <option>Warden</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Status</label>
+              <select class="input">
+                <option selected>Active</option>
+                <option>On Leave</option>
+                <option>Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name</label>
+              <input class="input" value="Marcus" />
+            </div>
+            <div class="form-group">
+              <label>Last name</label>
+              <input class="input" value="Delgado" />
+            </div>
+          </div>
+          <div class="form-row cols-3">
+            <div class="form-group">
+              <label>Agency</label>
+              <input class="input" value="San Antonio PD" />
+            </div>
+            <div class="form-group">
+              <label>Region</label>
+              <select class="input">
+                <option>Metroplex (DFW)</option>
+                <option>Capital (Austin)</option>
+                <option>Gulf Coast (Houston)</option>
+                <option selected>Alamo (San Antonio)</option>
+                <option>South Texas Border</option>
+                <option>Central Texas</option>
+                <option>High Plains (Panhandle)</option>
+                <option>West Texas</option>
+                <option>Upper East Texas</option>
+                <option>Northwest Texas</option>
+                <option>Coastal Bend</option>
+                <option>Southeast Texas</option>
+                <option>Upper Rio Grande (El Paso)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Years sworn</label>
+              <input class="input" type="number" value="18" min="1" max="50" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="section-card">
+          <h3>Public Bio</h3>
+          <div class="form-group">
+            <label>Bio paragraph <span style="font-weight:400; color:var(--text-3); text-transform:none; letter-spacing:0;">(shown on the ambassador card)</span></label>
+            <textarea class="input" rows="4" style="resize:vertical; line-height:1.6;">Patrol Lieutenant overseeing SAPD's hiring outreach. Bilingual. Speaks regularly at high schools and academies.</textarea>
+          </div>
+          <div style="text-align:right;"><span class="small" style="color:var(--text-3);">82 / 160 characters</span></div>
+        </div>
+
+        <!-- Specialties -->
+        <div class="section-card">
+          <h3>Specialties <span style="font-size:13px; font-weight:400; color:var(--text-3);">— shown as tags on the public card</span></h3>
+          <div class="tag-checkboxes">
+            <input class="tag-check" type="checkbox" id="t-patrol" name="specialty" value="Patrol"><label for="t-patrol">Patrol</label>
+            <input class="tag-check" type="checkbox" id="t-investigations" name="specialty" value="Investigations"><label for="t-investigations">Investigations</label>
+            <input class="tag-check" type="checkbox" id="t-k9" name="specialty" value="K-9"><label for="t-k9">K-9</label>
+            <input class="tag-check" type="checkbox" id="t-swat" name="specialty" value="SWAT / Tactical"><label for="t-swat">SWAT / Tactical</label>
+            <input class="tag-check" type="checkbox" id="t-recruiting" name="specialty" value="Recruiting" checked><label for="t-recruiting">Recruiting</label>
+            <input class="tag-check" type="checkbox" id="t-training" name="specialty" value="Training"><label for="t-training">Training</label>
+            <input class="tag-check" type="checkbox" id="t-sro" name="specialty" value="SRO"><label for="t-sro">SRO</label>
+            <input class="tag-check" type="checkbox" id="t-motor" name="specialty" value="Motor Squad"><label for="t-motor">Motor Squad</label>
+            <input class="tag-check" type="checkbox" id="t-digital" name="specialty" value="Digital Forensics"><label for="t-digital">Digital Forensics</label>
+            <input class="tag-check" type="checkbox" id="t-telecom" name="specialty" value="Telecom"><label for="t-telecom">Telecom</label>
+            <input class="tag-check" type="checkbox" id="t-veteran" name="specialty" value="Veteran Liaison"><label for="t-veteran">Veteran Liaison</label>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="section-card">
+          <h3>Languages <span style="font-size:13px; font-weight:400; color:var(--text-3);">— adds a "Bilingual" tag if any second language is selected</span></h3>
+          <div class="tag-checkboxes">
+            <input class="tag-check" type="checkbox" id="l-en" name="language" value="English" checked><label for="l-en">English</label>
+            <input class="tag-check" type="checkbox" id="l-es" name="language" value="Spanish" checked><label for="l-es">Spanish</label>
+            <input class="tag-check" type="checkbox" id="l-vi" name="language" value="Vietnamese"><label for="l-vi">Vietnamese</label>
+            <input class="tag-check" type="checkbox" id="l-asl" name="language" value="ASL"><label for="l-asl">ASL</label>
+            <input class="tag-check" type="checkbox" id="l-other" name="language" value="Other"><label for="l-other">Other</label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: sidebar -->
+      <aside style="position:sticky; top:20px; display:flex; flex-direction:column; gap:16px;">
+
+        <!-- Save panel -->
+        <div class="card" style="padding:20px;">
+          <h3 style="font-size:15px; font-weight:700; color:var(--navy-900); margin:0 0 14px;">Save changes</h3>
+          <div class="toggle-row">
+            <div>
+              <div style="font-size:13px; font-weight:600; color:var(--navy-900);">Featured card</div>
+              <div class="small">Highlights this card in red on the public page</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked onchange="updatePreview()">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div>
+              <div style="font-size:13px; font-weight:600; color:var(--navy-900);">Visible on public page</div>
+              <div class="small">Uncheck to hide without deleting</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+            <a href="09d-admin-ambassadors.html" class="btn btn-primary" style="text-align:center;">Save Profile</a>
+            <a href="09d-admin-ambassadors.html" class="btn btn-outline" style="text-align:center;">Discard changes</a>
+          </div>
+        </div>
+
+        <!-- Card preview -->
+        <div class="card" style="padding:18px;">
+          <div style="font-size:13px; font-weight:700; color:var(--navy-900); margin-bottom:12px;">Public card preview</div>
+          <div class="preview-card">
+            <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px;">
+              <div class="preview-avatar"></div>
+              <div>
+                <div style="font-weight:700; color:var(--navy-900); font-size:14px;">Lt. Marcus Delgado</div>
+                <div style="font-size:12px; color:var(--text-2);">Alamo (San Antonio)</div>
+                <div style="font-size:12px; color:var(--text-2);">San Antonio PD · 18 yrs sworn</div>
+              </div>
+            </div>
+            <div style="font-size:12.5px; color:var(--text-2); margin-bottom:8px; line-height:1.5;">Patrol Lieutenant overseeing SAPD's hiring outreach. Bilingual. Speaks regularly at high schools and academies.</div>
+            <div class="preview-tags">
+              <span class="preview-tag red">Featured</span>
+              <span class="preview-tag">Recruiting</span>
+              <span class="preview-tag gold">Bilingual</span>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <div style="flex:1; background:var(--navy-900); color:#fff; font-size:11px; font-weight:600; padding:5px 8px; border-radius:var(--radius); text-align:center;">Message</div>
+              <div style="border:1px solid var(--border); font-size:11px; font-weight:600; color:var(--navy-900); padding:5px 8px; border-radius:var(--radius); text-align:center;">Schedule call</div>
+            </div>
+          </div>
+          <a href="10-ambassadors.html" class="small" style="display:block; margin-top:10px; text-align:center;">View live public page →</a>
+        </div>
+
+        <!-- Activity -->
+        <div class="card" style="padding:18px;">
+          <div style="font-size:13px; font-weight:700; color:var(--navy-900); margin-bottom:10px;">Activity — Q2 2026</div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Messages sent</span><strong>218</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Messages received</span><strong>184</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Calls scheduled</span><strong>31</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px;">
+              <span style="color:var(--text-2);">Profile views</span><strong>847</strong>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand-line">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2 L3 6 v6 c0 5 4 9 9 10 5-1 9-5 9-10 V6 z"/></svg></div>
+          <div class="brand-text"><div class="t1">DiscoverTexasPolicing</div><div class="t2" style="color:var(--gold)">★ TPCA Admin</div></div>
+        </div>
+      </div>
+      <div><h5>For Candidates</h5><a href="02-jobs.html">Find Jobs</a><a href="03-regional-map.html">Regions</a></div>
+      <div><h5>For Agencies</h5><a href="07-agency-dashboard.html">Agency Dashboard</a><a href="08-post-a-job.html">Post a Job</a></div>
+      <div><h5>About</h5><a href="#">TPCA</a><a href="#">TCOLE</a><a href="09-admin-analytics.html">Reports</a></div>
+    </div>
+    <div class="legal"><div>© 2026 TPCA</div><div><a href="#">Privacy</a> · <a href="#">Accessibility</a> · <a href="#">Cybersecurity</a></div></div>
+    <div style="border-top:1px solid rgba(255,255,255,.1); margin-top:20px; padding-top:16px; text-align:center;">
+      <span style="color:#a8b6cf; font-size:11px; letter-spacing:.08em; text-transform:uppercase;">Powered by</span>
+      <a href="https://www.allstartalent.us" style="display:inline-block; margin-left:8px; vertical-align:middle;">
+        <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:36px; width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+function previewPhoto(input) {
+  if (!input.files || !input.files[0]) return;
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('photo-preview').style.backgroundImage = 'url(' + e.target.result + ')';
+    document.querySelector('.preview-avatar').style.backgroundImage = 'url(' + e.target.result + ')';
+  };
+  reader.readAsDataURL(file);
+  document.getElementById('photo-filename').textContent = 'Selected: ' + file.name;
+}
+</script>
+</body>
+</html>
