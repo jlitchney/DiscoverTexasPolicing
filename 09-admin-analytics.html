@@ -48,7 +48,7 @@
       <a href="09e-admin-marketing.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Marketing</a>
     </div>
     <div style="display:flex; gap:8px; align-items:center;">
-      <select class="input" style="width:auto; font-size:13px; padding:7px 10px;"><option>This Quarter (Q2 2026)</option><option>Year-to-date</option><option>Last 12 months</option><option>Custom range…</option></select>
+      <select id="period-select" onchange="updatePeriod(this.value)" class="input" style="width:auto; font-size:13px; padding:7px 10px;"><option value="q2-2026">This Quarter (Q2 2026)</option><option value="ytd">Year-to-date</option><option value="last-12">Last 12 months</option><option value="custom">Custom range…</option></select>
       <a href="#" class="btn btn-primary btn-sm">Export PDF</a>
       <a href="#" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Log Out</a>
     </div>
@@ -183,6 +183,95 @@
     </div>
 
     <div class="spacer-24"></div>
+
+    <!-- New agency signups -->
+    <div class="card" style="padding:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <div>
+          <strong style="color:var(--navy-900);">New agency signups — <span class="period-label">Q2 2026</span></strong>
+          <div class="small">Agencies that completed registration during this period</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <div style="font-size:13px; color:var(--text-2);">24 total &nbsp;·&nbsp; <span style="font-weight:700; color:var(--navy-900);">8 Pro</span> &nbsp;·&nbsp; <span style="font-weight:600; color:#1e40af;">16 Basic</span></div>
+          <a href="09a-admin-agencies.html" class="btn btn-outline btn-sm">View all agencies →</a>
+        </div>
+      </div>
+      <table class="data" style="width:100%;">
+        <thead>
+          <tr>
+            <th>Agency</th>
+            <th>Region</th>
+            <th>Type</th>
+            <th>Plan</th>
+            <th>Joined</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Garland Police Department</strong></td>
+            <td>Metroplex (DFW)</td><td>Municipal</td>
+            <td><span class="tag green" style="font-size:11px;">Pro</span></td>
+            <td>Apr 26</td>
+            <td style="text-align:right;"><a href="09a1-admin-agency-review.html" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Midland Police Department</strong></td>
+            <td>West Texas</td><td>Municipal</td>
+            <td><span class="tag" style="font-size:11px; background:#dbeafe; color:#1e40af; border-color:#bfdbfe;">Basic</span></td>
+            <td>Apr 24</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Odessa Police Department</strong></td>
+            <td>West Texas</td><td>Municipal</td>
+            <td><span class="tag" style="font-size:11px; background:#dbeafe; color:#1e40af; border-color:#bfdbfe;">Basic</span></td>
+            <td>Apr 22</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Round Rock Police Department</strong></td>
+            <td>Capital (Austin)</td><td>Municipal</td>
+            <td><span class="tag green" style="font-size:11px;">Pro</span></td>
+            <td>Apr 18</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Denton Police Department</strong></td>
+            <td>Metroplex (DFW)</td><td>Municipal</td>
+            <td><span class="tag" style="font-size:11px; background:#dbeafe; color:#1e40af; border-color:#bfdbfe;">Basic</span></td>
+            <td>Apr 15</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>McKinney Police Department</strong></td>
+            <td>Metroplex (DFW)</td><td>Municipal</td>
+            <td><span class="tag green" style="font-size:11px;">Pro</span></td>
+            <td>Apr 12</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Killeen Police Department</strong></td>
+            <td>Central Texas</td><td>Municipal</td>
+            <td><span class="tag" style="font-size:11px; background:#dbeafe; color:#1e40af; border-color:#bfdbfe;">Basic</span></td>
+            <td>Apr 8</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <tr>
+            <td><strong>Waco Police Department</strong></td>
+            <td>Central Texas</td><td>Municipal</td>
+            <td><span class="tag green" style="font-size:11px;">Pro</span></td>
+            <td>Apr 5</td>
+            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:10px 0 0; border-top:1px solid var(--border); margin-top:4px;">
+        <span class="small">Showing 8 of 24 new signups this period</span>
+      </div>
+    </div>
+
+    <div class="spacer-24"></div>
   </div>
 </section>
 
@@ -210,5 +299,11 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+var periodLabels = { 'q2-2026': 'Q2 2026', 'ytd': 'Year to date', 'last-12': 'Last 12 months', 'custom': 'Custom range' };
+function updatePeriod(v) {
+  document.querySelectorAll('.period-label').forEach(function(el) { el.textContent = periodLabels[v] || v; });
+}
+</script>
 </body>
 </html>
