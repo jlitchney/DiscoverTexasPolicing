@@ -192,7 +192,10 @@
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
             <div class="cand-avatar" style="background:#0d9488;">A</div>
             <div>
-              <div class="cand-name">Aisha Johnson</div>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <div class="cand-name">Aisha Johnson</div>
+                <button onclick="openReplyModal('Aisha Johnson','Police Officer Cadet','Hi, I wanted to follow up on my application and ask about the next steps in the process. I submitted all my documents last week. Thank you!')" style="display:inline-flex; align-items:center; gap:3px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:2px 8px; font-size:11px; font-weight:700; color:#2563eb; cursor:pointer; line-height:1.4;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>1 msg</button>
+              </div>
               <div class="cand-created" style="margin:0;">Created 05/01/2026</div>
             </div>
           </div>
@@ -222,7 +225,10 @@
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
             <div class="cand-avatar" style="background:var(--tx-red);">D</div>
             <div>
-              <div class="cand-name">David Lim</div>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <div class="cand-name">David Lim</div>
+                <button onclick="openReplyModal('David Lim','Police Officer (Lateral)','I have a question about the lateral transfer process. I\'m currently licensed in Colorado — do I need to complete the full TCOLE exam or just the reciprocity process?')" style="display:inline-flex; align-items:center; gap:3px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:2px 8px; font-size:11px; font-weight:700; color:#2563eb; cursor:pointer; line-height:1.4;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>1 msg</button>
+              </div>
               <div class="cand-created" style="margin:0;">Created 05/01/2026</div>
             </div>
           </div>
@@ -436,6 +442,27 @@
   </div>
 </section>
 
+<!-- Reply modal -->
+<div id="reply-backdrop" onclick="closeReplyModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:200;"></div>
+<div id="reply-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:12px; padding:28px 32px; min-width:440px; max-width:560px; z-index:201; box-shadow:0 20px 60px rgba(0,0,0,.22);">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+    <div>
+      <h3 id="reply-modal-name" style="font-family:var(--font-display); color:var(--navy-900); margin:0; font-size:18px;"></h3>
+      <p id="reply-modal-pos" style="color:var(--text-2); font-size:13px; margin:4px 0 0;"></p>
+    </div>
+    <button onclick="closeReplyModal()" style="background:none; border:none; cursor:pointer; color:var(--text-3); font-size:22px; line-height:1; padding:0 4px; margin-left:12px;">×</button>
+  </div>
+  <div style="background:#f1f5f9; border-radius:8px; padding:12px 14px; margin-bottom:16px;">
+    <div style="font-size:11px; color:var(--text-3); font-weight:700; margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em;">Candidate message</div>
+    <p id="reply-modal-msg" style="font-size:13px; color:var(--text-1); margin:0; line-height:1.6;"></p>
+  </div>
+  <textarea id="reply-body" class="input" rows="4" style="width:100%; resize:vertical; font-size:13.5px; line-height:1.6;" placeholder="Write your reply…"></textarea>
+  <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+    <button onclick="closeReplyModal()" class="btn btn-outline btn-sm">Cancel</button>
+    <button onclick="sendReply()" class="btn btn-primary btn-sm">Send reply</button>
+  </div>
+</div>
+
 <!-- Documents modal -->
 <div id="docs-backdrop" onclick="closeDocsModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:200;"></div>
 <div id="docs-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:12px; padding:28px 32px; min-width:380px; max-width:500px; z-index:201; box-shadow:0 20px 60px rgba(0,0,0,.22);">
@@ -528,6 +555,29 @@ function openDocsModal(name) {
 function closeDocsModal() {
   document.getElementById('docs-backdrop').style.display = 'none';
   document.getElementById('docs-modal').style.display = 'none';
+}
+
+function openReplyModal(name, position, message) {
+  document.getElementById('reply-modal-name').textContent = 'Reply to ' + name;
+  document.getElementById('reply-modal-pos').textContent = 'Re: ' + position;
+  document.getElementById('reply-modal-msg').textContent = message;
+  document.getElementById('reply-body').value = '';
+  document.getElementById('reply-backdrop').style.display = '';
+  document.getElementById('reply-modal').style.display = '';
+  setTimeout(function() { document.getElementById('reply-body').focus(); }, 50);
+}
+function closeReplyModal() {
+  document.getElementById('reply-backdrop').style.display = 'none';
+  document.getElementById('reply-modal').style.display = 'none';
+}
+function sendReply() {
+  if (!document.getElementById('reply-body').value.trim()) return;
+  closeReplyModal();
+  var t = document.createElement('div');
+  t.textContent = 'Reply sent!';
+  t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--navy-900);color:#fff;padding:10px 20px;border-radius:8px;font-size:13.5px;font-weight:600;z-index:300;box-shadow:0 4px 12px rgba(0,0,0,.18);';
+  document.body.appendChild(t);
+  setTimeout(function() { t.remove(); }, 2500);
 }
 
 function setView(mode) {
