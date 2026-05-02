@@ -39,6 +39,7 @@
       <a href="09e-admin-marketing.html" style="color:rgba(255,255,255,.8); text-decoration:none; font-size:14px; font-weight:500;">Marketing</a>
     </div>
     <div style="display:flex; gap:8px; align-items:center;">
+      <select id="period-select" onchange="updatePeriod(this.value)" class="input" style="width:auto; font-size:13px; padding:7px 10px;"><option value="q2-2026">This Quarter (Q2 2026)</option><option value="ytd">Year-to-date</option><option value="last-12">Last 12 months</option><option value="custom">Custom range…</option></select>
       <a href="#" class="btn btn-sm" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.45); font-weight:500;">Log Out</a>
     </div>
   </div>
@@ -108,7 +109,7 @@
                 <th>Type</th>
                 <th style="width:90px;">Region</th>
                 <th style="text-align:right;">Active Listings</th>
-                <th style="text-align:right;">Candidates Q2</th>
+                <th style="text-align:right;">Candidates — <span class="period-label">Q2 2026</span></th>
                 <th style="white-space:nowrap;">Status</th>
                 <th></th>
               </tr>
@@ -318,5 +319,11 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+var periodLabels = { 'q2-2026': 'Q2 2026', 'ytd': 'Year to date', 'last-12': 'Last 12 months', 'custom': 'Custom range' };
+function updatePeriod(v) {
+  document.querySelectorAll('.period-label').forEach(function(el) { el.textContent = periodLabels[v] || v; });
+}
+</script>
 </body>
 </html>
