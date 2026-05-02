@@ -13,6 +13,16 @@
     color:#fff; display:grid; place-items:center; font-weight:800; font-size: 22px;
     flex:none; border: 3px solid var(--gold);
   }
+  .msg-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:900; align-items:center; justify-content:center; }
+  .msg-backdrop.open { display:flex; }
+  .msg-modal { background:#fff; border-radius:var(--radius-lg); box-shadow:0 20px 60px rgba(0,0,0,.25); width:100%; max-width:480px; margin:16px; overflow:hidden; }
+  .msg-modal-header { background:var(--navy-900); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; }
+  .msg-modal-body { padding:22px; }
+  .msg-modal-body .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  .msg-modal-body .form-group { display:flex; flex-direction:column; gap:4px; }
+  .msg-modal-body label { font-size:12px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; }
+  .msg-close { background:none; border:none; color:rgba(255,255,255,.7); font-size:20px; cursor:pointer; line-height:1; padding:0; }
+  .msg-close:hover { color:#fff; }
 </style>
 </head>
 <body>
@@ -94,7 +104,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag">Patrol</span><span class="tag">K-9</span><span class="tag gold">Bilingual</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Sgt. Carla Reyes'); return false;">Message</a>
       </div>
 
       <!-- Card 2 -->
@@ -111,7 +121,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag">Investigations</span><span class="tag">Digital forensics</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Det. David Moss'); return false;">Message</a>
       </div>
 
       <!-- Card 3 -->
@@ -128,7 +138,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag">Patrol</span><span class="tag green">Veteran liaison</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Off. Andre Thompson'); return false;">Message</a>
       </div>
 
       <!-- Card 4 — featured -->
@@ -145,7 +155,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag red">Featured</span><span class="tag">Recruiting</span><span class="tag gold">Bilingual</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Lt. Marcus Delgado'); return false;">Message</a>
       </div>
 
       <!-- Card 5 -->
@@ -162,7 +172,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag">SRO</span><span class="tag gold">Bilingual</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Off. Esperanza Villarreal'); return false;">Message</a>
       </div>
 
       <!-- Card 6 -->
@@ -179,7 +189,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag">Motor Squad</span><span class="tag gold">Bilingual</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Sgt. Robert Bautista'); return false;">Message</a>
       </div>
 
       <!-- Card 7 -->
@@ -196,7 +206,7 @@
         <div class="tags" style="margin-bottom: 12px;">
           <span class="tag">Recruiting</span><span class="tag">Telecom</span>
         </div>
-        <a href="#" class="btn btn-primary btn-sm btn-block">Message</a>
+        <a href="#" class="btn btn-primary btn-sm btn-block" onclick="openMessageModal('Sgt. Sarah Hayes'); return false;">Message</a>
       </div>
 
     </div>
@@ -272,6 +282,70 @@
   </div>
 </footer>
 
+<!-- Message modal -->
+<div class="msg-backdrop" id="msg-backdrop" onclick="closeMessageModal(event)">
+  <div class="msg-modal" role="dialog" aria-modal="true">
+    <div class="msg-modal-header">
+      <div>
+        <div style="font-size:11px; font-weight:600; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:.07em; margin-bottom:3px;">Message Ambassador</div>
+        <div style="font-size:17px; font-weight:700; color:#fff;" id="msg-ambassador-name"></div>
+      </div>
+      <button class="msg-close" onclick="closeMessageModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="msg-modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input class="input" placeholder="First name" />
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input class="input" placeholder="Last name" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone</label>
+          <input class="input" type="tel" placeholder="(555) 000-0000" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input class="input" type="email" placeholder="you@example.com" />
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:18px;">
+        <label>Message</label>
+        <textarea class="input" rows="4" placeholder="Type your question — be as specific as you'd like." style="resize:vertical; line-height:1.6;"></textarea>
+      </div>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="closeMessageModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="sendAmbassadorMessage()">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="assets/script.js"></script>
+<script>
+function openMessageModal(name) {
+  document.getElementById('msg-ambassador-name').textContent = name;
+  document.getElementById('msg-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMessageModal(e) {
+  if (e && e.target !== document.getElementById('msg-backdrop')) return;
+  document.getElementById('msg-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function sendAmbassadorMessage() {
+  document.getElementById('msg-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+  var toast = document.createElement('div');
+  toast.textContent = 'Message sent — your ambassador will respond within 2 business days.';
+  toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy-900);color:#fff;padding:12px 22px;border-radius:8px;font-size:14px;font-weight:500;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.3);';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 4000);
+}
+</script>
 </body>
 </html>
