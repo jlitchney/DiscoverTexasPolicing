@@ -206,7 +206,7 @@
         <!-- Specialties -->
         <div class="section-card">
           <h3>Specialties <span style="font-size:13px; font-weight:400; color:var(--text-3);">— shown as tags on the public card</span></h3>
-          <div class="tag-checkboxes">
+          <div class="tag-checkboxes" id="specialty-pills">
             <input class="tag-check" type="checkbox" id="t-patrol" name="specialty" value="Patrol"><label for="t-patrol">Patrol</label>
             <input class="tag-check" type="checkbox" id="t-investigations" name="specialty" value="Investigations"><label for="t-investigations">Investigations</label>
             <input class="tag-check" type="checkbox" id="t-k9" name="specialty" value="K-9"><label for="t-k9">K-9</label>
@@ -219,17 +219,25 @@
             <input class="tag-check" type="checkbox" id="t-telecom" name="specialty" value="Telecom"><label for="t-telecom">Telecom</label>
             <input class="tag-check" type="checkbox" id="t-veteran" name="specialty" value="Veteran Liaison"><label for="t-veteran">Veteran Liaison</label>
           </div>
+          <div style="display:flex; gap:8px; margin-top:12px; align-items:center;">
+            <input class="input" id="specialty-input" placeholder="Add a specialty…" style="flex:1; max-width:240px; font-size:13px;" onkeydown="if(event.key==='Enter'){addTag('specialty');event.preventDefault();}">
+            <button class="btn btn-outline btn-sm" onclick="addTag('specialty')">+ Add</button>
+          </div>
         </div>
 
         <!-- Languages -->
         <div class="section-card">
           <h3>Languages <span style="font-size:13px; font-weight:400; color:var(--text-3);">— adds a "Bilingual" tag if any second language is selected</span></h3>
-          <div class="tag-checkboxes">
+          <div class="tag-checkboxes" id="language-pills">
             <input class="tag-check" type="checkbox" id="l-en" name="language" value="English" checked><label for="l-en">English</label>
             <input class="tag-check" type="checkbox" id="l-es" name="language" value="Spanish" checked><label for="l-es">Spanish</label>
             <input class="tag-check" type="checkbox" id="l-vi" name="language" value="Vietnamese"><label for="l-vi">Vietnamese</label>
             <input class="tag-check" type="checkbox" id="l-asl" name="language" value="ASL"><label for="l-asl">ASL</label>
             <input class="tag-check" type="checkbox" id="l-other" name="language" value="Other"><label for="l-other">Other</label>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:12px; align-items:center;">
+            <input class="input" id="language-input" placeholder="Add a language…" style="flex:1; max-width:240px; font-size:13px;" onkeydown="if(event.key==='Enter'){addTag('language');event.preventDefault();}">
+            <button class="btn btn-outline btn-sm" onclick="addTag('language')">+ Add</button>
           </div>
         </div>
 
@@ -343,6 +351,28 @@
 
 <script src="assets/script.js"></script>
 <script>
+function addTag(type) {
+  var input = document.getElementById(type + '-input');
+  var val = input.value.trim();
+  if (!val) return;
+  var container = document.getElementById(type + '-pills');
+  var id = type + '-custom-' + Date.now();
+  var cb = document.createElement('input');
+  cb.className = 'tag-check';
+  cb.type = 'checkbox';
+  cb.id = id;
+  cb.name = type;
+  cb.value = val;
+  cb.checked = true;
+  var lbl = document.createElement('label');
+  lbl.htmlFor = id;
+  lbl.textContent = val;
+  container.appendChild(cb);
+  container.appendChild(lbl);
+  input.value = '';
+  input.focus();
+}
+
 function previewPhoto(input) {
   if (!input.files || !input.files[0]) return;
   var file = input.files[0];
