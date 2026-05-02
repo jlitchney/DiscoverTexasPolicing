@@ -405,6 +405,19 @@
               <label>Phone</label>
               <input type="tel" placeholder="(432) 555-0100" />
             </div>
+
+            <div class="field-group" style="margin:0;">
+              <label>Select a plan</label>
+              <select class="input" style="font-size:14px; padding:11px 14px; border:1.5px solid var(--border); border-radius:7px;" onchange="updatePlanPitch(this.value)">
+                <option value="">— Choose Basic or Pro —</option>
+                <option value="basic">Basic — Free</option>
+                <option value="pro">Pro — Powered by All-Star Recruiter</option>
+              </select>
+            </div>
+
+            <!-- Plan pitch panel -->
+            <div id="plan-pitch" style="display:none; border-radius:10px; overflow:hidden; margin-top:2px;"></div>
+
             <button class="btn btn-primary" style="width:100%; margin-top:4px;">Submit Request</button>
           </div>
         </div>
@@ -456,5 +469,60 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+function updatePlanPitch(val) {
+  var el = document.getElementById('plan-pitch');
+  if (!val) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  if (val === 'basic') {
+    el.innerHTML = `
+      <div style="background:#f8fafc; border:1.5px solid var(--border); border-radius:10px; padding:16px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+          <span style="font-size:13px; font-weight:700; color:var(--navy-900);">Basic — Free</span>
+          <span style="font-size:11px; background:#dbeafe; color:#1e40af; border:1px solid #bfdbfe; border-radius:4px; padding:1px 7px; font-weight:600;">Included</span>
+        </div>
+        <ul style="margin:0 0 12px; padding-left:18px; font-size:13px; color:var(--text-2); line-height:1.9;">
+          <li>Post unlimited job listings</li>
+          <li>Search the shared statewide applicant pool</li>
+          <li>TPCA/TCOLE pre-screening built in</li>
+          <li>Quarterly analytics reports</li>
+        </ul>
+        <div style="background:linear-gradient(135deg,#0f172a,#1e3a5f 60%,#7c3aed); border-radius:8px; padding:14px 16px;">
+          <div style="font-size:12px; font-weight:700; color:#c4b5fd; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;">Want to fill positions faster?</div>
+          <p style="font-size:12.5px; color:rgba(255,255,255,.8); margin:0 0 10px; line-height:1.5;">Pro agencies on DiscoverTexasPolicing fill vacancies <strong style="color:#fff;">28% faster</strong> on average — with SMS outreach, automated follow-ups, and dedicated recruiter tools that keep candidates moving through your pipeline.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px;">
+            <span style="font-size:11px; background:rgba(167,139,250,.2); color:#c4b5fd; border:1px solid rgba(167,139,250,.3); border-radius:4px; padding:2px 7px;">SMS &amp; Bulk Outreach</span>
+            <span style="font-size:11px; background:rgba(167,139,250,.2); color:#c4b5fd; border:1px solid rgba(167,139,250,.3); border-radius:4px; padding:2px 7px;">Automated Workflows</span>
+            <span style="font-size:11px; background:rgba(167,139,250,.2); color:#c4b5fd; border:1px solid rgba(167,139,250,.3); border-radius:4px; padding:2px 7px;">AI Chatbots</span>
+            <span style="font-size:11px; background:rgba(167,139,250,.2); color:#c4b5fd; border:1px solid rgba(167,139,250,.3); border-radius:4px; padding:2px 7px;">Events &amp; Campaigns</span>
+            <span style="font-size:11px; background:rgba(167,139,250,.2); color:#c4b5fd; border:1px solid rgba(167,139,250,.3); border-radius:4px; padding:2px 7px;">Mobile Apps</span>
+          </div>
+          <a onclick="document.querySelector('select').value='pro'; updatePlanPitch('pro'); return false;" href="#" style="display:block; text-align:center; background:#7c3aed; border:1px solid #7c3aed; color:#fff; font-weight:700; font-size:13px; padding:9px; border-radius:7px; text-decoration:none;">Upgrade to Pro instead →</a>
+        </div>
+      </div>`;
+  } else {
+    el.innerHTML = `
+      <div style="background:linear-gradient(145deg,#0f172a 0%,#1e3a5f 50%,#7c3aed 100%); border-radius:10px; padding:18px; border:1px solid rgba(255,255,255,.08); position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-20px; right:-20px; width:90px; height:90px; background:rgba(124,58,237,.15); border-radius:50%;"></div>
+        <div style="position:relative;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="assets/images/ast-logo-white-cropped.png" alt="All-Star Talent" style="height:16px; width:auto; opacity:.95;">
+            <span style="font-size:10px; font-weight:700; background:rgba(167,139,250,.25); color:#c4b5fd; padding:2px 8px; border-radius:10px; letter-spacing:.06em; text-transform:uppercase;">Recruiter Pro</span>
+          </div>
+          <div style="font-size:13.5px; font-weight:700; color:#fff; margin-bottom:6px;">Great choice — you're getting the full platform.</div>
+          <p style="font-size:12.5px; color:rgba(255,255,255,.7); margin:0 0 12px; line-height:1.5;">Pro agencies get everything in Basic <em>plus</em> the complete All-Star Recruiter system — purpose-built for law enforcement hiring.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px 12px; margin-bottom:4px;">
+            <div style="display:flex; align-items:center; gap:6px;"><span style="color:#a78bfa; font-size:13px;">✓</span><span style="font-size:12px; color:rgba(255,255,255,.8);">SMS &amp; bulk outreach</span></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span style="color:#a78bfa; font-size:13px;">✓</span><span style="font-size:12px; color:rgba(255,255,255,.8);">Automated workflows</span></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span style="color:#a78bfa; font-size:13px;">✓</span><span style="font-size:12px; color:rgba(255,255,255,.8);">AI-powered chatbots</span></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span style="color:#a78bfa; font-size:13px;">✓</span><span style="font-size:12px; color:rgba(255,255,255,.8);">Events &amp; campaigns</span></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span style="color:#a78bfa; font-size:13px;">✓</span><span style="font-size:12px; color:rgba(255,255,255,.8);">Candidate pipeline CRM</span></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span style="color:#a78bfa; font-size:13px;">✓</span><span style="font-size:12px; color:rgba(255,255,255,.8);">Mobile recruiter app</span></div>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+</script>
 </body>
 </html>
