@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Agency Profile — San Antonio PD — DiscoverTexasPolicing.org</title>
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  padding: 20px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  position: relative;
+}
+.upload-zone:hover { border-color: var(--navy-600); background: #f0f4ff; }
+.upload-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+</style>
 </head>
 <body>
 
@@ -205,6 +221,33 @@
               <button class="btn btn-outline btn-sm" style="font-size:12px;">Upload new logo</button>
               <div class="help" style="margin-top:6px; text-align:center;">PNG or SVG · square · min 200×200 px</div>
             </div>
+          </div>
+        </div>
+
+        <!-- Agency Banner Image -->
+        <div class="card" style="padding:20px; margin-bottom:16px;">
+          <h4 style="margin:0 0 4px; color:var(--navy-900); font-size:14px;">Agency Banner Image</h4>
+          <p class="small" style="margin:0 0 12px; color:var(--text-2);">Appears at the top of your dashboard and on all your job postings.</p>
+
+          <!-- Current banner preview -->
+          <div style="position:relative; margin-bottom:12px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);">
+            <img id="banner-preview" src="assets/images/agency-banner.jpg" alt="Agency banner" style="width:100%; height:80px; object-fit:cover; display:block;" />
+            <div style="position:absolute; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .15s;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0">
+              <span style="color:#fff; font-size:12px; font-weight:700;">Current banner</span>
+            </div>
+          </div>
+
+          <div class="upload-zone" onclick="document.getElementById('banner-input').click()">
+            <input type="file" id="banner-input" accept="image/*" onchange="previewAgencyBanner(this)" onclick="event.stopPropagation()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="1.5" style="margin-bottom:6px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <div style="font-size:12.5px; font-weight:600; color:var(--navy-900); margin-bottom:2px;">Upload new banner</div>
+            <div class="small" style="color:var(--text-3);">1400 × 400 px · JPG or PNG</div>
+          </div>
+
+          <div id="banner-filename" style="display:none; margin-top:8px; font-size:12px; color:var(--text-2); align-items:center; gap:6px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            <span id="banner-name" style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+            <a href="#" onclick="clearBanner(); return false;" style="color:var(--tx-red); flex-shrink:0;">Remove</a>
           </div>
         </div>
 
@@ -443,6 +486,23 @@ function discardChanges() {
 
 renderPositions();
 renderUsers();
+
+function previewAgencyBanner(input) {
+  var file = input.files[0];
+  if (!file) return;
+  var preview = document.getElementById('banner-preview');
+  var fileRow = document.getElementById('banner-filename');
+  var nameSpan = document.getElementById('banner-name');
+  preview.src = URL.createObjectURL(file);
+  nameSpan.textContent = file.name;
+  fileRow.style.display = 'flex';
+}
+
+function clearBanner() {
+  document.getElementById('banner-input').value = '';
+  document.getElementById('banner-preview').src = 'assets/images/agency-banner.jpg';
+  document.getElementById('banner-filename').style.display = 'none';
+}
 </script>
 <script src="assets/script.js"></script>
 </body>
