@@ -120,6 +120,19 @@
   }
   .legal-note a { color: var(--text-2); }
 
+  @media (max-width: 900px) {
+    .signup-layout { grid-template-columns: 1fr; max-width: 560px; }
+    .signup-wrap { padding: 32px 16px 56px; }
+    /* Hide "Already have a profile? Sign In" inline nav link — hamburger handles nav */
+    nav .container > a:not(.brand) { display: none !important; }
+  }
+
+  @media (max-width: 640px) {
+    .signup-card { padding: 24px 20px; }
+    .form-row { grid-template-columns: 1fr !important; }
+    .signup-card h1 { font-size: 22px; }
+  }
+
   /* What happens next panel */
   .next-panel {
     display: flex;
