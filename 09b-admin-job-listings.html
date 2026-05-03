@@ -12,6 +12,40 @@
   .bar-bg { height: 10px; background: var(--bg); border-radius:6px; overflow:hidden; }
   .bar-fg { height:100%; background: linear-gradient(90deg, var(--navy-700), var(--navy-900)); }
   .bar-fg.red { background: linear-gradient(90deg, #d8595b, var(--tx-red)); }
+
+  /* Icon action buttons */
+  .icon-btn {
+    width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--border);
+    background: #fff; cursor: pointer; display: inline-flex; align-items: center;
+    justify-content: center; transition: background .12s, border-color .12s;
+    position: relative; flex-shrink: 0;
+  }
+  .icon-btn:hover { background: var(--bg); }
+  .icon-btn.msg:hover { background: #eff6ff; border-color: #93c5fd; }
+  .icon-btn.pause:hover { background: #fffbeb; border-color: #fcd34d; }
+  .icon-btn.paused { background: #fffbeb; border-color: #fcd34d; }
+  .icon-btn[title]:hover::after {
+    content: attr(title);
+    position: absolute; bottom: calc(100% + 6px); left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy-900); color: #fff; font-size: 11px; font-weight: 500;
+    padding: 4px 8px; border-radius: 5px; white-space: nowrap;
+    pointer-events: none; z-index: 10;
+  }
+
+  /* Message modal */
+  .msg-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.45); z-index: 1000;
+    align-items: center; justify-content: center;
+  }
+  .msg-backdrop.open { display: flex; }
+  .msg-modal {
+    background: #fff; border-radius: 12px; padding: 28px 32px;
+    width: 100%; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    position: relative;
+  }
+  .row-actions { display:flex; gap:5px; justify-content:flex-end; align-items:center; }
 </style>
 </head>
 <body>
@@ -52,7 +86,7 @@
       <div>
         <span class="eyebrow">Job Listings</span>
         <h1 style="font-family:var(--font-display); color:var(--navy-900); margin:4px 0 4px; font-size:28px;">All Job Listings</h1>
-        <p style="color:var(--text-2); margin:0;">Live and pending postings across all registered agencies.</p>
+        <p style="color:var(--text-2); margin:0;">Live postings across all registered agencies. Contact agencies directly if a listing needs attention.</p>
       </div>
       <div style="display:flex; gap:10px;">
         <a href="#" class="btn btn-outline">Export CSV</a>
@@ -62,82 +96,12 @@
 
     <div class="stats">
       <div class="stat"><div class="v">1,593</div><div class="l">Active listings</div><div class="delta up">+182 vs Q1</div></div>
-      <div class="stat"><div class="v">47</div><div class="l">Pending review</div><div class="delta">Awaiting approval</div></div>
+      <div class="stat"><div class="v">23</div><div class="l">New this week</div><div class="delta up">Added last 7 days</div></div>
       <div class="stat"><div class="v">284</div><div class="l">Closed — <span class="period-label">Q2 2026</span></div><div class="delta up">+61 vs Q1</div></div>
       <div class="stat"><div class="v">38</div><div class="l">Expiring within 7 days</div><div class="delta down">Needs attention</div></div>
     </div>
 
     <div class="spacer-24"></div>
-
-    <!-- Pending Review — Action Needed -->
-    <div class="card" style="padding:0; overflow:hidden; border-color:#fcd34d; margin-bottom:24px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:#fffbeb; border-bottom:1px solid #fcd34d;">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></svg>
-          <strong style="color:#92400e; font-size:14px;">Pending Review — 47 listings awaiting approval</strong>
-        </div>
-        <a href="#" class="small" style="color:#92400e;">View all pending →</a>
-      </div>
-      <!-- Row 1 -->
-      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
-        <div class="agency-logo" style="width:40px; height:40px; font-size:11px; flex-shrink:0; background:var(--navy-900); color:#fff; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700;">UTA</div>
-        <div style="flex:1; min-width:0;">
-          <strong style="font-size:13.5px; color:var(--navy-900);">Campus Police Officer</strong>
-          <div class="small">UT Austin Police Dept. · Capital · Submitted Apr 22</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-          <span class="tag" style="white-space:nowrap;">124 candidates</span>
-          <a href="#" class="btn btn-primary btn-sm">Approve</a>
-          <a href="#" class="btn btn-outline btn-sm" style="color:var(--tx-red); border-color:var(--tx-red);">Reject</a>
-          <a href="#" class="btn btn-outline btn-sm">View</a>
-        </div>
-      </div>
-      <!-- Row 2 -->
-      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
-        <div class="agency-logo" style="width:40px; height:40px; font-size:11px; flex-shrink:0; background:var(--navy-900); color:#fff; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700;">PPD</div>
-        <div style="flex:1; min-width:0;">
-          <strong style="font-size:13.5px; color:var(--navy-900);">Police Officer</strong>
-          <div class="small">Pflugerville PD · Capital · Submitted Apr 23</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-          <span class="tag" style="white-space:nowrap;">58 candidates</span>
-          <a href="#" class="btn btn-primary btn-sm">Approve</a>
-          <a href="#" class="btn btn-outline btn-sm" style="color:var(--tx-red); border-color:var(--tx-red);">Reject</a>
-          <a href="#" class="btn btn-outline btn-sm">View</a>
-        </div>
-      </div>
-      <!-- Row 3 -->
-      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
-        <div class="agency-logo" style="width:40px; height:40px; font-size:11px; flex-shrink:0; background:var(--navy-900); color:#fff; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700;">FIS</div>
-        <div style="flex:1; min-width:0;">
-          <strong style="font-size:13.5px; color:var(--navy-900);">School Resource Officer</strong>
-          <div class="small">Frisco ISD Police · Metroplex · Submitted Apr 24</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-          <span class="tag" style="white-space:nowrap;">41 candidates</span>
-          <a href="#" class="btn btn-primary btn-sm">Approve</a>
-          <a href="#" class="btn btn-outline btn-sm" style="color:var(--tx-red); border-color:var(--tx-red);">Reject</a>
-          <a href="#" class="btn btn-outline btn-sm">View</a>
-        </div>
-      </div>
-      <!-- Row 4 -->
-      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px;">
-        <div class="agency-logo" style="width:40px; height:40px; font-size:11px; flex-shrink:0; background:var(--navy-900); color:#fff; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700;">APD</div>
-        <div style="flex:1; min-width:0;">
-          <strong style="font-size:13.5px; color:var(--navy-900);">Patrol Officer</strong>
-          <div class="small">Abilene PD · High Plains · Submitted Apr 25</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-          <span class="tag" style="white-space:nowrap;">29 candidates</span>
-          <a href="#" class="btn btn-primary btn-sm">Approve</a>
-          <a href="#" class="btn btn-outline btn-sm" style="color:var(--tx-red); border-color:var(--tx-red);">Reject</a>
-          <a href="#" class="btn btn-outline btn-sm">View</a>
-        </div>
-      </div>
-      <div style="padding:10px 18px; background:#fffbeb; border-top:1px solid #fcd34d; text-align:center;">
-        <a href="#" class="small" style="color:#92400e;">+ 43 more pending listings — View all →</a>
-      </div>
-    </div>
 
     <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
       <input class="input" type="search" placeholder="Search job titles, agencies…" style="flex:1; min-width:220px; max-width:340px; font-size:13px;">
@@ -164,8 +128,8 @@
       <select class="input" style="width:auto; font-size:13px; padding:7px 10px;">
         <option>All Statuses</option>
         <option>Active</option>
-        <option>Pending Review</option>
         <option>Expiring Soon</option>
+        <option>Paused</option>
         <option>Closed</option>
       </select>
     </div>
@@ -193,7 +157,11 @@
             <td style="text-align:right; font-variant-numeric:tabular-nums;">1,203</td>
             <td style="text-align:right; font-variant-numeric:tabular-nums;">938</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Texas DPS','Trooper Recruit','recruiting@dps.texas.gov')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Trooper Recruit')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Police Officer (Lateral &amp; Entry)</strong></td>
@@ -202,7 +170,11 @@
             <td style="text-align:right;">892</td>
             <td style="text-align:right;">696</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="04-job-detail.html" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Austin PD','Police Officer (Lateral &amp; Entry)','recruiting@austintexas.gov')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Police Officer (Lateral &amp; Entry)')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="04-job-detail.html" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Police Officer</strong></td>
@@ -211,7 +183,11 @@
             <td style="text-align:right;">487</td>
             <td style="text-align:right;">380</td>
             <td><span class="tag gold">Expiring soon</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Houston PD','Police Officer','recruiting@houstonpolice.org')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Police Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Police Officer</strong></td>
@@ -220,7 +196,11 @@
             <td style="text-align:right;">418</td>
             <td style="text-align:right;">326</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('San Antonio PD','Police Officer','recruiting@sanantonio.gov')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Police Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Police Officer</strong></td>
@@ -229,7 +209,11 @@
             <td style="text-align:right;">287</td>
             <td style="text-align:right;">224</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Fort Worth PD','Police Officer','recruiting@fortworthtexas.gov')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Police Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Deputy Sheriff</strong></td>
@@ -238,7 +222,11 @@
             <td style="text-align:right;">312</td>
             <td style="text-align:right;">243</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Harris County SO','Deputy Sheriff','recruiting@harriscountyso.org')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Deputy Sheriff')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Police Officer</strong></td>
@@ -247,7 +235,11 @@
             <td style="text-align:right;">203</td>
             <td style="text-align:right;">158</td>
             <td><span class="tag gold">Expiring soon</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Dallas PD','Police Officer','recruiting@dallascityhall.com')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Police Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Game Warden Trainee</strong></td>
@@ -256,7 +248,11 @@
             <td style="text-align:right;">203</td>
             <td style="text-align:right;">158</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('TX Parks &amp; Wildlife','Game Warden Trainee','recruiting@tpwd.texas.gov')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Game Warden Trainee')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Patrol Deputy</strong></td>
@@ -265,16 +261,24 @@
             <td style="text-align:right;">198</td>
             <td style="text-align:right;">154</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Bexar County SO','Patrol Deputy','recruiting@bexarsheriff.org')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Patrol Deputy')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Campus Police Officer</strong></td>
             <td>UT Austin Police Dept.</td><td>Capital</td>
             <td>Apr 22</td><td>May 30</td>
             <td style="text-align:right;">124</td>
-            <td style="text-align:right; color:var(--text-3);">—</td>
-            <td><span class="tag">Pending review</span></td>
-            <td style="text-align:right;"><div style="display:flex; gap:6px; justify-content:flex-end;"><a href="#" class="btn btn-primary btn-sm">Approve</a><a href="#" class="btn btn-outline btn-sm">View</a></div></td>
+            <td style="text-align:right;">97</td>
+            <td><span class="tag green">Active</span></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('UT Austin Police Dept.','Campus Police Officer','utpd.recruiting@austin.utexas.edu')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Campus Police Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Police Officer</strong></td>
@@ -283,7 +287,11 @@
             <td style="text-align:right;">93</td>
             <td style="text-align:right;">72</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Corpus Christi PD','Police Officer','recruiting@cctexas.com')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Police Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
           <tr>
             <td><strong>Border Safety Officer</strong></td>
@@ -292,12 +300,16 @@
             <td style="text-align:right;">87</td>
             <td style="text-align:right;">68</td>
             <td><span class="tag green">Active</span></td>
-            <td style="text-align:right;"><a href="#" class="btn btn-outline btn-sm">View</a></td>
+            <td style="text-align:right;"><div class="row-actions">
+              <button class="icon-btn msg" onclick="openMsgModal('Laredo Police Dept.','Border Safety Officer','recruiting@ci.laredo.tx.us')" title="Message agency contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></button>
+              <button class="icon-btn pause" onclick="togglePause(this,'Border Safety Officer')" title="Pause listing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.2"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+              <a href="#" class="btn btn-outline btn-sm">View</a>
+            </div></td>
           </tr>
         </tbody>
       </table>
       <div style="padding:12px 18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
-        <span class="small">Showing 12 of 1,640 total listings (active + pending)</span>
+        <span class="small">Showing 12 of 1,593 active listings</span>
         <div style="display:flex; gap:6px;">
           <a href="#" class="btn btn-outline btn-sm">← Prev</a>
           <a href="#" class="btn btn-outline btn-sm">Next →</a>
@@ -307,6 +319,24 @@
 
   </div>
 </section>
+
+<!-- Message modal -->
+<div class="msg-backdrop" id="msg-backdrop" onclick="closeMsg(event)">
+  <div class="msg-modal">
+    <h3 style="margin:0 0 4px; color:var(--navy-900); font-size:18px;">Message Agency</h3>
+    <p id="msg-subtitle" class="small" style="margin:0 0 16px;"></p>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div><label class="field-label">To</label><input id="msg-to" class="input" readonly /></div>
+      <div><label class="field-label">Subject</label><input id="msg-subject" class="input" /></div>
+      <div><label class="field-label">Message</label><textarea id="msg-body" class="input" rows="4" style="resize:vertical;"></textarea></div>
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px;">
+      <button onclick="closeMsg()" class="btn btn-outline">Cancel</button>
+      <button onclick="sendMsg()" class="btn btn-primary">Send Message</button>
+    </div>
+    <button onclick="closeMsg()" style="position:absolute; top:16px; right:18px; background:none; border:none; font-size:20px; cursor:pointer; color:var(--text-3);">×</button>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="container">
@@ -336,6 +366,45 @@
 var periodLabels = { 'q2-2026': 'Q2 2026', 'ytd': 'Year to date', 'last-12': 'Last 12 months', 'custom': 'Custom range' };
 function updatePeriod(v) {
   document.querySelectorAll('.period-label').forEach(function(el) { el.textContent = periodLabels[v] || v; });
+}
+
+function openMsgModal(agency, title, email) {
+  document.getElementById('msg-subtitle').textContent = agency + ' — ' + title;
+  document.getElementById('msg-to').value = email;
+  document.getElementById('msg-subject').value = 'Re: ' + title + ' listing';
+  document.getElementById('msg-body').value = '';
+  document.getElementById('msg-backdrop').classList.add('open');
+}
+function closeMsg(e) {
+  if (!e || e.target === document.getElementById('msg-backdrop') || e.currentTarget !== document.getElementById('msg-backdrop')) {
+    document.getElementById('msg-backdrop').classList.remove('open');
+  }
+}
+function sendMsg() {
+  document.getElementById('msg-backdrop').classList.remove('open');
+  var toast = document.createElement('div');
+  toast.textContent = 'Message sent.';
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0f172a;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.25);';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 3000);
+}
+function togglePause(btn, title) {
+  var isPaused = btn.classList.toggle('paused');
+  btn.title = isPaused ? 'Resume listing' : 'Pause listing';
+  var row = btn.closest('tr');
+  if (row) {
+    var statusCell = row.querySelector('.tag');
+    if (isPaused) {
+      statusCell.className = 'tag'; statusCell.textContent = 'Paused';
+    } else {
+      statusCell.className = 'tag green'; statusCell.textContent = 'Active';
+    }
+  }
+  var toast = document.createElement('div');
+  toast.textContent = (isPaused ? 'Listing paused: ' : 'Listing resumed: ') + title;
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0f172a;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.25);';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 3000);
 }
 </script>
 </body>
