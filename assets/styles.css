@@ -370,7 +370,7 @@ table.data tr:last-child td { border-bottom:0; }
 .site-footer a { color:#cfd8e8; text-decoration:none; display:block; padding:4px 0; font-size: 14px; }
 .site-footer a:hover { color:#fff; text-decoration:underline; }
 .site-footer .cols { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
-@media (max-width: 900px) { .site-footer .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) { .site-footer .cols { grid-template-columns: 1fr 1fr !important; } }
 .site-footer .brand-line { display:flex; gap:12px; align-items:center; margin-bottom: 12px; }
 .site-footer .brand-line .brand-mark { background: var(--navy-800); }
 .site-footer .brand-line .t1 { color:#fff; }
@@ -534,6 +534,21 @@ table.data tr:last-child td { border-bottom:0; }
   .brand-text .t2 { display: none; }
   .nav-cta { gap: 6px; }
   .nav-cta .btn { padding: 6px 10px !important; font-size: 12.5px; }
+
+  /* nav-clean (homepage) — override class-based container styles */
+  .nav-clean .container {
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: 60px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 10px;
+  }
+
+  /* Hide "Create Free Profile" button in nav on mobile (too wide) */
+  nav .container > div:last-child > a.btn-primary { display: none !important; }
+  /* Hide name/region text in logged-in portal nav */
+  nav .container > div:last-child > div[style*="line-height"] { display: none !important; }
 }
 
 /* ---- Mobile ≤ 640px ---- */
@@ -600,7 +615,7 @@ table.data tr:last-child td { border-bottom:0; }
 @media (max-width: 480px) {
   .hero h1 { font-size: 21px; line-height: 1.2; }
   .stats { grid-template-columns: 1fr 1fr; }
-  .site-footer .cols { grid-template-columns: 1fr; }
+  .site-footer .cols { grid-template-columns: 1fr !important; }
   [style*="grid-template-columns:repeat(5,1fr)"],
   [style*="grid-template-columns: repeat(5,1fr)"] { grid-template-columns: 1fr !important; }
   [style*="grid-template-columns: repeat(3, 1fr)"],
