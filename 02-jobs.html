@@ -6,62 +6,61 @@
 <title>Find Jobs — DiscoverTexasPolicing</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
+  /* Corner ribbon on Pro listing cards */
+  .job-row.pro-listing {
+    position: relative;
+    overflow: hidden;
+    border-left: 3px solid #7c3aed;
+  }
+  .pro-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1e3a5f 0%, #7c3aed 100%);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 16px 7px 14px;
+    border-bottom-left-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: -2px 2px 8px rgba(124,58,237,.35);
+  }
+  /* Small inline purple dot next to agency name */
+  .pro-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #7c3aed;
+    background: rgba(124,58,237,.08);
+    border: 1px solid rgba(124,58,237,.25);
+    border-radius: 4px;
+    padding: 1px 6px;
+    vertical-align: middle;
+    margin-left: 5px;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  /* Filter sidebar badge (static, no tooltip) */
   .pro-badge {
     display: inline-flex;
     align-items: center;
     gap: 3px;
     font-size: 10px;
     font-weight: 800;
-    color: #78350f;
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 1px solid #f59e0b;
-    border-radius: 4px;
-    padding: 1px 6px 1px 5px;
-    vertical-align: middle;
-    margin-left: 5px;
-    letter-spacing: .04em;
-    position: relative;
-    cursor: default;
-    white-space: nowrap;
-    text-decoration: none;
-  }
-  .pro-badge::after {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--navy-900);
     color: #fff;
-    font-size: 11.5px;
-    font-weight: 500;
-    padding: 7px 12px;
-    border-radius: 7px;
+    background: linear-gradient(135deg, #1e3a5f, #7c3aed);
+    border-radius: 4px;
+    padding: 2px 7px;
+    vertical-align: middle;
+    letter-spacing: .05em;
     white-space: nowrap;
-    pointer-events: none;
-    z-index: 20;
-    box-shadow: 0 4px 16px rgba(0,0,0,.3);
-    opacity: 0;
-    transition: opacity .15s;
-  }
-  .pro-badge::before {
-    content: '';
-    position: absolute;
-    bottom: calc(100% + 4px);
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: var(--navy-900);
-    pointer-events: none;
-    z-index: 20;
-    opacity: 0;
-    transition: opacity .15s;
-  }
-  .pro-badge:hover::after,
-  .pro-badge:hover::before { opacity: 1; }
-
-  .job-row.pro-listing {
-    border-left: 3px solid #f59e0b;
   }
 </style>
 </head>
@@ -285,10 +284,11 @@
 
         <div class="grid" style="gap: 12px;">
           <a href="04-job-detail.html" class="job-row pro-listing">
+            <div class="pro-corner"><svg width="9" height="9" viewBox="0 0 24 24" fill="#c4b5fd" stroke="none"><path d="M12 2l2.9 6.3L22 9.3l-5 5 1.2 7L12 18l-6.2 3.3 1.2-7-5-5 7.1-1z"/></svg>Pro Agency</div>
             <div class="agency-logo" style="background:#fff url('assets/images/badge-apd.png') center/contain no-repeat; border:none;"></div>
             <div>
               <h3>Police Officer (Lateral & Entry)</h3>
-              <div class="agency">Austin Police Department<span class="pro-badge" data-tip="Pro Agency · Actively recruiting with All-Star Recruiter">✦ Pro</span> · Capital</div>
+              <div class="agency">Austin Police Department<span class="pro-inline">✦ Pro</span> · Capital</div>
               <div class="meta">
                 <span>📍 Austin, TX</span>
                 <span>🛡 TCOLE Peace Officer</span>
@@ -310,10 +310,11 @@
           </a>
 
           <a href="04-job-detail.html" class="job-row pro-listing">
+            <div class="pro-corner"><svg width="9" height="9" viewBox="0 0 24 24" fill="#c4b5fd" stroke="none"><path d="M12 2l2.9 6.3L22 9.3l-5 5 1.2 7L12 18l-6.2 3.3 1.2-7-5-5 7.1-1z"/></svg>Pro Agency</div>
             <div class="agency-logo" style="background:#fff url('assets/images/badge-dps.png') center/contain no-repeat; border:none;"></div>
             <div>
               <h3>State Trooper Recruit (Class A-2026)</h3>
-              <div class="agency">Texas Department of Public Safety<span class="pro-badge" data-tip="Pro Agency · Actively recruiting with All-Star Recruiter">✦ Pro</span> · Statewide</div>
+              <div class="agency">Texas Department of Public Safety<span class="pro-inline">✦ Pro</span> · Statewide</div>
               <div class="meta">
                 <span>📍 Multiple locations</span>
                 <span>🛡 TCOLE Peace Officer</span>
@@ -335,10 +336,11 @@
           </a>
 
           <a href="04-job-detail.html" class="job-row pro-listing">
+            <div class="pro-corner"><svg width="9" height="9" viewBox="0 0 24 24" fill="#c4b5fd" stroke="none"><path d="M12 2l2.9 6.3L22 9.3l-5 5 1.2 7L12 18l-6.2 3.3 1.2-7-5-5 7.1-1z"/></svg>Pro Agency</div>
             <div class="agency-logo" style="background:#fff url('assets/images/badge-fwp.png') center/contain no-repeat; border:none;"></div>
             <div>
               <h3>Police Officer (Lateral)</h3>
-              <div class="agency">Fort Worth Police Department<span class="pro-badge" data-tip="Pro Agency · Actively recruiting with All-Star Recruiter">✦ Pro</span> · Metroplex</div>
+              <div class="agency">Fort Worth Police Department<span class="pro-inline">✦ Pro</span> · Metroplex</div>
               <div class="meta">
                 <span>📍 Fort Worth, TX</span>
                 <span>🛡 TCOLE Peace Officer</span>
@@ -361,10 +363,11 @@
           </a>
 
           <a href="04-job-detail.html" class="job-row pro-listing">
+            <div class="pro-corner"><svg width="9" height="9" viewBox="0 0 24 24" fill="#c4b5fd" stroke="none"><path d="M12 2l2.9 6.3L22 9.3l-5 5 1.2 7L12 18l-6.2 3.3 1.2-7-5-5 7.1-1z"/></svg>Pro Agency</div>
             <div class="agency-logo" style="background:#fff url('assets/images/badge-dpd.png') center/contain no-repeat; border:none;"></div>
             <div>
               <h3>Detective — Property Crimes</h3>
-              <div class="agency">Dallas Police Department<span class="pro-badge" data-tip="Pro Agency · Actively recruiting with All-Star Recruiter">✦ Pro</span> · Metroplex</div>
+              <div class="agency">Dallas Police Department<span class="pro-inline">✦ Pro</span> · Metroplex</div>
               <div class="meta">
                 <span>📍 Dallas, TX</span>
                 <span>🛡 TCOLE Peace Officer (3+ yrs)</span>
