@@ -120,6 +120,24 @@
   }
   .legal-note a { color: var(--text-2); }
 
+  /* Pill used outside .hero context — needs explicit light styles */
+  .signup-page-header .pill {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.22);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .signup-page-header .pill .star { color: var(--gold); }
+
   @media (max-width: 900px) {
     .signup-layout { grid-template-columns: 1fr; max-width: 560px; }
     .signup-wrap { padding: 32px 16px 56px; }
