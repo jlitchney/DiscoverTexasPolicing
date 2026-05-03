@@ -533,8 +533,8 @@ table.data tr:last-child td { border-bottom:0; }
   .nav-links-mobile > a:last-child,
   .primary-nav > a:last-child { border-bottom: none !important; }
 
-  /* Mobile nav: compact brand — hide subtitle, shrink name */
-  .brand-text .t2 { display: none; }
+  /* Mobile nav: compact brand — hide subtitle, shrink name (nav only) */
+  nav .brand-text .t2 { display: none; }
   nav .brand-mark { width: 34px !important; height: 34px !important; }
   nav .brand-mark svg { width: 18px !important; height: 18px !important; }
   nav .brand { gap: 8px !important; }
@@ -583,8 +583,9 @@ table.data tr:last-child td { border-bottom:0; }
   .job-row .actions { display: none; }
 
   .site-footer { padding: 36px 0 16px; margin-top: 48px; }
-  .site-footer .cols { grid-template-columns: 1fr 1fr; }
-  .site-footer .legal { flex-wrap: wrap; font-size: 11.5px; gap: 8px; white-space: normal; }
+  .site-footer .cols { grid-template-columns: 1fr !important; }
+  .site-footer .legal { flex-wrap: wrap; font-size: 11.5px; gap: 8px; }
+  .site-footer .legal > div { white-space: normal; }
 
   .mock-bar { font-size: 11px; padding: 4px 10px; }
   .mock-bar a { margin: 0 4px; }
@@ -611,13 +612,10 @@ table.data tr:last-child td { border-bottom:0; }
   /* Candidate table: collapse to name + last col only */
   .cand-col-header, .cand-row { grid-template-columns: 36px 1fr !important; }
   .cand-col-header > *:nth-child(n+3), .cand-row > *:nth-child(n+3) { display: none !important; }
-}
 
-  /* Admin period select: compact on mobile */
+  /* Admin period select */
   #period-select { font-size: 12px !important; padding: 5px 8px !important; max-width: 140px; }
-
-  /* Footer legal: allow text wrapping */
-  .site-footer .legal > div { white-space: normal; }
+}
 
 /* ---- Small mobile ≤ 480px ---- */
 @media (max-width: 480px) {
