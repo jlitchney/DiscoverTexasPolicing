@@ -135,6 +135,21 @@
     border-top:1px solid var(--border); background:#fff;
     font-weight:500;
   }
+  @media (max-width: 900px) {
+    .agency-hero { padding: 60px 0 70px; }
+    .agency-hero h1 { font-size: 36px; }
+    .stat-strip { flex-wrap: wrap; }
+    .stat-item { flex: 1 1 50%; border-bottom: 1px solid rgba(255,255,255,.15); }
+  }
+  @media (max-width: 640px) {
+    .agency-hero { padding: 44px 0 52px; }
+    .agency-hero h1 { font-size: 26px; line-height: 1.15; }
+    .agency-hero .lede { font-size: 15px; }
+    .stat-num { font-size: 28px; }
+    .stat-item { flex: 1 1 50%; }
+    .preview-card { display: none; }
+    [style*="grid-template-columns:1fr auto"] { grid-template-columns: 1fr !important; }
+  }
 </style>
 </head>
 <body>
