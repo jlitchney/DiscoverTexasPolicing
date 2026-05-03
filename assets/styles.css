@@ -530,10 +530,12 @@ table.data tr:last-child td { border-bottom:0; }
   .nav-links-mobile > a:last-child,
   .primary-nav > a:last-child { border-bottom: none !important; }
 
-  /* Mobile nav: icon-only brand + hamburger */
-  nav .brand-text { display: none !important; }
-  nav .brand-mark { width: 36px !important; height: 36px !important; }
-  nav .brand-mark svg { width: 20px !important; height: 20px !important; }
+  /* Mobile nav: compact brand — hide subtitle, shrink name */
+  .brand-text .t2 { display: none; }
+  nav .brand-mark { width: 34px !important; height: 34px !important; }
+  nav .brand-mark svg { width: 18px !important; height: 18px !important; }
+  nav .brand { gap: 8px !important; }
+  nav .brand-text .t1 { font-size: 13px !important; letter-spacing: 0 !important; }
 
   /* nav-clean (homepage) — override class-based container styles */
   .nav-clean .container {
