@@ -491,6 +491,9 @@ table.data tr:last-child td { border-bottom:0; }
   .stepper { overflow-x: auto; gap: 4px; }
   .step { flex: 0 0 auto; }
   .step .lbl { font-size: 12px; }
+  /* Collapse map + panel layout */
+  [style*="grid-template-columns: 1.5fr 1fr"],
+  [style*="grid-template-columns:1.5fr 1fr"] { grid-template-columns: 1fr !important; }
 }
 
 /* ---- Nav hamburger ≤ 768px ---- */

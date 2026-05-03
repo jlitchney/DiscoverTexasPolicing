@@ -28,6 +28,12 @@
   .map-toggle button:first-child { border-radius: 6px 0 0 6px; border-right:0; }
   .map-toggle button:last-child  { border-radius: 0 6px 6px 0; }
   .map-toggle button.active { background: var(--navy-900); color:#fff; border-color: var(--navy-900); }
+
+  @media (max-width: 640px) {
+    .region-page-header h1 { font-size: 22px !important; }
+    .region-page-header .btn-row { flex-direction: column; align-items: stretch; }
+    .region-page-header .btn-row .btn { text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -64,13 +70,13 @@
 <section class="section tight">
   <div class="container">
     <div class="small"><a href="01-homepage.html">Home</a> › Regions</div>
-    <div style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap; margin: 8px 0 24px;">
+    <div class="region-page-header" style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap; margin: 8px 0 24px;">
       <div>
         <span class="eyebrow">★ Texas Uniform State Service Regions</span>
         <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 6px 0 4px; font-size: 30px;">Hire local. Serve where you call home.</h1>
         <p style="color:var(--text-2); margin:0; max-width: 760px;">Texas is divided into 13 Uniform State Service Regions adopted by the Texas Comptroller. Click any region to see open positions and connect with the local Recruitment Ambassador.</p>
       </div>
-      <div style="display:flex; gap:8px;">
+      <div class="btn-row" style="display:flex; gap:8px;">
         <a href="02-jobs.html" class="btn btn-outline">Browse all jobs (1,593)</a>
         <a href="10-ambassadors.html" class="btn btn-secondary">View Ambassadors</a>
       </div>
