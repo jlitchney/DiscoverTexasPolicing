@@ -62,6 +62,62 @@
     letter-spacing: .05em;
     white-space: nowrap;
   }
+
+  /* ── Mobile filter drawer ── */
+  #filter-btn-row { display: none; }
+  #filter-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: #fff;
+    overflow-y: auto;
+    padding-bottom: 90px;
+    -webkit-overflow-scrolling: touch;
+  }
+  #filter-drawer.open { display: block; }
+  .filter-drawer-header {
+    position: sticky;
+    top: 0;
+    background: var(--navy-900);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    z-index: 2;
+  }
+  .filter-drawer-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  .filter-drawer-body { padding: 20px; }
+  .filter-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background: var(--navy-900);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 0 5px;
+    margin-left: 4px;
+  }
+  @media (max-width: 900px) {
+    #filter-btn-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .layout-with-sidebar > aside.sidebar { display: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -273,6 +329,15 @@
 
       <!-- Results list -->
       <div>
+        <!-- Mobile filter toggle -->
+        <div id="filter-btn-row">
+          <button class="btn btn-outline" onclick="openFilterDrawer()" style="display:flex; align-items:center; gap:7px; font-weight:600;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+            Filters <span class="filter-count-badge">5</span>
+          </button>
+          <span style="color:var(--text-2); font-size:13px;">5 active</span>
+        </div>
+
         <!-- Active filter chips -->
         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 14px;">
           <span class="tag">Police Officer ✕</span>
@@ -530,6 +595,115 @@
     </div>
   </div>
 </footer>
+
+<!-- ── Mobile filter drawer ── -->
+<div id="filter-drawer">
+  <div class="filter-drawer-header">
+    <div style="font-weight:700; font-size:16px;">Filters</div>
+    <button onclick="closeFilterDrawer()" style="background:none; border:none; color:#fff; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:14px; padding:0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Close
+    </button>
+  </div>
+
+  <div class="filter-drawer-body">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <span style="color:var(--text-2); font-size:13px;">5 filters active</span>
+      <a href="#" class="small">Clear all</a>
+    </div>
+
+    <h4>Texas Region</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" checked /> Metroplex (DFW) <span class="count">425</span></label>
+      <label><input type="checkbox" checked /> Capital (Austin) <span class="count">318</span></label>
+      <label><input type="checkbox" /> Gulf Coast (Houston) <span class="count">287</span></label>
+      <label><input type="checkbox" /> Alamo (San Antonio) <span class="count">221</span></label>
+      <label><input type="checkbox" /> South Texas Border <span class="count">172</span></label>
+      <label><input type="checkbox" /> Central Texas (Waco) <span class="count">156</span></label>
+      <label><input type="checkbox" checked /> High Plains (Panhandle) <span class="count">142</span></label>
+      <label><input type="checkbox" /> West Texas <span class="count">129</span></label>
+      <label><input type="checkbox" /> Upper East Texas <span class="count">98</span></label>
+      <label><input type="checkbox" /> Northwest Texas <span class="count">86</span></label>
+      <label><input type="checkbox" /> Coastal Bend <span class="count">74</span></label>
+      <label><input type="checkbox" /> Southeast Texas <span class="count">68</span></label>
+      <label><input type="checkbox" /> Upper Rio Grande <span class="count">52</span></label>
+    </div>
+
+    <h4>TCOLE License Type</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" checked /> Peace Officer <span class="count">1,124</span></label>
+      <label><input type="checkbox" /> Jailer <span class="count">238</span></label>
+      <label><input type="checkbox" /> Telecommunicator <span class="count">156</span></label>
+      <label><input type="checkbox" /> No license required (cadet) <span class="count">75</span></label>
+    </div>
+
+    <h4>Agency Type</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" /> Municipal PD <span class="count">812</span></label>
+      <label><input type="checkbox" /> County Sheriff's Office <span class="count">344</span></label>
+      <label><input type="checkbox" /> State (DPS, TPWD, ABC) <span class="count">132</span></label>
+      <label><input type="checkbox" /> Constable / Marshal <span class="count">98</span></label>
+      <label><input type="checkbox" /> School District / Hospital <span class="count">42</span></label>
+    </div>
+
+    <h4>Job Role</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" checked /> Police Officer / Deputy</label>
+      <label><input type="checkbox" /> Detective / Investigator</label>
+      <label><input type="checkbox" /> Detention / Jailer</label>
+      <label><input type="checkbox" /> Dispatcher / Telecom</label>
+      <label><input type="checkbox" /> K-9 Handler</label>
+      <label><input type="checkbox" /> SWAT / Tactical</label>
+      <label><input type="checkbox" /> School Resource Officer</label>
+    </div>
+
+    <h4>Experience</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" /> Entry / Cadet</label>
+      <label><input type="checkbox" checked /> Lateral (1+ yrs sworn)</label>
+      <label><input type="checkbox" /> Supervisory / Command</label>
+    </div>
+
+    <h4>Salary range</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" /> Under $55,000</label>
+      <label><input type="checkbox" checked /> $55,000 – $75,000</label>
+      <label><input type="checkbox" checked /> $75,000 – $95,000</label>
+      <label><input type="checkbox" /> $95,000+</label>
+    </div>
+
+    <h4>Benefits</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" /> Sign-on bonus</label>
+      <label><input type="checkbox" /> Take-home vehicle</label>
+      <label><input type="checkbox" /> Tuition reimbursement</label>
+      <label><input type="checkbox" /> Bilingual pay</label>
+      <label><input type="checkbox" /> Pension (TMRS/JRS/ERS)</label>
+    </div>
+
+    <h4>Agency Tier</h4>
+    <div class="filter-list">
+      <label><input type="checkbox" /> <span class="pro-badge" style="position:static; cursor:inherit; pointer-events:none;">✦ Pro</span> &nbsp;Pro agencies only</label>
+      <label><input type="checkbox" /> All agencies</label>
+    </div>
+  </div>
+
+  <div class="filter-drawer-footer">
+    <button class="btn btn-secondary btn-block" onclick="closeFilterDrawer()" style="flex:1;">Apply filters</button>
+    <button class="btn btn-outline" onclick="closeFilterDrawer()">Done</button>
+  </div>
+</div>
+
+<script>
+  function openFilterDrawer() {
+    document.getElementById('filter-drawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFilterDrawer() {
+    document.getElementById('filter-drawer').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 
 <script src="assets/script.js"></script>
 </body>

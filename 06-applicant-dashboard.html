@@ -8,6 +8,16 @@
 <style>
   .amb-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow-sm); }
   .amb-card .photo-avatar.xl { border:3px solid var(--gold); }
+
+  @media (max-width: 640px) {
+    .action-item { flex-wrap: wrap !important; }
+    .action-item .action-btns { width: 100%; justify-content: flex-start !important; margin-top: 6px; }
+    .action-item .action-btns .tag { white-space: normal !important; }
+    /* Page header stack */
+    .dash-header { flex-direction: column !important; align-items: flex-start !important; }
+    .dash-header > div:last-child { width: 100%; }
+    .dash-header > div:last-child .btn { flex: 1; text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -45,7 +55,7 @@
 
 <section class="section tight">
   <div class="container">
-    <div style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom: 22px;">
+    <div class="dash-header" style="display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px; margin-bottom: 22px;">
       <div>
         <h1 style="font-family:var(--font-display); color:var(--navy-900); margin: 0; font-size: 28px;">Welcome back, Daniela</h1>
         <p style="color:var(--text-2); margin: 4px 0 0;">12 new openings match your saved searches in the Alamo region since you last visited.</p>
@@ -78,35 +88,35 @@
             </div>
             <a href="06a-applicant-applications.html" class="small" style="color:#b91c1c;">View all →</a>
           </div>
-          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
+          <div class="action-item" style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
             <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">RPD</div>
             <div style="flex:1;">
               <strong style="font-size:13.5px; color:var(--navy-900);">Round Rock Police Department</strong>
               <div class="small">Police Officer · Capital Region</div>
             </div>
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div class="action-btns" style="display:flex; align-items:center; gap:8px;">
               <span class="tag red" style="white-space:nowrap;">Documents required</span>
               <a href="#" class="btn btn-primary btn-sm">Upload now</a>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
+          <div class="action-item" style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid var(--border);">
             <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">CPD</div>
             <div style="flex:1;">
               <strong style="font-size:13.5px; color:var(--navy-900);">Corpus Christi Police Department</strong>
               <div class="small">Police Officer · Coastal Bend Region</div>
             </div>
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div class="action-btns" style="display:flex; align-items:center; gap:8px;">
               <span class="tag gold" style="white-space:nowrap;">Complete pre-screen</span>
               <a href="#" class="btn btn-primary btn-sm">Complete Survey</a>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px;">
+          <div class="action-item" style="display:flex; align-items:center; gap:14px; padding:14px 18px;">
             <div class="agency-logo" style="width:40px; height:40px; font-size:12px; flex-shrink:0;">SMP</div>
             <div style="flex:1;">
               <strong style="font-size:13.5px; color:var(--navy-900);">San Marcos Police Department</strong>
               <div class="small">Police Officer Cadet · Capital Region</div>
             </div>
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div class="action-btns" style="display:flex; align-items:center; gap:8px;">
               <span class="tag gold" style="white-space:nowrap;">Complete pre-screen</span>
               <a href="#" class="btn btn-primary btn-sm">Complete Survey</a>
             </div>
